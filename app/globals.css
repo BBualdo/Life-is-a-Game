@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply backdrop-blur-[2px] border-2 text-lg uppercase p-2 min-w-[220px] transition-all duration-200;
+    clip-path: polygon(100% 0, 100% 56%, 90.5% 100%, 0 100%, 0 0);
+  }
+
+  .btn::after {
+    @apply content-[''] w-[28px] h-[28px] absolute bottom-[-14px] right-[-14px] bg-none border-b-2 border-solid rotate-[135deg] transition-all duration-200;
+  }
+
+  .btn-cyan {
+    @apply border-cp-cyan  text-cp-cyan;
+  }
+
+  .btn-cyan::after {
+    @apply border-cp-cyan;
+  }
+
+  .btn-red {
+    @apply border-cp-red text-cp-red bg-cp-red/30;
+  }
+
+  .btn-red::after {
+    @apply border-cp-red;
+  }
+}
