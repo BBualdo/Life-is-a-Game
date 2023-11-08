@@ -9,7 +9,7 @@
   }
 
   .btn::after {
-    @apply content-[''] w-[28px] h-[28px] absolute bottom-[-14px] right-[-14px] bg-none border-b-2 border-solid rotate-[135deg] transition-all duration-200;
+    @apply content-[''] w-[28px] h-[28px] absolute bottom-[-14px] right-[-14px] border-b-2 border-solid rotate-[135deg] transition-all duration-200 focus:outline-cp-cyan;
   }
 
   .btn-cyan {
