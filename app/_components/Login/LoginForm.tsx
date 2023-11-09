@@ -11,10 +11,11 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "@/shadcn/ui/form";
+import { Input } from "@/shadcn/ui/input";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const loginFormSchema = z.object({
   username: z
@@ -28,7 +29,7 @@ const loginFormSchema = z.object({
 });
 
 const LoginForm = () => {
-  const form = useForm<z.infer<typeof loginFormSchema>>({
+  const loginForm = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
       username: "",
@@ -48,13 +49,13 @@ const LoginForm = () => {
       transition={{ type: "spring", duration: 1 }}
       className="flex flex-col items-center"
     >
-      <Form {...form}>
+      <Form {...loginForm}>
         <form
           className="flex flex-col items-center gap-4"
-          onSubmit={form.handleSubmit(onSubmit)}
+          onSubmit={loginForm.handleSubmit(onSubmit)}
         >
           <FormField
-            control={form.control}
+            control={loginForm.control}
             name="username"
             render={({ field }) => (
               <FormItem>
@@ -70,7 +71,7 @@ const LoginForm = () => {
             )}
           />
           <FormField
-            control={form.control}
+            control={loginForm.control}
             name="password"
             render={({ field }) => (
               <FormItem>
@@ -97,9 +98,11 @@ const LoginForm = () => {
               Are you new here?
             </span>
           </div>
-          <button type="button" className="btn btn-yellow hover:btn-red">
-            Create account
-          </button>
+          <Link href="/signup">
+            <button type="button" className="btn btn-yellow hover:bg-black">
+              Create account
+            </button>
+          </Link>
         </form>
       </Form>
     </motion.div>

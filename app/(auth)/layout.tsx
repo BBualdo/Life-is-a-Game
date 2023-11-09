@@ -1,10 +1,9 @@
-import Logo from "../../components/Login/Logo";
-import { arcade } from "../../layout";
-import Backdrop from "./Backdrop";
-import LoginForm from "./LoginForm";
-import LoginProviders from "./LoginProviders";
+import Backdrop from "../_components/Login/Backdrop";
+import LoginProviders from "../_components/Login/LoginProviders";
+import Logo from "../_components/Login/Logo";
+import { arcade } from "../layout";
 
-const Login = () => {
+const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Backdrop />
@@ -14,11 +13,11 @@ const Login = () => {
         </div>
         <div className="flex flex-col items-center">
           <LoginProviders />
-          <LoginForm />
+          {children}
         </div>
       </div>
     </>
   );
 };
 
-export default Login;
+export default AuthLayout;

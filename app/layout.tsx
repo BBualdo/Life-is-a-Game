@@ -8,10 +8,10 @@ export const metadata: Metadata = {
 };
 
 const blender = localFont({
-  src: "./fonts/Blender-Pro-Bold.ttf",
+  src: "./_fonts/Blender-Pro-Bold.ttf",
 });
 
-export const arcade = localFont({ src: "./fonts/Arcade-I.ttf" });
+export const arcade = localFont({ src: "./_fonts/Arcade-I.ttf" });
 
 export default function RootLayout({
   children,
