@@ -19,6 +19,7 @@ module.exports = {
       colors: {
         "cp-cyan": "#00f0ff",
         "cp-red": "	#ef4444",
+        "cp-yellow": "#fcee0a",
       },
       keyframes: {
         "accordion-down": {

@@ -27,4 +27,12 @@
   .btn-red::after {
     @apply border-cp-red;
   }
+
+  .btn-yellow {
+    @apply border-cp-yellow text-cp-yellow;
+  }
+
+  .btn-yellow::after {
+    @apply border-cp-yellow;
+  }
 }

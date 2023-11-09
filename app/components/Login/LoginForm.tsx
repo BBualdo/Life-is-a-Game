@@ -92,7 +92,12 @@ const LoginForm = () => {
           <button type="submit" className="btn btn-cyan hover:btn-red">
             Log in
           </button>
-          <button type="button" className="btn btn-cyan hover:btn-red">
+          <div className="relative border w-full flex items-center justify-center mt-3">
+            <span className="absolute -top-2 backdrop-blur-sm text-cp-yellow uppercase text-xs">
+              Are you new here?
+            </span>
+          </div>
+          <button type="button" className="btn btn-yellow hover:btn-red">
             Create account
           </button>
         </form>
