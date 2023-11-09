@@ -16,9 +16,6 @@ module.exports = {
       },
     },
     extend: {
-      backgroundImage: {
-        rog: "url('/assets/images/rog.gif')",
-      },
       colors: {
         "cp-cyan": "#00f0ff",
         "cp-red": "	#ef4444",

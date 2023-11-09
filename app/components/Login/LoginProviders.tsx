@@ -11,10 +11,13 @@ const LoginProviders = () => {
       className="relative flex w-3/4 items-center justify-between my-8 border border-cp-cyan py-6 px-8"
     >
       <div className="absolute flex items-center justify-center text-cp-cyan uppercase text-sm z-10 -top-[10px] w-full left-0">
-        <span className="backdrop-blur-sm">Log in using</span>
+        <span aria-hidden className="backdrop-blur-sm">
+          Log in using
+        </span>
       </div>
       {/* Google */}
       <motion.button
+        aria-label="Login with Google"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ type: "spring", delay: 1 }}
@@ -37,6 +40,7 @@ const LoginProviders = () => {
 
       {/* GitHub */}
       <motion.button
+        aria-label="Login with GitHub"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ type: "spring", delay: 1.5 }}
@@ -66,6 +70,7 @@ const LoginProviders = () => {
 
       {/* Facebook */}
       <motion.button
+        aria-label="Login with Facebook"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ type: "spring", delay: 2 }}
@@ -86,7 +91,9 @@ const LoginProviders = () => {
         </svg>
       </motion.button>
       <div className="absolute flex items-center justify-center text-cp-cyan uppercase text-sm z-10 -bottom-[10px] w-full left-0">
-        <span className="backdrop-blur-sm">or</span>
+        <span aria-hidden className="backdrop-blur-sm">
+          or
+        </span>
       </div>
     </motion.div>
   );
