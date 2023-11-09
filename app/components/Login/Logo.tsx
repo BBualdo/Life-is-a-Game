@@ -1,17 +1,23 @@
 "use client";
 
 import { TypeAnimation } from "react-type-animation";
+import { motion } from "framer-motion";
 
 const Logo = () => {
   return (
-    <div className="h-[132px] flex flex-col text-white text-2xl">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      className="h-[132px] flex flex-col text-white text-2xl"
+    >
       <div>
         <span aria-hidden className="text-cp-cyan">
           L
         </span>
         <TypeAnimation
           aria-hidden
-          sequence={[500, "ife"]}
+          sequence={[1000, "ife"]}
           style={{
             whiteSpace: "pre-line",
           }}
@@ -24,7 +30,7 @@ const Logo = () => {
         </span>
         <TypeAnimation
           aria-hidden
-          sequence={[1000, "s"]}
+          sequence={[1500, "s"]}
           style={{
             whiteSpace: "pre-line",
           }}
@@ -42,14 +48,14 @@ const Logo = () => {
         </span>
         <TypeAnimation
           aria-hidden
-          sequence={[1500, "ame"]}
+          sequence={[2000, "ame"]}
           style={{
             whiteSpace: "pre-line",
           }}
           cursor={false}
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
