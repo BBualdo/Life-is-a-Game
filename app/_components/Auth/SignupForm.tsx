@@ -17,21 +17,30 @@ import { Input } from "@/shadcn/ui/input";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const signupFormSchema = z.object({
-  username: z
-    .string()
-    .min(4, { message: "Username must be at least 4 characters." })
-    .max(50),
-  email: z.string().email({ message: "Invalid email" }),
-  password: z
-    .string()
-    .min(6, { message: "Password must be at least 6 characters." })
-    .max(30),
-  confirmPassword: z
-    .string()
-    .min(6, { message: "Password must be at least 6 characters." })
-    .max(30),
-});
+import { signupUser } from "@/lib/utils";
+
+const signupFormSchema = z
+  .object({
+    username: z
+      .string()
+      .min(4, { message: "Username must be at least 4 characters." })
+      .max(50),
+    email: z.string().email({ message: "Invalid email" }),
+    password: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters." })
+      .max(30),
+    confirmPassword: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters." })
+      .max(30),
+  })
+  .refine(
+    (values) => {
+      return values.password === values.confirmPassword;
+    },
+    { message: "Passwords must match!", path: ["confirmPassword"] }
+  );
 
 const SignupForm = () => {
   const signupForm = useForm<z.infer<typeof signupFormSchema>>({
@@ -45,9 +54,7 @@ const SignupForm = () => {
   });
 
   function onSubmit(values: z.infer<typeof signupFormSchema>) {
-    // check if passwords match
-    // Call database
-    console.log(values);
+    signupUser(values.email, values.password, values.username);
   }
 
   return (
