@@ -46,6 +46,7 @@ const LoginForm = () => {
       initial={{ x: "-100vw" }}
       animate={{ x: 0 }}
       transition={{ type: "spring", duration: 1 }}
+      className="flex flex-col items-center"
     >
       <Form {...form}>
         <form
