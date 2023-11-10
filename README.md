@@ -15,3 +15,4 @@ Life is a Game (LIAG) is an app that let's user set goals and gain XP for it to 
 8. When I've done entire login page I set up routing between /login and /signup pages.
 9. I decided to use **Appwrite** in this project. So I configured my project with Appwrite and set up adding new user to Database.
 10. I've set up **AppwriteService** class to organize my code. This class has methods for logging in, signing up, etc. Then I'm using these methods in Signup and Login Forms to create or login user.
+11. Logging in and signing up routes user into dashboard. But if user is not authenticated, typing exact url in the browser will still route user into Login Page.

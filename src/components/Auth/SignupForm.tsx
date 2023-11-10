@@ -18,6 +18,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 import appwriteService from "@/src/appwrite/config";
+import { useRouter } from "next/navigation";
 
 const signupFormSchema = z
   .object({
@@ -43,6 +44,8 @@ const signupFormSchema = z
   );
 
 const SignupForm = () => {
+  const router = useRouter();
+
   const signupForm = useForm<z.infer<typeof signupFormSchema>>({
     resolver: zodResolver(signupFormSchema),
     defaultValues: {
@@ -53,13 +56,22 @@ const SignupForm = () => {
     },
   });
 
-  function onSubmit({
+  async function onSubmit({
     email,
     password,
     username,
   }: z.infer<typeof signupFormSchema>) {
-    appwriteService.createUserAccount({ email, password, name: username });
-    appwriteService.login({ email, password });
+    try {
+      await appwriteService.createUserAccount({
+        email,
+        password,
+        name: username,
+      });
+      await appwriteService.login({ email, password });
+      router.push("/");
+    } catch (error) {
+      throw error;
+    }
   }
 
   return (

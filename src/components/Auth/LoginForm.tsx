@@ -17,6 +17,7 @@ import { Input } from "@/shadcn/ui/input";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import appwriteService from "@/src/appwrite/config";
+import { useRouter } from "next/navigation";
 
 const loginFormSchema = z.object({
   email: z.string().email({ message: "Email is not valid." }),
@@ -27,6 +28,8 @@ const loginFormSchema = z.object({
 });
 
 const LoginForm = () => {
+  const router = useRouter();
+
   const loginForm = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -35,8 +38,16 @@ const LoginForm = () => {
     },
   });
 
-  function onSubmit({ email, password }: z.infer<typeof loginFormSchema>) {
-    appwriteService.login({ email, password });
+  async function onSubmit({
+    email,
+    password,
+  }: z.infer<typeof loginFormSchema>) {
+    try {
+      await appwriteService.login({ email, password });
+      router.push("/");
+    } catch (error) {
+      throw error;
+    }
   }
 
   return (
@@ -76,7 +87,11 @@ const LoginForm = () => {
                   <FormLabel className="text-white tracking-[6px]">
                     PASSWORD
                   </FormLabel>
-                  <button type="button" className="text-cp-cyan text-xs">
+                  <button
+                    tabIndex={-1}
+                    type="button"
+                    className="text-cp-cyan text-xs"
+                  >
                     DON'T REMEMBER?
                   </button>
                 </div>
