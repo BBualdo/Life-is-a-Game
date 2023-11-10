@@ -17,7 +17,7 @@ import { Input } from "@/shadcn/ui/input";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-import { signupUser } from "@/lib/utils";
+import appwriteService from "@/src/appwrite/config";
 
 const signupFormSchema = z
   .object({
@@ -25,7 +25,7 @@ const signupFormSchema = z
       .string()
       .min(4, { message: "Username must be at least 4 characters." })
       .max(50),
-    email: z.string().email({ message: "Invalid email" }),
+    email: z.string().email({ message: "Email must be valid." }),
     password: z
       .string()
       .min(8, { message: "Password must be at least 8 characters." })
@@ -53,8 +53,13 @@ const SignupForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof signupFormSchema>) {
-    signupUser(values.email, values.password, values.username);
+  function onSubmit({
+    email,
+    password,
+    username,
+  }: z.infer<typeof signupFormSchema>) {
+    appwriteService.createUserAccount({ email, password, name: username });
+    appwriteService.login({ email, password });
   }
 
   return (

@@ -16,15 +16,13 @@ import { Input } from "@/shadcn/ui/input";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import appwriteService from "@/src/appwrite/config";
 
 const loginFormSchema = z.object({
-  username: z
-    .string()
-    .min(4, { message: "Username must be at least 4 characters." })
-    .max(50),
+  email: z.string().email({ message: "Email is not valid." }),
   password: z
     .string()
-    .min(6, { message: "Password must be at least 6 characters." })
+    .min(8, { message: "Password must be at least 8 characters." })
     .max(30),
 });
 
@@ -32,14 +30,13 @@ const LoginForm = () => {
   const loginForm = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
-      username: "",
+      email: "",
       password: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof loginFormSchema>) {
-    // Call database
-    console.log(values);
+  function onSubmit({ email, password }: z.infer<typeof loginFormSchema>) {
+    appwriteService.login({ email, password });
   }
 
   return (
@@ -56,11 +53,11 @@ const LoginForm = () => {
         >
           <FormField
             control={loginForm.control}
-            name="username"
+            name="email"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-white tracking-[6px]">
-                  USERNAME
+                  EMAIL
                 </FormLabel>
                 <FormControl>
                   <Input className="min-w-[360px]" type="text" {...field} />
