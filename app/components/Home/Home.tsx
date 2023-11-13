@@ -1,21 +1,21 @@
 "use client";
 
-import appwriteService from "@/src/appwrite/config";
+import appwriteService from "@/app/appwrite/config";
 
 import { useRouter } from "next/navigation";
-import useAuth from "@/src/hooks/useAuth";
-import Loading from "@/src/app/loading";
+import useAuth from "@/app/hooks/useAuth";
+import Loading from "@/app/loading";
 
 const Home = () => {
   const isAuth = useAuth();
   const router = useRouter();
 
   if (isAuth === null) {
-    return <Loading type="bars" color="#c10021" />;
+    return <Loading />;
   }
 
   if (!isAuth) {
-    null;
+    return <Loading />;
   }
 
   const logout = () => {
@@ -24,7 +24,7 @@ const Home = () => {
   };
 
   return (
-    <main className="bg-black flex flex-col gap-8 items-center justify-center min-h-screen">
+    <main className="flex flex-col gap-8 items-center justify-center min-h-screen">
       <div className="text-white uppercase text-2xl">
         Signed in successfully! Welcome user!
       </div>

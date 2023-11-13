@@ -11,13 +11,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/shadcn/ui/form";
-import { Input } from "@/shadcn/ui/input";
+} from "@/app/shadcn/ui/form";
+import { Input } from "@/app/shadcn/ui/input";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-import appwriteService from "@/src/appwrite/config";
+import appwriteService from "@/app/appwrite/config";
 import { useRouter } from "next/navigation";
 
 const signupFormSchema = z

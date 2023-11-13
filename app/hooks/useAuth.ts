@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import appwriteService from "../appwrite/config";
+import appwriteService from "@/app/appwrite/config";
 
 const useAuth = () => {
   const router = useRouter();
