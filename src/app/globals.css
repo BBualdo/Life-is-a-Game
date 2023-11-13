@@ -21,7 +21,7 @@
   }
 
   .btn-red {
-    @apply border-cp-red text-cp-red bg-cp-red/30;
+    @apply border-cp-red text-cp-red;
   }
 
   .btn-red::after {
