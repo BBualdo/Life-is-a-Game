@@ -4,7 +4,7 @@
 
 @layer components {
   .btn {
-    @apply backdrop-blur-[2px] border-2 text-lg uppercase p-2 min-w-[220px] transition-all duration-200;
+    @apply backdrop-blur-[2px] border-2 text-base font-extrabold uppercase p-2 min-w-[220px] transition-all duration-200;
     clip-path: polygon(100% 0, 100% 56%, 90.5% 100%, 0 100%, 0 0);
   }
 
