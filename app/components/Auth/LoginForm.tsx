@@ -16,8 +16,6 @@ import { Input } from "@/app/shadcn/ui/input";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import appwriteService from "@/app/appwrite/config";
-import { useRouter } from "next/navigation";
 
 const loginFormSchema = z.object({
   email: z.string().email({ message: "Email is not valid." }),
@@ -28,8 +26,6 @@ const loginFormSchema = z.object({
 });
 
 const LoginForm = () => {
-  const router = useRouter();
-
   const loginForm = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -38,13 +34,10 @@ const LoginForm = () => {
     },
   });
 
-  async function onSubmit({
-    email,
-    password,
-  }: z.infer<typeof loginFormSchema>) {
+  async function onSubmit(values: z.infer<typeof loginFormSchema>) {
     try {
-      await appwriteService.login({ email, password });
-      router.push("/");
+      console.log(values);
+      // Clerk logic
     } catch (error) {
       throw error;
     }
