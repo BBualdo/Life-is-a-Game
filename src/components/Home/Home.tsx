@@ -7,10 +7,11 @@ import { useRouter } from "next/navigation";
 const Home = () => {
   const { setAuthStatus } = useAuth();
   const router = useRouter();
+
   const logout = async () => {
     await appwriteService.logout();
     setAuthStatus(false);
-    router.push("login");
+    router.replace("/login");
   };
 
   return (

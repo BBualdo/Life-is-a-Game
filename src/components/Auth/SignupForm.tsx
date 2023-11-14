@@ -47,7 +47,12 @@ const signupFormSchema = z
 
 // Signup Component
 const SignupForm = () => {
+  const { setAuthStatus } = useAuth();
   const router = useRouter();
+
+  // if (authStatus) {
+  //   router.replace("/");
+  // }
 
   const signupForm = useForm<z.infer<typeof signupFormSchema>>({
     resolver: zodResolver(signupFormSchema),
@@ -58,8 +63,6 @@ const SignupForm = () => {
       confirmPassword: "",
     },
   });
-
-  const { setAuthStatus } = useAuth();
 
   async function onSubmit({
     email,
