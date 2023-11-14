@@ -2,30 +2,30 @@ import conf from "../conf/config";
 import { Client, Account, ID } from "appwrite";
 
 type CreateUserAccount = {
-  username: string;
   email: string;
   password: string;
+  username: string;
 };
 type LoginUserAccout = {
   email: string;
   password: string;
 };
 
-const appwriteClient = new Client();
+export const client = new Client();
 
-appwriteClient.setEndpoint(conf.appwriteUrl).setProject(conf.appwriteProjectId);
+client.setEndpoint(conf.appwriteUrl).setProject(conf.appwriteProjectId);
 
-export const account = new Account(appwriteClient);
+export const account = new Account(client);
 
 class AppwriteService {
   // Create a new record of user inside Appwrite
-  async createUserAccount({ username, email, password }: CreateUserAccount) {
+  async createUserAccount({ email, password, username }: CreateUserAccount) {
     try {
       const userAccount = await account.create(
         ID.unique(),
-        username,
         email,
-        password
+        password,
+        username
       );
 
       if (userAccount) {

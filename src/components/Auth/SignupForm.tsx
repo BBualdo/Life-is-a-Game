@@ -21,6 +21,7 @@ import appwriteService from "@/src/appwrite/config";
 import useAuth from "@/src/context/useAuth";
 import { useRouter } from "next/navigation";
 
+// Signup Zod Schema
 const signupFormSchema = z
   .object({
     username: z
@@ -44,7 +45,10 @@ const signupFormSchema = z
     { message: "Passwords must match!", path: ["confirmPassword"] }
   );
 
+// Signup Component
 const SignupForm = () => {
+  const router = useRouter();
+
   const signupForm = useForm<z.infer<typeof signupFormSchema>>({
     resolver: zodResolver(signupFormSchema),
     defaultValues: {
@@ -55,7 +59,27 @@ const SignupForm = () => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof signupFormSchema>) {}
+  const { setAuthStatus } = useAuth();
+
+  async function onSubmit({
+    email,
+    password,
+    username,
+  }: z.infer<typeof signupFormSchema>) {
+    try {
+      const userData = await appwriteService.createUserAccount({
+        email,
+        password,
+        username,
+      });
+      if (userData) {
+        setAuthStatus(true);
+        router.push("/");
+      }
+    } catch (error) {
+      console.error("Failed to Signup: " + error);
+    }
+  }
 
   return (
     <motion.div

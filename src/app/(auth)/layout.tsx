@@ -1,5 +1,5 @@
 import Backdrop from "@/src/components/Auth/Backdrop";
-import { arcade } from "@/src/components/fonts";
+import { arcade } from "@/src/fonts";
 import Logo from "@/src/components/Auth/Logo";
 import LoginProviders from "@/src/components/Auth/LoginProviders";
 
