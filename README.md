@@ -13,14 +13,9 @@ Life is a Game (LIAG) is an app that let's user set goals and gain XP for it to 
 6. Then I brought **Framer Motion** and added some animations and transitions to make login page look more interesting.
 7. I deployed my page to test the Performance and Accessibility... and it was horrible. First, I had to switch background gif into a video and loop it to speed up loading page. And then I made necessary improvements to Accessibility, like hiding some arias and give aria-label into buttons like "Sign in with Google".
 8. When I've done entire login page I set up routing between /login and /signup pages.
-
-#### That steps has been changed. Kept just for the record.
-
-_9. I decided to use **Appwrite** in this project. So I configured my project with Appwrite and set up adding new user to Database._
-_10. I've set up **AppwriteService** class to organize my code. This class has methods for logging in, signing up, etc. Then I'm using these methods in Signup and Login Forms to create or login user._
-_11. Logging in and signing up routes user into dashboard. But if user is not authenticated, typing exact url in the browser will still route user into Login Page._
-_12. That doesn't work so well. First, if user types exact url to the page he shouldn't not have access to if not authenticated, the page flashes with unauthorize content for a second and then routes user to /login. This is because asynchronous nature of getting data about if user is logged in. I conquered that with adding loading bar, but there is another problem - I'm losing styled on refresh when I'm in logged in view or doesn't have it at all if coming into this page when unauthorised. Got to find the solution._
-
-9. Unauthorized users will see loading bars instead of flash of page content. I also don't lose styled on refresh, but I still lose font. Got to fix it.
-10. I decided to change font from custom BlenderProBold to Orbitron. That solved the problem.
-11. I decided to delete Appwrite because I considered auth they provide as cumbersome. I will try to use **Clerk** for Auth instead.
+9. I decided to use **Appwrite** in this project. So I configured my project with Appwrite and set up adding new user to Database.
+10. I've set up **AppwriteService** class to organize my code. This class has methods for logging in, signing up, etc. Then I'm using these methods in Signup and Login Forms to create or login user.
+11. Logging in and signing up routes user into dashboard. But if user is not authenticated, typing exact url in the browser will still route user into Login Page.
+12. That doesn't work so well. First, if user types exact url to the page he shouldn't not have access to if not authenticated, the page flashes with unauthorize content for a second and then routes user to /login. This is because asynchronous nature of getting data about if user is logged in. I conquered that with adding loading bar, but there is another problem - I'm losing styled on refresh when I'm in logged in view or doesn't have it at all if coming into this page when unauthorised. Got to find the solution.
+13. Unauthorized users will see loading bars instead of flash of page content. I also don't lose styled on refresh, but I still lose font. Got to fix it.
+14. I decided to change font from custom BlenderProBold to Orbitron. That solved the problem.
