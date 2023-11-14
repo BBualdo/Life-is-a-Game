@@ -21,8 +21,6 @@ import useAuth from "@/src/context/useAuth";
 import { useRouter } from "next/navigation";
 
 // Login Zod Schema
-const router = useRouter();
-
 const loginFormSchema = z.object({
   email: z.string().email({ message: "Email is not valid." }),
   password: z
@@ -31,10 +29,11 @@ const loginFormSchema = z.object({
     .max(30),
 });
 
-const { setAuthStatus } = useAuth();
-
 // Login Component
 const LoginForm = () => {
+  const router = useRouter();
+  const { setAuthStatus } = useAuth();
+
   const loginForm = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
