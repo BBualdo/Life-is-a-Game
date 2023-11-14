@@ -11,13 +11,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/app/shadcn/ui/form";
-import { Input } from "@/app/shadcn/ui/input";
+} from "@/src/shadcn/ui/form";
+import { Input } from "@/src/shadcn/ui/input";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-import appwriteService from "@/app/appwrite/config";
+import appwriteService from "@/src/appwrite/config";
+import useAuth from "@/src/context/useAuth";
 import { useRouter } from "next/navigation";
 
 const signupFormSchema = z
@@ -44,8 +45,6 @@ const signupFormSchema = z
   );
 
 const SignupForm = () => {
-  const router = useRouter();
-
   const signupForm = useForm<z.infer<typeof signupFormSchema>>({
     resolver: zodResolver(signupFormSchema),
     defaultValues: {
@@ -56,23 +55,7 @@ const SignupForm = () => {
     },
   });
 
-  async function onSubmit({
-    email,
-    password,
-    username,
-  }: z.infer<typeof signupFormSchema>) {
-    try {
-      await appwriteService.createUserAccount({
-        email,
-        password,
-        name: username,
-      });
-      await appwriteService.login({ email, password });
-      router.push("/");
-    } catch (error) {
-      throw error;
-    }
-  }
+  async function onSubmit(values: z.infer<typeof signupFormSchema>) {}
 
   return (
     <motion.div

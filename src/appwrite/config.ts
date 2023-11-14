@@ -1,33 +1,33 @@
-import config from "@/app/config/config";
+import conf from "../conf/config";
 import { Client, Account, ID } from "appwrite";
 
 type CreateUserAccount = {
-  email: string;
-  password: string;
-  name: string;
-};
-
-type LoginUserAccount = {
+  username: string;
   email: string;
   password: string;
 };
+type LoginUserAccout = {
+  email: string;
+  password: string;
+};
 
-export const client = new Client();
+const appwriteClient = new Client();
 
-client.setEndpoint(config.appwriteUrl).setProject(config.appwriteProjectId);
+appwriteClient.setEndpoint(conf.appwriteUrl).setProject(conf.appwriteProjectId);
 
-export const account = new Account(client);
+export const account = new Account(appwriteClient);
 
 class AppwriteService {
-  // Create a new record of user in Appwrite
-  async createUserAccount({ email, password, name }: CreateUserAccount) {
+  // Create a new record of user inside Appwrite
+  async createUserAccount({ username, email, password }: CreateUserAccount) {
     try {
       const userAccount = await account.create(
         ID.unique(),
+        username,
         email,
-        password,
-        name
+        password
       );
+
       if (userAccount) {
         return this.login({ email, password });
       } else {
@@ -38,7 +38,7 @@ class AppwriteService {
     }
   }
 
-  async login({ email, password }: LoginUserAccount) {
+  async login({ email, password }: LoginUserAccout) {
     try {
       return await account.createEmailSession(email, password);
     } catch (error) {
@@ -51,6 +51,7 @@ class AppwriteService {
       const data = await this.getCurrentUser();
       return Boolean(data);
     } catch (error) {}
+
     return false;
   }
 
@@ -58,7 +59,7 @@ class AppwriteService {
     try {
       return await account.get();
     } catch (error) {
-      console.log("getCurrentUser error", error);
+      console.log("getCurrentUser error " + error);
     }
   }
 
@@ -66,7 +67,7 @@ class AppwriteService {
     try {
       return await account.deleteSession("current");
     } catch (error) {
-      console.log("Logout error: " + error);
+      console.log("Logout error " + error);
     }
   }
 }

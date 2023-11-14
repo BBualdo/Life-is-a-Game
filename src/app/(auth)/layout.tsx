@@ -1,7 +1,7 @@
-import Backdrop from "@/app/components/Auth/Backdrop";
-import { arcade } from "../components/fonts";
-import Logo from "@/app/components/Auth/Logo";
-import LoginProviders from "@/app/components/Auth/LoginProviders";
+import Backdrop from "@/src/components/Auth/Backdrop";
+import { arcade } from "@/src/components/fonts";
+import Logo from "@/src/components/Auth/Logo";
+import LoginProviders from "@/src/components/Auth/LoginProviders";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
