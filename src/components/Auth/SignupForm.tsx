@@ -47,12 +47,12 @@ const signupFormSchema = z
 
 // Signup Component
 const SignupForm = () => {
-  const { setAuthStatus } = useAuth();
+  const { authStatus, setAuthStatus } = useAuth();
   const router = useRouter();
 
-  // if (authStatus) {
-  //   router.replace("/");
-  // }
+  if (authStatus) {
+    router.replace("/");
+  }
 
   const signupForm = useForm<z.infer<typeof signupFormSchema>>({
     resolver: zodResolver(signupFormSchema),

@@ -20,3 +20,4 @@ Life is a Game (LIAG) is an app that let's user set goals and gain XP for it to 
 13. Unauthorized users will see loading bars instead of flash of page content. I also don't lose styled on refresh, but I still lose font. Got to fix it.
 14. I decided to change font from custom BlenderProBold to Orbitron. That solved the problem.
 15. I restructurized my code a little and provided **Context** to handle the user authentication. Still have to implement middleware to protect unauthorized pages.
+16. Finally, I decided to use middleware-like approach. I made folder's group named _pages_ and there are 2 another groups: _auth_ and _protected_. Now, whenever user is logged in or not, layout in _pages_ group will decide where to redirect the user.

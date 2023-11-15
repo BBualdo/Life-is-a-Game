@@ -32,11 +32,11 @@ const loginFormSchema = z.object({
 // Login Component
 const LoginForm = () => {
   const router = useRouter();
-  const { setAuthStatus } = useAuth();
+  const { authStatus, setAuthStatus } = useAuth();
 
-  // if (authStatus) {
-  //   router.replace("/");
-  // }
+  if (authStatus) {
+    router.replace("/");
+  }
 
   const loginForm = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
