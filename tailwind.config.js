@@ -13,7 +13,8 @@ module.exports = {
     extend: {
       colors: {
         "cp-cyan": "#00f0ff",
-        "cp-red": "	#ef4444",
+        "cp-red": "#ef4444",
+        "cp-red-hover": "#eb5e5e",
         "cp-yellow": "#fcee0a",
       },
       keyframes: {

@@ -1,6 +1,6 @@
 "use client";
 
-import useAuth from "@/src/context/useAuth";
+import useAuth from "@/src/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
 const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {

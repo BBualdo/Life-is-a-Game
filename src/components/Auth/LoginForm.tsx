@@ -17,7 +17,7 @@ import { Input } from "@/src/shadcn/ui/input";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import appwriteService from "@/src/appwrite/config";
-import useAuth from "@/src/context/useAuth";
+import useAuth from "@/src/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
 // Login Zod Schema
@@ -33,10 +33,6 @@ const loginFormSchema = z.object({
 const LoginForm = () => {
   const router = useRouter();
   const { authStatus, setAuthStatus } = useAuth();
-
-  if (authStatus) {
-    router.replace("/");
-  }
 
   const loginForm = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
@@ -56,6 +52,11 @@ const LoginForm = () => {
     } catch (error) {
       throw error;
     }
+  }
+
+  if (authStatus) {
+    router.replace("/");
+    return <></>;
   }
 
   return (

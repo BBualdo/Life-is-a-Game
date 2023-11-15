@@ -1,7 +1,13 @@
-import Home from "@/src/components/Home/Home";
+import Home from "@/src/components/Interface/Home";
+import Navbar from "@/src/components/Interface/Navbar";
 
 const Page = () => {
-  return <Home />;
+  return (
+    <>
+      <Navbar />
+      <Home />
+    </>
+  );
 };
 
 export default Page;

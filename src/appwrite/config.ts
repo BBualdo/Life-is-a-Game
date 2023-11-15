@@ -34,7 +34,7 @@ class AppwriteService {
         return userAccount;
       }
     } catch (error) {
-      throw error;
+      console.error("Signup error " + error);
     }
   }
 
@@ -42,7 +42,7 @@ class AppwriteService {
     try {
       return await account.createEmailSession(email, password);
     } catch (error) {
-      throw error;
+      console.error("Login error " + error);
     }
   }
 
@@ -50,16 +50,18 @@ class AppwriteService {
     try {
       const data = await this.getCurrentUser();
       return Boolean(data);
-    } catch (error) {}
+    } catch (error) {
+      console.error("isLoggedIn error " + error);
+    }
 
     return false;
   }
 
   async getCurrentUser() {
     try {
-      return await account.get();
+      return account.get();
     } catch (error) {
-      console.log("getCurrentUser error " + error);
+      console.error("getCurrentUser error " + error);
     }
   }
 
@@ -67,7 +69,7 @@ class AppwriteService {
     try {
       return await account.deleteSession("current");
     } catch (error) {
-      console.log("Logout error " + error);
+      console.error("Logout error " + error);
     }
   }
 }

@@ -18,7 +18,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 import appwriteService from "@/src/appwrite/config";
-import useAuth from "@/src/context/useAuth";
+import useAuth from "@/src/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
 // Signup Zod Schema
