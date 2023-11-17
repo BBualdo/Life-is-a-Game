@@ -1,24 +1,9 @@
 "use client";
 
-import appwriteService from "@/src/appwrite/config";
-import useAuth from "@/src/hooks/useAuth";
-import { Models } from "appwrite";
-
-import { useEffect, useState } from "react";
+import useUser from "@/src/hooks/useUser";
 
 const Home = () => {
-  const [user, setUser] = useState<Models.User<Models.Preferences> | null>(
-    null
-  );
-
-  useEffect(() => {
-    (async () => {
-      const userData = await appwriteService.getCurrentUser();
-      if (userData) {
-        setUser(userData);
-      }
-    })();
-  }, []);
+  const { user } = useUser();
 
   return (
     user && (

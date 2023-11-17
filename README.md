@@ -22,6 +22,7 @@ Life is a Game (LIAG) is an app that let's user set goals and gain XP for it to 
 15. I restructurized my code a little and provided **Context** to handle the user authentication. Still have to implement middleware to protect unauthorized pages.
 16. Finally, I decided to use middleware-like approach. I made folder's group named _pages_ and there are 2 another groups: _auth_ and _protected_. Now, whenever user is logged in or not, layout in _pages_ group will decide where to redirect the user.
 17. I have displayed user name using getCurrentUser method when user is signed in.
+18. I stored userData in user **Context** to avoid code repetition and allow different pages get info about user using `useUser` hook.
 
 #### Home Page
 

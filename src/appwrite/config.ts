@@ -1,5 +1,5 @@
 import conf from "../conf/config";
-import { Client, Account, ID } from "appwrite";
+import { Client, Account, ID, Avatars } from "appwrite";
 
 type CreateUserAccount = {
   email: string;
@@ -16,6 +16,8 @@ export const client = new Client();
 client.setEndpoint(conf.appwriteUrl).setProject(conf.appwriteProjectId);
 
 export const account = new Account(client);
+
+export const avatars = new Avatars(client);
 
 class AppwriteService {
   // Create a new record of user inside Appwrite
@@ -70,6 +72,14 @@ class AppwriteService {
       return await account.deleteSession("current");
     } catch (error) {
       console.error("Logout error " + error);
+    }
+  }
+
+  async getAvatar() {
+    try {
+      return await avatars.getInitials();
+    } catch (error) {
+      console.error("Avatar error " + error);
     }
   }
 }

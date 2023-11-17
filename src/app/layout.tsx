@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { Orbitron, Play } from "next/font/google";
+import { Play } from "next/font/google";
 
 import "./globals.css";
 
