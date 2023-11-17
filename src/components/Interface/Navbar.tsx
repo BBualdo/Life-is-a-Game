@@ -8,14 +8,18 @@ import { arcade } from "@/src/fonts";
 import appwriteService from "@/src/appwrite/config";
 import { useRouter } from "next/navigation";
 import useAuth from "@/src/hooks/useAuth";
+import ProfileAvatar from "./ProfileAvatar";
+import useUser from "@/src/hooks/useUser";
 
 const Navbar = () => {
   const router = useRouter();
   const { setAuthStatus } = useAuth();
+  const { setUser } = useUser();
 
   const logout = async () => {
     await appwriteService.logout();
     setAuthStatus(false);
+    setUser(null);
     router.replace("/login");
   };
 
@@ -65,7 +69,8 @@ const Navbar = () => {
           Profile
         </Link>
       </div>
-      <div>
+      <div className="flex">
+        <ProfileAvatar />
         <GiPowerButton
           onClick={logout}
           className="text-cp-red text-2xl hover:text-cp-red-hover cursor-pointer transition-all duration-200"

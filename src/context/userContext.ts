@@ -3,7 +3,7 @@ import { createContext } from "react";
 
 const UserContext = createContext<{
   user: Models.User<Models.Preferences> | null;
-  setUser: (user: Models.User<Models.Preferences>) => void;
+  setUser: (user: Models.User<Models.Preferences> | null) => void;
 }>({
   user: null,
   setUser: () => {},

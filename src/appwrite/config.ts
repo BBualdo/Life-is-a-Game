@@ -75,9 +75,14 @@ class AppwriteService {
     }
   }
 
-  async getAvatar() {
+  async getAvatar(
+    name: string,
+    width: number,
+    height: number,
+    background: string
+  ) {
     try {
-      return await avatars.getInitials();
+      return avatars.getInitials(name, width, height, background);
     } catch (error) {
       console.error("Avatar error " + error);
     }

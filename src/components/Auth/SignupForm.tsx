@@ -20,6 +20,7 @@ import Link from "next/link";
 import appwriteService from "@/src/appwrite/config";
 import useAuth from "@/src/hooks/useAuth";
 import { useRouter } from "next/navigation";
+import useUser from "@/src/hooks/useUser";
 
 // Signup Zod Schema
 const signupFormSchema = z
@@ -48,6 +49,7 @@ const signupFormSchema = z
 // Signup Component
 const SignupForm = () => {
   const { authStatus, setAuthStatus } = useAuth();
+  const { user, setUser } = useUser();
   const router = useRouter();
 
   if (authStatus) {
@@ -77,6 +79,7 @@ const SignupForm = () => {
       });
       if (userData) {
         setAuthStatus(true);
+        setUser(user);
         router.push("/");
       }
     } catch (error) {
