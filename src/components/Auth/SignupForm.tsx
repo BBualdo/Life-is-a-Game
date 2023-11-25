@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-
 import {
   Form,
   FormControl,
@@ -13,14 +12,9 @@ import {
   FormMessage,
 } from "@/src/shadcn/ui/form";
 import { Input } from "@/src/shadcn/ui/input";
-
 import { motion } from "framer-motion";
 import Link from "next/link";
-
-import appwriteService from "@/src/appwrite/config";
-import useAuth from "@/src/hooks/useAuth";
 import { useRouter } from "next/navigation";
-import useUser from "@/src/hooks/useUser";
 
 // Signup Zod Schema
 const signupFormSchema = z
@@ -48,13 +42,7 @@ const signupFormSchema = z
 
 // Signup Component
 const SignupForm = () => {
-  const { authStatus, setAuthStatus } = useAuth();
-  const { user, setUser } = useUser();
   const router = useRouter();
-
-  if (authStatus) {
-    router.replace("/");
-  }
 
   const signupForm = useForm<z.infer<typeof signupFormSchema>>({
     resolver: zodResolver(signupFormSchema),
@@ -71,20 +59,7 @@ const SignupForm = () => {
     password,
     username,
   }: z.infer<typeof signupFormSchema>) {
-    try {
-      const userData = await appwriteService.createUserAccount({
-        email,
-        password,
-        username,
-      });
-      if (userData) {
-        setAuthStatus(true);
-        setUser(user);
-        router.push("/");
-      }
-    } catch (error) {
-      console.error("Failed to Signup: " + error);
-    }
+    router.push("/");
   }
 
   return (

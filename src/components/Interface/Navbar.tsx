@@ -3,25 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { GiPowerButton } from "react-icons/gi";
-
 import { arcade } from "@/src/fonts";
-import appwriteService from "@/src/appwrite/config";
 import { useRouter } from "next/navigation";
-import useAuth from "@/src/hooks/useAuth";
-import ProfileAvatar from "./ProfileAvatar";
-import useUser from "@/src/hooks/useUser";
 
 const Navbar = () => {
   const router = useRouter();
-  const { setAuthStatus } = useAuth();
-  const { setUser } = useUser();
-
-  const logout = async () => {
-    await appwriteService.logout();
-    setAuthStatus(false);
-    setUser(null);
-    router.replace("/login");
-  };
 
   return (
     <nav className="w-full h-20 flex items-center justify-between px-4 border-b border-cp-red/20">
@@ -70,9 +56,8 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="flex">
-        <ProfileAvatar />
         <GiPowerButton
-          onClick={logout}
+          onClick={() => router.push("/login")}
           className="text-cp-red text-2xl hover:text-cp-red-hover cursor-pointer transition-all duration-200"
         />
       </div>
