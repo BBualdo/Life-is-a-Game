@@ -135,7 +135,10 @@ const SignupForm = () => {
               </FormItem>
             )}
           />
-          <button type="submit" className="btn btn-cyan hover:btn-red">
+          <button
+            type="submit"
+            className="btn btn-cyan hover:btn-red hover:bg-cp-red/30"
+          >
             Sign up
           </button>
           <div className="relative border w-full flex items-center justify-center mt-3">

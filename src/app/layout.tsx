@@ -18,9 +18,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/assets/images/favicon.png" sizes="32x32" />
-      </head>
       <body className={`bg-black ${play.className}`}>{children}</body>
     </html>
   );

@@ -37,12 +37,6 @@ const Navbar = () => {
           Missions
         </Link>
         <Link
-          href="/journal"
-          className="hover:text-cp-cyan hover:scale-125 transition-all duration-200"
-        >
-          Journal
-        </Link>
-        <Link
           href="/achievements"
           className="hover:text-cp-cyan hover:scale-125 transition-all duration-200"
         >
