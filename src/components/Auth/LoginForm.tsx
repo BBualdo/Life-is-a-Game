@@ -39,7 +39,7 @@ const LoginForm = () => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof loginFormSchema>) {
+  function onSubmit(values: z.infer<typeof loginFormSchema>) {
     router.push("/");
   }
 

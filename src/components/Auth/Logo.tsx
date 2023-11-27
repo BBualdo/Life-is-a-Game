@@ -12,7 +12,7 @@ const Logo = () => {
       className="h-[132px] flex flex-col text-white text-2xl"
     >
       <div>
-        <span aria-hidden className="text-cp-cyan">
+        <span aria-hidden className="text-cp-red">
           L
         </span>
         <TypeAnimation
@@ -25,7 +25,7 @@ const Logo = () => {
         />
       </div>
       <div>
-        <span aria-hidden className="text-cp-cyan">
+        <span aria-hidden className="text-cp-red">
           I
         </span>
         <TypeAnimation
@@ -38,12 +38,12 @@ const Logo = () => {
         />
       </div>
       <div>
-        <span aria-hidden className="text-cp-cyan">
+        <span aria-hidden className="text-cp-red">
           A
         </span>
       </div>
       <div>
-        <span aria-hidden className="text-cp-cyan">
+        <span aria-hidden className="text-cp-red">
           G
         </span>
         <TypeAnimation

@@ -54,7 +54,7 @@ const SignupForm = () => {
     },
   });
 
-  async function onSubmit({
+  function onSubmit({
     email,
     password,
     username,
