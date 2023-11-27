@@ -21,7 +21,7 @@ const MainMenu = () => {
   const router = useRouter();
 
   return (
-    <section>
+    <section className="border border-cp-cyan p-20">
       <MenuLogo />
       <UserMenu />
       <div className="text-white flex flex-col items-center gap-4 mt-10">
