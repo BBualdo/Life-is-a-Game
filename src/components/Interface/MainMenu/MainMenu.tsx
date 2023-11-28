@@ -9,7 +9,7 @@ import { GiPowerButton } from "react-icons/gi";
 
 const navLinks = links.map((link) => (
   <Link
-    className="text-2xl text-white hover:text-cp-cyan transition-all duration-200"
+    className="btn-menu hover:text-cp-cyan hover:border-cp-cyan"
     key={link.key}
     href={link.href}
   >
@@ -21,13 +21,18 @@ const MainMenu = () => {
   const router = useRouter();
 
   return (
-    <section className="border border-cp-cyan p-20">
+    <section className="px-[120px]">
       <MenuLogo />
-      <UserMenu />
-      <div className="text-white flex flex-col items-center gap-4 mt-10">
+      <div className="text-white flex flex-col gap-4 mt-10">
+        <button className="btn-menu hover:text-cp-cyan hover:border-cp-cyan">
+          How to Play
+        </button>
         {navLinks}
+        <button className="btn-menu hover:text-cp-cyan hover:border-cp-cyan">
+          Settings
+        </button>
         <button
-          className="text-cp-red text-2xl hover:text-cp-red-hover cursor-pointer transition-all duration-200 flex items-center gap-2"
+          className="btn-menu flex items-center gap-2 text-cp-red hover:text-cp-red-hover hover:border-cp-red"
           onClick={() => router.push("/login")}
         >
           <GiPowerButton />
