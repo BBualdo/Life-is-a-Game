@@ -18,3 +18,4 @@ Life is a Game (LIAG) is an app that let's user set goals and gain XP for it to 
 #### Home Page
 
 1. I've styled the Navbar with routes, logo and logout button.
+2. Came up with fresh game-like main menu idea.

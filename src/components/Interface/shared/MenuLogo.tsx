@@ -11,7 +11,7 @@ const MenuLogo = () => {
         height={100}
         priority
       />
-      <h1 className={`${arcade.className} text-cp-red text-3xl`}>LiaG</h1>
+      <h1 className={`${arcade.className} text-cp-red text-5xl`}>LiaG</h1>
     </div>
   );
 };
