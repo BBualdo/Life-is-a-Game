@@ -7,8 +7,8 @@ const Backdrop = () => {
     <motion.video
       autoPlay
       loop
-      initial={{ filter: "blur(0px)" }}
-      animate={{ filter: "blur(8px)" }}
+      initial={{ filter: "blur(0px)", opacity: 1 }}
+      animate={{ filter: "blur(8px)", opacity: 0.7 }}
       aria-hidden
       className="bg-black fixed top-0 bottom-0 w-full object-cover min-h-screen z-[-10]"
     >

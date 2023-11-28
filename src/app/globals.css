@@ -37,6 +37,6 @@
   }
 
   .btn-menu {
-    @apply text-2xl text-start uppercase text-white transition-all duration-200 border border-transparent p-2;
+    @apply text-2xl font-bold text-start uppercase text-white transition-all duration-200 border border-transparent p-2;
   }
 }

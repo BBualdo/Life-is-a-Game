@@ -9,7 +9,7 @@ import { GiPowerButton } from "react-icons/gi";
 
 const navLinks = links.map((link) => (
   <Link
-    className="text-2xl uppercase text-white hover:text-cp-cyan transition-all duration-200 border border-transparent hover:border-cp-cyan p-2"
+    className="btn-menu hover:text-cp-cyan hover:border-cp-cyan"
     key={link.key}
     href={link.href}
   >
