@@ -9,7 +9,7 @@ const Logo = () => {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="h-[132px] flex flex-col text-white text-2xl"
+      className="flex h-[132px] flex-col text-2xl text-white"
     >
       <div>
         <span aria-hidden className="text-cp-red">

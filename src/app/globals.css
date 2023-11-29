@@ -4,12 +4,12 @@
 
 @layer components {
   .btn {
-    @apply backdrop-blur-[2px] border-2 text-base font-extrabold uppercase p-2 min-w-[220px] transition-all duration-200;
+    @apply min-w-[220px] border-2 p-2 text-base font-extrabold uppercase backdrop-blur-[2px] transition-all duration-200;
     clip-path: polygon(100% 0, 100% 52%, 90.5% 100%, 0 100%, 0 0);
   }
 
   .btn::after {
-    @apply content-[''] w-[28px] h-[28px] absolute bottom-[-14px] right-[-14px] border-b-2 border-solid rotate-[135deg] transition-all duration-200 focus:outline-cp-cyan;
+    @apply absolute bottom-[-14px] right-[-14px] h-[28px] w-[28px] rotate-[135deg] border-b-2 border-solid transition-all duration-200 content-[''] focus:outline-cp-cyan;
   }
 
   .btn-cyan {
@@ -37,6 +37,6 @@
   }
 
   .btn-menu {
-    @apply text-2xl font-bold text-start uppercase text-white transition-all duration-200 border border-transparent p-2;
+    @apply border border-transparent p-2 text-start text-2xl font-bold uppercase text-white transition-all duration-200;
   }
 }

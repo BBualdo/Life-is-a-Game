@@ -10,10 +10,10 @@ const Navbar = () => {
   const router = useRouter();
 
   return (
-    <nav className="w-full h-20 flex items-center justify-between px-4 border-b border-cp-red/20">
+    <nav className="flex h-20 w-full items-center justify-between border-b border-cp-red/20 px-4">
       <Link
         href="/"
-        className="flex items-center gap-2 hover:scale-105 transition-all duration-200"
+        className="flex items-center gap-2 transition-all duration-200 hover:scale-105"
       >
         <Image
           src="/assets/images/logo.png"
@@ -23,28 +23,28 @@ const Navbar = () => {
         />
         <h1 className={`${arcade.className} text-cp-red`}>LiaG</h1>
       </Link>
-      <div className="text-white flex items-center gap-20">
+      <div className="flex items-center gap-20 text-white">
         <Link
           href="/"
-          className="hover:text-cp-cyan hover:scale-125 transition-all duration-200"
+          className="transition-all duration-200 hover:scale-125 hover:text-cp-cyan"
         >
           Home
         </Link>
         <Link
           href="/missions"
-          className="hover:text-cp-cyan hover:scale-125 transition-all duration-200"
+          className="transition-all duration-200 hover:scale-125 hover:text-cp-cyan"
         >
           Missions
         </Link>
         <Link
           href="/achievements"
-          className="hover:text-cp-cyan hover:scale-125 transition-all duration-200"
+          className="transition-all duration-200 hover:scale-125 hover:text-cp-cyan"
         >
           Achievements
         </Link>
         <Link
           href="/profile"
-          className="hover:text-cp-cyan hover:scale-125 transition-all duration-200"
+          className="transition-all duration-200 hover:scale-125 hover:text-cp-cyan"
         >
           Profile
         </Link>
@@ -52,7 +52,7 @@ const Navbar = () => {
       <div className="flex">
         <GiPowerButton
           onClick={() => router.push("/login")}
-          className="text-cp-red text-2xl hover:text-cp-red-hover cursor-pointer transition-all duration-200"
+          className="cursor-pointer text-2xl text-cp-red transition-all duration-200 hover:text-cp-red-hover"
         />
       </div>
     </nav>

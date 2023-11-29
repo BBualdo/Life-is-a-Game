@@ -60,7 +60,7 @@ const LoginForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white tracking-[6px]">
+                <FormLabel className="tracking-[6px] text-white">
                   EMAIL
                 </FormLabel>
                 <FormControl>
@@ -77,13 +77,13 @@ const LoginForm = () => {
             render={({ field }) => (
               <FormItem>
                 <div className="flex items-center justify-between">
-                  <FormLabel className="text-white tracking-[6px]">
+                  <FormLabel className="tracking-[6px] text-white">
                     PASSWORD
                   </FormLabel>
                   <button
                     tabIndex={-1}
                     type="button"
-                    className="text-cp-cyan text-xs"
+                    className="text-xs text-cp-cyan"
                   >
                     DON'T REMEMBER?
                   </button>
@@ -101,8 +101,8 @@ const LoginForm = () => {
           >
             Log in
           </button>
-          <div className="relative border w-full flex items-center justify-center mt-3">
-            <span className="absolute -top-2 backdrop-blur-sm text-cp-yellow uppercase text-xs">
+          <div className="relative mt-3 flex w-full items-center justify-center border">
+            <span className="absolute -top-2 text-xs uppercase text-cp-yellow backdrop-blur-sm">
               Are you new here?
             </span>
           </div>
