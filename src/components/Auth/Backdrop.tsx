@@ -7,6 +7,7 @@ const Backdrop = () => {
     <motion.video
       autoPlay
       loop
+      muted
       initial={{ filter: "blur(0px)", opacity: 1 }}
       animate={{ filter: "blur(8px)", opacity: 0.7 }}
       aria-hidden

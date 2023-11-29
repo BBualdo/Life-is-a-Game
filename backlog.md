@@ -1,1 +1,1 @@
-1. Autoplay in login page background.
+1. Autoplay in login page background. [FIXED]

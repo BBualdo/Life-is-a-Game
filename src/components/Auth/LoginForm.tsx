@@ -24,7 +24,7 @@ const loginFormSchema = z.object({
   password: z
     .string()
     .min(8, { message: "Password must be at least 8 characters." })
-    .max(30),
+    .max(30, { message: "Password is too long." }),
 });
 
 // Login Component
