@@ -1,4 +1,4 @@
-const UserLevel = () => {
+const UserXP = () => {
   return (
     <div className="flex w-full flex-col items-center justify-center px-4">
       <div className="flex w-full items-end justify-between text-cp-red">
@@ -11,11 +11,11 @@ const UserLevel = () => {
       </div>
       <div className="h-[20px] w-full -skew-x-12 bg-cp-red/30">
         <div
-          className={`h-full w-[50%] bg-cp-red transition-all duration-300`}
+          className={`gradient-cp-red h-full w-[50%] transition-all duration-300`}
         />
       </div>
     </div>
   );
 };
 
-export default UserLevel;
+export default UserXP;
