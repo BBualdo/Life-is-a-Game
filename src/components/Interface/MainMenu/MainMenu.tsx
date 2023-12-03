@@ -12,7 +12,7 @@ import { fadeIn } from "@/src/utils/fadeIn";
 
 const navLinks = links.map((link) => (
   <Link
-    className="btn-menu hover:text-cp-cyan hover:border-cp-cyan"
+    className="btn-menu hover:border-cp-cyan hover:text-cp-cyan"
     key={link.key}
     href={link.href}
   >
@@ -33,17 +33,17 @@ const MainMenu = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-white flex flex-col gap-4 mt-10"
+          className="mt-10 flex flex-col gap-4 text-white"
         >
-          <button className="btn-menu hover:text-cp-cyan hover:border-cp-cyan">
+          <button className="btn-menu hover:border-cp-cyan hover:text-cp-cyan">
             How to Play
           </button>
           {navLinks}
-          <button className="btn-menu hover:text-cp-cyan hover:border-cp-cyan">
+          <button className="btn-menu hover:border-cp-cyan hover:text-cp-cyan">
             Settings
           </button>
           <button
-            className="btn-menu flex items-center gap-2 text-cp-red hover:text-cp-red-hover hover:border-cp-red"
+            className="btn-menu flex items-center gap-2 text-cp-red hover:border-cp-red hover:text-cp-red-hover"
             onClick={() => router.push("/login")}
           >
             <GiPowerButton />

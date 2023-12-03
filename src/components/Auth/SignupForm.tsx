@@ -37,7 +37,7 @@ const signupFormSchema = z
     (values) => {
       return values.password === values.confirmPassword;
     },
-    { message: "Passwords must match!", path: ["confirmPassword"] }
+    { message: "Passwords must match!", path: ["confirmPassword"] },
   );
 
 // Signup Component
@@ -79,7 +79,7 @@ const SignupForm = () => {
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white tracking-[6px]">
+                <FormLabel className="tracking-[6px] text-white">
                   USERNAME
                 </FormLabel>
                 <FormControl>
@@ -95,7 +95,7 @@ const SignupForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white tracking-[6px]">
+                <FormLabel className="tracking-[6px] text-white">
                   EMAIL
                 </FormLabel>
                 <FormControl>
@@ -110,7 +110,7 @@ const SignupForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white tracking-[6px]">
+                <FormLabel className="tracking-[6px] text-white">
                   PASSWORD
                 </FormLabel>
                 <FormControl>
@@ -125,7 +125,7 @@ const SignupForm = () => {
             name="confirmPassword"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white tracking-[6px]">
+                <FormLabel className="tracking-[6px] text-white">
                   CONFIRM PASSWORD
                 </FormLabel>
                 <FormControl>
@@ -141,8 +141,8 @@ const SignupForm = () => {
           >
             Sign up
           </button>
-          <div className="relative border w-full flex items-center justify-center mt-3">
-            <span className="absolute -top-2 backdrop-blur-sm text-cp-yellow uppercase text-xs">
+          <div className="relative mt-3 flex w-full items-center justify-center border">
+            <span className="absolute -top-2 text-xs uppercase text-cp-yellow backdrop-blur-sm">
               Already have an account?
             </span>
           </div>

@@ -8,9 +8,9 @@ const LoginProviders = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.5, duration: 1 }}
-      className="relative flex w-3/4 items-center justify-between my-8 border border-cp-cyan py-6 px-8"
+      className="relative my-8 flex w-3/4 items-center justify-between border border-cp-cyan px-8 py-6"
     >
-      <div className="absolute flex items-center justify-center text-cp-cyan uppercase text-sm z-10 -top-[10px] w-full left-0">
+      <div className="absolute -top-[10px] left-0 z-10 flex w-full items-center justify-center text-sm uppercase text-cp-cyan">
         <span aria-hidden className="backdrop-blur-sm">
           Log in using
         </span>
@@ -85,12 +85,12 @@ const LoginProviders = () => {
           width="24"
           height="24"
           viewBox="0 0 50 50"
-          className="fill-cp-cyan hover:fill-cp-red rounded-full"
+          className="rounded-full fill-cp-cyan hover:fill-cp-red"
         >
           <path d="M40,0H10C4.486,0,0,4.486,0,10v30c0,5.514,4.486,10,10,10h30c5.514,0,10-4.486,10-10V10C50,4.486,45.514,0,40,0z M39,17h-3 c-2.145,0-3,0.504-3,2v3h6l-1,6h-5v20h-7V28h-3v-6h3v-3c0-4.677,1.581-8,7-8c2.902,0,6,1,6,1V17z"></path>
         </svg>
       </motion.button>
-      <div className="absolute flex items-center justify-center text-cp-cyan uppercase text-sm z-10 -bottom-[10px] w-full left-0">
+      <div className="absolute -bottom-[10px] left-0 z-10 flex w-full items-center justify-center text-sm uppercase text-cp-cyan">
         <span aria-hidden className="backdrop-blur-sm">
           or
         </span>

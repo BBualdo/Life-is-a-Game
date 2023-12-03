@@ -16,6 +16,8 @@ module.exports = {
         "cp-red": "#ef4444",
         "cp-red-hover": "#eb5e5e",
         "cp-yellow": "#fcee0a",
+        "cp-pink": "#d600ff",
+        "light-silver": "#ccdaf0",
       },
       keyframes: {
         "accordion-down": {

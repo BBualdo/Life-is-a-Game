@@ -7,7 +7,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Backdrop />
-      <main className="flex flex-col items-center min-h-screen justify-center">
+      <main className="flex min-h-screen flex-col items-center justify-center">
         <div className={arcade.className}>
           <Logo />
         </div>
