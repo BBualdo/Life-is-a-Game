@@ -57,6 +57,10 @@
       radial-gradient(at 69% 57%, rgb(127, 29, 29) 0, transparent 23%);
   }
 
+  .gradient-cp-red {
+    @apply bg-gradient-to-t from-red-900 via-red-600 to-red-900;
+  }
+
   .light-silver-shadow {
     @apply shadow-[-8px_-2px_20px_#ccdaf0];
   }

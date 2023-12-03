@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import LastestAchievements from "./LastestAchievements";
 import UserAvatar from "./UserAvatar";
 import UserInfo from "./UserInfo";
-import UserLevel from "./UserLevel";
+import UserXP from "./UserXP";
 import { fadeIn } from "@/src/utils/fadeIn";
 import CustomBorder from "../shared/CustomBorder";
 
@@ -24,7 +24,7 @@ const UserData = () => {
           <button className="btn btn-red items-end hover:bg-cp-red/30">
             Edit Profile
           </button>
-          <UserLevel />
+          <UserXP />
         </div>
       </div>
       <UserInfo />
