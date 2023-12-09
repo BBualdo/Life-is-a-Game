@@ -7,6 +7,9 @@ import UserInfo from "./UserInfo";
 import UserXP from "./UserXP";
 import { fadeIn } from "@/src/utils/fadeIn";
 import CustomBorder from "../shared/CustomBorder";
+import UserStats from "./UserStats";
+import UserBio from "./UserBio";
+import UserGoal from "./UserGoal";
 
 const UserData = () => {
   return (
@@ -28,6 +31,9 @@ const UserData = () => {
         </div>
       </div>
       <UserInfo />
+      <UserStats />
+      <UserGoal />
+      <UserBio />
       <LastestAchievements />
     </motion.section>
   );
