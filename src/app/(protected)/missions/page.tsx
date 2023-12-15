@@ -6,7 +6,7 @@ export default function Missions() {
   return (
     <>
       <MissionsBackdrop />
-      <main className="flex min-h-screen flex-col justify-center p-20 text-white">
+      <main className="flex min-h-screen flex-col justify-center px-40 py-20 text-white">
         <BackButton className="text-cp-cyan hover:text-cp-cyan/50" />
         <MissionsContainer />
       </main>
