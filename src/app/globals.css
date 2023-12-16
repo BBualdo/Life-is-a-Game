@@ -40,6 +40,14 @@
     @apply border border-transparent p-2 text-start text-2xl font-bold uppercase text-white transition-all duration-200;
   }
 
+  .light-silver-shadow {
+    @apply shadow-[-8px_-2px_20px_#ccdaf0];
+  }
+
+  .mission-container {
+    @apply border-2 border-cp-red p-4;
+  }
+
   /* Gradients */
 
   .gradient-midnight {
@@ -83,9 +91,5 @@
       hsl(323deg 100% 24%) 81%,
       hsl(327deg 91% 70%) 100%
     );
-  }
-
-  .light-silver-shadow {
-    @apply shadow-[-8px_-2px_20px_#ccdaf0];
   }
 }
