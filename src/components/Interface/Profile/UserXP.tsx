@@ -11,7 +11,7 @@ const UserXP = () => {
       </div>
       <div className="h-[20px] w-full -skew-x-12 bg-cp-red/30">
         <div
-          className={`gradient-cp-red h-full w-[50%] transition-all duration-300`}
+          className={`gradient-cp-red h-full w-[50%] transition-all duration-700`}
         />
       </div>
     </div>
