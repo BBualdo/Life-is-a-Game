@@ -92,4 +92,8 @@
       radial-gradient(at 80% 0%, rgb(127, 29, 29) 0, transparent 40%),
       radial-gradient(at 50% 0%, rgb(127, 29, 29) 0, transparent 31%);
   }
+
+  .gradient-cp-cyan {
+    @apply bg-gradient-to-b from-black via-black to-cyan-900;
+  }
 }
