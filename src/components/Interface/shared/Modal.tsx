@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import ModalBackdrop from "./ModalBackdrop";
-import clsx from "clsx";
 
 const Modal = ({
   children,

@@ -3,6 +3,7 @@
 import { IoClose } from "react-icons/io5";
 import Modal from "../shared/Modal";
 import { useState } from "react";
+import CreateMissionForm from "./CreateMissionForm";
 
 const CreateMissionButton = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -25,9 +26,10 @@ const CreateMissionButton = () => {
           <h2 className="text-xl text-cp-cyan">Create Mission</h2>
           <IoClose
             onClick={closeModal}
-            className="cursor-pointer text-3xl text-cp-cyan"
+            className="cursor-pointer text-3xl text-cp-cyan transition-all duration-200 hover:text-cp-red-hover"
           />
         </div>
+        <CreateMissionForm />
       </Modal>
     </>
   );
