@@ -96,4 +96,8 @@
   .gradient-cp-cyan {
     @apply bg-gradient-to-b from-black via-black to-cyan-900;
   }
+
+  .gradient-cp-cyan-2 {
+    @apply bg-gradient-to-r from-cp-cyan to-cyan-950;
+  }
 }

@@ -14,25 +14,32 @@ import { Input } from "@/src/shadcn/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import DifficultySlider from "./DifficultySlider";
+import { useState } from "react";
+import DifficultyInfo from "./DifficultyInfo";
 
-const schema = z.object({
+export const missionFormSchema = z.object({
   title: z
     .string()
     .min(6, { message: "Mission title is too short." })
     .max(50, { message: "Mission title is too long." }),
   description: z.string().max(2000),
+  difficulty: z.string(),
 });
 
 const CreateMissionForm = () => {
-  const form = useForm<z.infer<typeof schema>>({
-    resolver: zodResolver(schema),
+  const [difficulty, setDifficulty] = useState<number[]>([50]);
+
+  const form = useForm<z.infer<typeof missionFormSchema>>({
+    resolver: zodResolver(missionFormSchema),
     defaultValues: {
       title: "",
       description: "",
+      difficulty: "Normal",
     },
   });
 
-  function onSubmit(values: z.infer<typeof schema>) {
+  function onSubmit(values: z.infer<typeof missionFormSchema>) {
     console.log(values);
   }
 
@@ -48,7 +55,7 @@ const CreateMissionForm = () => {
                 Title
               </FormLabel>
               <FormControl>
-                <Input placeholder="Learn something..." {...field} />
+                <Input {...field} />
               </FormControl>
               <FormDescription className="text-cp-yellow/80">
                 This is the final goal you want to achieve.
@@ -76,6 +83,12 @@ const CreateMissionForm = () => {
             </FormItem>
           )}
         />
+        <DifficultySlider
+          form={form}
+          difficulty={difficulty}
+          setDifficulty={setDifficulty}
+        />
+        <DifficultyInfo />
       </form>
     </Form>
   );
