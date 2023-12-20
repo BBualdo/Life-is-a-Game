@@ -2,7 +2,8 @@ type DifficultyLevels = {
   id: number;
   title: string;
   description: string;
-  eg: string[];
+  eg: { id: number; title: string }[];
+  xpMultiplier: number;
 };
 
 export const difficultyLevels: Array<DifficultyLevels> = [
@@ -10,42 +11,55 @@ export const difficultyLevels: Array<DifficultyLevels> = [
     id: 0,
     title: "Daily",
     description: "Quick and easy tasks for your daily routine.",
-    eg: ["Doing laundry", "Washing dishes", "Taking a short walk"],
+    eg: [
+      { id: 0, title: "Doing laundry" },
+      { id: 1, title: "Washing dishes" },
+      { id: 2, title: "Taking a short walk" },
+    ],
+    xpMultiplier: 1,
   },
   {
     id: 1,
     title: "Drop of Sweat",
     description: "Tasks that require a moderate amount of effort and focus.",
     eg: [
-      "Going to gym",
-      "Cooking a special meal",
-      "Reading a chapter of a book",
+      { id: 0, title: "Going to the gym" },
+      { id: 1, title: "Cooking a special meal" },
+      { id: 2, title: "Reading a chapter of a book" },
     ],
+    xpMultiplier: 1.25,
   },
   {
     id: 2,
     title: "Challenging",
     description: "Challenging tasks that may take some time to complete.",
     eg: [
-      "Learning a new language",
-      "Completing a complex workout routine",
-      "Starting a personal blog",
+      { id: 0, title: "Learning a new language" },
+      { id: 1, title: "Completing a complex workout routine" },
+      { id: 2, title: "Starting a personal blog" },
     ],
+    xpMultiplier: 1.5,
   },
   {
     id: 3,
     title: "Life-Hacker",
     description: "Challenging tasks for those seeking personal growth.",
     eg: [
-      "Participating in a fitness challenge",
-      "Embarking on a weekend adventure",
-      "Learning a complex skill",
+      { id: 0, title: "Participating in a fitness challenge" },
+      { id: 1, title: "Embarking on a weekend adventure" },
+      { id: 2, title: "Learning a complex skill" },
     ],
+    xpMultiplier: 1.75,
   },
   {
     id: 4,
     title: "Anti-Procrastinator",
     description: "Epic tasks for those aiming for significant achievements.",
-    eg: ["Writing a book", "Completing a marathon", "Starting a business"],
+    eg: [
+      { id: 0, title: "Writing a book" },
+      { id: 1, title: "Completing a marathon" },
+      { id: 2, title: "Starting a business" },
+    ],
+    xpMultiplier: 2,
   },
 ];

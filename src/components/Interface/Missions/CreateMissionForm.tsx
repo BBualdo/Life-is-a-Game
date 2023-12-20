@@ -88,7 +88,7 @@ const CreateMissionForm = () => {
           difficulty={difficulty}
           setDifficulty={setDifficulty}
         />
-        <DifficultyInfo />
+        <DifficultyInfo difficulty={difficulty} />
       </form>
     </Form>
   );
