@@ -8,7 +8,7 @@ const DifficultyInfo = ({ difficulty }: { difficulty: number[] }) => {
   const [points] = difficulty;
 
   const xp = Math.floor(
-    points * difficultyLevels[difficultyLevel].xpMultiplier,
+    (points + 25) * difficultyLevels[difficultyLevel].xpMultiplier,
   );
 
   useEffect(() => {

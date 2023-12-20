@@ -32,7 +32,6 @@ const DifficultySlider = ({
           </FormLabel>
           <FormControl>
             <Slider
-              min={1}
               value={difficulty}
               onValueChange={(value) => {
                 setDifficulty(value);
