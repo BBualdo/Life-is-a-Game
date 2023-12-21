@@ -38,7 +38,7 @@ export const difficultyLevels: Array<DifficultyLevels> = [
       { id: 1, title: "Completing a complex workout routine" },
       { id: 2, title: "Starting a personal blog" },
     ],
-    xpMultiplier: 1.5,
+    xpMultiplier: 2,
   },
   {
     id: 3,
@@ -49,7 +49,7 @@ export const difficultyLevels: Array<DifficultyLevels> = [
       { id: 1, title: "Embarking on a weekend adventure" },
       { id: 2, title: "Learning a complex skill" },
     ],
-    xpMultiplier: 1.75,
+    xpMultiplier: 3.25,
   },
   {
     id: 4,
@@ -60,6 +60,6 @@ export const difficultyLevels: Array<DifficultyLevels> = [
       { id: 1, title: "Completing a marathon" },
       { id: 2, title: "Starting a business" },
     ],
-    xpMultiplier: 2,
+    xpMultiplier: 5,
   },
 ];

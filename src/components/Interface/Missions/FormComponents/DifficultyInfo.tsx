@@ -26,7 +26,7 @@ const DifficultyInfo = ({ difficulty }: { difficulty: number[] }) => {
   }, [points]);
 
   return (
-    <div className="flex items-start gap-1">
+    <div className="flex items-stretch gap-1">
       <div className="flex flex-1 flex-col gap-4 border-2 border-cp-cyan bg-black p-8">
         <div className="text-center font-bold">
           <h3 className="text-xl uppercase text-cp-red">
@@ -51,13 +51,25 @@ const DifficultyInfo = ({ difficulty }: { difficulty: number[] }) => {
           </ul>
         </div>
       </div>
-      <div className="flex-1 border-2 border-cp-cyan bg-black p-8">
-        <h3 className="text-xl font-bold uppercase text-cp-yellow">Reward:</h3>
-        <div className="flex justify-center text-cp-cyan">
-          <p className="text-6xl">
-            {xp}
-            <span className="text-xl">XP</span>
+      <div className="flex flex-1 flex-col gap-1">
+        <div className="border-2 border-cp-cyan bg-black p-8">
+          <p className="text-md text-center text-cp-red">
+            Adjust difficulty to your preferences. If something is slightly
+            harder than one level, but not that hard as the next one, keep the
+            slider at the top range of that level rather than going straight to
+            the next. Just be fair with yourself!
           </p>
+        </div>
+        <div className="border-2 border-cp-cyan bg-black p-8">
+          <h3 className="text-xl font-bold uppercase text-cp-yellow">
+            Reward:
+          </h3>
+          <div className="flex justify-center text-cp-cyan">
+            <p className="text-6xl">
+              {xp}
+              <span className="text-xl">XP</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ const DifficultySlider = ({
   setDifficulty,
 }: {
   form: UseFormReturn<
-    { difficulty: string; title: string; description: string },
+    { difficulty: string; title: string; description: string; deadline: Date },
     any,
     undefined
   >;
