@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Mission from "./Mission";
 import CreateMissionButton from "./CreateMissionButton";
+import { v4 as uuidv4 } from "uuid";
 
 const MissionsContainer = () => {
   const [missions, setMissions] = useState<"active" | "completed">("active");
@@ -51,9 +52,11 @@ const MissionsContainer = () => {
       >
         <div className="flex w-1/3 flex-col gap-1">
           {missions === "active" &&
-            active.map((mission) => <Mission name={mission} />)}
+            active.map((mission) => <Mission key={uuidv4()} name={mission} />)}
           {missions === "completed" &&
-            completed.map((mission) => <Mission name={mission} />)}
+            completed.map((mission) => (
+              <Mission key={uuidv4()} name={mission} />
+            ))}
         </div>
         <div className="flex-1"></div>
       </motion.section>
