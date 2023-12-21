@@ -27,7 +27,7 @@ export const missionFormSchema = z.object({
   difficulty: z.string(),
 });
 
-const CreateMissionForm = () => {
+const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
   const [difficulty, setDifficulty] = useState<number[]>([50]);
 
   const form = useForm<z.infer<typeof missionFormSchema>>({
@@ -89,6 +89,16 @@ const CreateMissionForm = () => {
           setDifficulty={setDifficulty}
         />
         <DifficultyInfo difficulty={difficulty} />
+        <div className="flex items-center justify-center gap-10">
+          <button className="btn btn-yellow hover:bg-black">Create</button>
+          <button
+            onClick={closeModal}
+            type="button"
+            className="btn btn-red hover:bg-cp-red/50"
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </Form>
   );

@@ -29,7 +29,7 @@ const CreateMissionButton = () => {
             className="cursor-pointer text-3xl text-cp-cyan transition-all duration-200 hover:text-cp-red-hover"
           />
         </div>
-        <CreateMissionForm />
+        <CreateMissionForm closeModal={closeModal} />
       </Modal>
     </>
   );
