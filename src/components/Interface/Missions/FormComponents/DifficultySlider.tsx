@@ -1,3 +1,5 @@
+"use client";
+
 import {
   FormControl,
   FormField,
@@ -5,7 +7,7 @@ import {
   FormLabel,
 } from "@/src/shadcn/ui/form";
 import { Slider } from "@/src/shadcn/ui/slider";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 
 const DifficultySlider = ({

@@ -2,10 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #ef4444;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ef444457;
+    opacity: 0.5;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #ef4444;
+    border: 3px solid #ef4444;
+  }
+}
+
 @layer components {
   .btn {
     @apply min-w-[220px] border-2 p-2 text-base font-extrabold uppercase backdrop-blur-[2px] transition-all duration-200;
     clip-path: polygon(100% 0, 100% 52%, 90.5% 100%, 0 100%, 0 0);
+  }
+
+  .btn:disabled {
+    @apply opacity-50;
   }
 
   .btn::after {
