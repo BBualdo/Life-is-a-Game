@@ -11,12 +11,13 @@ import { motion } from "framer-motion";
 import { fadeIn } from "@/src/utils/fadeIn";
 
 const navLinks = links.map((link) => (
-  <Link
-    className="btn-menu hover:border-cp-cyan hover:text-cp-cyan"
-    key={link.key}
-    href={link.href}
-  >
-    {link.title}
+  <Link key={link.key} href={link.href}>
+    <button
+      disabled={link.disabled}
+      className="btn-menu w-full text-white hover:border-cp-cyan hover:text-cp-cyan disabled:text-white/50 disabled:hover:border-transparent"
+    >
+      {link.title}
+    </button>
   </Link>
 ));
 
@@ -35,11 +36,17 @@ const MainMenu = () => {
           viewport={{ once: true }}
           className="mt-10 flex flex-col gap-4 text-white"
         >
-          <button className="btn-menu hover:border-cp-cyan hover:text-cp-cyan">
+          <button
+            disabled
+            className="btn-menu text-white hover:border-cp-cyan hover:text-cp-cyan disabled:text-white/50 disabled:hover:border-transparent"
+          >
             How to Play
           </button>
           {navLinks}
-          <button className="btn-menu hover:border-cp-cyan hover:text-cp-cyan">
+          <button
+            disabled
+            className="btn-menu text-white hover:border-cp-cyan hover:text-cp-cyan disabled:text-white/50 disabled:hover:border-transparent"
+          >
             Settings
           </button>
           <button
