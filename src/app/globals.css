@@ -31,6 +31,10 @@
     clip-path: polygon(100% 0, 100% 52%, 90.5% 100%, 0 100%, 0 0);
   }
 
+  .btn:disabled {
+    @apply opacity-50;
+  }
+
   .btn::after {
     @apply absolute bottom-[-14px] right-[-14px] h-[28px] w-[28px] rotate-[135deg] border-b-2 border-solid transition-all duration-200 content-[''] focus:outline-cp-cyan;
   }

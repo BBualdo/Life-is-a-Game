@@ -1,23 +1,12 @@
 "use client";
 
-import { Textarea } from "@/src/shadcn/ui/textarea";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/src/shadcn/ui/form";
-import { Input } from "@/src/shadcn/ui/input";
+import { Form } from "@/src/shadcn/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import DifficultySlider from "./FormComponents/DifficultySlider";
 import { useState } from "react";
 import DifficultyInfo from "./FormComponents/DifficultyInfo";
-import DeadlinePicker from "./FormComponents/DeadlinePicker";
 import Title from "./FormComponents/Title";
 import Description from "./FormComponents/Description";
 
@@ -28,7 +17,6 @@ export const missionFormSchema = z.object({
     .max(50, { message: "Mission title is too long." }),
   description: z.string().max(2000),
   difficulty: z.string(),
-  deadline: z.date(),
 });
 
 const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
@@ -39,8 +27,7 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
     defaultValues: {
       title: "",
       description: "",
-      difficulty: "Normal",
-      deadline: new Date(),
+      difficulty: "Challenging",
     },
   });
 
@@ -59,7 +46,7 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
           setDifficulty={setDifficulty}
         />
         <DifficultyInfo difficulty={difficulty} />
-        <DeadlinePicker form={form} />
+        {/* <DeadlinePicker form={form} /> */}
         <div className="flex items-center justify-center gap-10">
           <button className="btn btn-yellow hover:bg-black">Create</button>
           <button

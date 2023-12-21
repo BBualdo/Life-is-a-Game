@@ -13,7 +13,7 @@ const Description = ({
   form,
 }: {
   form: UseFormReturn<
-    { difficulty: string; title: string; description: string; deadline: Date },
+    { difficulty: string; title: string; description: string },
     any,
     undefined
   >;

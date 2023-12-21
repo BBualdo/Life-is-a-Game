@@ -1,5 +1,3 @@
-import { cn } from "@/src/lib/utils";
-import { Button } from "@/src/shadcn/ui/button";
 import { Calendar } from "@/src/shadcn/ui/calendar";
 import {
   FormControl,
@@ -7,7 +5,6 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/src/shadcn/ui/form";
 import {
   Popover,
@@ -42,10 +39,22 @@ const DeadlinePicker = ({
           <Popover>
             <PopoverTrigger asChild>
               <FormControl>
-                <button className="flex w-full items-center justify-center gap-4 border-2 border-cp-yellow py-2 text-lg text-cp-yellow transition-all duration-200 hover:bg-black">
-                  {field.value ? format(field.value, "PPP") : "Pick a date"}
-                  <CalendarIcon />
-                </button>
+                <div className="flex items-center gap-4">
+                  <button
+                    type="button"
+                    className="text-md flex w-full items-center justify-center gap-4 border-2 border-cp-yellow py-2 text-cp-yellow transition-all duration-200 hover:bg-black"
+                  >
+                    {field.value ? format(field.value, "PPP") : "Pick a date"}
+                    <CalendarIcon />
+                  </button>
+                  <button
+                    type="button"
+                    disabled={Boolean(field.value)}
+                    className="btn btn-red enabled:hover:bg-cp-red/50"
+                  >
+                    Cancel Deadline
+                  </button>
+                </div>
               </FormControl>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
