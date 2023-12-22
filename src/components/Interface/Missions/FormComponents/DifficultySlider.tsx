@@ -1,5 +1,6 @@
 "use client";
 
+import { difficultyLevels } from "@/src/data/difficultyLevels";
 import {
   FormControl,
   FormField,
@@ -7,21 +8,20 @@ import {
   FormLabel,
 } from "@/src/shadcn/ui/form";
 import { Slider } from "@/src/shadcn/ui/slider";
-import { Dispatch, SetStateAction, useState } from "react";
+import { MissionSchema } from "@/src/utils/types";
+import { Dispatch, SetStateAction } from "react";
 import { UseFormReturn } from "react-hook-form";
 
 const DifficultySlider = ({
   form,
   difficulty,
   setDifficulty,
+  difficultyLevel,
 }: {
-  form: UseFormReturn<
-    { difficulty: string; title: string; description: string },
-    any,
-    undefined
-  >;
+  form: UseFormReturn<MissionSchema>;
   difficulty: number[];
   setDifficulty: Dispatch<SetStateAction<number[]>>;
+  difficultyLevel: number;
 }) => {
   return (
     <FormField
@@ -37,6 +37,9 @@ const DifficultySlider = ({
               value={difficulty}
               onValueChange={(value) => {
                 setDifficulty(value);
+                field.onChange(
+                  (field.value = difficultyLevels[difficultyLevel].title),
+                );
               }}
             />
           </FormControl>

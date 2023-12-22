@@ -4,11 +4,10 @@ import { Form } from "@/src/shadcn/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import DifficultySlider from "./FormComponents/DifficultySlider";
-import { useState } from "react";
-import DifficultyInfo from "./FormComponents/DifficultyInfo";
 import Title from "./FormComponents/Title";
 import Description from "./FormComponents/Description";
+import DifficultyPicker from "./FormComponents/DifficultyPicker";
+import SubtasksList from "./FormComponents/SubtasksList";
 
 export const missionFormSchema = z.object({
   title: z
@@ -17,17 +16,19 @@ export const missionFormSchema = z.object({
     .max(50, { message: "Mission title is too long." }),
   description: z.string().max(2000),
   difficulty: z.string(),
+  xp: z.number(),
+  subtasks: z.array(z.object({ title: z.string(), isCompleted: z.boolean() })),
 });
 
 const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
-  const [difficulty, setDifficulty] = useState<number[]>([50]);
-
   const form = useForm<z.infer<typeof missionFormSchema>>({
     resolver: zodResolver(missionFormSchema),
     defaultValues: {
       title: "",
       description: "",
       difficulty: "Challenging",
+      xp: 150,
+      subtasks: [],
     },
   });
 
@@ -40,13 +41,8 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="mt-4 space-y-4">
         <Title form={form} />
         <Description form={form} />
-        <DifficultySlider
-          form={form}
-          difficulty={difficulty}
-          setDifficulty={setDifficulty}
-        />
-        <DifficultyInfo difficulty={difficulty} />
-        {/* <DeadlinePicker form={form} /> */}
+        <DifficultyPicker form={form} />
+        <SubtasksList form={form} />
         <div className="flex items-center justify-center gap-10">
           <button className="btn btn-yellow hover:bg-black">Create</button>
           <button
