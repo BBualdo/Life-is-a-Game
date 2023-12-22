@@ -8,6 +8,7 @@ import {
   FormLabel,
 } from "@/src/shadcn/ui/form";
 import { Slider } from "@/src/shadcn/ui/slider";
+import { MissionSchema } from "@/src/utils/types";
 import { Dispatch, SetStateAction } from "react";
 import { UseFormReturn } from "react-hook-form";
 
@@ -17,11 +18,7 @@ const DifficultySlider = ({
   setDifficulty,
   difficultyLevel,
 }: {
-  form: UseFormReturn<
-    { difficulty: string; title: string; description: string; xp: number },
-    any,
-    undefined
-  >;
+  form: UseFormReturn<MissionSchema>;
   difficulty: number[];
   setDifficulty: Dispatch<SetStateAction<number[]>>;
   difficultyLevel: number;

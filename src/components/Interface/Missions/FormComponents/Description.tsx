@@ -7,17 +7,10 @@ import {
   FormMessage,
 } from "@/src/shadcn/ui/form";
 import { Textarea } from "@/src/shadcn/ui/textarea";
+import { MissionSchema } from "@/src/utils/types";
 import { UseFormReturn } from "react-hook-form";
 
-const Description = ({
-  form,
-}: {
-  form: UseFormReturn<
-    { difficulty: string; title: string; description: string; xp: number },
-    any,
-    undefined
-  >;
-}) => {
+const Description = ({ form }: { form: UseFormReturn<MissionSchema> }) => {
   return (
     <FormField
       control={form.control}

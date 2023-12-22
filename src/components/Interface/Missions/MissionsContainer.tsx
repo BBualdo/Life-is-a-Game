@@ -1,6 +1,6 @@
 "use client";
 
-import { active, completed } from "@/src/data/missions";
+import { missions } from "@/src/data/missions";
 import { fadeIn } from "@/src/utils/fadeIn";
 import { clsx } from "clsx";
 import { motion } from "framer-motion";
@@ -10,7 +10,9 @@ import CreateMissionButton from "./CreateMissionButton";
 import { v4 as uuidv4 } from "uuid";
 
 const MissionsContainer = () => {
-  const [missions, setMissions] = useState<"active" | "completed">("active");
+  const [missionsCategory, setMissionsCategory] = useState<
+    "active" | "completed"
+  >("active");
 
   return (
     <>
@@ -22,21 +24,21 @@ const MissionsContainer = () => {
         className="mt-4 flex w-full items-center gap-10"
       >
         <button
-          onClick={() => setMissions("active")}
+          onClick={() => setMissionsCategory("active")}
           className={clsx("text-2xl uppercase", {
-            "scale-105 text-cp-red": missions === "active",
+            "scale-105 text-cp-red": missionsCategory === "active",
             "text-cp-red/50 transition-all duration-300 hover:text-cp-red":
-              missions !== "active",
+              missionsCategory !== "active",
           })}
         >
           Active
         </button>
         <button
-          onClick={() => setMissions("completed")}
+          onClick={() => setMissionsCategory("completed")}
           className={clsx("text-2xl uppercase", {
-            "scale-105 text-cp-red": missions === "completed",
+            "scale-105 text-cp-red": missionsCategory === "completed",
             "text-cp-red/50 transition-all duration-300 hover:text-cp-red":
-              missions !== "completed",
+              missionsCategory !== "completed",
           })}
         >
           Completed
@@ -51,11 +53,13 @@ const MissionsContainer = () => {
         className="gradient-cp-red-3 mt-6 flex h-[800px] w-full border-2 border-cp-red p-20"
       >
         <div className="flex w-1/3 flex-col gap-1">
-          {missions === "active" &&
-            active.map((mission) => <Mission key={uuidv4()} name={mission} />)}
-          {missions === "completed" &&
-            completed.map((mission) => (
-              <Mission key={uuidv4()} name={mission} />
+          {missionsCategory === "active" &&
+            missions.active.map((mission) => (
+              <Mission key={uuidv4()} name={mission.title} />
+            ))}
+          {missionsCategory === "completed" &&
+            missions.completed.map((mission) => (
+              <Mission key={uuidv4()} name={mission.title} />
             ))}
         </div>
         <div className="flex-1"></div>

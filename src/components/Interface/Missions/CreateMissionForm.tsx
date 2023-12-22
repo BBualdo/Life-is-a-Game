@@ -7,6 +7,7 @@ import * as z from "zod";
 import Title from "./FormComponents/Title";
 import Description from "./FormComponents/Description";
 import DifficultyPicker from "./FormComponents/DifficultyPicker";
+import SubtasksList from "./FormComponents/SubtasksList";
 
 export const missionFormSchema = z.object({
   title: z
@@ -16,6 +17,7 @@ export const missionFormSchema = z.object({
   description: z.string().max(2000),
   difficulty: z.string(),
   xp: z.number(),
+  subtasks: z.array(z.object({ title: z.string(), isCompleted: z.boolean() })),
 });
 
 const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
@@ -26,6 +28,7 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
       description: "",
       difficulty: "Challenging",
       xp: 150,
+      subtasks: [],
     },
   });
 
@@ -39,7 +42,7 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
         <Title form={form} />
         <Description form={form} />
         <DifficultyPicker form={form} />
-        {/* <DeadlinePicker form={form} /> */}
+        <SubtasksList form={form} />
         <div className="flex items-center justify-center gap-10">
           <button className="btn btn-yellow hover:bg-black">Create</button>
           <button

@@ -4,33 +4,28 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/src/shadcn/ui/form";
-import { Input } from "@/src/shadcn/ui/input";
 import { MissionSchema } from "@/src/utils/types";
 import { UseFormReturn } from "react-hook-form";
 
-const Title = ({ form }: { form: UseFormReturn<MissionSchema> }) => {
+const SubtasksList = ({ form }: { form: UseFormReturn<MissionSchema> }) => {
   return (
     <FormField
       control={form.control}
-      name="title"
+      name="subtasks"
       render={({ field }) => (
         <FormItem>
           <FormLabel className="text-sm font-bold uppercase tracking-[4px] text-cp-cyan">
-            Title
+            Subtasks
           </FormLabel>
-          <FormControl>
-            <Input {...field} />
-          </FormControl>
           <FormDescription className="text-cp-yellow/80">
-            This is the final goal you want to achieve.
+            Set your mission to smaller parts. This will keep you motivated!
           </FormDescription>
-          <FormMessage />
+          <FormControl></FormControl>
         </FormItem>
       )}
     />
   );
 };
 
-export default Title;
+export default SubtasksList;

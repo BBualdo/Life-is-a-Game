@@ -5,16 +5,9 @@ import DifficultyInfo from "./DifficultyInfo";
 import DifficultySlider from "./DifficultySlider";
 import { UseFormReturn } from "react-hook-form";
 import { difficultyLevels } from "@/src/data/difficultyLevels";
+import { MissionSchema } from "@/src/utils/types";
 
-const DifficultyPicker = ({
-  form,
-}: {
-  form: UseFormReturn<
-    { difficulty: string; title: string; description: string; xp: number },
-    any,
-    undefined
-  >;
-}) => {
+const DifficultyPicker = ({ form }: { form: UseFormReturn<MissionSchema> }) => {
   const [difficulty, setDifficulty] = useState<number[]>([50]);
   const [difficultyLevel, setDifficultyLevel] = useState(2);
 
