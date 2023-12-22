@@ -13,7 +13,7 @@ const Title = ({
   form,
 }: {
   form: UseFormReturn<
-    { difficulty: string; title: string; description: string },
+    { difficulty: string; title: string; description: string; xp: number },
     any,
     undefined
   >;
