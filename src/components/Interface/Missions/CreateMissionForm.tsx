@@ -17,7 +17,12 @@ export const missionFormSchema = z.object({
   description: z.string().max(2000),
   difficulty: z.string(),
   xp: z.number(),
-  subtasks: z.array(z.object({ title: z.string(), isCompleted: z.boolean() })),
+  subtasks: z.array(
+    z.object({
+      title: z.string(),
+      isCompleted: z.boolean(),
+    }),
+  ),
 });
 
 const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
