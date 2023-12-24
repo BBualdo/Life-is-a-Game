@@ -12,6 +12,7 @@
   /* Chrome, Edge, and Safari */
   *::-webkit-scrollbar {
     width: 8px;
+    height: 8px;
   }
 
   *::-webkit-scrollbar-track {
@@ -31,12 +32,21 @@
     clip-path: polygon(100% 0, 100% 52%, 90.5% 100%, 0 100%, 0 0);
   }
 
+  .x-btn {
+    @apply w-[50px] border-2 p-2 text-base font-extrabold uppercase backdrop-blur-[2px] transition-all duration-200;
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 75% 100%, 0 100%, 0% 50%);
+  }
+
   .btn:disabled {
     @apply opacity-50;
   }
 
   .btn::after {
     @apply absolute bottom-[-14px] right-[-14px] h-[28px] w-[28px] rotate-[135deg] border-b-2 border-solid transition-all duration-200 content-[''] focus:outline-cp-cyan;
+  }
+
+  .x-btn::after {
+    @apply absolute bottom-[-15.5px] right-[-13px] h-[24px] w-[20px] rotate-[139deg] border-b-2 border-solid transition-all duration-200 content-[''] focus:outline-cp-cyan;
   }
 
   .btn-cyan {

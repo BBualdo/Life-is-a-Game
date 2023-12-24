@@ -1,6 +1,6 @@
 const Subtask = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="flex w-full border border-cp-cyan bg-cp-cyan/20 p-2 text-base font-extrabold text-cp-cyan ring-offset-cp-cyan">
+    <div className="flex flex-1 border border-cp-yellow bg-black p-2 text-base font-extrabold text-cp-yellow ring-offset-cp-yellow">
       {children}
     </div>
   );

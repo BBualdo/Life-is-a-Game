@@ -15,23 +15,44 @@ import { UseFormReturn } from "react-hook-form";
 import Subtask from "./Subtask";
 
 import { v4 as uuidv4 } from "uuid";
+import { IoClose } from "react-icons/io5";
 
 const SubtasksList = ({ form }: { form: UseFormReturn<MissionSchema> }) => {
   const [subtasksArr, setSubtasksArr] = useState<SubtaskType[]>([]);
+  const [subtaskErr, setSubtaskErr] = useState<boolean>(false);
 
   const subtaskInput = useRef<HTMLInputElement>(null);
 
   const addSubtask = () => {
-    setSubtasksArr((prev) => [
-      ...prev,
-      { id: uuidv4(), title: subtaskInput.current!.value, isCompleted: false },
-    ]);
+    const inputValue = subtaskInput.current?.value || "";
+
+    if (subtaskInput.current!.value === "") {
+      setSubtaskErr(true);
+      return;
+    } else {
+      setSubtaskErr(false);
+      setSubtasksArr((prev) => [
+        ...prev,
+        { id: uuidv4(), title: inputValue, isCompleted: false },
+      ]);
+      subtaskInput.current!.value = "";
+    }
+  };
+
+  const removeSubtask = (id: string) => {
+    const filteredSubtasks = subtasksArr.filter((subtask) => subtask.id !== id);
+    setSubtasksArr(filteredSubtasks);
   };
 
   const subtasks = subtasksArr.map((subtask) => (
     <div key={subtask.id} className="flex w-full items-center gap-4">
       <Subtask>{subtask.title}</Subtask>
-      <button className="btn btn-red hover:bg-cp-red/50">Remove Subtask</button>
+      <button
+        onClick={() => removeSubtask(subtask.id!)}
+        className="x-btn btn-red flex w-[50px] items-center justify-center py-2 hover:bg-cp-red/50"
+      >
+        <IoClose className="text-2xl" />
+      </button>
     </div>
   ));
 
@@ -47,7 +68,7 @@ const SubtasksList = ({ form }: { form: UseFormReturn<MissionSchema> }) => {
           <FormDescription className="text-cp-yellow/80">
             Set your mission to smaller parts. This will keep you motivated!
           </FormDescription>
-          <div className="flex max-h-[500px] flex-col gap-4 overflow-y-scroll">
+          <div className="flex max-h-[500px] w-full flex-col gap-2">
             {subtasks}
           </div>
           <FormControl>
@@ -62,7 +83,9 @@ const SubtasksList = ({ form }: { form: UseFormReturn<MissionSchema> }) => {
               </button>
             </div>
           </FormControl>
-          <FormMessage />
+          {subtaskErr && (
+            <FormMessage>Subtask name can't be empty.</FormMessage>
+          )}
         </FormItem>
       )}
     />
