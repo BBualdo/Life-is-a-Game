@@ -30,11 +30,14 @@ const SubtasksList = ({ form }: { form: UseFormReturn<MissionSchema> }) => {
       setSubtaskErr(true);
       return;
     } else {
+      const newSubtask: SubtaskType = {
+        id: uuidv4(),
+        title: inputValue,
+        isCompleted: false,
+      };
       setSubtaskErr(false);
-      setSubtasksArr((prev) => [
-        ...prev,
-        { id: uuidv4(), title: inputValue, isCompleted: false },
-      ]);
+      setSubtasksArr((prev) => [...prev, newSubtask]);
+      form.setValue("subtasks", [...subtasksArr, newSubtask]);
       subtaskInput.current!.value = "";
     }
   };
@@ -42,6 +45,7 @@ const SubtasksList = ({ form }: { form: UseFormReturn<MissionSchema> }) => {
   const removeSubtask = (id: string) => {
     const filteredSubtasks = subtasksArr.filter((subtask) => subtask.id !== id);
     setSubtasksArr(filteredSubtasks);
+    form.setValue("subtasks", filteredSubtasks);
   };
 
   const subtasks = subtasksArr.map((subtask) => (
