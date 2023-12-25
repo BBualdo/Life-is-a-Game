@@ -7,11 +7,11 @@ const MissionDetails = ({
 }: {
   displayedMission: MissionSchema;
 }) => {
-  const { id, title, description, difficulty, xp, subtasks } = displayedMission;
+  const { id, title, description, subtasks } = displayedMission;
 
   return (
     <div key={id} className="flex h-full w-full flex-col gap-10 pl-20">
-      <h2 className="text-2xl uppercase text-cp-cyan shadow-cp-cyan text-shadow-xl">
+      <h2 className="text-2xl font-bold uppercase text-cp-red shadow-black text-shadow-xl">
         {title}
       </h2>
       <ul className="flex flex-col gap-2">
@@ -20,8 +20,11 @@ const MissionDetails = ({
             key={subtask.id}
             className="flex items-center gap-4 border border-cp-red/30 bg-cp-red/10 p-2"
           >
-            <Checkbox />
-            <Label className="text-base uppercase text-cp-cyan">
+            <Checkbox id={subtask.title} />
+            <Label
+              htmlFor={subtask.title}
+              className="cursor-pointer text-base uppercase text-cp-cyan"
+            >
               {subtask.title}
             </Label>
           </li>

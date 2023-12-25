@@ -20,10 +20,6 @@ const MissionsContainer = () => {
 
   const missions = useAppSelector((state) => state.missionsReducer.missions);
 
-  const displayMission = (mission: MissionSchema) => {
-    setDisplayedMission(mission);
-  };
-
   return (
     <>
       <motion.nav
@@ -69,6 +65,7 @@ const MissionsContainer = () => {
                 onClick={setDisplayedMission}
                 mission={mission}
                 key={uuidv4()}
+                displayedMission={displayedMission!}
               />
             ))}
           {missionsCategory === "completed" &&
@@ -77,6 +74,7 @@ const MissionsContainer = () => {
                 onClick={setDisplayedMission}
                 mission={mission}
                 key={uuidv4()}
+                displayedMission={displayedMission!}
               />
             ))}
         </div>
