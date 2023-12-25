@@ -8,6 +8,9 @@ import Title from "./FormComponents/Title";
 import Description from "./FormComponents/Description";
 import DifficultyPicker from "./FormComponents/DifficultyPicker";
 import SubtasksList from "./FormComponents/SubtasksList";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/src/redux/store";
+import { addActiveMission } from "@/src/redux/slices/missionsSlice";
 
 export const missionFormSchema = z.object({
   title: z
@@ -26,6 +29,8 @@ export const missionFormSchema = z.object({
 });
 
 const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const form = useForm<z.infer<typeof missionFormSchema>>({
     resolver: zodResolver(missionFormSchema),
     defaultValues: {
@@ -38,7 +43,8 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
   });
 
   function onSubmit(values: z.infer<typeof missionFormSchema>) {
-    console.log(values);
+    dispatch(addActiveMission(values));
+    closeModal();
   }
 
   return (

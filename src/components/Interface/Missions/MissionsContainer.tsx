@@ -57,11 +57,11 @@ const MissionsContainer = () => {
         <div className="flex w-1/3 flex-col gap-1">
           {missionsCategory === "active" &&
             missions.active.map((mission) => (
-              <Mission key={uuidv4()} name={mission.title} />
+              <Mission key={uuidv4()} title={mission.title} />
             ))}
           {missionsCategory === "completed" &&
             missions.completed.map((mission) => (
-              <Mission key={uuidv4()} name={mission.title} />
+              <Mission key={uuidv4()} title={mission.title} />
             ))}
         </div>
         <div className="flex-1"></div>
