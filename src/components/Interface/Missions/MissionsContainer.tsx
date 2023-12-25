@@ -9,6 +9,7 @@ import CreateMissionButton from "./CreateMissionButton";
 import { v4 as uuidv4 } from "uuid";
 import { useAppSelector } from "@/src/redux/store";
 import { MissionSchema } from "@/src/utils/types";
+import MissionDetails from "./MissionDetails";
 
 const MissionsContainer = () => {
   const [missionsCategory, setMissionsCategory] = useState<
@@ -83,17 +84,7 @@ const MissionsContainer = () => {
         </div>
         <div className="flex-1">
           {displayedMission && (
-            <div className="h-full w-full pl-20">
-              <h2>{displayedMission.title}</h2>
-              <p>{displayedMission.description}</p>
-              <p>{displayedMission.difficulty}</p>
-              <p>Reward: {displayedMission.xp}</p>
-              <ul>
-                {displayedMission.subtasks.map((subtask) => (
-                  <li key={subtask.id}>{subtask.title}</li>
-                ))}
-              </ul>
-            </div>
+            <MissionDetails displayedMission={displayedMission} />
           )}
         </div>
       </motion.section>

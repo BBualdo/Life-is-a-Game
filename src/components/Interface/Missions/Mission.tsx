@@ -12,7 +12,7 @@ const Mission = ({
   return (
     <button
       onClick={() => onClick(mission)}
-      className="mission-container bg-black/50 text-xl uppercase transition-all duration-200 hover:bg-cp-red/50"
+      className="mission-container bg-black/50 text-lg uppercase transition-all duration-200 hover:bg-cp-red/50"
     >
       {title}
     </button>
