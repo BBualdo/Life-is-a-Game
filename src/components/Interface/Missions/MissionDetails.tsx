@@ -10,8 +10,8 @@ const MissionDetails = ({
   const { id, title, description, difficulty, xp, subtasks } = displayedMission;
 
   return (
-    <div key={id} className="h-full w-full pl-20">
-      <h2 className="text-shadow-xl text-2xl text-cp-red shadow-cp-red">
+    <div key={id} className="flex h-full w-full flex-col gap-10 pl-20">
+      <h2 className="text-2xl uppercase text-cp-cyan shadow-cp-cyan text-shadow-xl">
         {title}
       </h2>
       <ul className="flex flex-col gap-2">
@@ -27,9 +27,11 @@ const MissionDetails = ({
           </li>
         ))}
       </ul>
-      <p>{description}</p>
-      <p>{difficulty}</p>
-      <p>Reward: {xp}</p>
+      <div className="min-h-[30vh] border-y border-cp-red p-4">
+        <p className="text-cp-cyan">
+          {description || "This mission has no description."}
+        </p>
+      </div>
     </div>
   );
 };

@@ -82,7 +82,7 @@
   }
 
   .mission-container {
-    @apply relative border-2 border-cp-red p-4;
+    @apply relative border-2 border-cp-red p-4 text-start;
   }
 
   /* Gradients */

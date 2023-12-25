@@ -60,16 +60,15 @@ const MissionsContainer = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="gradient-cp-red-3 mt-6 flex h-[800px] w-full border-2 border-cp-red p-20"
+        className="gradient-cp-red-3 mt-6 flex h-[800px] w-full border-2 border-cp-red p-10"
       >
-        <div className="flex max-h-full w-1/2 flex-col gap-1 overflow-y-auto pr-4">
+        <div className="flex max-h-full w-[500px] flex-col gap-1 overflow-y-auto pr-4">
           {missionsCategory === "active" &&
             missions.active.map((mission) => (
               <Mission
                 onClick={setDisplayedMission}
                 mission={mission}
                 key={uuidv4()}
-                title={mission.title}
               />
             ))}
           {missionsCategory === "completed" &&
@@ -78,7 +77,6 @@ const MissionsContainer = () => {
                 onClick={setDisplayedMission}
                 mission={mission}
                 key={uuidv4()}
-                title={mission.title}
               />
             ))}
         </div>
