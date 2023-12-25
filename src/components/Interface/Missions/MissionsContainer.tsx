@@ -1,6 +1,5 @@
 "use client";
 
-import { missions } from "@/src/data/missions";
 import { fadeIn } from "@/src/utils/fadeIn";
 import { clsx } from "clsx";
 import { motion } from "framer-motion";
@@ -8,11 +7,14 @@ import { useState } from "react";
 import Mission from "./Mission";
 import CreateMissionButton from "./CreateMissionButton";
 import { v4 as uuidv4 } from "uuid";
+import { useAppSelector } from "@/src/redux/store";
 
 const MissionsContainer = () => {
   const [missionsCategory, setMissionsCategory] = useState<
     "active" | "completed"
   >("active");
+
+  const missions = useAppSelector((state) => state.missionsReducer.missions);
 
   return (
     <>

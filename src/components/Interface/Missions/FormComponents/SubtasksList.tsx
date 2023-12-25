@@ -45,6 +45,7 @@ const SubtasksList = ({ form }: { form: UseFormReturn<MissionSchema> }) => {
   const removeSubtask = (id: string) => {
     const filteredSubtasks = subtasksArr.filter((subtask) => subtask.id !== id);
     setSubtasksArr(filteredSubtasks);
+    setSubtaskErr(false);
     form.setValue("subtasks", filteredSubtasks);
   };
 

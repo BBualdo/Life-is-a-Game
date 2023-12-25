@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Play } from "next/font/google";
 
 import "./globals.css";
+import ReduxProvider from "../redux/ReduxProvider";
 
 export const metadata: Metadata = {
   title: "Life is a Game",
@@ -18,7 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`bg-black ${play.className}`}>{children}</body>
+      <body className={`bg-black ${play.className}`}>
+        <ReduxProvider>{children}</ReduxProvider>
+      </body>
     </html>
   );
 }
