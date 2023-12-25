@@ -18,7 +18,7 @@ const UserData = () => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-      className="w-3/5"
+      className="w-full"
     >
       <CustomBorder />
       <div className="flex border-b border-white py-2">
