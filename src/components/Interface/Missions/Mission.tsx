@@ -33,7 +33,7 @@ const Mission = ({
         <h2 className="text-lg font-bold uppercase text-cp-cyan">
           {mission.title}
         </h2>
-        <p className="absolute bottom-2 right-2 text-xs text-cp-red/50">
+        <p className="absolute bottom-1 right-2 text-[10px] text-cp-red/50">
           {mission.id}
         </p>
         <h3 className="text-md">

@@ -13,7 +13,10 @@ const displayedMission = createSlice({
   name: "displayedMission",
   initialState,
   reducers: {
-    setDisplayedMission: (state, action: PayloadAction<MissionSchema>) => {
+    setDisplayedMission: (
+      state,
+      action: PayloadAction<MissionSchema | null>,
+    ) => {
       state.displayedMission = action.payload;
     },
   },

@@ -3,12 +3,14 @@
 import { fadeIn } from "@/src/utils/fadeIn";
 import { clsx } from "clsx";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Mission from "./Mission";
 import CreateMissionButton from "./CreateMissionButton";
-import { useAppSelector } from "@/src/redux/store";
+import { AppDispatch, useAppSelector } from "@/src/redux/store";
 import MissionDetails from "./DetailsComponents/MissionDetails";
 import MissionButtons from "./DetailsComponents/MissionButtons";
+import { useDispatch } from "react-redux";
+import { setDisplayedMission } from "@/src/redux/slices/displayedMissionSlice";
 
 const MissionsContainer = () => {
   const [missionsCategory, setMissionsCategory] = useState<
@@ -20,6 +22,20 @@ const MissionsContainer = () => {
     (state) => state.displayedMissionReducer.displayedMission,
   );
 
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    if (displayedMission) {
+      const updatedMission = missions[missionsCategory].find(
+        (mission) => mission.id === displayedMission.id,
+      );
+
+      if (updatedMission) {
+        dispatch(setDisplayedMission(updatedMission));
+      }
+    }
+  }, [missions, missionsCategory, displayedMission]);
+
   return (
     <>
       <motion.nav
@@ -30,7 +46,10 @@ const MissionsContainer = () => {
         className="mt-4 flex w-full items-center gap-10"
       >
         <button
-          onClick={() => setMissionsCategory("active")}
+          onClick={() => {
+            setMissionsCategory("active");
+            dispatch(setDisplayedMission(null));
+          }}
           className={clsx("text-2xl uppercase", {
             "scale-105 text-cp-red": missionsCategory === "active",
             "text-cp-red/50 transition-all duration-300 hover:text-cp-red":
@@ -40,7 +59,10 @@ const MissionsContainer = () => {
           Active
         </button>
         <button
-          onClick={() => setMissionsCategory("completed")}
+          onClick={() => {
+            setMissionsCategory("completed");
+            dispatch(setDisplayedMission(null));
+          }}
           className={clsx("text-2xl uppercase", {
             "scale-105 text-cp-red": missionsCategory === "completed",
             "text-cp-red/50 transition-all duration-300 hover:text-cp-red":
