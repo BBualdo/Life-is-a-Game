@@ -7,6 +7,7 @@ import { Label } from "@/src/shadcn/ui/label";
 import { MissionSchema } from "@/src/utils/types";
 import clsx from "clsx";
 import { useDispatch } from "react-redux";
+import ProgressBar from "./ProgressBar";
 
 const MissionDetails = ({
   displayedMission,
@@ -39,7 +40,7 @@ const MissionDetails = ({
             <Label
               htmlFor={subtask.id}
               className={clsx("cursor-pointer text-base uppercase", {
-                "text-cp-cyan/50": subtask.isCompleted,
+                "text-cp-cyan/50 line-through": subtask.isCompleted,
                 "text-cp-cyan": !subtask.isCompleted,
               })}
             >
@@ -48,6 +49,7 @@ const MissionDetails = ({
           </li>
         ))}
       </ul>
+      <ProgressBar displayedMission={displayedMission} />
       <div className="min-h-[30vh] border-y border-cp-red p-4">
         <p className="text-cp-cyan">
           {description || "This mission has no description."}

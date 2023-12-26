@@ -145,4 +145,8 @@
   .gradient-cp-cyan-2 {
     @apply bg-gradient-to-r from-cp-cyan to-cyan-950;
   }
+
+  .gradient-cp-cyan-bar {
+    @apply bg-gradient-to-r from-cyan-900 via-cp-cyan to-cyan-200;
+  }
 }
