@@ -6,9 +6,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Mission from "./Mission";
 import CreateMissionButton from "./CreateMissionButton";
-import { v4 as uuidv4 } from "uuid";
 import { useAppSelector } from "@/src/redux/store";
-import { MissionSchema } from "@/src/utils/types";
 import MissionDetails from "./DetailsComponents/MissionDetails";
 import MissionButtons from "./DetailsComponents/MissionButtons";
 
@@ -16,10 +14,11 @@ const MissionsContainer = () => {
   const [missionsCategory, setMissionsCategory] = useState<
     "active" | "completed"
   >("active");
-  const [displayedMission, setDisplayedMission] =
-    useState<MissionSchema | null>(null);
 
   const missions = useAppSelector((state) => state.missionsReducer.missions);
+  const displayedMission = useAppSelector(
+    (state) => state.displayedMissionReducer.displayedMission,
+  );
 
   return (
     <>
@@ -63,7 +62,6 @@ const MissionsContainer = () => {
           {missionsCategory === "active" &&
             missions.active.map((mission) => (
               <Mission
-                onClick={setDisplayedMission}
                 mission={mission}
                 key={mission.id!}
                 displayedMission={displayedMission!}
@@ -72,7 +70,6 @@ const MissionsContainer = () => {
           {missionsCategory === "completed" &&
             missions.completed.map((mission) => (
               <Mission
-                onClick={setDisplayedMission}
                 mission={mission}
                 key={mission.id!}
                 displayedMission={displayedMission!}

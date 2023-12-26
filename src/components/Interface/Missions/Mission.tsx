@@ -1,18 +1,25 @@
+"use client";
+
+import { setDisplayedMission } from "@/src/redux/slices/displayedMissionSlice";
+import { AppDispatch } from "@/src/redux/store";
 import { MissionSchema } from "@/src/utils/types";
 import clsx from "clsx";
+import { useDispatch } from "react-redux";
 
 const Mission = ({
   mission,
-  onClick,
   displayedMission,
 }: {
   mission: MissionSchema;
-  onClick: (mission: MissionSchema) => void;
   displayedMission: MissionSchema;
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
   return (
     <button
-      onClick={() => onClick(mission)}
+      onClick={() => {
+        dispatch(setDisplayedMission(mission));
+      }}
       disabled={mission === displayedMission}
       className={clsx(
         "mission-container flex items-center justify-between transition-all duration-200 enabled:hover:bg-cp-red/50",

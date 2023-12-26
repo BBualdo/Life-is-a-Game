@@ -1,3 +1,5 @@
+"use client";
+
 import { toggleSubtaskComplition } from "@/src/redux/slices/missionsSlice";
 import { AppDispatch } from "@/src/redux/store";
 import { Checkbox } from "@/src/shadcn/ui/checkbox";
@@ -30,12 +32,12 @@ const MissionDetails = ({
             className="flex items-center gap-4 border border-cp-red/30 bg-cp-red/10 p-2"
           >
             <Checkbox
-              id={subtask.title}
+              id={subtask.id}
               checked={subtask.isCompleted}
               onCheckedChange={() => handleSubtaskChange(subtask.id!)}
             />
             <Label
-              htmlFor={subtask.title}
+              htmlFor={subtask.id}
               className={clsx("cursor-pointer text-base uppercase", {
                 "text-cp-cyan/50": subtask.isCompleted,
                 "text-cp-cyan": !subtask.isCompleted,
