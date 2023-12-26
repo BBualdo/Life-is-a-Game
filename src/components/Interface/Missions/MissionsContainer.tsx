@@ -9,7 +9,8 @@ import CreateMissionButton from "./CreateMissionButton";
 import { v4 as uuidv4 } from "uuid";
 import { useAppSelector } from "@/src/redux/store";
 import { MissionSchema } from "@/src/utils/types";
-import MissionDetails from "./MissionDetails";
+import MissionDetails from "./DetailsComponents/MissionDetails";
+import MissionButtons from "./DetailsComponents/MissionButtons";
 
 const MissionsContainer = () => {
   const [missionsCategory, setMissionsCategory] = useState<
@@ -64,7 +65,7 @@ const MissionsContainer = () => {
               <Mission
                 onClick={setDisplayedMission}
                 mission={mission}
-                key={uuidv4()}
+                key={mission.id!}
                 displayedMission={displayedMission!}
               />
             ))}
@@ -73,14 +74,17 @@ const MissionsContainer = () => {
               <Mission
                 onClick={setDisplayedMission}
                 mission={mission}
-                key={uuidv4()}
+                key={mission.id!}
                 displayedMission={displayedMission!}
               />
             ))}
         </div>
-        <div className="flex-1">
+        <div className="flex-1 pl-20">
           {displayedMission && (
-            <MissionDetails displayedMission={displayedMission} />
+            <div className="flex flex-col items-center gap-10">
+              <MissionDetails displayedMission={displayedMission} />
+              <MissionButtons />
+            </div>
           )}
         </div>
       </motion.section>

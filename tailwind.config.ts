@@ -26,6 +26,7 @@ module.exports = {
         "cp-red-hover": "#eb5e5e",
         "cp-yellow": "#fcee0a",
         "cp-pink": "#d600ff",
+        "cp-green": "#6bf516",
         "light-silver": "#ccdaf0",
       },
       keyframes: {

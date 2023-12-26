@@ -1,6 +1,10 @@
+import { toggleSubtaskComplition } from "@/src/redux/slices/missionsSlice";
+import { AppDispatch } from "@/src/redux/store";
 import { Checkbox } from "@/src/shadcn/ui/checkbox";
 import { Label } from "@/src/shadcn/ui/label";
 import { MissionSchema } from "@/src/utils/types";
+import clsx from "clsx";
+import { useDispatch } from "react-redux";
 
 const MissionDetails = ({
   displayedMission,
@@ -8,9 +12,14 @@ const MissionDetails = ({
   displayedMission: MissionSchema;
 }) => {
   const { id, title, description, subtasks } = displayedMission;
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleSubtaskChange = (subtaskId: string) => {
+    dispatch(toggleSubtaskComplition({ missionId: id!, subtaskId }));
+  };
 
   return (
-    <div key={id} className="flex h-full w-full flex-col gap-10 pl-20">
+    <div className="flex h-full w-full flex-col gap-10">
       <h2 className="text-2xl font-bold uppercase text-cp-red shadow-black text-shadow-xl">
         {title}
       </h2>
@@ -20,10 +29,17 @@ const MissionDetails = ({
             key={subtask.id}
             className="flex items-center gap-4 border border-cp-red/30 bg-cp-red/10 p-2"
           >
-            <Checkbox id={subtask.title} />
+            <Checkbox
+              id={subtask.title}
+              checked={subtask.isCompleted}
+              onCheckedChange={() => handleSubtaskChange(subtask.id!)}
+            />
             <Label
               htmlFor={subtask.title}
-              className="cursor-pointer text-base uppercase text-cp-cyan"
+              className={clsx("cursor-pointer text-base uppercase", {
+                "text-cp-cyan/50": subtask.isCompleted,
+                "text-cp-cyan": !subtask.isCompleted,
+              })}
             >
               {subtask.title}
             </Label>
