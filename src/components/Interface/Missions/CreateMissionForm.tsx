@@ -11,8 +11,10 @@ import SubtasksList from "./FormComponents/SubtasksList";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
 import { addActiveMission } from "@/src/redux/slices/missionsSlice";
+import { v4 as uuidv4 } from "uuid";
 
 export const missionFormSchema = z.object({
+  id: z.string(),
   title: z
     .string()
     .min(6, { message: "Mission title is too short." })
@@ -22,6 +24,7 @@ export const missionFormSchema = z.object({
   xp: z.number(),
   subtasks: z.array(
     z.object({
+      id: z.string(),
       title: z.string(),
       isCompleted: z.boolean(),
     }),
@@ -34,6 +37,7 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
   const form = useForm<z.infer<typeof missionFormSchema>>({
     resolver: zodResolver(missionFormSchema),
     defaultValues: {
+      id: uuidv4(),
       title: "",
       description: "",
       difficulty: "Challenging",

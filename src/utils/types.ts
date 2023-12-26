@@ -1,11 +1,11 @@
 export type SubtaskType = {
-  id?: string;
+  id: string;
   title: string;
   isCompleted: boolean;
 };
 
 export type MissionSchema = {
-  id?: string;
+  id: string;
   title: string;
   description: string;
   difficulty: string;

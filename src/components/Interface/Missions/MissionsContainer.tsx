@@ -63,7 +63,7 @@ const MissionsContainer = () => {
             missions.active.map((mission) => (
               <Mission
                 mission={mission}
-                key={mission.id!}
+                key={mission.id}
                 displayedMission={displayedMission!}
               />
             ))}
@@ -71,7 +71,7 @@ const MissionsContainer = () => {
             missions.completed.map((mission) => (
               <Mission
                 mission={mission}
-                key={mission.id!}
+                key={mission.id}
                 displayedMission={displayedMission!}
               />
             ))}

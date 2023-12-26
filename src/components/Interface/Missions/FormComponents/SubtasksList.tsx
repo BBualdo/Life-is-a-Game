@@ -53,7 +53,7 @@ const SubtasksList = ({ form }: { form: UseFormReturn<MissionSchema> }) => {
     <div key={subtask.id} className="flex w-full items-center gap-4">
       <Subtask>{subtask.title}</Subtask>
       <button
-        onClick={() => removeSubtask(subtask.id!)}
+        onClick={() => removeSubtask(subtask.id)}
         className="x-btn btn-red flex w-[50px] items-center justify-center py-2 hover:bg-cp-red/50"
       >
         <IoClose className="text-2xl" />

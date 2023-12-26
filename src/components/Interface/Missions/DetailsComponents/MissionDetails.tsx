@@ -17,7 +17,7 @@ const MissionDetails = ({
   const dispatch = useDispatch<AppDispatch>();
 
   const handleSubtaskChange = (subtaskId: string) => {
-    dispatch(toggleSubtaskComplition({ missionId: id!, subtaskId }));
+    dispatch(toggleSubtaskComplition({ missionId: id, subtaskId }));
   };
 
   return (
@@ -34,7 +34,7 @@ const MissionDetails = ({
             <Checkbox
               id={subtask.id}
               checked={subtask.isCompleted}
-              onCheckedChange={() => handleSubtaskChange(subtask.id!)}
+              onCheckedChange={() => handleSubtaskChange(subtask.id)}
             />
             <Label
               htmlFor={subtask.id}
