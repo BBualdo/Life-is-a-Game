@@ -10,11 +10,11 @@ import { useDispatch } from "react-redux";
 import ProgressBar from "./ProgressBar";
 
 const MissionDetails = ({
-  displayedMission,
+  selectedMission,
 }: {
-  displayedMission: MissionSchema;
+  selectedMission: MissionSchema;
 }) => {
-  const { id, title, description, subtasks } = displayedMission;
+  const { id, title, description, subtasks } = selectedMission;
   const dispatch = useDispatch<AppDispatch>();
 
   const handleSubtaskChange = (subtaskId: string) => {
@@ -49,7 +49,7 @@ const MissionDetails = ({
           </li>
         ))}
       </ul>
-      <ProgressBar displayedMission={displayedMission} />
+      <ProgressBar selectedMission={selectedMission} />
       <div className="min-h-[30vh] border-y border-cp-red p-4">
         <p className="text-cp-cyan">
           {description || "This mission has no description."}

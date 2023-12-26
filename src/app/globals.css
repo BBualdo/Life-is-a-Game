@@ -89,7 +89,7 @@
     @apply shadow-[-8px_-2px_20px_#ccdaf0];
   }
 
-  .mission-container {
+  .mission-button {
     @apply relative border-2 p-4 text-start;
   }
 

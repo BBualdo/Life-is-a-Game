@@ -1,14 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import missionsReducer from "./slices/missionsSlice";
-import displayedMissionReducer from "./slices/displayedMissionSlice";
+import selectedMissionReducer from "./slices/selectedMissionSlice";
 import { TypedUseSelectorHook } from "react-redux";
 import { useSelector } from "react-redux";
 
 export const store = configureStore({
   reducer: {
     missionsReducer,
-    displayedMissionReducer,
+    selectedMissionReducer,
   },
 });
 

@@ -10,7 +10,7 @@ import { AppDispatch, useAppSelector } from "@/src/redux/store";
 import MissionDetails from "./DetailsComponents/MissionDetails";
 import MissionButtons from "./DetailsComponents/MissionButtons";
 import { useDispatch } from "react-redux";
-import { setDisplayedMission } from "@/src/redux/slices/displayedMissionSlice";
+import { setselectedMission } from "@/src/redux/slices/selectedMissionSlice";
 
 const MissionsContainer = () => {
   const [missionsCategory, setMissionsCategory] = useState<
@@ -18,23 +18,23 @@ const MissionsContainer = () => {
   >("active");
 
   const missions = useAppSelector((state) => state.missionsReducer.missions);
-  const displayedMission = useAppSelector(
-    (state) => state.displayedMissionReducer.displayedMission,
+  const selectedMission = useAppSelector(
+    (state) => state.selectedMissionReducer.selectedMission,
   );
 
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    if (displayedMission) {
+    if (selectedMission) {
       const updatedMission = missions[missionsCategory].find(
-        (mission) => mission.id === displayedMission.id,
+        (mission) => mission.id === selectedMission.id,
       );
 
       if (updatedMission) {
-        dispatch(setDisplayedMission(updatedMission));
+        dispatch(setselectedMission(updatedMission));
       }
     }
-  }, [missions, missionsCategory, displayedMission]);
+  }, [missions, missionsCategory, selectedMission]);
 
   return (
     <>
@@ -48,7 +48,7 @@ const MissionsContainer = () => {
         <button
           onClick={() => {
             setMissionsCategory("active");
-            dispatch(setDisplayedMission(null));
+            dispatch(setselectedMission(null));
           }}
           className={clsx("text-2xl uppercase", {
             "scale-105 text-cp-red": missionsCategory === "active",
@@ -61,7 +61,7 @@ const MissionsContainer = () => {
         <button
           onClick={() => {
             setMissionsCategory("completed");
-            dispatch(setDisplayedMission(null));
+            dispatch(setselectedMission(null));
           }}
           className={clsx("text-2xl uppercase", {
             "scale-105 text-cp-red": missionsCategory === "completed",
@@ -86,7 +86,7 @@ const MissionsContainer = () => {
               <Mission
                 mission={mission}
                 key={mission.id}
-                displayedMission={displayedMission!}
+                selectedMission={selectedMission!}
               />
             ))}
           {missionsCategory === "completed" &&
@@ -94,15 +94,15 @@ const MissionsContainer = () => {
               <Mission
                 mission={mission}
                 key={mission.id}
-                displayedMission={displayedMission!}
+                selectedMission={selectedMission!}
               />
             ))}
         </div>
         <div className="flex-1 pl-20">
-          {displayedMission && (
+          {selectedMission && (
             <div className="flex flex-col items-center gap-10">
-              <MissionDetails displayedMission={displayedMission} />
-              <MissionButtons />
+              <MissionDetails selectedMission={selectedMission} />
+              <MissionButtons selectedMission={selectedMission} />
             </div>
           )}
         </div>
