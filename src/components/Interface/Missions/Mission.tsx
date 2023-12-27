@@ -15,6 +15,13 @@ const Mission = ({
 }) => {
   const dispatch = useDispatch<AppDispatch>();
 
+  const completedSubtasks = mission.subtasks.filter(
+    (subtask) => subtask.isCompleted === true,
+  );
+  const progress = Math.ceil(
+    (completedSubtasks.length / mission.subtasks.length) * 100,
+  );
+
   return (
     <button
       onClick={() => {
@@ -22,10 +29,10 @@ const Mission = ({
       }}
       disabled={mission === selectedMission}
       className={clsx(
-        "mission-button relative flex items-center justify-between transition-all duration-200 enabled:hover:bg-cp-red/50",
+        "mission-button relative flex items-center justify-between bg-black/50 transition-all duration-200 enabled:hover:bg-cp-red/50",
         {
-          "border-cp-yellow bg-cp-yellow/10": mission === selectedMission,
-          "border-cp-red bg-black/50": mission !== selectedMission,
+          "border-cp-yellow": mission === selectedMission,
+          "border-cp-red": mission !== selectedMission,
         },
       )}
     >
@@ -44,6 +51,10 @@ const Mission = ({
         </h3>
       </div>
       <p className="text-xl text-cp-cyan">{mission.xp} XP</p>
+      <div
+        className="absolute left-0 top-0 h-full bg-cp-cyan/20 transition-all duration-700"
+        style={{ width: `${progress}%` }}
+      />
     </button>
   );
 };
