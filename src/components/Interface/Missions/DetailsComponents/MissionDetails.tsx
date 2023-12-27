@@ -9,6 +9,8 @@ import clsx from "clsx";
 import { useDispatch } from "react-redux";
 import ProgressBar from "./ProgressBar";
 
+import { RiPencilLine } from "react-icons/ri";
+
 const MissionDetails = ({
   selectedMission,
 }: {
@@ -23,9 +25,15 @@ const MissionDetails = ({
 
   return (
     <div className="flex h-full w-full flex-col gap-10">
-      <h2 className="text-2xl font-bold uppercase text-cp-red shadow-black text-shadow-xl">
-        {title}
-      </h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-bold uppercase text-cp-red shadow-black text-shadow-xl">
+          {title}
+        </h2>
+        <button className="btn-red hover:btn-cyan border-2 p-1 transition-all duration-200">
+          <RiPencilLine className="text-2xl font-bold" />
+        </button>
+      </div>
+
       <ul className="flex flex-col gap-2">
         {subtasks.map((subtask) => (
           <li
