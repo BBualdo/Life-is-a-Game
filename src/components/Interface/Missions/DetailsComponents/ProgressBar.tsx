@@ -14,7 +14,7 @@ const ProgressBar = ({
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <h3 className="text-lg text-cp-cyan">Progress %:</h3>
+      <h3 className="text-lg text-cp-cyan">Progress: {progress}%</h3>
       <div className="h-2 w-full -skew-x-12 bg-cp-cyan/20">
         <div
           className="gradient-cp-cyan-bar h-full transition-all duration-700"

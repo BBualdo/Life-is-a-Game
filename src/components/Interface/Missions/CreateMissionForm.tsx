@@ -47,6 +47,13 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
   });
 
   function onSubmit(values: z.infer<typeof missionFormSchema>) {
+    if (values.subtasks.length === 0) {
+      values.subtasks.push({
+        id: uuidv4(),
+        title: values.title,
+        isCompleted: false,
+      });
+    }
     dispatch(addActiveMission(values));
     closeModal();
   }

@@ -50,7 +50,7 @@ const MissionDetails = ({
         ))}
       </ul>
       <ProgressBar selectedMission={selectedMission} />
-      <div className="min-h-[30vh] border-y border-cp-red p-4">
+      <div className="max-h-[30vh] overflow-y-auto border-y border-cp-red p-4">
         <p className="text-cp-cyan">
           {description || "This mission has no description."}
         </p>
