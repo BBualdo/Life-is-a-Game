@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import ProgressBar from "./ProgressBar";
 
 import { RiPencilLine } from "react-icons/ri";
+import EditMissionButton from "../EditMissionButton";
 
 const MissionDetails = ({
   selectedMission,
@@ -29,9 +30,7 @@ const MissionDetails = ({
         <h2 className="text-2xl font-bold uppercase text-cp-red shadow-black text-shadow-xl">
           {title}
         </h2>
-        <button className="btn-red hover:btn-cyan border-2 p-1 transition-all duration-200">
-          <RiPencilLine className="text-2xl font-bold" />
-        </button>
+        <EditMissionButton />
       </div>
 
       <ul className="flex flex-col gap-2">

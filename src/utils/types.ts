@@ -12,3 +12,10 @@ export type MissionSchema = {
   xp: number;
   subtasks: SubtaskType[];
 };
+
+export type EditMissionSchema = {
+  id: string;
+  title: string;
+  description: string;
+  subtasks: SubtaskType[];
+};

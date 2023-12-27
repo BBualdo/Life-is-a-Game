@@ -18,7 +18,9 @@ import { v4 as uuidv4 } from "uuid";
 import { IoClose } from "react-icons/io5";
 
 const SubtasksList = ({ form }: { form: UseFormReturn<MissionSchema> }) => {
-  const [subtasksArr, setSubtasksArr] = useState<SubtaskType[]>([]);
+  const [subtasksArr, setSubtasksArr] = useState<SubtaskType[]>(
+    form.getValues().subtasks,
+  );
   const [subtaskErr, setSubtaskErr] = useState<boolean>(false);
 
   const subtaskInput = useRef<HTMLInputElement>(null);

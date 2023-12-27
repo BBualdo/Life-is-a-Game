@@ -6,26 +6,32 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import Title from "./FormComponents/Title";
 import Description from "./FormComponents/Description";
-import DifficultyPicker from "./FormComponents/DifficultyPicker";
 import SubtasksList from "./FormComponents/SubtasksList";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
-import { addActiveMission } from "@/src/redux/slices/missionsSlice";
 import { v4 as uuidv4 } from "uuid";
 import { missionFormSchema } from "@/src/utils/schemas";
+import { MissionSchema } from "@/src/utils/types";
+import { updateMission } from "@/src/redux/slices/missionsSlice";
 
-const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
+const EditMissionForm = ({
+  closeModal,
+  mission,
+}: {
+  closeModal: () => void;
+  mission: MissionSchema;
+}) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const form = useForm<z.infer<typeof missionFormSchema>>({
     resolver: zodResolver(missionFormSchema),
     defaultValues: {
-      id: uuidv4(),
-      title: "",
-      description: "",
-      difficulty: "Challenging",
-      xp: 150,
-      subtasks: [],
+      id: mission.id,
+      title: mission.title,
+      description: mission.description,
+      difficulty: mission.difficulty,
+      xp: mission.xp,
+      subtasks: mission.subtasks,
     },
   });
 
@@ -37,7 +43,7 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
         isCompleted: false,
       });
     }
-    dispatch(addActiveMission(values));
+    dispatch(updateMission(values));
     closeModal();
   }
 
@@ -46,10 +52,9 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="mt-4 space-y-4">
         <Title form={form} />
         <Description form={form} />
-        <DifficultyPicker form={form} />
         <SubtasksList form={form} />
         <div className="flex items-center justify-center gap-10">
-          <button className="btn btn-yellow hover:bg-black">Create</button>
+          <button className="btn btn-yellow hover:bg-black">Update</button>
           <button
             onClick={closeModal}
             type="button"
@@ -63,4 +68,4 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
   );
 };
 
-export default CreateMissionForm;
+export default EditMissionForm;

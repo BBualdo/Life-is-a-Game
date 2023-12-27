@@ -40,6 +40,31 @@ const missionsSlice = createSlice({
         mission.subtasks = updatedSubtasks;
       }
     },
+    updateMission: (state, action: PayloadAction<MissionSchema>) => {
+      const { id, title, description, subtasks } = action.payload;
+
+      const missionToUpdate = state.missions.active.find(
+        (mission) => mission.id === id,
+      );
+
+      if (missionToUpdate) {
+        const updatedMission = {
+          ...missionToUpdate,
+          title,
+          description,
+          subtasks,
+        };
+
+        const missionIndex = state.missions.active.findIndex(
+          (mission) => mission.id === id,
+        );
+
+        const updatedMissions = [...state.missions.active];
+        updatedMissions[missionIndex] = updatedMission;
+
+        state.missions.active = updatedMissions;
+      }
+    },
   },
 });
 
@@ -47,5 +72,6 @@ export const {
   addActiveMission,
   addCompletedMission,
   toggleSubtaskComplition,
+  updateMission,
 } = missionsSlice.actions;
 export default missionsSlice.reducer;
