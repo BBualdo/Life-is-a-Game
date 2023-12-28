@@ -16,10 +16,10 @@ const missionsSlice = createSlice({
   name: "missions",
   initialState,
   reducers: {
-    addActiveMission: (state, action: PayloadAction<MissionSchema>) => {
+    addMission: (state, action: PayloadAction<MissionSchema>) => {
       state.missions.active.push(action.payload);
     },
-    addCompletedMission: (state, action: PayloadAction<MissionSchema>) => {
+    completeMission: (state, action: PayloadAction<MissionSchema>) => {
       state.missions.completed.push(action.payload);
     },
     toggleSubtaskComplition: (
@@ -65,13 +65,29 @@ const missionsSlice = createSlice({
         state.missions.active = updatedMissions;
       }
     },
+    deleteMission: (state, action: PayloadAction<MissionSchema>) => {
+      const { id } = action.payload;
+
+      const missionToDelete = state.missions.active.find(
+        (mission) => mission.id === id,
+      );
+
+      if (missionToDelete) {
+        const filteredMissions = state.missions.active.filter(
+          (mission) => mission !== missionToDelete,
+        );
+
+        state.missions.active = filteredMissions;
+      }
+    },
   },
 });
 
 export const {
-  addActiveMission,
-  addCompletedMission,
+  addMission,
+  completeMission,
   toggleSubtaskComplition,
   updateMission,
+  deleteMission,
 } = missionsSlice.actions;
 export default missionsSlice.reducer;
