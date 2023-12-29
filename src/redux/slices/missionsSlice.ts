@@ -2,14 +2,11 @@ import { MissionSchema } from "@/src/utils/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 type InitialState = {
-  missions: {
-    active: MissionSchema[];
-    completed: MissionSchema[];
-  };
+  missions: MissionSchema[];
 };
 
 const initialState: InitialState = {
-  missions: { active: [], completed: [] },
+  missions: [],
 };
 
 const missionsSlice = createSlice({
@@ -17,17 +14,14 @@ const missionsSlice = createSlice({
   initialState,
   reducers: {
     addMission: (state, action: PayloadAction<MissionSchema>) => {
-      state.missions.active.push(action.payload);
-    },
-    completeMission: (state, action: PayloadAction<MissionSchema>) => {
-      state.missions.completed.push(action.payload);
+      state.missions.push(action.payload);
     },
     toggleSubtaskComplition: (
       state,
       action: PayloadAction<{ missionId: string; subtaskId: string }>,
     ) => {
       const { missionId, subtaskId } = action.payload;
-      const mission = state.missions.active.find(
+      const mission = state.missions.find(
         (mission) => mission.id === missionId,
       );
 
@@ -43,7 +37,7 @@ const missionsSlice = createSlice({
     updateMission: (state, action: PayloadAction<MissionSchema>) => {
       const { id, title, description, subtasks } = action.payload;
 
-      const missionToUpdate = state.missions.active.find(
+      const missionToUpdate = state.missions.find(
         (mission) => mission.id === id,
       );
 
@@ -55,30 +49,33 @@ const missionsSlice = createSlice({
           subtasks,
         };
 
-        const missionIndex = state.missions.active.findIndex(
+        const missionIndex = state.missions.findIndex(
           (mission) => mission.id === id,
         );
 
-        const updatedMissions = [...state.missions.active];
+        const updatedMissions = [...state.missions];
         updatedMissions[missionIndex] = updatedMission;
 
-        state.missions.active = updatedMissions;
+        state.missions = updatedMissions;
       }
     },
     deleteMission: (state, action: PayloadAction<MissionSchema>) => {
       const { id } = action.payload;
 
-      const missionToDelete = state.missions.active.find(
+      const missionToDelete = state.missions.find(
         (mission) => mission.id === id,
       );
 
       if (missionToDelete) {
-        const filteredMissions = state.missions.active.filter(
+        const filteredMissions = state.missions.filter(
           (mission) => mission !== missionToDelete,
         );
 
-        state.missions.active = filteredMissions;
+        state.missions = filteredMissions;
       }
+    },
+    completeMission: (state, action: PayloadAction<MissionSchema>) => {
+      state.missions.push(action.payload);
     },
   },
 });

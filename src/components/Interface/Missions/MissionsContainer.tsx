@@ -26,7 +26,7 @@ const MissionsContainer = () => {
 
   useEffect(() => {
     if (selectedMission) {
-      const updatedMission = missions[missionsCategory].find(
+      const updatedMission = missions.find(
         (mission) => mission.id === selectedMission.id,
       );
 
@@ -34,7 +34,7 @@ const MissionsContainer = () => {
         dispatch(setselectedMission(updatedMission));
       }
     }
-  }, [missions, missionsCategory, selectedMission]);
+  }, [missions, selectedMission]);
 
   return (
     <>
@@ -81,16 +81,9 @@ const MissionsContainer = () => {
         className="gradient-cp-red-3 mt-6 flex h-[800px] w-full border-2 border-cp-red p-10"
       >
         <div className="flex max-h-full w-[500px] flex-col gap-1 overflow-y-auto pr-4">
-          {missionsCategory === "active" &&
-            missions.active.map((mission) => (
-              <Mission
-                mission={mission}
-                key={mission.id}
-                selectedMission={selectedMission!}
-              />
-            ))}
-          {missionsCategory === "completed" &&
-            missions.completed.map((mission) => (
+          {missions
+            .filter((mission) => mission.status === missionsCategory)
+            .map((mission) => (
               <Mission
                 mission={mission}
                 key={mission.id}

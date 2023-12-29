@@ -2,6 +2,7 @@ import * as z from "zod";
 
 export const missionFormSchema = z.object({
   id: z.string(),
+  status: z.union([z.literal("active"), z.literal("completed")]),
   title: z
     .string()
     .min(6, { message: "Mission title is too short." })

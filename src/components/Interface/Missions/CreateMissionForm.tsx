@@ -22,6 +22,7 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
     resolver: zodResolver(missionFormSchema),
     defaultValues: {
       id: uuidv4(),
+      status: "active",
       title: "",
       description: "",
       difficulty: "Challenging",
@@ -38,6 +39,7 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
         isCompleted: false,
       });
     }
+    console.log(values);
     dispatch(addMission(values));
     dispatch(setselectedMission(values));
     closeModal();

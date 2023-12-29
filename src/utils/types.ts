@@ -6,6 +6,7 @@ export type SubtaskType = {
 
 export type MissionSchema = {
   id: string;
+  status: "active" | "completed";
   title: string;
   description: string;
   difficulty: string;
