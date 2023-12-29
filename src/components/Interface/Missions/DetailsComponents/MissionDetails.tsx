@@ -8,9 +8,8 @@ import { MissionSchema } from "@/src/utils/types";
 import clsx from "clsx";
 import { useDispatch } from "react-redux";
 import ProgressBar from "./ProgressBar";
-
-import { RiPencilLine } from "react-icons/ri";
 import EditMissionButton from "../EditMissionButton";
+import MissionButtons from "./MissionButtons";
 
 const MissionDetails = ({
   selectedMission,
@@ -20,8 +19,11 @@ const MissionDetails = ({
   const { id, title, description, subtasks } = selectedMission;
   const dispatch = useDispatch<AppDispatch>();
 
+  const missionCompleted = selectedMission.status === "completed";
+
   const handleSubtaskChange = (subtaskId: string) => {
-    dispatch(toggleSubtaskComplition({ missionId: id, subtaskId }));
+    if (!missionCompleted)
+      dispatch(toggleSubtaskComplition({ missionId: id, subtaskId }));
   };
 
   return (
@@ -30,7 +32,7 @@ const MissionDetails = ({
         <h2 className="text-2xl font-bold uppercase text-cp-red shadow-black text-shadow-xl">
           {title}
         </h2>
-        <EditMissionButton />
+        {!missionCompleted && <EditMissionButton />}
       </div>
 
       <ul className="flex flex-col gap-2">
@@ -43,12 +45,15 @@ const MissionDetails = ({
               id={subtask.id}
               checked={subtask.isCompleted}
               onCheckedChange={() => handleSubtaskChange(subtask.id)}
+              className={missionCompleted ? "cursor-default" : "cursor-pointer"}
             />
             <Label
               htmlFor={subtask.id}
-              className={clsx("cursor-pointer text-base uppercase", {
+              className={clsx("text-base uppercase", {
                 "text-cp-cyan/50 line-through": subtask.isCompleted,
                 "text-cp-cyan": !subtask.isCompleted,
+                "cursor-pointer": !missionCompleted,
+                "cursor-default": missionCompleted,
               })}
             >
               {subtask.title}
@@ -56,12 +61,21 @@ const MissionDetails = ({
           </li>
         ))}
       </ul>
-      <ProgressBar selectedMission={selectedMission} />
+      {!missionCompleted ? (
+        <ProgressBar selectedMission={selectedMission} />
+      ) : (
+        <p className="text-center text-3xl uppercase text-cp-green shadow-cp-green text-shadow-xl">
+          Mission Completed
+        </p>
+      )}
       <div className="max-h-[30vh] overflow-y-auto border-y border-cp-red p-4">
         <p className="text-cp-cyan">
           {description || "This mission has no description."}
         </p>
       </div>
+      {!missionCompleted && (
+        <MissionButtons selectedMission={selectedMission} />
+      )}
     </div>
   );
 };

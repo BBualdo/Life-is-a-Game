@@ -8,7 +8,6 @@ import Mission from "./Mission";
 import CreateMissionButton from "./CreateMissionButton";
 import { AppDispatch, useAppSelector } from "@/src/redux/store";
 import MissionDetails from "./DetailsComponents/MissionDetails";
-import MissionButtons from "./DetailsComponents/MissionButtons";
 import { useDispatch } from "react-redux";
 import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 
@@ -95,7 +94,6 @@ const MissionsContainer = () => {
           {selectedMission && (
             <div className="flex flex-col items-center gap-10">
               <MissionDetails selectedMission={selectedMission} />
-              <MissionButtons selectedMission={selectedMission} />
             </div>
           )}
         </div>

@@ -44,7 +44,7 @@ const MissionButtons = ({
 
   return (
     <>
-      <div className="flex items-center gap-20">
+      <div className="flex items-center justify-center gap-20">
         <button onClick={openModal} className="btn btn-red hover:bg-cp-red/50">
           Give up
         </button>
