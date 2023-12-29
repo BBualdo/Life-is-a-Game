@@ -27,6 +27,7 @@ const EditMissionForm = ({
     resolver: zodResolver(missionFormSchema),
     defaultValues: {
       id: mission.id,
+      status: mission.status,
       title: mission.title,
       description: mission.description,
       difficulty: mission.difficulty,
