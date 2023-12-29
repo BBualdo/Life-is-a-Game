@@ -1,7 +1,10 @@
 "use client";
 
-import { deleteMission } from "@/src/redux/slices/missionsSlice";
-import { setselectedMission } from "@/src/redux/slices/selectedMissionSlice";
+import {
+  completeMission,
+  deleteMission,
+} from "@/src/redux/slices/missionsSlice";
+import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 import { AppDispatch } from "@/src/redux/store";
 import { MissionSchema } from "@/src/utils/types";
 import { useDispatch } from "react-redux";
@@ -31,7 +34,12 @@ const MissionButtons = ({
 
   const giveUpMission = () => {
     dispatch(deleteMission(selectedMission));
-    dispatch(setselectedMission(null));
+    dispatch(setSelectedMission(null));
+  };
+
+  const missionComplete = () => {
+    dispatch(completeMission(selectedMission));
+    dispatch(setSelectedMission(null));
   };
 
   return (
@@ -41,6 +49,7 @@ const MissionButtons = ({
           Give up
         </button>
         <button
+          onClick={missionComplete}
           disabled={incompletedSubtasks.length !== 0}
           className="btn btn-green enabled:hover:bg-cp-green/50"
         >

@@ -13,7 +13,7 @@ const selectedMission = createSlice({
   name: "selectedMission",
   initialState,
   reducers: {
-    setselectedMission: (
+    setSelectedMission: (
       state,
       action: PayloadAction<MissionSchema | null>,
     ) => {
@@ -22,5 +22,5 @@ const selectedMission = createSlice({
   },
 });
 
-export const { setselectedMission } = selectedMission.actions;
+export const { setSelectedMission } = selectedMission.actions;
 export default selectedMission.reducer;

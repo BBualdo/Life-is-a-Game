@@ -1,6 +1,6 @@
 "use client";
 
-import { setselectedMission } from "@/src/redux/slices/selectedMissionSlice";
+import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 import { AppDispatch } from "@/src/redux/store";
 import { MissionSchema } from "@/src/utils/types";
 import clsx from "clsx";
@@ -25,7 +25,7 @@ const Mission = ({
   return (
     <button
       onClick={() => {
-        dispatch(setselectedMission(mission));
+        dispatch(setSelectedMission(mission));
       }}
       disabled={mission === selectedMission}
       className={clsx(

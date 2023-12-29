@@ -75,7 +75,20 @@ const missionsSlice = createSlice({
       }
     },
     completeMission: (state, action: PayloadAction<MissionSchema>) => {
-      state.missions.push(action.payload);
+      const { id } = action.payload;
+
+      const missionToComplete = state.missions.find(
+        (mission) => mission.id === id,
+      );
+
+      if (missionToComplete) {
+        const updatedMissions = state.missions.map((mission) =>
+          mission.id === id
+            ? { ...mission, status: "completed" as const }
+            : mission,
+        );
+        state.missions = updatedMissions;
+      }
     },
   },
 });

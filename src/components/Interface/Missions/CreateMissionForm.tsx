@@ -13,7 +13,7 @@ import { AppDispatch } from "@/src/redux/store";
 import { addMission } from "@/src/redux/slices/missionsSlice";
 import { v4 as uuidv4 } from "uuid";
 import { missionFormSchema } from "@/src/utils/schemas";
-import { setselectedMission } from "@/src/redux/slices/selectedMissionSlice";
+import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 
 const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -41,7 +41,7 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
     }
     console.log(values);
     dispatch(addMission(values));
-    dispatch(setselectedMission(values));
+    dispatch(setSelectedMission(values));
     closeModal();
   }
 

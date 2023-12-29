@@ -10,7 +10,7 @@ import { AppDispatch, useAppSelector } from "@/src/redux/store";
 import MissionDetails from "./DetailsComponents/MissionDetails";
 import MissionButtons from "./DetailsComponents/MissionButtons";
 import { useDispatch } from "react-redux";
-import { setselectedMission } from "@/src/redux/slices/selectedMissionSlice";
+import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 
 const MissionsContainer = () => {
   const [missionsCategory, setMissionsCategory] = useState<
@@ -31,7 +31,7 @@ const MissionsContainer = () => {
       );
 
       if (updatedMission) {
-        dispatch(setselectedMission(updatedMission));
+        dispatch(setSelectedMission(updatedMission));
       }
     }
   }, [missions, selectedMission]);
@@ -48,7 +48,7 @@ const MissionsContainer = () => {
         <button
           onClick={() => {
             setMissionsCategory("active");
-            dispatch(setselectedMission(null));
+            dispatch(setSelectedMission(null));
           }}
           className={clsx("text-2xl uppercase", {
             "scale-105 text-cp-red": missionsCategory === "active",
@@ -61,7 +61,7 @@ const MissionsContainer = () => {
         <button
           onClick={() => {
             setMissionsCategory("completed");
-            dispatch(setselectedMission(null));
+            dispatch(setSelectedMission(null));
           }}
           className={clsx("text-2xl uppercase", {
             "scale-105 text-cp-red": missionsCategory === "completed",
