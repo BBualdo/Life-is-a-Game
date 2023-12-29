@@ -11,6 +11,8 @@ import MissionDetails from "./DetailsComponents/MissionDetails";
 import { useDispatch } from "react-redux";
 import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 import MissionsEmpty from "../shared/MissionsEmpty";
+import { FaRegCheckCircle } from "react-icons/fa";
+import { LuAlertCircle } from "react-icons/lu";
 
 const MissionsContainer = () => {
   const [missionsCategory, setMissionsCategory] = useState<
@@ -34,6 +36,13 @@ const MissionsContainer = () => {
       />
     ));
 
+  const activeMissions = missions.filter(
+    (mission) => mission.status === "active",
+  );
+  const completedMissions = missions.filter(
+    (mission) => mission.status === "completed",
+  );
+
   useEffect(() => {
     if (selectedMission) {
       const updatedMission = missions.find(
@@ -53,42 +62,41 @@ const MissionsContainer = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="mt-4 flex w-full items-center gap-10"
+        className="mt-4 flex w-full items-center"
       >
         <button
           onClick={() => {
             setMissionsCategory("active");
             dispatch(setSelectedMission(null));
           }}
-          className={clsx("text-2xl uppercase", {
-            "scale-105 text-cp-red": missionsCategory === "active",
-            "text-cp-red/50 transition-all duration-300 hover:text-cp-red":
-              missionsCategory !== "active",
-          })}
+          className={clsx(
+            "flex items-center gap-2 border-x-2 border-t-2 border-cp-red px-6 py-2 text-3xl text-cp-cyan transition-all duration-200 hover:bg-cp-cyan/30",
+            { "bg-cp-cyan/30": missionsCategory === "active" },
+          )}
         >
-          Active
+          <LuAlertCircle />
+          {activeMissions.length}
         </button>
         <button
           onClick={() => {
             setMissionsCategory("completed");
             dispatch(setSelectedMission(null));
           }}
-          className={clsx("text-2xl uppercase", {
-            "scale-105 text-cp-red": missionsCategory === "completed",
-            "text-cp-red/50 transition-all duration-300 hover:text-cp-red":
-              missionsCategory !== "completed",
-          })}
+          className={clsx(
+            "flex items-center gap-2 border-x-2 border-t-2 border-x-cp-red border-t-cp-red px-6 py-2 text-3xl text-cp-red transition-all duration-200 hover:bg-cp-cyan/30",
+            { "bg-cp-cyan/30": missionsCategory === "completed" },
+          )}
         >
-          Completed
+          <FaRegCheckCircle />
+          {completedMissions.length}
         </button>
-        <CreateMissionButton />
       </motion.nav>
       <motion.section
         variants={fadeIn("", 0.5, 1, 0.8)}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="gradient-cp-red-3 relative mt-6 flex h-[800px] w-full border-2 border-cp-red p-10"
+        className="gradient-cp-red-3 relative flex h-[800px] w-full border-2 border-cp-red p-10"
       >
         <div className="flex max-h-full w-[500px] flex-col gap-1 overflow-y-auto pr-4">
           {filteredMissions.length > 0 ? (
