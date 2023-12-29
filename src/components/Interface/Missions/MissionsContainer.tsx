@@ -10,6 +10,7 @@ import { AppDispatch, useAppSelector } from "@/src/redux/store";
 import MissionDetails from "./DetailsComponents/MissionDetails";
 import { useDispatch } from "react-redux";
 import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
+import MissionsEmpty from "../shared/MissionsEmpty";
 
 const MissionsContainer = () => {
   const [missionsCategory, setMissionsCategory] = useState<
@@ -22,6 +23,16 @@ const MissionsContainer = () => {
   );
 
   const dispatch = useDispatch<AppDispatch>();
+
+  const filteredMissions = missions
+    .filter((mission) => mission.status === missionsCategory)
+    .map((mission) => (
+      <Mission
+        mission={mission}
+        key={mission.id}
+        selectedMission={selectedMission!}
+      />
+    ));
 
   useEffect(() => {
     if (selectedMission) {
@@ -77,25 +88,42 @@ const MissionsContainer = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="gradient-cp-red-3 mt-6 flex h-[800px] w-full border-2 border-cp-red p-10"
+        className="gradient-cp-red-3 relative mt-6 flex h-[800px] w-full border-2 border-cp-red p-10"
       >
         <div className="flex max-h-full w-[500px] flex-col gap-1 overflow-y-auto pr-4">
-          {missions
-            .filter((mission) => mission.status === missionsCategory)
-            .map((mission) => (
-              <Mission
-                mission={mission}
-                key={mission.id}
-                selectedMission={selectedMission!}
-              />
-            ))}
+          {filteredMissions.length > 0 ? (
+            filteredMissions
+          ) : (
+            <MissionsEmpty className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-6">
+              {missionsCategory === "active" ? (
+                <>
+                  <p className="text-2xl uppercase text-cp-red">
+                    There is no active missions right now. Add one!
+                  </p>
+                  <CreateMissionButton />
+                </>
+              ) : (
+                <>
+                  <p className="text-2xl uppercase text-cp-red">
+                    Your completed missions will appear here.
+                  </p>
+                </>
+              )}
+            </MissionsEmpty>
+          )}
         </div>
         <div className="flex-1 pl-20">
-          {selectedMission && (
+          {selectedMission ? (
             <div className="flex flex-col items-center gap-10">
               <MissionDetails selectedMission={selectedMission} />
             </div>
-          )}
+          ) : filteredMissions.length > 0 ? (
+            <MissionsEmpty className="flex h-full w-full items-center justify-center border-2 border-cp-red/20">
+              <p className="text-2xl uppercase text-cp-red">
+                Select mission to show details.
+              </p>
+            </MissionsEmpty>
+          ) : null}
         </div>
       </motion.section>
     </>
