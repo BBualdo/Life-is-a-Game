@@ -41,7 +41,9 @@ const Mission = ({
     >
       <div className="relative z-10 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <FaRegCheckCircle className="text-3xl text-cp-red" />
+          {missionCompleted && (
+            <FaRegCheckCircle className="text-3xl text-cp-red" />
+          )}
           <div>
             <h2
               className={clsx("text-lg font-bold uppercase", {
