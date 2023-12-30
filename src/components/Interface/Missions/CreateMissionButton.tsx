@@ -4,8 +4,16 @@ import { IoClose } from "react-icons/io5";
 import Modal from "../shared/Modal";
 import { useState } from "react";
 import CreateMissionForm from "./CreateMissionForm";
+import { ClassValue } from "clsx";
+import { cn } from "@/src/lib/utils";
 
-const CreateMissionButton = () => {
+const CreateMissionButton = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className: ClassValue;
+}) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const openModal = () => {
@@ -18,8 +26,8 @@ const CreateMissionButton = () => {
 
   return (
     <>
-      <button onClick={openModal} className="btn btn-yellow hover:btn-cyan">
-        Create Mission
+      <button onClick={openModal} className={cn(className)}>
+        {children}
       </button>
       <Modal isOpen={isOpen}>
         <div className="flex w-full items-center justify-between border-b border-cp-cyan">

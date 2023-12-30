@@ -13,6 +13,7 @@ import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 import MissionsEmpty from "../shared/MissionsEmpty";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { LuAlertCircle } from "react-icons/lu";
+import { FaPlus } from "react-icons/fa";
 
 const MissionsContainer = () => {
   const [missionsCategory, setMissionsCategory] = useState<
@@ -62,7 +63,7 @@ const MissionsContainer = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="mt-4 flex w-full items-center"
+        className="mt-4 flex w-full items-stretch overflow-hidden"
       >
         <button
           onClick={() => {
@@ -90,6 +91,17 @@ const MissionsContainer = () => {
           <FaRegCheckCircle />
           {completedMissions.length}
         </button>
+        <CreateMissionButton
+          className={clsx(
+            "border-x-2 border-b border-t-2 border-cp-yellow px-6 py-2 text-3xl text-cp-yellow transition-all duration-200 hover:border-cp-cyan hover:text-cp-cyan",
+            {
+              "translate-y-full": missionsCategory === "completed",
+              "translate-y-0": missionsCategory === "active",
+            },
+          )}
+        >
+          <FaPlus />
+        </CreateMissionButton>
       </motion.nav>
       <motion.section
         variants={fadeIn("", 0.5, 1, 0.8)}
@@ -108,7 +120,9 @@ const MissionsContainer = () => {
                   <p className="text-2xl uppercase text-cp-red">
                     There is no active missions right now. Add one!
                   </p>
-                  <CreateMissionButton />
+                  <CreateMissionButton className="btn btn-yellow hover:btn-cyan">
+                    Create Mission
+                  </CreateMissionButton>
                 </>
               ) : (
                 <>
