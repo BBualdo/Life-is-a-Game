@@ -51,6 +51,13 @@ const SubtasksList = ({ form }: { form: UseFormReturn<MissionSchema> }) => {
     form.setValue("subtasks", filteredSubtasks);
   };
 
+  const handleSubtaskAdd = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      addSubtask();
+    }
+  };
+
   const subtasks = subtasksArr.map((subtask) => (
     <div key={subtask.id} className="flex w-full items-center gap-4">
       <Subtask>{subtask.title}</Subtask>
@@ -80,7 +87,7 @@ const SubtasksList = ({ form }: { form: UseFormReturn<MissionSchema> }) => {
           </div>
           <FormControl>
             <div className="flex items-center gap-4">
-              <Input ref={subtaskInput} />
+              <Input ref={subtaskInput} onKeyDown={handleSubtaskAdd} />
               <button
                 type="button"
                 onClick={addSubtask}

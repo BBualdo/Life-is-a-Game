@@ -4,6 +4,7 @@ import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 import { AppDispatch } from "@/src/redux/store";
 import { MissionSchema } from "@/src/utils/types";
 import clsx from "clsx";
+import { FaRegCheckCircle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 
 const Mission = ({
@@ -39,25 +40,29 @@ const Mission = ({
       )}
     >
       <div className="relative z-10 flex items-center justify-between">
-        <div>
-          <h2
-            className={clsx("text-lg font-bold uppercase", {
-              "text-cp-cyan": !missionCompleted,
-              "text-cp-green": missionCompleted,
-            })}
-          >
-            {mission.title}
-          </h2>
-          <p className="absolute -bottom-2 right-0 text-[10px] text-cp-red/50">
-            {mission.id}
-          </p>
-          <h3 className="text-md">
-            Difficulty:{" "}
-            <span className="font-bold uppercase text-cp-red">
-              {mission.difficulty}
-            </span>
-          </h3>
+        <div className="flex items-center gap-4">
+          <FaRegCheckCircle className="text-3xl text-cp-red" />
+          <div>
+            <h2
+              className={clsx("text-lg font-bold uppercase", {
+                "text-cp-cyan": !missionCompleted,
+                "text-cp-green": missionCompleted,
+              })}
+            >
+              {mission.title}
+            </h2>
+            <p className="absolute -bottom-2 right-0 text-[10px] text-cp-red/50">
+              {mission.id}
+            </p>
+            <h3 className="text-md">
+              Difficulty:{" "}
+              <span className="font-bold uppercase text-cp-red">
+                {mission.difficulty}
+              </span>
+            </h3>
+          </div>
         </div>
+
         <p
           className={clsx("text-xl", {
             "text-cp-cyan": !missionCompleted,
