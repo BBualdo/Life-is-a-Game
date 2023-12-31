@@ -39,7 +39,6 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
         isCompleted: false,
       });
     }
-    console.log(values);
     dispatch(addMission(values));
     dispatch(setSelectedMission(values));
     closeModal();

@@ -20,3 +20,5 @@ export type EditMissionSchema = {
   description: string;
   subtasks: SubtaskType[];
 };
+
+export type Level = { level: number; ceil: number };

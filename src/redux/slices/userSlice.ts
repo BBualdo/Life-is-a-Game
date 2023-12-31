@@ -1,14 +1,16 @@
+import levels from "@/src/data/levels";
+import { Level } from "@/src/utils/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 type InitialState = {
   username: string;
-  level: number;
+  level: Level;
   xp: number;
 };
 
 const initialState: InitialState = {
   username: "BBualdo",
-  level: 1,
+  level: levels[0],
   xp: 0,
 };
 
@@ -21,8 +23,16 @@ const userSlice = createSlice({
       const updatedXP = state.xp + xp;
       state.xp = updatedXP;
     },
+    levelUp: (state) => {
+      const nextLevelIndex = state.level.level;
+      const nextLevel = levels[nextLevelIndex];
+      if (nextLevel) {
+        state.level = nextLevel;
+        state.xp = state.xp - nextLevel.ceil;
+      }
+    },
   },
 });
 
-export const { giveXP } = userSlice.actions;
+export const { giveXP, levelUp } = userSlice.actions;
 export default userSlice.reducer;
