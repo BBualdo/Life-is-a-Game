@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import Modal from "../../shared/Modal";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
+import { giveXP } from "@/src/redux/slices/userSlice";
 
 const MissionButtons = ({
   selectedMission,
@@ -40,6 +41,7 @@ const MissionButtons = ({
   const missionComplete = () => {
     dispatch(completeMission(selectedMission));
     dispatch(setSelectedMission(null));
+    dispatch(giveXP(selectedMission));
   };
 
   return (
