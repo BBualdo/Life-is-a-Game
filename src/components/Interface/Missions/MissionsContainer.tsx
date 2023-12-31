@@ -118,11 +118,11 @@ const MissionsContainer = () => {
               {missionsCategory === "active" ? (
                 <>
                   <p className="text-2xl uppercase text-cp-red">
-                    There is no active missions right now. Add one!
+                    There is no active missions right now.{" "}
+                    <CreateMissionButton className="btn-yellow hover:btn-cyan uppercase">
+                      Add one!
+                    </CreateMissionButton>
                   </p>
-                  <CreateMissionButton className="btn btn-yellow hover:btn-cyan">
-                    Create Mission
-                  </CreateMissionButton>
                 </>
               ) : (
                 <>
