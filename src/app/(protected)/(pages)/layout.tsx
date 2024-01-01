@@ -1,4 +1,5 @@
 import Navbar from "@/src/components/Interface/shared/Navbar";
+import { Toaster } from "sonner";
 
 export default function PagesLayout({
   children,
@@ -9,6 +10,7 @@ export default function PagesLayout({
     <>
       <Navbar />
       {children}
+      <Toaster />
     </>
   );
 }

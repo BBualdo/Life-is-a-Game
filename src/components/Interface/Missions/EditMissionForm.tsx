@@ -13,6 +13,7 @@ import { v4 as uuidv4 } from "uuid";
 import { missionFormSchema } from "@/src/utils/schemas";
 import { MissionSchema } from "@/src/utils/types";
 import { updateMission } from "@/src/redux/slices/missionsSlice";
+import { toast } from "sonner";
 
 const EditMissionForm = ({
   closeModal,
@@ -45,6 +46,7 @@ const EditMissionForm = ({
       });
     }
     dispatch(updateMission(values));
+    toast("Mission has been updated!");
     closeModal();
   }
 

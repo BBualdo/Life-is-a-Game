@@ -3,6 +3,7 @@
 import { levelUp } from "@/src/redux/slices/userSlice";
 import { AppDispatch, useAppSelector } from "@/src/redux/store";
 import { useDispatch } from "react-redux";
+import { toast } from "sonner";
 
 const UserXP = () => {
   const { xp, level } = useAppSelector((state) => state.userReducer);
@@ -13,6 +14,7 @@ const UserXP = () => {
 
     if (progress >= 100) {
       dispatch(levelUp());
+      toast(`You have reached level ${level.level + 1}!`);
       progress = (xp / level.ceil) * 100;
     }
 

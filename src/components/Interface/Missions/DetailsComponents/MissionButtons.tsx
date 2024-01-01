@@ -12,6 +12,7 @@ import Modal from "../../shared/Modal";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { giveXP } from "@/src/redux/slices/userSlice";
+import { toast } from "sonner";
 
 const MissionButtons = ({
   selectedMission,
@@ -19,6 +20,7 @@ const MissionButtons = ({
   selectedMission: MissionSchema;
 }) => {
   const dispatch = useDispatch<AppDispatch>();
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const openModal = () => {
@@ -36,12 +38,17 @@ const MissionButtons = ({
   const giveUpMission = () => {
     dispatch(deleteMission(selectedMission));
     dispatch(setSelectedMission(null));
+    toast("Mission removed!");
   };
 
   const missionComplete = () => {
     dispatch(completeMission(selectedMission));
     dispatch(setSelectedMission(null));
     dispatch(giveXP(selectedMission));
+    toast(
+      `Mission completed!
+      You received ${selectedMission.xp}XP.`,
+    );
   };
 
   return (
