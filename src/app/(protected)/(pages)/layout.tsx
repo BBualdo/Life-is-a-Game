@@ -10,7 +10,17 @@ export default function PagesLayout({
     <>
       <Navbar />
       {children}
-      <Toaster />
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          unstyled: true,
+          classNames: {
+            toast:
+              "bg-black border-2 border-cp-cyan px-4 text-cp-cyan py-2 w-full text-center overflow-hidden",
+            title: "font-bold text-lg",
+          },
+        }}
+      />
     </>
   );
 }

@@ -45,10 +45,9 @@ const MissionButtons = ({
     dispatch(completeMission(selectedMission));
     dispatch(setSelectedMission(null));
     dispatch(giveXP(selectedMission));
-    toast(
-      `Mission completed!
-      You received ${selectedMission.xp}XP.`,
-    );
+    toast("Mission completed!", {
+      description: `You received ${selectedMission.xp}XP.`,
+    });
   };
 
   return (
