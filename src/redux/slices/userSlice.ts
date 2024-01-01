@@ -27,8 +27,8 @@ const userSlice = createSlice({
       const nextLevelIndex = state.level.level;
       const nextLevel = levels[nextLevelIndex];
       if (nextLevel) {
+        state.xp = state.xp - state.level.ceil;
         state.level = nextLevel;
-        state.xp = state.xp - nextLevel.ceil;
       }
     },
   },
