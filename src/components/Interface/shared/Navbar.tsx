@@ -3,13 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { arcade } from "@/src/fonts";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import links from "@/src/data/nav-links";
 import clsx from "clsx";
 import UserBanner from "./UserBanner/UserBanner";
 
 const Navbar = () => {
-  const router = useRouter();
   const pathname = usePathname();
 
   const navLinks = links.map((link) => (

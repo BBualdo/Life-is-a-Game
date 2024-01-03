@@ -31,7 +31,7 @@ const Modal = ({
             initial={{ width: "0vw" }}
             animate={{ width: "75vw" }}
             transition={{ duration: 0.3, ease: "anticipate" }}
-            className="gradient-cp-cyan z-50 max-h-[90vh] overflow-y-auto border-2 border-cp-cyan px-10 py-4 shadow-[0_0_12px_#34d0ff]"
+            className="gradient-cp-cyan z-50 max-h-[90%] overflow-y-auto border-2 border-cp-cyan px-10 py-4 shadow-[0_0_12px_#34d0ff]"
           >
             <motion.div
               initial={{ opacity: 0 }}
