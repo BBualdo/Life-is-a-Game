@@ -9,6 +9,7 @@ import Backdrop from "./Backdrop";
 
 import { motion } from "framer-motion";
 import { fadeIn } from "@/src/utils/fadeIn";
+import UserXP from "../shared/UserBanner/UserXP";
 
 const navLinks = links.map((link) => (
   <Link key={link.key} href={link.href}>
