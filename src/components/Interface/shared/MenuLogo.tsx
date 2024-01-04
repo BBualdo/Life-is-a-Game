@@ -20,8 +20,11 @@ const MenuLogo = () => {
         width={100}
         height={100}
         priority
+        className="xs:max-md:w-[60px] xs:max-md:h-[60px]"
       />
-      <h1 className={`${arcade.className} text-5xl text-cp-red`}>LiaG</h1>
+      <h1 className={`${arcade.className} xs:text-3xl text-cp-red md:text-5xl`}>
+        LiaG
+      </h1>
     </motion.div>
   );
 };

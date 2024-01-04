@@ -27,7 +27,7 @@ const MainMenu = () => {
   return (
     <>
       <Backdrop />
-      <section className="px-[120px]">
+      <section className="xs:px-4 md:px-[120px]">
         <MenuLogo />
         <motion.div
           variants={fadeIn("right", 0.7, 1, 1.2)}

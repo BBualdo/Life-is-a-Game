@@ -8,9 +8,13 @@ module.exports = {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
+    },
+    screens: {
+      xl: "1400px",
+      lg: "1024px",
+      md: "768px",
+      sm: "400px",
+      xs: "100px",
     },
     extend: {
       textShadow: {
