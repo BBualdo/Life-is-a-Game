@@ -52,7 +52,7 @@ const MissionButtons = ({
 
   return (
     <>
-      <div className="flex items-center justify-center gap-20">
+      <div className="flex items-center justify-center xs:gap-2 xs:max-lg:flex-col lg:gap-20">
         <button onClick={openModal} className="btn btn-red hover:bg-cp-red/50">
           Give up
         </button>
@@ -65,7 +65,7 @@ const MissionButtons = ({
         </button>
       </div>
       {isOpen && (
-        <Modal isOpen={isOpen}>
+        <Modal className="modal-cyan" isOpen={isOpen}>
           <div className="flex w-full items-center justify-between border-b border-cp-cyan">
             <h2 className="text-xl text-cp-cyan">Give Up Mission</h2>
             <IoClose

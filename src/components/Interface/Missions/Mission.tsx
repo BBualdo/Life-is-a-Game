@@ -46,19 +46,19 @@ const Mission = ({
           )}
           <div>
             <h2
-              className={clsx("text-lg font-bold uppercase", {
+              className={clsx("xs:text-md font-bold uppercase lg:text-lg", {
                 "text-cp-cyan": !missionCompleted,
                 "text-cp-green": missionCompleted,
               })}
             >
               {mission.title}
             </h2>
-            <p className="absolute -bottom-2 right-0 text-[10px] text-cp-red/50">
+            <p className="absolute -bottom-4 -right-3 text-[10px] text-cp-red/50">
               {mission.id}
             </p>
-            <h3 className="text-md">
+            <h3 className="lg:text-md xs:text-sm">
               Difficulty:{" "}
-              <span className="font-bold uppercase text-cp-red">
+              <span className="lg:text-md font-bold uppercase text-cp-red xs:text-sm">
                 {mission.difficulty}
               </span>
             </h3>
@@ -66,7 +66,7 @@ const Mission = ({
         </div>
 
         <p
-          className={clsx("text-xl", {
+          className={clsx("xs:text-lg lg:text-xl", {
             "text-cp-cyan": !missionCompleted,
             "text-cp-green": missionCompleted,
           })}

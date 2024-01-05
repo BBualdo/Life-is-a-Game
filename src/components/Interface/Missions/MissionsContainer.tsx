@@ -14,6 +14,8 @@ import MissionsEmpty from "../shared/MissionsEmpty";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { LuAlertCircle } from "react-icons/lu";
 import { FaPlus } from "react-icons/fa";
+import Modal from "../shared/Modal";
+import { IoClose } from "react-icons/io5";
 
 const MissionsContainer = () => {
   const [missionsCategory, setMissionsCategory] = useState<
@@ -44,6 +46,7 @@ const MissionsContainer = () => {
     (mission) => mission.status === "completed",
   );
 
+  // If selected mission has been updated somehow (checking subtasks, editing) it will set that mission with changes as selected
   useEffect(() => {
     if (selectedMission) {
       const updatedMission = missions.find(
@@ -110,7 +113,7 @@ const MissionsContainer = () => {
         viewport={{ once: true }}
         className="gradient-cp-red-3 relative flex w-full border-2 border-cp-red xs:h-[400px] xs:p-2 lg:h-[800px] lg:p-10"
       >
-        <div className="flex max-h-full w-[500px] flex-col gap-1 overflow-y-auto pr-4">
+        <div className="flex max-h-full flex-col gap-1 overflow-y-auto xs:w-full lg:w-[500px] lg:pr-4">
           {filteredMissions.length > 0 ? (
             filteredMissions
           ) : (
@@ -134,7 +137,7 @@ const MissionsContainer = () => {
             </MissionsEmpty>
           )}
         </div>
-        <div className="flex-1 pl-20">
+        <div className="flex-1 pl-20 xs:max-lg:hidden">
           {selectedMission ? (
             <div className="flex flex-col items-center gap-10">
               <MissionDetails selectedMission={selectedMission} />
@@ -148,6 +151,18 @@ const MissionsContainer = () => {
           ) : null}
         </div>
       </motion.section>
+      {selectedMission && (
+        <Modal className="modal-red" isOpen={true}>
+          <div className="flex w-full items-center justify-between border-b border-cp-yellow">
+            <h2 className="text-xl text-cp-yellow">Mission Details</h2>
+            <IoClose
+              onClick={() => dispatch(setSelectedMission(null))}
+              className="cursor-pointer text-3xl text-cp-yellow transition-all duration-200 hover:text-cp-red-hover"
+            />
+          </div>
+          <MissionDetails selectedMission={selectedMission} />
+        </Modal>
+      )}
     </>
   );
 };

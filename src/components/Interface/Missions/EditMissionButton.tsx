@@ -25,9 +25,9 @@ const CreateMissionButton = () => {
   return (
     <>
       <button onClick={openModal} className="btn-yellow hover:btn-cyan">
-        <GiCog className="text-3xl" />
+        <GiCog className="xs:text-xl lg:text-3xl" />
       </button>
-      <Modal isOpen={isOpen}>
+      <Modal className="modal-cyan" isOpen={isOpen}>
         <div className="flex w-full items-center justify-between border-b border-cp-cyan">
           <h2 className="text-xl text-cp-cyan">Edit Mission</h2>
           <IoClose

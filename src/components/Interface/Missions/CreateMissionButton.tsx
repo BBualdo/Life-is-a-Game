@@ -29,7 +29,7 @@ const CreateMissionButton = ({
       <button onClick={openModal} className={cn(className)}>
         {children}
       </button>
-      <Modal isOpen={isOpen}>
+      <Modal className="modal-cyan" isOpen={isOpen}>
         <div className="flex w-full items-center justify-between border-b border-cp-cyan">
           <h2 className="text-xl text-cp-cyan">Create Mission</h2>
           <IoClose

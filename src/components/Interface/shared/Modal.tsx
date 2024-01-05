@@ -4,13 +4,17 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import ModalBackdrop from "./ModalBackdrop";
 import { motion } from "framer-motion";
+import { ClassValue } from "clsx";
+import { cn } from "@/src/lib/utils";
 
 const Modal = ({
   children,
   isOpen,
+  className,
 }: {
   children: React.ReactNode;
   isOpen: boolean;
+  className: ClassValue;
 }) => {
   const [mounted, setMounted] = useState<boolean>(false);
 
@@ -31,7 +35,10 @@ const Modal = ({
             initial={{ width: "0vw" }}
             animate={{ width: "80vw" }}
             transition={{ duration: 0.3, ease: "anticipate" }}
-            className="gradient-cp-cyan absolute bottom-4 top-4 z-50 overflow-y-auto border-2 border-cp-cyan py-4 shadow-[0_0_12px_#34d0ff] xs:px-4 lg:px-10"
+            className={cn(
+              "z-50 max-h-[90vh] overflow-y-auto border-2 py-4  xs:px-4 lg:px-10",
+              className,
+            )}
           >
             <motion.div
               initial={{ opacity: 0 }}
