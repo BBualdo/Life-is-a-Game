@@ -14,7 +14,7 @@ const Modal = ({
 }: {
   children: React.ReactNode;
   isOpen: boolean;
-  className: ClassValue;
+  className: ClassValue[];
 }) => {
   const [mounted, setMounted] = useState<boolean>(false);
 
@@ -29,7 +29,12 @@ const Modal = ({
 
   return mounted && isOpen
     ? createPortal(
-        <div className="fixed bottom-0 top-0 z-50 flex w-full items-center justify-center">
+        <div
+          className={cn(
+            "fixed bottom-0 top-0 z-50 flex w-full items-center justify-center",
+            className[1],
+          )}
+        >
           <ModalBackdrop />
           <motion.div
             initial={{ width: "0vw" }}

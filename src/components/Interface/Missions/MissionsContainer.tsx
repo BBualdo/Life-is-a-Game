@@ -152,7 +152,7 @@ const MissionsContainer = () => {
         </div>
       </motion.section>
       {selectedMission && (
-        <Modal className="modal-red" isOpen={true}>
+        <Modal className={["modal-red", "lg:hidden"]} isOpen={true}>
           <div className="flex w-full items-center justify-between border-b border-cp-yellow">
             <h2 className="text-xl text-cp-yellow">Mission Details</h2>
             <IoClose

@@ -65,7 +65,7 @@ const MissionButtons = ({
         </button>
       </div>
       {isOpen && (
-        <Modal className="modal-cyan" isOpen={isOpen}>
+        <Modal className={["modal-cyan"]} isOpen={isOpen}>
           <div className="flex w-full items-center justify-between border-b border-cp-cyan">
             <h2 className="text-xl text-cp-cyan">Give Up Mission</h2>
             <IoClose
