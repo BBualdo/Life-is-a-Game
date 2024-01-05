@@ -1,3 +1,4 @@
+import MobileNav from "@/src/components/Interface/shared/MobileNav";
 import Navbar from "@/src/components/Interface/shared/Navbar";
 import { Toaster } from "sonner";
 
@@ -9,6 +10,7 @@ export default function PagesLayout({
   return (
     <>
       <Navbar />
+      <MobileNav />
       {children}
       <Toaster
         position="bottom-center"

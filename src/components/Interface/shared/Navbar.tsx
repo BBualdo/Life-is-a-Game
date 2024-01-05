@@ -31,10 +31,10 @@ const Navbar = () => {
   ));
 
   return (
-    <nav className="relative flex w-full items-center justify-center border-b border-cp-red/20 px-4">
+    <nav className="relative flex min-h-[50px] w-full items-center justify-center border-b border-cp-red/20 px-4">
       <Link
         href="/"
-        className="group absolute left-4 flex items-center gap-2 transition-all duration-200 hover:scale-105"
+        className="group absolute flex items-center gap-2 transition-all duration-200 hover:scale-105 xs:max-lg:top-0 lg:left-4"
       >
         <Image
           src="/assets/images/logo.png"
@@ -46,10 +46,10 @@ const Navbar = () => {
         <h1 className={`${arcade.className} text-cp-red`}>LiaG</h1>
       </Link>
 
-      <div className="flex items-center justify-center gap-1 text-white">
+      <div className="flex items-center justify-center gap-1 text-white xs:max-lg:hidden">
         {navLinks}
       </div>
-      <div className="absolute right-4">
+      <div className="absolute right-4 xs:max-lg:hidden">
         <UserBanner />
       </div>
     </nav>
