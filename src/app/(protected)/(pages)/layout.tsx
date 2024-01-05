@@ -13,13 +13,13 @@ export default function PagesLayout({
       <MobileNav />
       {children}
       <Toaster
-        position="bottom-center"
+        position="top-center"
         toastOptions={{
           unstyled: true,
           classNames: {
             toast:
               "bg-black border-2 border-cp-cyan px-4 text-cp-cyan py-2 w-full text-center overflow-hidden",
-            title: "font-bold text-lg",
+            title: "font-bold xs:text-md lg:text-lg",
           },
         }}
       />
