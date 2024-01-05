@@ -108,16 +108,16 @@ const MissionsContainer = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="gradient-cp-red-3 relative flex h-[800px] w-full border-2 border-cp-red p-10"
+        className="gradient-cp-red-3 relative flex w-full border-2 border-cp-red xs:h-[400px] xs:p-2 lg:h-[800px] lg:p-10"
       >
         <div className="flex max-h-full w-[500px] flex-col gap-1 overflow-y-auto pr-4">
           {filteredMissions.length > 0 ? (
             filteredMissions
           ) : (
-            <MissionsEmpty className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-6">
+            <MissionsEmpty className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-6 p-2">
               {missionsCategory === "active" ? (
                 <>
-                  <p className="text-2xl uppercase text-cp-red">
+                  <p className="text-center uppercase text-cp-red xs:text-xl lg:text-2xl">
                     There is no active missions right now.{" "}
                     <CreateMissionButton className="btn-yellow hover:btn-cyan uppercase">
                       Add one!
@@ -126,7 +126,7 @@ const MissionsContainer = () => {
                 </>
               ) : (
                 <>
-                  <p className="text-2xl uppercase text-cp-red">
+                  <p className="text-center uppercase text-cp-red xs:text-xl lg:text-2xl">
                     Your completed missions will appear here.
                   </p>
                 </>

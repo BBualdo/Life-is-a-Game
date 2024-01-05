@@ -15,20 +15,28 @@ const MobileNav = () => {
       <div className="flex flex-1 items-center gap-10">
         <Link href="/missions">
           <button
-            className={clsx("text-2xl transition-all duration-200", {
-              "text-cp-cyan": pathname === "/missions",
-              "text-white hover:text-cp-cyan/50": pathname !== "/missions",
-            })}
+            className={clsx(
+              "rounded-full border-2 p-2 text-2xl transition-all duration-200",
+              {
+                "border-cp-cyan text-cp-cyan": pathname === "/missions",
+                "border-transparent text-white hover:text-cp-cyan/50":
+                  pathname !== "/missions",
+              },
+            )}
           >
             <GiOpenBook />
           </button>
         </Link>
         <Link href="/achievements">
           <button
-            className={clsx("text-2xl transition-all duration-200", {
-              "text-cp-cyan": pathname === "/achievements",
-              "text-white hover:text-cp-cyan/50": pathname !== "/achievements",
-            })}
+            className={clsx(
+              "rounded-full border-2 p-2 text-2xl transition-all duration-200",
+              {
+                "border-cp-cyan text-cp-cyan": pathname === "/achievements",
+                "border-transparent text-white hover:text-cp-cyan/50":
+                  pathname !== "/achievements",
+              },
+            )}
           >
             <GiTrophy />
           </button>
@@ -37,10 +45,14 @@ const MobileNav = () => {
       <div className="flex flex-1 items-center justify-end gap-10">
         <Link href="/profile">
           <button
-            className={clsx("text-2xl transition-all duration-200", {
-              "text-cp-cyan": pathname === "/profile",
-              "text-white hover:text-cp-cyan/50": pathname !== "/profile",
-            })}
+            className={clsx(
+              "rounded-full border-2 p-2 text-2xl  transition-all duration-200",
+              {
+                "border-cp-cyan text-cp-cyan": pathname === "/profile",
+                "border-transparent text-white hover:text-cp-cyan/50":
+                  pathname !== "/profile",
+              },
+            )}
           >
             <FaUser />
           </button>
