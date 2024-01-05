@@ -82,7 +82,7 @@
   }
 
   .btn-menu {
-    @apply xs:text-lg border border-transparent p-2 text-start font-bold uppercase text-white transition-all duration-200 md:text-2xl;
+    @apply border border-transparent p-2 text-start font-bold uppercase text-white transition-all duration-200 xs:text-lg md:text-2xl;
   }
 
   .light-silver-shadow {

@@ -29,9 +29,9 @@ const Modal = ({
           <ModalBackdrop />
           <motion.div
             initial={{ width: "0vw" }}
-            animate={{ width: "75vw" }}
+            animate={{ width: "80vw" }}
             transition={{ duration: 0.3, ease: "anticipate" }}
-            className="gradient-cp-cyan z-50 max-h-[90%] overflow-y-auto border-2 border-cp-cyan px-10 py-4 shadow-[0_0_12px_#34d0ff]"
+            className="gradient-cp-cyan z-50 max-h-[90vh] overflow-y-auto border-2 border-cp-cyan py-4 shadow-[0_0_12px_#34d0ff] xs:px-4 lg:px-10"
           >
             <motion.div
               initial={{ opacity: 0 }}

@@ -53,7 +53,7 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
         <Description form={form} />
         <DifficultyPicker form={form} />
         <SubtasksList form={form} />
-        <div className="flex items-center justify-center gap-10">
+        <div className="flex items-center justify-center xs:gap-2 xs:max-lg:flex-col lg:gap-10">
           <button className="btn btn-yellow hover:bg-black">Create</button>
           <button
             onClick={closeModal}

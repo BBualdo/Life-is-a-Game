@@ -86,7 +86,7 @@ const SubtasksList = ({ form }: { form: UseFormReturn<MissionSchema> }) => {
             {subtasks}
           </div>
           <FormControl>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 xs:max-lg:flex-col">
               <Input ref={subtaskInput} onKeyDown={handleSubtaskAdd} />
               <button
                 type="button"

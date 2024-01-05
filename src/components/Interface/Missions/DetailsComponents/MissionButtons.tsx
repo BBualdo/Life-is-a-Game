@@ -74,15 +74,15 @@ const MissionButtons = ({
             />
           </div>
           <div className="flex flex-col items-center gap-4">
-            <div className="flex flex-col items-center p-10">
-              <h2 className="text-3xl text-cp-red">
+            <div className="flex flex-col items-center xs:p-2 lg:p-10">
+              <h2 className="text-center font-bold text-cp-red xs:text-xl lg:text-3xl">
                 Are you sure you want to give up this mission?
               </h2>
-              <p className="text-lg text-cp-red">
+              <p className="text-center text-cp-red xs:text-sm lg:text-lg">
                 Progress will be lost and it can't be undone!
               </p>
             </div>
-            <div className="flex items-center gap-10">
+            <div className="flex items-center xs:gap-2 xs:max-lg:flex-col lg:gap-10">
               <button
                 onClick={giveUpMission}
                 className="btn btn-red hover:bg-cp-red/50"

@@ -33,7 +33,7 @@ const UserAvatar = () => {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 100 }}
-          className="absolute -bottom-14 w-full border-2 border-cp-cyan bg-black"
+          className="absolute border-2 border-cp-cyan bg-black xs:-top-12 xs:max-lg:right-0 lg:-bottom-14 lg:w-full"
         >
           <Link href="/login">
             <button className="flex h-full w-full items-center gap-2 p-2 text-xl uppercase text-cp-red transition-all duration-300 hover:bg-cp-cyan/20">
