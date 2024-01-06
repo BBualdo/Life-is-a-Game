@@ -6,13 +6,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaUser } from "react-icons/fa";
 import { GiOpenBook, GiTrophy } from "react-icons/gi";
+import FuncButton from "./FuncButton";
 
 const MobileNav = () => {
   const pathname = usePathname();
 
   return (
     <div className="fixed bottom-0 left-0 z-40 flex min-h-[60px] w-full items-center justify-between border-t-2 border-cp-cyan bg-black p-4 pb-8 lg:hidden">
-      <div className="flex flex-1 items-center gap-10">
+      <div className="flex items-center gap-10">
         <Link href="/missions">
           <button
             className={clsx(
@@ -42,7 +43,10 @@ const MobileNav = () => {
           </button>
         </Link>
       </div>
-      <div className="flex flex-1 items-center justify-end gap-10">
+      <div className="flex items-center justify-center">
+        <FuncButton />
+      </div>
+      <div className="flex items-center gap-10">
         <Link href="/profile">
           <button
             className={clsx(

@@ -96,7 +96,7 @@ const MissionsContainer = () => {
         </button>
         <CreateMissionButton
           className={clsx(
-            "border-x-2 border-b border-t-2 border-cp-yellow px-6 py-2 text-3xl text-cp-yellow transition-all duration-200 hover:border-cp-cyan hover:text-cp-cyan",
+            "border-x-2 border-b border-t-2 border-cp-yellow px-6 py-2 text-3xl text-cp-yellow transition-all duration-200 hover:border-cp-cyan hover:text-cp-cyan xs:max-lg:hidden",
             {
               "translate-y-full": missionsCategory === "completed",
               "translate-y-0": missionsCategory === "active",
