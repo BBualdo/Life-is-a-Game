@@ -17,20 +17,28 @@ const UserStats = () => {
     <>
       <div className="flex">
         <div className="flex-1 border border-white p-2">
-          <h2 className="uppercase text-white">Missions Completed:</h2>
-          <h3 className="text-3xl font-bold text-cp-red">
+          <h2 className="lg:text-md uppercase text-white xs:text-sm">
+            Missions Completed:
+          </h2>
+          <h3 className="font-bold text-cp-red xs:text-xl lg:text-3xl">
             {missionsCompleted.length}
           </h3>
         </div>
         <div className="flex-1 border border-white p-2">
-          <h2 className="uppercase text-white">Missions Active:</h2>
-          <h3 className="text-3xl font-bold text-cp-red">
+          <h2 className="lg:text-md uppercase text-white xs:text-sm">
+            Missions Active:
+          </h2>
+          <h3 className="font-bold text-cp-red xs:text-xl lg:text-3xl">
             {missionsActive.length}
           </h3>
         </div>
         <div className="flex-1 border border-white p-2">
-          <h2 className="uppercase text-white">Gained XP:</h2>
-          <h3 className="text-3xl font-bold text-cp-red">{xpGained}</h3>
+          <h2 className="lg:text-md uppercase text-white xs:text-sm">
+            Total XP Gained:
+          </h2>
+          <h3 className="font-bold text-cp-red xs:text-xl lg:text-3xl">
+            {xpGained}
+          </h3>
         </div>
       </div>
     </>

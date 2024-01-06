@@ -6,7 +6,7 @@ export default function Profile() {
   return (
     <>
       <ProfileBackdrop />
-      <main className="flex min-h-screen flex-col justify-center px-20 py-10">
+      <main className="flex min-h-screen flex-col justify-center xs:px-4 xs:py-4 lg:px-20 lg:py-10">
         <BackButton className="text-cp-red hover:text-cp-red/50" />
         <UserData />
       </main>

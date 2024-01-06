@@ -18,13 +18,13 @@ const UserData = () => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-      className="w-full"
+      className="min-h-screen w-full xs:max-lg:pb-24"
     >
       <CustomBorder />
-      <div className="flex border-b border-white py-2">
+      <div className="flex border-b border-white py-2 xs:max-lg:flex-col xs:max-lg:items-center">
         <UserAvatar />
         <div className="flex flex-1 flex-col items-end justify-between">
-          <button className="btn btn-red items-end hover:bg-cp-red/30">
+          <button className="btn btn-red items-end hover:bg-cp-red/30 xs:max-lg:mt-2">
             Edit Profile
           </button>
           <UserXP />
