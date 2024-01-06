@@ -11,7 +11,7 @@ const MobileNav = () => {
   const pathname = usePathname();
 
   return (
-    <div className="fixed bottom-0 left-0 z-40 flex min-h-[60px] w-full items-center justify-between border-t-2 border-cp-cyan bg-black p-4 lg:hidden">
+    <div className="fixed bottom-0 left-0 z-40 flex min-h-[60px] w-full items-center justify-between border-t-2 border-cp-cyan bg-black p-4 pb-8 lg:hidden">
       <div className="flex flex-1 items-center gap-10">
         <Link href="/missions">
           <button
