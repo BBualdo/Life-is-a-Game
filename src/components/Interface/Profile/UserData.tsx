@@ -10,6 +10,7 @@ import CustomBorder from "../shared/CustomBorder";
 import UserStats from "./UserStats";
 import UserBio from "./UserBio";
 import UserGoal from "./UserGoal";
+import EditProfileButton from "./EditProfileButton";
 
 const UserData = () => {
   return (
@@ -18,15 +19,17 @@ const UserData = () => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-      className="min-h-screen w-full xs:max-lg:pb-24"
+      className="min-h-screen w-full xs:max-lg:pb-[130px]"
     >
       <CustomBorder />
-      <div className="flex border-b border-white py-2 xs:max-lg:flex-col xs:max-lg:items-center">
-        <UserAvatar />
+      <div className="flex border-b border-white py-2 xs:max-lg:flex-col">
+        <div className="flex items-center justify-center">
+          <UserAvatar />
+        </div>
         <div className="flex flex-1 flex-col items-end justify-between">
-          <button className="btn btn-red items-end hover:bg-cp-red/30 xs:max-lg:mt-2">
+          <EditProfileButton className="btn btn-red items-end hover:bg-cp-red/30 xs:max-lg:hidden">
             Edit Profile
-          </button>
+          </EditProfileButton>
           <UserXP />
         </div>
       </div>
