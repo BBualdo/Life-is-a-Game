@@ -17,10 +17,14 @@ import { Input } from "@/src/shadcn/ui/input";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { userCreatorSchema } from "@/src/utils/schemas";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/src/redux/store";
+import { createUser } from "@/src/redux/slices/userSlice";
 
 // Signup Component
 const UserCreatorForm = () => {
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
 
   const signupForm = useForm<z.infer<typeof userCreatorSchema>>({
     resolver: zodResolver(userCreatorSchema),
@@ -32,14 +36,10 @@ const UserCreatorForm = () => {
     },
   });
 
-  function onSubmit({
-    firstName,
-    lastName,
-    username,
-    currentGoal,
-  }: z.infer<typeof userCreatorSchema>) {
+  function onSubmit(values: z.infer<typeof userCreatorSchema>) {
+    const { firstName, lastName, username, currentGoal } = values;
+    dispatch(createUser({ firstName, lastName, username, currentGoal }));
     router.push("/");
-    console.log(firstName, lastName, username, currentGoal);
   }
 
   return (

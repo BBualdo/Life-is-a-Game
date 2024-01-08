@@ -5,8 +5,8 @@ const LastestAchievements = () => {
         Lastest Achievement:
       </h2>
       <ul>
-        <li className="text-center uppercase text-light-silver xs:text-xl lg:text-3xl">
-          Missing Data
+        <li className="text-center uppercase text-light-silver shadow-light-silver text-shadow-xl xs:text-xl lg:text-3xl">
+          Got no achievements yet
         </li>
       </ul>
     </div>

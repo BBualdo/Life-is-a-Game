@@ -4,24 +4,24 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 type User = {
   username: string;
-  email: string;
+  email: string | undefined;
   firstName: string;
-  lastName: string;
+  lastName: string | undefined;
   xpGained: number;
-  currentGoal: string;
-  bio: string;
+  currentGoal: string | undefined;
+  bio: string | undefined;
   level: Level;
   xp: number;
 };
 
 const initialState: User = {
-  username: "BBualdo",
-  email: "mrseb10@gmail.com",
-  firstName: "Sebastian",
-  lastName: "",
+  username: "",
+  email: "",
+  firstName: "",
+  lastName: undefined,
   xpGained: 0,
-  currentGoal: "",
-  bio: "",
+  currentGoal: undefined,
+  bio: undefined,
   level: levels[0],
   xp: 0,
 };
@@ -30,6 +30,20 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    // Profile Reducers
+    createUser: (
+      state,
+      action: PayloadAction<{
+        firstName: string;
+        lastName: string | undefined;
+        username: string;
+        currentGoal: string | undefined;
+      }>,
+    ) => {
+      const { firstName, lastName, username, currentGoal } = action.payload;
+      state = { ...state, firstName, lastName, username, currentGoal };
+    },
+    // XP Reducers
     giveXP: (state, action: PayloadAction<{ xp: number }>) => {
       const { xp } = action.payload;
       const updatedXP = state.xp + xp;
@@ -47,5 +61,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { giveXP, levelUp } = userSlice.actions;
+export const { createUser, giveXP, levelUp } = userSlice.actions;
 export default userSlice.reducer;
