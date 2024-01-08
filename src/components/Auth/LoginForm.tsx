@@ -17,15 +17,7 @@ import { Input } from "@/src/shadcn/ui/input";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
-// Login Zod Schema
-const loginFormSchema = z.object({
-  email: z.string().email({ message: "Email is not valid." }),
-  password: z
-    .string()
-    .min(8, { message: "Password must be at least 8 characters." })
-    .max(30, { message: "Password is too long." }),
-});
+import { loginFormSchema } from "@/src/utils/schemas";
 
 // Login Component
 const LoginForm = () => {

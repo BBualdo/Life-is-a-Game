@@ -1,10 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { GiPowerButton } from "react-icons/gi";
-import { useEffect, useState } from "react";
+
 import CircleProgressBar from "./CircleProgressBar";
 import { AppDispatch, useAppSelector } from "@/src/redux/store";
 import { useDispatch } from "react-redux";
@@ -26,25 +23,28 @@ const UserAvatar = () => {
 
     return progress;
   };
-  const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  useEffect(() => {
-    const handleBodyClick = () => {
-      setIsOpen(false);
-    };
+  // TODO: This is commented out, because for now once user create profile, he can't log out
 
-    document.body.addEventListener("click", handleBodyClick);
+  // const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    return () => {
-      document.body.removeEventListener("click", handleBodyClick);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handleBodyClick = () => {
+  //     setIsOpen(false);
+  //   };
+
+  //   document.body.addEventListener("click", handleBodyClick);
+
+  //   return () => {
+  //     document.body.removeEventListener("click", handleBodyClick);
+  //   };
+  // }, []);
 
   return (
     <>
       <div className="relative flex items-center justify-center">
         <div
-          onClick={() => setIsOpen(true)}
+          // onClick={() => setIsOpen(true)}
           className="relative h-[50px] w-[50px] cursor-pointer overflow-hidden rounded-full transition-all duration-200 lg:border-2 lg:border-light-silver lg:hover:border-cp-cyan"
         >
           <Image src="/assets/images/bbualdo-avatar.jpg" alt="" fill />
@@ -60,19 +60,7 @@ const UserAvatar = () => {
         </div>
       </div>
 
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 100 }}
-          className="absolute border-2 border-cp-cyan bg-black xs:max-lg:-top-12 xs:max-lg:right-0 lg:-bottom-14 lg:w-full"
-        >
-          <Link href="/login">
-            <button className="flex h-full w-full items-center gap-2 p-2 text-xl uppercase text-cp-red transition-all duration-300 hover:bg-cp-cyan/20">
-              <GiPowerButton /> Logout
-            </button>
-          </Link>
-        </motion.div>
-      )}
+      {/* {isOpen && <UserModal />} */}
     </>
   );
 };

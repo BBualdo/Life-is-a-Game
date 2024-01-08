@@ -9,7 +9,6 @@ import Backdrop from "./Backdrop";
 
 import { motion } from "framer-motion";
 import { fadeIn } from "@/src/utils/fadeIn";
-import UserXP from "../shared/UserBanner/UserXP";
 
 const navLinks = links.map((link) => (
   <Link key={link.key} href={link.href}>
@@ -50,8 +49,10 @@ const MainMenu = () => {
           >
             Settings
           </button>
+          {/* TODO: Allow to log out when authentication will be implemented */}
           <button
-            className="btn-menu flex items-center gap-2 text-cp-red hover:border-cp-red hover:text-cp-red-hover"
+            disabled
+            className="btn-menu flex items-center gap-2 text-cp-red enabled:hover:border-cp-red enabled:hover:text-cp-red-hover disabled:text-cp-red/50"
             onClick={() => router.push("/login")}
           >
             <GiPowerButton />

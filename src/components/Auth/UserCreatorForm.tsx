@@ -1,3 +1,5 @@
+// This is temporary signup form. In the future I want to implement real authentication and db for each user. For now it will be saving User's Data to localStorage.
+
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,30 +15,31 @@ import {
 } from "@/src/shadcn/ui/form";
 import { Input } from "@/src/shadcn/ui/input";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { signupFormSchema } from "@/src/utils/schemas";
+import { userCreatorSchema } from "@/src/utils/schemas";
 
 // Signup Component
-const SignupForm = () => {
+const UserCreatorForm = () => {
   const router = useRouter();
 
-  const signupForm = useForm<z.infer<typeof signupFormSchema>>({
-    resolver: zodResolver(signupFormSchema),
+  const signupForm = useForm<z.infer<typeof userCreatorSchema>>({
+    resolver: zodResolver(userCreatorSchema),
     defaultValues: {
+      firstName: "",
+      lastName: "",
       username: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
+      currentGoal: "",
     },
   });
 
   function onSubmit({
-    email,
-    password,
+    firstName,
+    lastName,
     username,
-  }: z.infer<typeof signupFormSchema>) {
+    currentGoal,
+  }: z.infer<typeof userCreatorSchema>) {
     router.push("/");
+    console.log(firstName, lastName, username, currentGoal);
   }
 
   return (
@@ -53,11 +56,11 @@ const SignupForm = () => {
         >
           <FormField
             control={signupForm.control}
-            name="username"
+            name="firstName"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="tracking-[6px] text-white">
-                  USERNAME
+                  FIRST NAME
                 </FormLabel>
                 <FormControl>
                   <Input className="min-w-[360px]" type="text" {...field} />
@@ -69,14 +72,14 @@ const SignupForm = () => {
           />
           <FormField
             control={signupForm.control}
-            name="email"
+            name="lastName"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="tracking-[6px] text-white">
-                  EMAIL
+                  LAST NAME <span className="text-cp-yellow">(OPTIONAL)</span>
                 </FormLabel>
                 <FormControl>
-                  <Input className="min-w-[360px]" type="email" {...field} />
+                  <Input className="min-w-[360px]" type="text" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -84,14 +87,14 @@ const SignupForm = () => {
           />
           <FormField
             control={signupForm.control}
-            name="password"
+            name="username"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="tracking-[6px] text-white">
-                  PASSWORD
+                  USERNAME
                 </FormLabel>
                 <FormControl>
-                  <Input className="min-w-[360px]" type="password" {...field} />
+                  <Input className="min-w-[360px]" type="text" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -99,14 +102,14 @@ const SignupForm = () => {
           />
           <FormField
             control={signupForm.control}
-            name="confirmPassword"
+            name="currentGoal"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="tracking-[6px] text-white">
-                  CONFIRM PASSWORD
+                  YOUR GOAL <span className="text-cp-yellow">(OPTIONAL)</span>
                 </FormLabel>
                 <FormControl>
-                  <Input className="min-w-[360px]" type="password" {...field} />
+                  <Input className="min-w-[360px]" type="text" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -116,22 +119,12 @@ const SignupForm = () => {
             type="submit"
             className="btn btn-cyan hover:btn-red hover:bg-cp-red/30"
           >
-            Sign up
+            Hack in
           </button>
-          <div className="relative mt-3 flex w-full items-center justify-center border">
-            <span className="absolute -top-2 text-xs uppercase text-cp-yellow backdrop-blur-sm">
-              Already have an account?
-            </span>
-          </div>
-          <Link href="/login">
-            <button type="button" className="btn btn-yellow hover:bg-black">
-              Log in
-            </button>
-          </Link>
         </form>
       </Form>
     </motion.div>
   );
 };
 
-export default SignupForm;
+export default UserCreatorForm;

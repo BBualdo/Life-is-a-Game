@@ -1,7 +1,6 @@
 import Backdrop from "@/src/components/Auth/Backdrop";
 import { arcade } from "@/src/fonts";
 import Logo from "@/src/components/Auth/Logo";
-import LoginProviders from "@/src/components/Auth/LoginProviders";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -12,7 +11,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
           <Logo />
         </div>
         <div className="flex flex-col items-center">
-          <LoginProviders />
+          {/* <LoginProviders /> */}
           {children}
         </div>
       </main>
