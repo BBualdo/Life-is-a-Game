@@ -5,8 +5,10 @@ type InitialState = {
   missions: MissionSchema[];
 };
 
+const missions = JSON.parse(localStorage.getItem("missions")!);
+
 const initialState: InitialState = {
-  missions: [],
+  missions: missions || [],
 };
 
 const missionsSlice = createSlice({
@@ -15,6 +17,7 @@ const missionsSlice = createSlice({
   reducers: {
     addMission: (state, action: PayloadAction<MissionSchema>) => {
       state.missions.push(action.payload);
+      localStorage.setItem("missions", JSON.stringify(state.missions));
     },
     toggleSubtaskComplition: (
       state,
@@ -32,6 +35,7 @@ const missionsSlice = createSlice({
             : subtask,
         );
         mission.subtasks = updatedSubtasks;
+        localStorage.setItem("missions", JSON.stringify(state.missions));
       }
     },
     updateMission: (state, action: PayloadAction<MissionSchema>) => {
@@ -57,6 +61,7 @@ const missionsSlice = createSlice({
         updatedMissions[missionIndex] = updatedMission;
 
         state.missions = updatedMissions;
+        localStorage.setItem("missions", JSON.stringify(state.missions));
       }
     },
     deleteMission: (state, action: PayloadAction<MissionSchema>) => {
@@ -72,6 +77,7 @@ const missionsSlice = createSlice({
         );
 
         state.missions = filteredMissions;
+        localStorage.setItem("missions", JSON.stringify(state.missions));
       }
     },
     completeMission: (state, action: PayloadAction<MissionSchema>) => {
@@ -88,6 +94,7 @@ const missionsSlice = createSlice({
             : mission,
         );
         state.missions = updatedMissions;
+        localStorage.setItem("missions", JSON.stringify(state.missions));
       }
     },
   },
