@@ -1,17 +1,18 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAppSelector } from "../redux/store";
 import { useEffect } from "react";
 
 const useUser = () => {
   const user = useAppSelector((state) => state.userReducer);
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (user.id) {
+    if (user.id && pathname === "/get-started") {
       router.replace("/");
-    } else {
+    } else if (!user.id) {
       router.replace("/get-started");
     }
   }, [user.id, router]);
