@@ -36,10 +36,13 @@ const UserCreatorForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof userCreatorSchema>) {
-    const { firstName, lastName, username, currentGoal } = values;
+  function onSubmit({
+    firstName,
+    lastName,
+    username,
+    currentGoal,
+  }: z.infer<typeof userCreatorSchema>) {
     dispatch(createUser({ firstName, lastName, username, currentGoal }));
-    router.push("/");
   }
 
   return (
@@ -115,10 +118,7 @@ const UserCreatorForm = () => {
               </FormItem>
             )}
           />
-          <button
-            type="submit"
-            className="btn btn-cyan hover:btn-red hover:bg-cp-red/30"
-          >
+          <button className="btn btn-cyan hover:btn-red hover:bg-cp-red/30">
             Hack in
           </button>
         </form>

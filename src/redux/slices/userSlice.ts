@@ -14,24 +14,16 @@ type User = {
   xp: number;
 };
 
-const xpGained = JSON.parse(localStorage.getItem("xpGained")!);
-
-const xp = JSON.parse(localStorage.getItem("xp")!);
-
-const level = JSON.parse(localStorage.getItem("level")!);
-
-const user = JSON.parse(localStorage.getItem("user")!);
-
-const initialState: User = user || {
+const initialState: User = {
   username: "",
   email: "",
   firstName: "",
   lastName: undefined,
-  xpGained: xpGained || 0,
+  xpGained: 0,
   currentGoal: undefined,
   bio: undefined,
-  level: level || levels[0],
-  xp: xp || 0,
+  level: levels[0],
+  xp: 0,
 };
 
 const userSlice = createSlice({
@@ -50,7 +42,6 @@ const userSlice = createSlice({
     ) => {
       const { firstName, lastName, username, currentGoal } = action.payload;
       state = { ...state, firstName, lastName, username, currentGoal };
-      localStorage.setItem("user", JSON.stringify(state));
     },
     // XP Reducers
     giveXP: (state, action: PayloadAction<{ xp: number }>) => {
@@ -58,8 +49,6 @@ const userSlice = createSlice({
       const updatedXP = state.xp + xp;
       state.xp = updatedXP;
       state.xpGained = state.xpGained + xp;
-      localStorage.setItem("xp", JSON.stringify(state.xp));
-      localStorage.setItem("xpGained", JSON.stringify(state.xpGained));
     },
     levelUp: (state) => {
       const nextLevelIndex = state.level.level;
@@ -67,8 +56,6 @@ const userSlice = createSlice({
       if (nextLevel) {
         state.xp = state.xp - state.level.ceil;
         state.level = nextLevel;
-        localStorage.setItem("level", JSON.stringify(state.level));
-        localStorage.setItem("xp", JSON.stringify(state.xp));
       }
     },
   },

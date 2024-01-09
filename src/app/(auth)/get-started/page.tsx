@@ -1,7 +1,5 @@
 import UserCreatorForm from "@/src/components/Auth/UserCreatorForm";
 
-const getStarted = () => {
+export default function GetStarted() {
   return <UserCreatorForm />;
-};
-
-export default getStarted;
+}

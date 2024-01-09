@@ -1,4 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
+import thunk from "redux-thunk";
 
 import missionsReducer from "./slices/missionsSlice";
 import selectedMissionReducer from "./slices/selectedMissionSlice";
@@ -6,13 +9,25 @@ import userReducer from "./slices/userSlice";
 import { TypedUseSelectorHook } from "react-redux";
 import { useSelector } from "react-redux";
 
-export const store = configureStore({
-  reducer: {
-    missionsReducer,
-    selectedMissionReducer,
-    userReducer,
-  },
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const rootReducers = combineReducers({
+  missionsReducer,
+  userReducer,
+  selectedMissionReducer,
 });
+
+const persistedReducer = persistReducer(persistConfig, rootReducers);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: [thunk],
+});
+
+export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
