@@ -3,6 +3,7 @@ import { Level } from "@/src/utils/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 type User = {
+  id: string | undefined;
   username: string;
   email: string | undefined;
   firstName: string;
@@ -15,6 +16,7 @@ type User = {
 };
 
 const initialState: User = {
+  id: undefined,
   username: "",
   email: "",
   firstName: "",
@@ -34,15 +36,16 @@ const userSlice = createSlice({
     createUser: (
       state,
       action: PayloadAction<{
+        id: string;
         firstName: string;
         lastName: string | undefined;
         username: string;
         currentGoal: string | undefined;
       }>,
     ) => {
-      const { firstName, lastName, username, currentGoal } = action.payload;
+      const { id, firstName, lastName, username, currentGoal } = action.payload;
 
-      return { ...state, firstName, lastName, username, currentGoal };
+      return { ...state, id, firstName, lastName, username, currentGoal };
     },
     // XP Reducers
     giveXP: (state, action: PayloadAction<{ xp: number }>) => {

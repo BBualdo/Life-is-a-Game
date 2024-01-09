@@ -20,8 +20,9 @@ import { userCreatorSchema } from "@/src/utils/schemas";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
 import { createUser } from "@/src/redux/slices/userSlice";
+import { v4 as uuidv4 } from "uuid";
 
-// Signup Component
+// User Creator Component
 const UserCreatorForm = () => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
@@ -42,7 +43,9 @@ const UserCreatorForm = () => {
     username,
     currentGoal,
   }: z.infer<typeof userCreatorSchema>) {
-    dispatch(createUser({ firstName, lastName, username, currentGoal }));
+    dispatch(
+      createUser({ id: uuidv4(), firstName, lastName, username, currentGoal }),
+    );
     router.push("/profile");
   }
 
