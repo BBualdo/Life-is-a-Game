@@ -43,6 +43,7 @@ const UserCreatorForm = () => {
     currentGoal,
   }: z.infer<typeof userCreatorSchema>) {
     dispatch(createUser({ firstName, lastName, username, currentGoal }));
+    router.push("/profile");
   }
 
   return (

@@ -41,7 +41,8 @@ const userSlice = createSlice({
       }>,
     ) => {
       const { firstName, lastName, username, currentGoal } = action.payload;
-      state = { ...state, firstName, lastName, username, currentGoal };
+
+      return { ...state, firstName, lastName, username, currentGoal };
     },
     // XP Reducers
     giveXP: (state, action: PayloadAction<{ xp: number }>) => {
