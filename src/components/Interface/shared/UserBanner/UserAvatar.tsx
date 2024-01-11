@@ -7,9 +7,11 @@ import { AppDispatch, useAppSelector } from "@/src/redux/store";
 import { useDispatch } from "react-redux";
 import { levelUp } from "@/src/redux/slices/userSlice";
 import { toast } from "sonner";
+import UserDefaultAvatar from "../UserDefaultAvatar";
 
 const UserAvatar = () => {
-  const { xp, level } = useAppSelector((state) => state.userReducer);
+  const user = useAppSelector((state) => state.userReducer);
+  const { xp, level, avatar } = user;
   const dispatch = useDispatch<AppDispatch>();
 
   const calculateProgress = () => {
@@ -47,7 +49,11 @@ const UserAvatar = () => {
           // onClick={() => setIsOpen(true)}
           className="relative h-[50px] w-[50px] cursor-pointer overflow-hidden rounded-full transition-all duration-200 lg:border-2 lg:border-light-silver lg:hover:border-cp-cyan"
         >
-          <Image src="/assets/images/bbualdo-avatar.jpg" alt="" fill />
+          {avatar ? (
+            <Image src="/assets/images/bbualdo-avatar.jpg" alt="" fill />
+          ) : (
+            <UserDefaultAvatar user={user} variant="small" />
+          )}
         </div>
         <div className="absolute -top-[2] z-[-1] lg:hidden">
           <CircleProgressBar progress={calculateProgress()} circleWidth={60} />

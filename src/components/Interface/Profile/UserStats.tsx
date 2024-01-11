@@ -1,9 +1,9 @@
 "use client";
 
 import { useAppSelector } from "@/src/redux/store";
+import { User } from "@/src/utils/types";
 
-const UserStats = () => {
-  const { xpGained } = useAppSelector((state) => state.userReducer);
+const UserStats = ({ user }: { user: User }) => {
   const missions = useAppSelector((state) => state.missionsReducer.missions);
 
   const missionsCompleted = missions.filter(
@@ -37,7 +37,7 @@ const UserStats = () => {
             Total XP Gained:
           </h2>
           <h3 className="font-bold text-cp-red xs:text-xl lg:text-3xl">
-            {xpGained}
+            {user.xpGained}
           </h3>
         </div>
       </div>

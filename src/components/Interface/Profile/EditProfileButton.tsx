@@ -1,22 +1,23 @@
 "use client";
 
 import { cn } from "@/src/lib/utils";
-import { useAppSelector } from "@/src/redux/store";
 import { ClassValue } from "clsx";
 import { useState } from "react";
 import Modal from "../shared/Modal";
 import { IoClose } from "react-icons/io5";
 import EditProfileForm from "./EditProfileForm";
+import { User } from "@/src/utils/types";
 
 const EditProfileButton = ({
   children,
+  user,
   className,
 }: {
   children: React.ReactNode;
+  user: User;
   className: ClassValue;
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const user = useAppSelector((state) => state.userReducer);
 
   const openModal = () => {
     setIsOpen(true);

@@ -25,6 +25,7 @@ export type Level = { level: number; ceil: number };
 
 export type User = {
   id: string | undefined;
+  avatar: string;
   username: string;
   email: string | undefined;
   firstName: string;

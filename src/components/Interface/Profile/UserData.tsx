@@ -11,8 +11,11 @@ import UserStats from "./UserStats";
 import UserBio from "./UserBio";
 import UserGoal from "./UserGoal";
 import EditProfileButton from "./EditProfileButton";
+import { useAppSelector } from "@/src/redux/store";
 
 const UserData = () => {
+  const user = useAppSelector((state) => state.userReducer);
+
   return (
     <motion.section
       variants={fadeIn("", 0.5, 1, 0.8)}
@@ -24,19 +27,22 @@ const UserData = () => {
       <CustomBorder />
       <div className="flex border-b border-white py-2 xs:max-lg:flex-col">
         <div className="flex items-center justify-center">
-          <UserAvatar />
+          <UserAvatar user={user} />
         </div>
         <div className="flex flex-1 flex-col items-end justify-between">
-          <EditProfileButton className="btn btn-red items-end hover:bg-cp-red/30 xs:max-lg:hidden">
+          <EditProfileButton
+            user={user}
+            className="btn btn-red items-end hover:bg-cp-red/30 xs:max-lg:hidden"
+          >
             Edit Profile
           </EditProfileButton>
-          <UserXP />
+          <UserXP user={user} />
         </div>
       </div>
-      <UserInfo />
-      <UserStats />
-      <UserGoal />
-      <UserBio />
+      <UserInfo user={user} />
+      <UserStats user={user} />
+      <UserGoal user={user} />
+      <UserBio user={user} />
       <LastestAchievements />
     </motion.section>
   );

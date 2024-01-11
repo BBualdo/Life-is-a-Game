@@ -1,11 +1,7 @@
-"use client";
-
-import { useAppSelector } from "@/src/redux/store";
 import MissingData from "../shared/MissingData";
+import { User } from "@/src/utils/types";
 
-const UserInfo = () => {
-  const user = useAppSelector((state) => state.userReducer);
-
+const UserInfo = ({ user }: { user: User }) => {
   return (
     <>
       <div className="mt-4 flex gap-4">

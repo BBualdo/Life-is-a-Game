@@ -1,11 +1,12 @@
 "use client";
 
 import { levelUp } from "@/src/redux/slices/userSlice";
-import { AppDispatch, useAppSelector } from "@/src/redux/store";
+import { AppDispatch } from "@/src/redux/store";
+import { User } from "@/src/utils/types";
 import { useDispatch } from "react-redux";
 
-const UserXP = () => {
-  const { xp, level } = useAppSelector((state) => state.userReducer);
+const UserXP = ({ user }: { user: User }) => {
+  const { xp, level } = user;
   const dispatch = useDispatch<AppDispatch>();
 
   const calculateProgress = () => {
