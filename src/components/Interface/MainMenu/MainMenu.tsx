@@ -9,20 +9,33 @@ import Backdrop from "./Backdrop";
 
 import { motion } from "framer-motion";
 import { fadeIn } from "@/src/utils/fadeIn";
-
-const navLinks = links.map((link) => (
-  <Link key={link.key} href={link.href}>
-    <button
-      disabled={link.disabled}
-      className="btn-menu w-full text-white hover:border-cp-cyan hover:text-cp-cyan disabled:text-white/50 disabled:hover:border-transparent"
-    >
-      {link.title}
-    </button>
-  </Link>
-));
+import { useState } from "react";
 
 const MainMenu = () => {
   const router = useRouter();
+  const [audio] = useState(new Audio("/assets/audio/hoverEffect.mp3"));
+
+  const playSound = (disabled: boolean) => {
+    if (!disabled) {
+      audio.currentTime = 0;
+      audio.play();
+    }
+  };
+
+  const navLinks = links.map((link) => (
+    <Link
+      onMouseEnter={() => playSound(link.disabled)}
+      key={link.key}
+      href={link.href}
+    >
+      <button
+        disabled={link.disabled}
+        className="btn-menu w-full text-white hover:border-cp-cyan hover:text-cp-cyan disabled:text-white/50 disabled:hover:border-transparent"
+      >
+        {link.title}
+      </button>
+    </Link>
+  ));
 
   return (
     <>
