@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { levelUp } from "@/src/redux/slices/userSlice";
 import { toast } from "sonner";
 import UserDefaultAvatar from "../UserDefaultAvatar";
+import Link from "next/link";
 
 const UserAvatar = () => {
   const user = useAppSelector((state) => state.userReducer);
@@ -43,7 +44,7 @@ const UserAvatar = () => {
   // }, []);
 
   return (
-    <>
+    <Link href="/profile">
       <div className="relative flex items-center justify-center">
         <div
           // onClick={() => setIsOpen(true)}
@@ -67,7 +68,7 @@ const UserAvatar = () => {
       </div>
 
       {/* {isOpen && <UserModal />} */}
-    </>
+    </Link>
   );
 };
 
