@@ -22,3 +22,24 @@ export type EditMissionSchema = {
 };
 
 export type Level = { level: number; ceil: number };
+
+export type User = {
+  id: string | undefined;
+  username: string;
+  email: string | undefined;
+  firstName: string;
+  lastName: string | undefined;
+  xpGained: number;
+  currentGoal: string | undefined;
+  bio: string | undefined;
+  level: Level;
+  xp: number;
+};
+
+export type UserProfileEditType = {
+  firstName: string;
+  lastName?: string | undefined;
+  username: string;
+  currentGoal?: string | undefined;
+  bio?: string | undefined;
+};

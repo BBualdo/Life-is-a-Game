@@ -1,19 +1,6 @@
 import levels from "@/src/data/levels";
-import { Level } from "@/src/utils/types";
+import { User, UserProfileEditType } from "@/src/utils/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-
-type User = {
-  id: string | undefined;
-  username: string;
-  email: string | undefined;
-  firstName: string;
-  lastName: string | undefined;
-  xpGained: number;
-  currentGoal: string | undefined;
-  bio: string | undefined;
-  level: Level;
-  xp: number;
-};
 
 const initialState: User = {
   id: undefined,
@@ -47,6 +34,11 @@ const userSlice = createSlice({
 
       return { ...state, id, firstName, lastName, username, currentGoal };
     },
+    updateProfile: (state, action: PayloadAction<UserProfileEditType>) => {
+      const { firstName, lastName, username, currentGoal, bio } =
+        action.payload;
+      return { ...state, firstName, lastName, username, currentGoal, bio };
+    },
     // XP Reducers
     giveXP: (state, action: PayloadAction<{ xp: number }>) => {
       const { xp } = action.payload;
@@ -65,5 +57,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { createUser, giveXP, levelUp } = userSlice.actions;
+export const { createUser, updateProfile, giveXP, levelUp } = userSlice.actions;
 export default userSlice.reducer;

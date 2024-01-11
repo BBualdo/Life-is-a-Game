@@ -71,4 +71,5 @@ export const userCreatorSchema = z.object({
     .string()
     .max(50, { message: "Describe your goal shorter." })
     .optional(),
+  bio: z.string().optional(),
 });
