@@ -6,18 +6,18 @@ import { useState } from "react";
 import Modal from "../shared/Modal";
 import { IoClose } from "react-icons/io5";
 import EditProfileForm from "./EditProfileForm";
-import { User } from "@/src/utils/types";
+
+import { useAppSelector } from "@/src/redux/store";
 
 const EditProfileButton = ({
   children,
-  user,
   className,
 }: {
   children: React.ReactNode;
-  user: User;
   className: ClassValue;
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const user = useAppSelector((state) => state.userReducer);
 
   const openModal = () => {
     setIsOpen(true);

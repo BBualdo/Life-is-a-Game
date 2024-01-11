@@ -30,10 +30,7 @@ const UserData = () => {
           <UserAvatar user={user} />
         </div>
         <div className="flex flex-1 flex-col items-end justify-between">
-          <EditProfileButton
-            user={user}
-            className="btn btn-red items-end hover:bg-cp-red/30 xs:max-lg:hidden"
-          >
+          <EditProfileButton className="btn btn-red items-end hover:bg-cp-red/30 xs:max-lg:hidden">
             Edit Profile
           </EditProfileButton>
           <UserXP user={user} />
