@@ -51,7 +51,7 @@ const UserAvatar = () => {
           className="relative h-[50px] w-[50px] cursor-pointer overflow-hidden rounded-full transition-all duration-200 lg:border-2 lg:border-light-silver lg:hover:border-cp-cyan"
         >
           {avatar ? (
-            <Image src="/assets/images/bbualdo-avatar.jpg" alt="" fill />
+            <Image src={avatar} alt="" fill objectFit="cover" priority />
           ) : (
             <UserDefaultAvatar user={user} variant="small" />
           )}

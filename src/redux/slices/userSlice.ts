@@ -40,6 +40,10 @@ const userSlice = createSlice({
         action.payload;
       return { ...state, firstName, lastName, username, currentGoal, bio };
     },
+    updateAvatar: (state, action: PayloadAction<{ avatar: string }>) => {
+      const { avatar } = action.payload;
+      state.avatar = avatar;
+    },
     // XP Reducers
     giveXP: (state, action: PayloadAction<{ xp: number }>) => {
       const { xp } = action.payload;
@@ -58,5 +62,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { createUser, updateProfile, giveXP, levelUp } = userSlice.actions;
+export const { createUser, updateProfile, updateAvatar, giveXP, levelUp } =
+  userSlice.actions;
 export default userSlice.reducer;
