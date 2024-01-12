@@ -55,7 +55,7 @@ const DifficultyInfo = ({
             </div>
             <div className="flex flex-1 gap-1 xs:flex-col-reverse lg:flex-col">
               <div className="border-2 border-cp-cyan bg-black xs:p-2 lg:p-8">
-                <p className="lg:text-md text-center text-cp-red xs:text-xs">
+                <p className="text-center text-cp-red xs:text-xs lg:text-lg">
                   Adjust difficulty to your preferences. If something is
                   slightly harder than one level, but not that hard as the next
                   one, keep the slider at the top range of that level rather

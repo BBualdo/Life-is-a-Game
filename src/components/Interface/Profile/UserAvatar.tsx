@@ -1,7 +1,7 @@
 import { User } from "@/src/utils/types";
 import Image from "next/image";
 import UserDefaultAvatar from "../shared/UserDefaultAvatar";
-import UploadImageButton from "./UploadImageButton";
+import ChangeAvatarButton from "./ChangeAvatarButton";
 
 const UserAvatar = ({ user }: { user: User }) => {
   return (
@@ -17,7 +17,7 @@ const UserAvatar = ({ user }: { user: User }) => {
       ) : (
         <UserDefaultAvatar user={user} variant="large" />
       )}
-      <UploadImageButton />
+      <ChangeAvatarButton />
     </div>
   );
 };
