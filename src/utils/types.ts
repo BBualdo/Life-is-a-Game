@@ -44,3 +44,12 @@ export type UserProfileEditType = {
   currentGoal?: string | undefined;
   bio?: string | undefined;
 };
+
+export type Achievement = {
+  id: string;
+  title: string;
+  requirements: string;
+  image: string;
+  xp: number;
+  isUnlocked: boolean;
+};

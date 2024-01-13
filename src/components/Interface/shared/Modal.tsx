@@ -41,7 +41,7 @@ const Modal = ({
             animate={{ width: "auto" }}
             transition={{ duration: 0.3, ease: "anticipate" }}
             className={cn(
-              "z-50 mx-20 max-h-[90vh] overflow-y-auto border-2 py-4 xs:px-4 lg:px-10",
+              "z-50 max-h-[90vh] overflow-y-auto border-2 py-4 xs:px-4 lg:mx-20 lg:px-10",
               className,
             )}
           >
