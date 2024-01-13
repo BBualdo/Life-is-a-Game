@@ -17,6 +17,9 @@ module.exports = {
       xs: "100px",
     },
     extend: {
+      backgroundImage: {
+        achievements: "url('/assets/images/achievements-background.avif')",
+      },
       textShadow: {
         sm: "0 1px 2px var(--tw-shadow-color)",
         DEFAULT: "0 2px 4px var(--tw-shadow-color)",

@@ -7,7 +7,7 @@ const achievements: Achievement[] = [
     title: "Neon Novice",
     requirements: "Complete 'How To Play'.",
     image: "",
-    xp: 0,
+    xp: 10,
     isUnlocked: false,
   },
   {
@@ -15,7 +15,7 @@ const achievements: Achievement[] = [
     title: "Mission Maverick",
     requirements: "Add your first mission.",
     image: "",
-    xp: 0,
+    xp: 10,
     isUnlocked: false,
   },
   {
@@ -23,7 +23,7 @@ const achievements: Achievement[] = [
     title: "Codebreaker Initiate",
     requirements: "Complete your first mission.",
     image: "",
-    xp: 0,
+    xp: 25,
     isUnlocked: false,
   },
   {
@@ -31,7 +31,7 @@ const achievements: Achievement[] = [
     title: "Profile Overdrive",
     requirements: "Complete every field in profile dashboard.",
     image: "",
-    xp: 0,
+    xp: 10,
     isUnlocked: false,
   },
   {
@@ -39,7 +39,7 @@ const achievements: Achievement[] = [
     title: "Daily Data Dynamo",
     requirements: "Complete mission on 'Daily' difficulty.",
     image: "",
-    xp: 0,
+    xp: 25,
     isUnlocked: false,
   },
   {
@@ -47,7 +47,7 @@ const achievements: Achievement[] = [
     title: "Sweat-Proof Runner",
     requirements: "Complete mission on 'Drop of Sweat' difficulty.",
     image: "",
-    xp: 0,
+    xp: 50,
     isUnlocked: false,
   },
   {
@@ -55,7 +55,7 @@ const achievements: Achievement[] = [
     title: "Chaos Conqueror",
     requirements: "Complete mission on 'Challenging' difficulty.",
     image: "",
-    xp: 0,
+    xp: 75,
     isUnlocked: false,
   },
   {
@@ -63,7 +63,7 @@ const achievements: Achievement[] = [
     title: "Life-Hacker Elite",
     requirements: "Complete mission on 'Life-Hacker' difficulty.",
     image: "",
-    xp: 0,
+    xp: 100,
     isUnlocked: false,
   },
   {
@@ -71,7 +71,7 @@ const achievements: Achievement[] = [
     title: "Procrastination Purged",
     requirements: "Complete mission on 'Anti-Procrastinator' difficulty.",
     image: "",
-    xp: 0,
+    xp: 250,
     isUnlocked: false,
   },
   {
@@ -79,7 +79,7 @@ const achievements: Achievement[] = [
     title: "Difficulty Dominator",
     requirements: "Complete one mission on every difficulty level.",
     image: "",
-    xp: 0,
+    xp: 200,
     isUnlocked: false,
   },
   {
@@ -87,7 +87,7 @@ const achievements: Achievement[] = [
     title: "Strategic Surrender",
     requirements: "Give up a mission with at least one subtask completed.",
     image: "",
-    xp: 0,
+    xp: 25,
     isUnlocked: false,
   },
   {
@@ -95,7 +95,7 @@ const achievements: Achievement[] = [
     title: "Mission Maestro",
     requirements: "Complete 5 missions.",
     image: "",
-    xp: 0,
+    xp: 50,
     isUnlocked: false,
   },
   {
@@ -103,7 +103,7 @@ const achievements: Achievement[] = [
     title: "Deca-Task Dynamo",
     requirements: "Complete 10 missions.",
     image: "",
-    xp: 0,
+    xp: 100,
     isUnlocked: false,
   },
   {
@@ -111,7 +111,7 @@ const achievements: Achievement[] = [
     title: "Quarter Century Quasar",
     requirements: "Complete 25 missions.",
     image: "",
-    xp: 0,
+    xp: 250,
     isUnlocked: false,
   },
   {
@@ -119,7 +119,7 @@ const achievements: Achievement[] = [
     title: "Half Century Hero",
     requirements: "Complete 50 missions.",
     image: "",
-    xp: 0,
+    xp: 500,
     isUnlocked: false,
   },
   {
@@ -127,7 +127,7 @@ const achievements: Achievement[] = [
     title: "Level 5 Luminary",
     requirements: "Reach level 5.",
     image: "",
-    xp: 0,
+    xp: 50,
     isUnlocked: false,
   },
   {
@@ -135,7 +135,7 @@ const achievements: Achievement[] = [
     title: "Deca-Level Dynamo",
     requirements: "Reach level 10.",
     image: "",
-    xp: 0,
+    xp: 100,
     isUnlocked: false,
   },
   {
@@ -143,7 +143,7 @@ const achievements: Achievement[] = [
     title: "Quarter Century Cipher",
     requirements: "Reach level 25.",
     image: "",
-    xp: 0,
+    xp: 250,
     isUnlocked: false,
   },
   {
@@ -151,7 +151,7 @@ const achievements: Achievement[] = [
     title: "Half Century Hacker",
     requirements: "Reach level 50.",
     image: "",
-    xp: 0,
+    xp: 500,
     isUnlocked: false,
   },
   {
@@ -159,7 +159,7 @@ const achievements: Achievement[] = [
     title: "Achievement Unleashed",
     requirements: "Unlock every achievement.",
     image: "",
-    xp: 0,
+    xp: 2500,
     isUnlocked: false,
   },
 ];
