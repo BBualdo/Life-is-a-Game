@@ -4,7 +4,6 @@ import clsx from "clsx";
 const Achievement = ({ achievement }: { achievement: Achievement }) => {
   return (
     <div
-      key={achievement.id}
       className={clsx(
         "flex items-center justify-between border-y border-light-silver/20 p-4 text-white transition-all duration-200 hover:bg-white/10",
         { "opacity-50": !achievement.isUnlocked },
