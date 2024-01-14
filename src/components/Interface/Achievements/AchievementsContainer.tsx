@@ -16,7 +16,7 @@ const AchievementsContainer = () => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-      className="relative flex w-full overflow-y-auto border-2 border-cp-red bg-black xs:h-[400px] xs:p-2 lg:h-[800px] lg:p-10"
+      className="relative flex w-full overflow-y-auto border-2 border-cp-red bg-black xs:p-2 lg:p-10"
     >
       <div className="flex flex-col gap-4">{achievementsList}</div>
     </motion.section>
