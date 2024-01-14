@@ -1,6 +1,6 @@
 "use client";
 
-import { toggleSubtaskComplition } from "@/src/redux/slices/missionsSlice";
+import { toggleSubtaskComplition } from "@/src/redux/slices/userSlice";
 import { AppDispatch } from "@/src/redux/store";
 import { Checkbox } from "@/src/shadcn/ui/checkbox";
 import { Label } from "@/src/shadcn/ui/label";

@@ -4,7 +4,7 @@ import { useAppSelector } from "@/src/redux/store";
 import { User } from "@/src/utils/types";
 
 const UserStats = ({ user }: { user: User }) => {
-  const missions = useAppSelector((state) => state.missionsReducer.missions);
+  const missions = useAppSelector((state) => state.userReducer.missions);
 
   const missionsCompleted = missions.filter(
     (mission) => mission.status === "completed",

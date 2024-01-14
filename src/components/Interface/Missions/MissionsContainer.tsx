@@ -22,7 +22,7 @@ const MissionsContainer = () => {
     "active" | "completed"
   >("active");
 
-  const missions = useAppSelector((state) => state.missionsReducer.missions);
+  const missions = useAppSelector((state) => state.userReducer.missions);
   const selectedMission = useAppSelector(
     (state) => state.selectedMissionReducer.selectedMission,
   );

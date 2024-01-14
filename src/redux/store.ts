@@ -3,7 +3,6 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
 
-import missionsReducer from "./slices/missionsSlice";
 import selectedMissionReducer from "./slices/selectedMissionSlice";
 import userReducer from "./slices/userSlice";
 import { TypedUseSelectorHook } from "react-redux";
@@ -15,7 +14,6 @@ const persistConfig = {
 };
 
 const rootReducers = combineReducers({
-  missionsReducer,
   userReducer,
   selectedMissionReducer,
 });

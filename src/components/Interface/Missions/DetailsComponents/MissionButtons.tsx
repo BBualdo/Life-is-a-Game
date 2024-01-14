@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  completeMission,
-  deleteMission,
-} from "@/src/redux/slices/missionsSlice";
+import { completeMission, deleteMission } from "@/src/redux/slices/userSlice";
 import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 import { AppDispatch } from "@/src/redux/store";
 import { MissionSchema } from "@/src/utils/types";

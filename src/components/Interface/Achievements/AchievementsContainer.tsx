@@ -1,12 +1,16 @@
 "use client";
 
-import achievements from "@/src/data/achievements";
 import { fadeIn } from "@/src/utils/fadeIn";
 import { motion } from "framer-motion";
 import Achievement from "./Achievement";
 import AchievementsStats from "./AchievementsStats";
+import { useAppSelector } from "@/src/redux/store";
 
 const AchievementsContainer = () => {
+  const achievements = useAppSelector(
+    (state) => state.userReducer.achievements,
+  );
+
   const achievementsList = achievements.map((achievement) => (
     <Achievement key={achievement.id} achievement={achievement} />
   ));

@@ -36,6 +36,9 @@ export type User = {
   level: Level;
   xp: number;
   achievements: Achievement[];
+  totalMissionsAdded: number;
+  totalMissionsCompleted: number;
+  missions: MissionSchema[];
 };
 
 export type UserProfileEditType = {

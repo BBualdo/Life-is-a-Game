@@ -1,6 +1,12 @@
-import achievements from "@/src/data/achievements";
+"use client";
+
+import { useAppSelector } from "@/src/redux/store";
 
 const AchievementsStats = () => {
+  const achievements = useAppSelector(
+    (state) => state.userReducer.achievements,
+  );
+
   const completedAchievements = achievements.filter(
     (achievement) => achievement.isUnlocked === true,
   );

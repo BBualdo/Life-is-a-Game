@@ -9,15 +9,23 @@ import Description from "./FormComponents/Description";
 import DifficultyPicker from "./FormComponents/DifficultyPicker";
 import SubtasksList from "./FormComponents/SubtasksList";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/src/redux/store";
-import { addMission } from "@/src/redux/slices/missionsSlice";
+import { AppDispatch, useAppSelector } from "@/src/redux/store";
+import { addMission } from "@/src/redux/slices/userSlice";
 import { v4 as uuidv4 } from "uuid";
 import { missionFormSchema } from "@/src/utils/schemas";
 import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 import { toast } from "sonner";
+import { giveXP, unlockAchievement } from "@/src/redux/slices/userSlice";
 
 const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
   const dispatch = useDispatch<AppDispatch>();
+  const achievements = useAppSelector(
+    (state) => state.userReducer.achievements,
+  );
+
+  const addYourFirstMission = achievements.find(
+    (achievement) => achievement.requirements === "Add your first mission.",
+  );
 
   const form = useForm<z.infer<typeof missionFormSchema>>({
     resolver: zodResolver(missionFormSchema),
@@ -43,6 +51,11 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
     dispatch(addMission(values));
     dispatch(setSelectedMission(values));
     toast("Mission has been added!");
+    // Add your first Mission Achievement check
+    if (addYourFirstMission && !addYourFirstMission.isUnlocked) {
+      dispatch(unlockAchievement(addYourFirstMission));
+      dispatch(giveXP({ xp: addYourFirstMission.xp }));
+    }
     closeModal();
   }
 

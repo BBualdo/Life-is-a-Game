@@ -1,6 +1,11 @@
 import achievements from "@/src/data/achievements";
 import levels from "@/src/data/levels";
-import { User, UserProfileEditType } from "@/src/utils/types";
+import {
+  Achievement,
+  MissionSchema,
+  User,
+  UserProfileEditType,
+} from "@/src/utils/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState: User = {
@@ -16,6 +21,9 @@ const initialState: User = {
   level: levels[0],
   xp: 0,
   achievements: achievements,
+  totalMissionsAdded: 0,
+  totalMissionsCompleted: 0,
+  missions: [],
 };
 
 const userSlice = createSlice({
@@ -46,6 +54,7 @@ const userSlice = createSlice({
       const { avatar } = action.payload;
       state.avatar = avatar;
     },
+
     // XP Reducers
     giveXP: (state, action: PayloadAction<{ xp: number }>) => {
       const { xp } = action.payload;
@@ -61,20 +70,103 @@ const userSlice = createSlice({
         state.level = nextLevel;
       }
     },
+
     // Achievement Reducers
-    unlockAchievement: (
+    unlockAchievement: (state, action: PayloadAction<Achievement>) => {
+      const achievementToUnlock = action.payload;
+
+      if (!achievementToUnlock.isUnlocked) {
+        const updatedAchievement = {
+          ...achievementToUnlock,
+          isUnlocked: true,
+        };
+        const updatedAchievements = state.achievements.map((achievement) =>
+          achievement.id === updatedAchievement.id
+            ? updatedAchievement
+            : achievement,
+        );
+        state.achievements = updatedAchievements;
+      }
+    },
+
+    // Missions Schema
+    addMission: (state, action: PayloadAction<MissionSchema>) => {
+      state.missions.push(action.payload);
+      state.totalMissionsAdded = state.totalMissionsAdded + 1;
+    },
+    toggleSubtaskComplition: (
       state,
-      action: PayloadAction<{ requirements: string }>,
+      action: PayloadAction<{ missionId: string; subtaskId: string }>,
     ) => {
-      const { requirements } = action.payload;
-      const achievementToUnlock = state.achievements.find(
-        (achievement) => achievement.requirements === requirements,
+      const { missionId, subtaskId } = action.payload;
+      const mission = state.missions.find(
+        (mission) => mission.id === missionId,
       );
 
-      if (achievementToUnlock && !achievementToUnlock.isUnlocked) {
-        const updatedAchievement = { ...achievementToUnlock, isUnlocked: true };
-        const updatedAchievements = [...achievements, updatedAchievement];
-        state.achievements = updatedAchievements;
+      if (mission) {
+        const updatedSubtasks = mission.subtasks.map((subtask) =>
+          subtask.id === subtaskId
+            ? { ...subtask, isCompleted: !subtask.isCompleted }
+            : subtask,
+        );
+        mission.subtasks = updatedSubtasks;
+      }
+    },
+    updateMission: (state, action: PayloadAction<MissionSchema>) => {
+      const { id, title, description, subtasks } = action.payload;
+
+      const missionToUpdate = state.missions.find(
+        (mission) => mission.id === id,
+      );
+
+      if (missionToUpdate) {
+        const updatedMission = {
+          ...missionToUpdate,
+          title,
+          description,
+          subtasks,
+        };
+
+        const missionIndex = state.missions.findIndex(
+          (mission) => mission.id === id,
+        );
+
+        const updatedMissions = [...state.missions];
+        updatedMissions[missionIndex] = updatedMission;
+
+        state.missions = updatedMissions;
+      }
+    },
+    deleteMission: (state, action: PayloadAction<MissionSchema>) => {
+      const { id } = action.payload;
+
+      const missionToDelete = state.missions.find(
+        (mission) => mission.id === id,
+      );
+
+      if (missionToDelete) {
+        const filteredMissions = state.missions.filter(
+          (mission) => mission !== missionToDelete,
+        );
+
+        state.missions = filteredMissions;
+      }
+    },
+    completeMission: (state, action: PayloadAction<MissionSchema>) => {
+      const { id } = action.payload;
+
+      const missionToComplete = state.missions.find(
+        (mission) => mission.id === id,
+      );
+
+      if (missionToComplete) {
+        const updatedMissions = state.missions.map((mission) =>
+          mission.id === id
+            ? { ...mission, status: "completed" as const }
+            : mission,
+        );
+        state.missions = updatedMissions;
+        state.totalMissionsCompleted = state.totalMissionsCompleted + 1;
       }
     },
   },
@@ -87,5 +179,10 @@ export const {
   giveXP,
   levelUp,
   unlockAchievement,
+  addMission,
+  completeMission,
+  toggleSubtaskComplition,
+  updateMission,
+  deleteMission,
 } = userSlice.actions;
 export default userSlice.reducer;
