@@ -9,7 +9,13 @@ export const missionFormSchema = z.object({
     .min(6, { message: "Mission title is too short." })
     .max(50, { message: "Mission title is too long." }),
   description: z.string().max(2000),
-  difficulty: z.string(),
+  difficulty: z.union([
+    z.literal("Daily"),
+    z.literal("Drop of Sweat"),
+    z.literal("Challenging"),
+    z.literal("Life-Hacker"),
+    z.literal("Anti-Procrastinator"),
+  ]),
   xp: z.number(),
   subtasks: z.array(
     z.object({

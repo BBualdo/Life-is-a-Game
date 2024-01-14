@@ -19,12 +19,8 @@ import { giveXP, unlockAchievement } from "@/src/redux/slices/userSlice";
 
 const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const achievements = useAppSelector(
-    (state) => state.userReducer.achievements,
-  );
-
-  const addYourFirstMission = achievements.find(
-    (achievement) => achievement.requirements === "Add your first mission.",
+  const { totalMissionsAdded, achievements } = useAppSelector(
+    (state) => state.userReducer,
   );
 
   const form = useForm<z.infer<typeof missionFormSchema>>({
@@ -52,9 +48,15 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
     dispatch(setSelectedMission(values));
     toast("Mission has been added!");
     // Add your first Mission Achievement check
-    if (addYourFirstMission && !addYourFirstMission.isUnlocked) {
-      dispatch(unlockAchievement(addYourFirstMission));
-      dispatch(giveXP({ xp: addYourFirstMission.xp }));
+    if (totalMissionsAdded === 0) {
+      const addYourFirstMission = achievements.find(
+        (achievement) => achievement.requirements === "Add your first mission.",
+      );
+
+      if (addYourFirstMission && !addYourFirstMission.isUnlocked) {
+        dispatch(unlockAchievement(addYourFirstMission));
+        dispatch(giveXP({ xp: addYourFirstMission.xp }));
+      }
     }
     closeModal();
   }

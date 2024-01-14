@@ -4,12 +4,27 @@ export type SubtaskType = {
   isCompleted: boolean;
 };
 
+export type DifficultiesType =
+  | "Daily"
+  | "Drop of Sweat"
+  | "Challenging"
+  | "Life-Hacker"
+  | "Anti-Procrastinator";
+
+export type DifficultyLevel = {
+  id: number;
+  title: DifficultiesType;
+  description: string;
+  eg: { id: number; title: string }[];
+  xpMultiplier: number;
+};
+
 export type MissionSchema = {
   id: string;
   status: "active" | "completed";
   title: string;
   description: string;
-  difficulty: string;
+  difficulty: DifficultiesType;
   xp: number;
   subtasks: SubtaskType[];
 };

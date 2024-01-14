@@ -1,12 +1,6 @@
-type DifficultyLevels = {
-  id: number;
-  title: string;
-  description: string;
-  eg: { id: number; title: string }[];
-  xpMultiplier: number;
-};
+import { DifficultyLevel } from "../utils/types";
 
-export const difficultyLevels: Array<DifficultyLevels> = [
+export const difficultyLevels: DifficultyLevel[] = [
   {
     id: 0,
     title: "Daily",
