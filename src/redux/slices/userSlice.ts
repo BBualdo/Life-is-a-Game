@@ -1,3 +1,4 @@
+import achievements from "@/src/data/achievements";
 import levels from "@/src/data/levels";
 import { User, UserProfileEditType } from "@/src/utils/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
@@ -14,6 +15,7 @@ const initialState: User = {
   bio: undefined,
   level: levels[0],
   xp: 0,
+  achievements: achievements,
 };
 
 const userSlice = createSlice({
@@ -59,9 +61,31 @@ const userSlice = createSlice({
         state.level = nextLevel;
       }
     },
+    // Achievement Reducers
+    unlockAchievement: (
+      state,
+      action: PayloadAction<{ requirements: string }>,
+    ) => {
+      const { requirements } = action.payload;
+      const achievementToUnlock = state.achievements.find(
+        (achievement) => achievement.requirements === requirements,
+      );
+
+      if (achievementToUnlock && !achievementToUnlock.isUnlocked) {
+        const updatedAchievement = { ...achievementToUnlock, isUnlocked: true };
+        const updatedAchievements = [...achievements, updatedAchievement];
+        state.achievements = updatedAchievements;
+      }
+    },
   },
 });
 
-export const { createUser, updateProfile, updateAvatar, giveXP, levelUp } =
-  userSlice.actions;
+export const {
+  createUser,
+  updateProfile,
+  updateAvatar,
+  giveXP,
+  levelUp,
+  unlockAchievement,
+} = userSlice.actions;
 export default userSlice.reducer;

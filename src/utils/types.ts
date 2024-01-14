@@ -35,6 +35,7 @@ export type User = {
   bio: string | undefined;
   level: Level;
   xp: number;
+  achievements: Achievement[];
 };
 
 export type UserProfileEditType = {

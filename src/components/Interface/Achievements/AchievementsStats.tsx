@@ -10,15 +10,19 @@ const AchievementsStats = () => {
   );
 
   return (
-    <div className="flex items-center gap-20 border-2 border-cp-cyan bg-black px-20 py-4">
+    <div className="flex items-center gap-20 border-2 border-cp-cyan bg-cp-red/20 px-20 py-4">
       <div className="flex flex-col items-center gap-2">
-        <h3 className="xs:text-md uppercase lg:text-lg">Completed:</h3>
+        <h3 className="xs:text-md font-bold uppercase lg:text-lg">
+          Completed:
+        </h3>
         <p className="xs:text-xl lg:text-3xl">
           {completedAchievements.length}/{achievements.length}
         </p>
       </div>
       <div className="flex flex-col items-center gap-2">
-        <h3 className="xs:text-md uppercase lg:text-lg">Progress %:</h3>
+        <h3 className="xs:text-md font-bold uppercase lg:text-lg">
+          Progress %:
+        </h3>
         <p className="xs:text-xl lg:text-3xl">{progress}%</p>
       </div>
     </div>
