@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import CreateMissionButton from "../Missions/CreateMissionButton";
 import { FaPlus, FaUserEdit } from "react-icons/fa";
 import EditProfileButton from "../Profile/EditProfileButton";
+import AchievementsStatsCircle from "./AchievementsStatsCircle";
 
 const FuncButton = () => {
   const pathname = usePathname();
@@ -20,6 +21,7 @@ const FuncButton = () => {
           <FaUserEdit className="text-2xl text-white" />
         </EditProfileButton>
       )}
+      {pathname === "/achievements" && <AchievementsStatsCircle />}
     </div>
   );
 };

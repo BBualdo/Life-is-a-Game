@@ -9,7 +9,7 @@ const Achievement = ({ achievement }: { achievement: Achievement }) => {
         { "opacity-50": !achievement.isUnlocked },
       )}
     >
-      <div className="flex flex-col">
+      <div className="flex flex-col xs:max-lg:max-w-[70%]">
         <h3 className="text-white shadow-white text-shadow-lg xs:text-lg lg:text-xl">
           {achievement.title}
         </h3>
