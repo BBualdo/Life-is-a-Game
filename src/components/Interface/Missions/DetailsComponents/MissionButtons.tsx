@@ -1,12 +1,8 @@
 "use client";
 
-import {
-  completeMission,
-  deleteMission,
-  unlockAchievement,
-} from "@/src/redux/slices/userSlice";
+import { completeMission, deleteMission } from "@/src/redux/slices/userSlice";
 import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
-import { AppDispatch, useAppSelector } from "@/src/redux/store";
+import { AppDispatch } from "@/src/redux/store";
 import { MissionSchema } from "@/src/utils/types";
 import { useDispatch } from "react-redux";
 import Modal from "../../shared/Modal";
@@ -21,39 +17,6 @@ const MissionButtons = ({
   selectedMission: MissionSchema;
 }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { totalMissionsCompleted, achievements } = useAppSelector(
-    (state) => state.userReducer,
-  );
-
-  const dailyDifficulty = achievements.find(
-    (achievement) =>
-      achievement.requirements === "Complete mission on 'Daily' difficulty.",
-  );
-  const dropOfSweatDifficulty = achievements.find(
-    (achievement) =>
-      achievement.requirements ===
-      "Complete mission on 'Drop of Sweat' difficulty.",
-  );
-  const challengingDifficulty = achievements.find(
-    (achievement) =>
-      achievement.requirements ===
-      "Complete mission on 'Challenging' difficulty.",
-  );
-  const lifeHackerDifficulty = achievements.find(
-    (achievement) =>
-      achievement.requirements ===
-      "Complete mission on 'Life-Hacker' difficulty.",
-  );
-  const antiProcrastinatorDifficulty = achievements.find(
-    (achievement) =>
-      achievement.requirements ===
-      "Complete mission on 'Anti-Procrastinator' difficulty.",
-  );
-  const allDifficulties = achievements.find(
-    (achievement) =>
-      achievement.requirements ===
-      "Complete one mission on every difficulty level.",
-  );
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -82,102 +45,6 @@ const MissionButtons = ({
     toast("Mission completed!", {
       description: `You received ${selectedMission.xp}XP.`,
     });
-    // Complete Mission Achievements check
-    switch (totalMissionsCompleted) {
-      case 0: {
-        const completeYourFirstMission = achievements.find(
-          (achievement) =>
-            achievement.requirements === "Complete your first mission.",
-        );
-
-        if (completeYourFirstMission && !completeYourFirstMission.isUnlocked) {
-          dispatch(unlockAchievement(completeYourFirstMission!));
-          dispatch(giveXP({ xp: completeYourFirstMission!.xp }));
-        }
-        break;
-      }
-      case 4: {
-        const complete5Missions = achievements.find(
-          (achievement) => achievement.requirements === "Complete 5 missions.",
-        );
-        if (complete5Missions && !complete5Missions.isUnlocked) {
-          dispatch(unlockAchievement(complete5Missions!));
-          dispatch(giveXP({ xp: complete5Missions!.xp }));
-        }
-        break;
-      }
-      case 9: {
-        const complete10Missions = achievements.find(
-          (achievement) => achievement.requirements === "Complete 10 missions.",
-        );
-        if (complete10Missions && !complete10Missions.isUnlocked) {
-          dispatch(unlockAchievement(complete10Missions!));
-          dispatch(giveXP({ xp: complete10Missions!.xp }));
-        }
-        break;
-      }
-      case 24: {
-        const complete25Missions = achievements.find(
-          (achievement) => achievement.requirements === "Complete 25 missions.",
-        );
-        if (complete25Missions && !complete25Missions.isUnlocked) {
-          dispatch(unlockAchievement(complete25Missions!));
-          dispatch(giveXP({ xp: complete25Missions!.xp }));
-        }
-        break;
-      }
-      case 49: {
-        const complete50Missions = achievements.find(
-          (achievement) => achievement.requirements === "Complete 50 missions.",
-        );
-        if (complete50Missions && !complete50Missions.isUnlocked) {
-          dispatch(unlockAchievement(complete50Missions!));
-          dispatch(giveXP({ xp: complete50Missions!.xp }));
-        }
-        break;
-      }
-    }
-    // Difficulty Level Achievements check
-    switch (selectedMission.difficulty) {
-      case "Daily": {
-        if (dailyDifficulty && !dailyDifficulty.isUnlocked) {
-          dispatch(unlockAchievement(dailyDifficulty));
-          dispatch(giveXP({ xp: dailyDifficulty.xp }));
-        }
-        break;
-      }
-      case "Drop of Sweat": {
-        if (dropOfSweatDifficulty && !dropOfSweatDifficulty.isUnlocked) {
-          dispatch(unlockAchievement(dropOfSweatDifficulty));
-          dispatch(giveXP({ xp: dropOfSweatDifficulty.xp }));
-        }
-        break;
-      }
-      case "Challenging": {
-        if (challengingDifficulty && !challengingDifficulty.isUnlocked) {
-          dispatch(unlockAchievement(challengingDifficulty));
-          dispatch(giveXP({ xp: challengingDifficulty.xp }));
-        }
-        break;
-      }
-      case "Life-Hacker": {
-        if (lifeHackerDifficulty && !lifeHackerDifficulty.isUnlocked) {
-          dispatch(unlockAchievement(lifeHackerDifficulty));
-          dispatch(giveXP({ xp: lifeHackerDifficulty.xp }));
-        }
-        break;
-      }
-      case "Anti-Procrastinator": {
-        if (
-          antiProcrastinatorDifficulty &&
-          !antiProcrastinatorDifficulty.isUnlocked
-        ) {
-          dispatch(unlockAchievement(antiProcrastinatorDifficulty));
-          dispatch(giveXP({ xp: antiProcrastinatorDifficulty.xp }));
-        }
-        break;
-      }
-    }
   };
 
   return (

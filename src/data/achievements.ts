@@ -77,7 +77,7 @@ const achievements: Achievement[] = [
   {
     id: uuidv4(),
     title: "Difficulty Dominator",
-    requirements: "Complete one mission on every difficulty level.",
+    requirements: "Complete mission on every difficulty level.",
     image: "",
     xp: 200,
     isUnlocked: false,

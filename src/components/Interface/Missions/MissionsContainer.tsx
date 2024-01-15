@@ -16,8 +16,11 @@ import { LuAlertCircle } from "react-icons/lu";
 import { FaPlus } from "react-icons/fa";
 import Modal from "../shared/Modal";
 import { IoClose } from "react-icons/io5";
+import useAchievement from "@/src/utils/useAchievement";
 
 const MissionsContainer = () => {
+  useAchievement();
+
   const [missionsCategory, setMissionsCategory] = useState<
     "active" | "completed"
   >("active");
