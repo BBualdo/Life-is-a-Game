@@ -21,7 +21,7 @@ const AchievementsContainer = () => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-      className="relative flex w-full flex-col items-center overflow-y-auto bg-transparent xs:gap-10 xs:p-2 lg:gap-20 lg:p-10"
+      className="relative flex w-full flex-col items-center overflow-y-auto bg-transparent xs:gap-10 xs:p-2 xs:max-lg:pb-[130px] lg:gap-20 lg:p-10"
     >
       <AchievementsStats />
       <div className="flex w-full flex-col">{achievementsList}</div>

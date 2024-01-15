@@ -114,7 +114,7 @@ const MissionsContainer = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="gradient-cp-red-3 relative flex w-full border-2 border-cp-red xs:h-[400px] xs:p-2 lg:h-[800px] lg:p-10"
+        className="gradient-cp-red-3 relative flex w-full border-2 border-cp-red xs:h-[400px] xs:p-2 xs:max-lg:mb-[130px] lg:h-[800px] lg:p-10"
       >
         <div className="flex max-h-full flex-col gap-1 overflow-y-auto xs:w-full lg:w-[500px] lg:pr-4">
           {filteredMissions.length > 0 ? (
