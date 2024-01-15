@@ -88,6 +88,13 @@ const useAchievement = () => {
     addYourFirstMission: user.achievements.find(
       (achievement) => achievement.requirements === "Add your first mission.",
     ),
+
+    // Complete Profile Achievement
+    completeProfileFields: user.achievements.find(
+      (achievement) =>
+        achievement.requirements ===
+        "Complete every field in profile dashboard.",
+    ),
   };
 
   useEffect(() => {
@@ -112,27 +119,29 @@ const useAchievement = () => {
     }
 
     // Difficulty level achievements check
-    const completedMissions = user.missions.filter(
-      (mission) => mission.status === "completed",
-    );
-    const completedDifficulties = completedMissions.map(
-      (mission) => mission.difficulty,
-    );
+    {
+      const completedMissions = user.missions.filter(
+        (mission) => mission.status === "completed",
+      );
+      const completedDifficulties = completedMissions.map(
+        (mission) => mission.difficulty,
+      );
 
-    if (completedDifficulties.includes("Daily")) {
-      tryUnlockAchievement(achievementsMap.dailyDifficulty!);
-    }
-    if (completedDifficulties.includes("Drop of Sweat")) {
-      tryUnlockAchievement(achievementsMap.dropOfSweatDifficulty!);
-    }
-    if (completedDifficulties.includes("Challenging")) {
-      tryUnlockAchievement(achievementsMap.challengingDifficulty!);
-    }
-    if (completedDifficulties.includes("Life-Hacker")) {
-      tryUnlockAchievement(achievementsMap.lifeHackerDifficulty!);
-    }
-    if (completedDifficulties.includes("Anti-Procrastinator")) {
-      tryUnlockAchievement(achievementsMap.antiProcrastinatorDifficulty!);
+      if (completedDifficulties.includes("Daily")) {
+        tryUnlockAchievement(achievementsMap.dailyDifficulty!);
+      }
+      if (completedDifficulties.includes("Drop of Sweat")) {
+        tryUnlockAchievement(achievementsMap.dropOfSweatDifficulty!);
+      }
+      if (completedDifficulties.includes("Challenging")) {
+        tryUnlockAchievement(achievementsMap.challengingDifficulty!);
+      }
+      if (completedDifficulties.includes("Life-Hacker")) {
+        tryUnlockAchievement(achievementsMap.lifeHackerDifficulty!);
+      }
+      if (completedDifficulties.includes("Anti-Procrastinator")) {
+        tryUnlockAchievement(achievementsMap.antiProcrastinatorDifficulty!);
+      }
     }
 
     // All difficulty achievement check
@@ -173,6 +182,15 @@ const useAchievement = () => {
     // Add first mission achievement check
     if (user.totalMissionsAdded === 1) {
       tryUnlockAchievement(achievementsMap.addYourFirstMission!);
+    }
+
+    // Complete profile achievement check
+    if (
+      user.bio !== undefined &&
+      user.currentGoal !== undefined &&
+      user.lastName !== undefined
+    ) {
+      tryUnlockAchievement(achievementsMap.completeProfileFields!);
     }
   }, [user]);
 };

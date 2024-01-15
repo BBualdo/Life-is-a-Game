@@ -1,8 +1,12 @@
 "use client";
 
-import { completeMission, deleteMission } from "@/src/redux/slices/userSlice";
+import {
+  completeMission,
+  deleteMission,
+  unlockAchievement,
+} from "@/src/redux/slices/userSlice";
 import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
-import { AppDispatch } from "@/src/redux/store";
+import { AppDispatch, useAppSelector } from "@/src/redux/store";
 import { MissionSchema } from "@/src/utils/types";
 import { useDispatch } from "react-redux";
 import Modal from "../../shared/Modal";
@@ -17,6 +21,10 @@ const MissionButtons = ({
   selectedMission: MissionSchema;
 }) => {
   const dispatch = useDispatch<AppDispatch>();
+
+  const achievements = useAppSelector(
+    (state) => state.userReducer.achievements,
+  );
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -33,6 +41,22 @@ const MissionButtons = ({
   );
 
   const giveUpMission = () => {
+    if (
+      selectedMission.subtasks.some((subtask) => subtask.isCompleted === true)
+    ) {
+      const giveUpWithSubtaskCompleted = achievements.find(
+        (achievement) =>
+          achievement.requirements ===
+          "Give up a mission with at least one subtask completed.",
+      );
+      if (
+        giveUpWithSubtaskCompleted &&
+        !giveUpWithSubtaskCompleted.isUnlocked
+      ) {
+        dispatch(unlockAchievement(giveUpWithSubtaskCompleted!));
+        dispatch(giveXP({ xp: giveUpWithSubtaskCompleted?.xp }));
+      }
+    }
     dispatch(deleteMission(selectedMission));
     dispatch(setSelectedMission(null));
     toast("Mission removed!");

@@ -11,8 +11,10 @@ import UserBio from "./UserBio";
 import UserGoal from "./UserGoal";
 import EditProfileButton from "./EditProfileButton";
 import { useAppSelector } from "@/src/redux/store";
+import useAchievement from "@/src/utils/useAchievement";
 
 const UserData = () => {
+  useAchievement();
   const user = useAppSelector((state) => state.userReducer);
 
   return (

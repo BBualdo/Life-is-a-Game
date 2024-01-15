@@ -17,7 +17,7 @@ const UserInfo = ({ user }: { user: User }) => {
             <MissingData />
           )}
         </div>
-        <div className="flex-1 border border-white p-2">
+        <div className="flex-1 border border-white p-2 opacity-50">
           <h2 className="lg:text-md uppercase text-white xs:text-sm">
             Email Address:
           </h2>
