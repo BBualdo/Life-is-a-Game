@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import LastestAchievements from "./LastestAchievements";
 import UserAvatar from "./UserAvatar";
 import UserInfo from "./UserInfo";
 import UserXP from "./UserXP";
@@ -40,7 +39,6 @@ const UserData = () => {
       <UserStats user={user} />
       <UserGoal user={user} />
       <UserBio user={user} />
-      <LastestAchievements />
     </motion.section>
   );
 };
