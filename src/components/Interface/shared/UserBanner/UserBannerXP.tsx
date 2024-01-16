@@ -5,7 +5,7 @@ import { AppDispatch, useAppSelector } from "@/src/redux/store";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 
-const UserXP = () => {
+const UserBannerXP = () => {
   const { xp, level } = useAppSelector((state) => state.userReducer);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -37,4 +37,4 @@ const UserXP = () => {
   );
 };
 
-export default UserXP;
+export default UserBannerXP;
