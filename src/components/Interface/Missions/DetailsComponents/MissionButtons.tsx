@@ -53,8 +53,11 @@ const MissionButtons = ({
         giveUpWithSubtaskCompleted &&
         !giveUpWithSubtaskCompleted.isUnlocked
       ) {
-        dispatch(unlockAchievement(giveUpWithSubtaskCompleted!));
-        dispatch(giveXP({ xp: giveUpWithSubtaskCompleted?.xp }));
+        dispatch(unlockAchievement(giveUpWithSubtaskCompleted));
+        toast(giveUpWithSubtaskCompleted.title, {
+          description: giveUpWithSubtaskCompleted.requirements,
+        });
+        dispatch(giveXP({ xp: giveUpWithSubtaskCompleted.xp }));
       }
     }
     dispatch(deleteMission(selectedMission));
