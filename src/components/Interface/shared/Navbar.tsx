@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import links from "@/src/data/nav-links";
 import clsx from "clsx";
 import UserBanner from "./UserBanner/UserBanner";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -36,13 +37,7 @@ const Navbar = () => {
         href="/"
         className="group absolute flex items-center gap-2 transition-all duration-200 hover:scale-105 xs:max-lg:top-0 lg:left-4"
       >
-        <Image
-          src="/assets/images/logo.png"
-          alt="Gamepad Logo"
-          width={50}
-          height={50}
-          className="transition-all duration-200 group-hover:brightness-125"
-        />
+        <Logo className="h-[50px] w-[50px] transition-all duration-200 group-hover:brightness-125" />
         <h1 className={`${arcade.className} text-cp-red`}>LiaG</h1>
       </Link>
 
