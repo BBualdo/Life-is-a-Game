@@ -4,8 +4,10 @@ import { IoClose } from "react-icons/io5";
 import Modal from "../shared/Modal";
 import { useState } from "react";
 import tutorialSteps from "@/src/data/tutorialSteps";
-import Step from "./Step";
-import { v4 as uuidv4 } from "uuid";
+
+import Step1 from "./Step1";
+import Step2 from "./Step2";
+import Step3 from "./Step3";
 
 const TutorialStepper = ({
   isOpen,
@@ -21,6 +23,8 @@ const TutorialStepper = ({
     setCurrentStep(1);
   };
 
+  const progress = (currentStep / 3) * 100;
+
   return (
     isOpen && (
       <Modal isOpen={isOpen} className={["modal-cyan"]}>
@@ -31,14 +35,20 @@ const TutorialStepper = ({
             className="cursor-pointer text-3xl text-cp-cyan transition-all duration-200 hover:text-cp-red-hover"
           />
         </div>
-        <div className="mt-6 w-full">
+        <div className="mt-2 h-2 w-full border border-cp-red p-[1px]">
+          <div
+            className="h-full bg-cp-red transition-all duration-500"
+            style={{ width: progress + "%" }}
+          />
+        </div>
+        <div className="mt-6 w-full overflow-hidden">
           <div
             className="flex"
             style={{ width: 100 * tutorialSteps.length + "%" }}
           >
-            {tutorialSteps.map((step) => (
-              <Step key={uuidv4()} step={step} currentStep={currentStep} />
-            ))}
+            <Step1 currentStep={currentStep} />
+            <Step2 currentStep={currentStep} />
+            <Step3 currentStep={currentStep} />
           </div>
         </div>
         <div className="mt-6 flex w-full items-center justify-between">
