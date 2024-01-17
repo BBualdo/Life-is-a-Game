@@ -8,6 +8,7 @@ import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
+import FinalStep from "./FinalStep";
 
 const TutorialStepper = ({
   isOpen,
@@ -23,7 +24,12 @@ const TutorialStepper = ({
     setCurrentStep(1);
   };
 
-  const progress = (currentStep / 4) * 100;
+  const handleStepperClose = () => {
+    closeStepper();
+    setCurrentStep(1);
+  };
+
+  const progress = (currentStep / 5) * 100;
 
   return (
     isOpen && (
@@ -31,7 +37,7 @@ const TutorialStepper = ({
         <div className="flex w-full items-center justify-between border-b border-cp-cyan">
           <h2 className="text-xl text-cp-cyan">How to Play</h2>
           <IoClose
-            onClick={closeStepper}
+            onClick={handleStepperClose}
             className="cursor-pointer text-3xl text-cp-cyan transition-all duration-200 hover:text-cp-red-hover"
           />
         </div>
@@ -42,11 +48,12 @@ const TutorialStepper = ({
           />
         </div>
         <div className="mt-6 w-full overflow-hidden">
-          <div className="flex" style={{ width: 100 * 4 + "%" }}>
+          <div className="flex" style={{ width: 100 * 5 + "%" }}>
             <Step1 currentStep={currentStep} />
             <Step2 currentStep={currentStep} />
             <Step3 currentStep={currentStep} />
             <Step4 currentStep={currentStep} />
+            <FinalStep currentStep={currentStep} />
           </div>
         </div>
         <div className="mt-6 flex w-full items-center justify-between">
@@ -60,7 +67,7 @@ const TutorialStepper = ({
             Previous
           </button>
 
-          {currentStep < 4 && (
+          {currentStep < 5 && (
             <button
               onClick={() => setCurrentStep((prev) => prev + 1)}
               className="btn btn-cyan justify-end transition-all duration-200 hover:bg-cp-red/50"
@@ -68,7 +75,7 @@ const TutorialStepper = ({
               Next
             </button>
           )}
-          {currentStep === 4 && (
+          {currentStep === 5 && (
             <button
               onClick={handleStepperDone}
               className="btn btn-green transition-all duration-200 hover:bg-cp-green/50"

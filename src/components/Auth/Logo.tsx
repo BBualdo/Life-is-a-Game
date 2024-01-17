@@ -3,13 +3,13 @@
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 
-const Logo = () => {
+const Logo = ({ arbitaryClasses }: { arbitaryClasses: string }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="flex h-[132px] flex-col text-2xl text-white"
+      className={`flex ${arbitaryClasses} text-2xl text-white`}
     >
       <div>
         <span aria-hidden className="text-cp-red">

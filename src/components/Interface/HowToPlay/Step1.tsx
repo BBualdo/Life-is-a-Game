@@ -1,10 +1,6 @@
 "use client";
 
-import React from "react";
-import MenuLogo from "../shared/MenuLogo";
 import Logo from "../shared/Logo";
-import { arcade } from "@/src/fonts";
-
 import { motion } from "framer-motion";
 import { fadeIn } from "@/src/utils/fadeIn";
 

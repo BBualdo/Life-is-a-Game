@@ -2,7 +2,7 @@
 
 import { fadeIn } from "@/src/utils/fadeIn";
 import { motion } from "framer-motion";
-import { FaTrophy, FaRegCheckCircle } from "react-icons/fa";
+import { FaTrophy } from "react-icons/fa";
 import { GiChampions } from "react-icons/gi";
 
 const Step3 = ({ currentStep }: { currentStep: number }) => {
