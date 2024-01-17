@@ -11,6 +11,10 @@ const useAchievement = () => {
   const user = useAppSelector((state) => state.userReducer);
   const dispatch = useDispatch<AppDispatch>();
 
+  const completedAchievements = user.achievements.filter(
+    (achievement) => achievement.isUnlocked,
+  );
+
   const tryUnlockAchievement = (achievement: Achievement) => {
     if (achievement && !achievement.isUnlocked) {
       dispatch(unlockAchievement(achievement));
@@ -100,27 +104,25 @@ const useAchievement = () => {
     completeTutorial: user.achievements.find(
       (achievement) => achievement.requirements === "Complete 'How To Play'.",
     ),
+    // Unlock Every Achievement... Achievement
+    unlockAllAchievements: user.achievements.find(
+      (achievement) => achievement.requirements === "Unlock every achievement.",
+    ),
   };
 
   useEffect(() => {
     // Level achievements check
-    switch (user.level.level) {
-      case 5: {
-        tryUnlockAchievement(achievementsMap.reachLevel5!);
-        break;
-      }
-      case 10: {
-        tryUnlockAchievement(achievementsMap.reachLevel10!);
-        break;
-      }
-      case 25: {
-        tryUnlockAchievement(achievementsMap.reachLevel25!);
-        break;
-      }
-      case 50: {
-        tryUnlockAchievement(achievementsMap.reachLevel50!);
-        break;
-      }
+    if (user.level.level >= 50) {
+      tryUnlockAchievement(achievementsMap.reachLevel50!);
+    }
+    if (user.level.level >= 25) {
+      tryUnlockAchievement(achievementsMap.reachLevel25!);
+    }
+    if (user.level.level >= 10) {
+      tryUnlockAchievement(achievementsMap.reachLevel10!);
+    }
+    if (user.level.level >= 5) {
+      tryUnlockAchievement(achievementsMap.reachLevel5!);
     }
 
     // Difficulty level achievements check
@@ -197,9 +199,15 @@ const useAchievement = () => {
     ) {
       tryUnlockAchievement(achievementsMap.completeProfileFields!);
     }
+
     // Complete tutorial achievement check
     if (user.hasCompletedTutorial) {
       tryUnlockAchievement(achievementsMap.completeTutorial!);
+    }
+
+    // Unlock All Achievements achievement check
+    if (completedAchievements.length === user.achievements.length - 1) {
+      tryUnlockAchievement(achievementsMap.unlockAllAchievements!);
     }
   }, [user]);
 };
