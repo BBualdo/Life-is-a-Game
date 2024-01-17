@@ -3,7 +3,6 @@
 import { IoClose } from "react-icons/io5";
 import Modal from "../shared/Modal";
 import { useState } from "react";
-import tutorialSteps from "@/src/data/tutorialSteps";
 
 import Step1 from "./Step1";
 import Step2 from "./Step2";
@@ -27,7 +26,7 @@ const TutorialStepper = ({
 
   return (
     isOpen && (
-      <Modal isOpen={isOpen} className={["modal-cyan"]}>
+      <Modal isOpen={isOpen} className={["modal-red"]}>
         <div className="flex w-full items-center justify-between border-b border-cp-cyan">
           <h2 className="text-xl text-cp-cyan">How to Play</h2>
           <IoClose
@@ -42,10 +41,7 @@ const TutorialStepper = ({
           />
         </div>
         <div className="mt-6 w-full overflow-hidden">
-          <div
-            className="flex"
-            style={{ width: 100 * tutorialSteps.length + "%" }}
-          >
+          <div className="flex" style={{ width: 100 * 3 + "%" }}>
             <Step1 currentStep={currentStep} />
             <Step2 currentStep={currentStep} />
             <Step3 currentStep={currentStep} />
@@ -57,7 +53,7 @@ const TutorialStepper = ({
             onClick={() => setCurrentStep((prev) => prev - 1)}
             className={`${
               currentStep === 1 ? "opacity-0" : ""
-            } btn btn-cyan transition-all duration-200 enabled:hover:bg-cp-red/50`}
+            } btn btn-red transition-all duration-200 enabled:hover:bg-cp-red/50`}
           >
             Previous
           </button>
@@ -65,7 +61,7 @@ const TutorialStepper = ({
           {currentStep < 3 && (
             <button
               onClick={() => setCurrentStep((prev) => prev + 1)}
-              className="btn btn-yellow justify-end transition-all duration-200 hover:bg-black"
+              className="btn btn-cyan justify-end transition-all duration-200 hover:bg-cp-red/50"
             >
               Next
             </button>

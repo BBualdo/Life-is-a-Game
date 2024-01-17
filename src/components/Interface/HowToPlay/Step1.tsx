@@ -17,13 +17,13 @@ const Step1 = ({ currentStep }: { currentStep: number }) => {
       className="transition-translate flex h-full w-full flex-col duration-500"
     >
       <motion.div
-        variants={fadeIn("right", 0.2, 1, 0.8)}
+        variants={fadeIn("", 0.2, 1, 0.8)}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
         className="flex flex-col items-center"
       >
-        <Logo className="h-[100px] w-[100px]" />
+        <Logo className="h-[100px] w-[100px] animate-[pulse_3s_ease-in-out_infinite]" />
         <div className="flex w-full flex-col items-center gap-2">
           <h2 className="text-3xl uppercase text-white">
             Welcome to{" "}
