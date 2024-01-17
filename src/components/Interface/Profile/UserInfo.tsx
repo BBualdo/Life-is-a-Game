@@ -4,7 +4,7 @@ import { User } from "@/src/utils/types";
 const UserInfo = ({ user }: { user: User }) => {
   return (
     <>
-      <div className="mt-4 flex gap-4">
+      <div className="mt-4 flex xs:gap-2   lg:gap-4">
         <div className="flex-1 border border-white p-2">
           <h2 className="lg:text-md uppercase text-white xs:text-sm">
             Username:
@@ -30,7 +30,7 @@ const UserInfo = ({ user }: { user: User }) => {
           )}
         </div>
       </div>
-      <div className="mt-4 flex">
+      <div className="flex xs:mt-2 lg:mt-4">
         <div className="flex-1 border border-white p-2">
           <h2 className="lg:text-md uppercase text-white xs:text-sm">
             First Name:

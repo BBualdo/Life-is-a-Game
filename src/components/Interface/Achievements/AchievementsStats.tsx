@@ -55,7 +55,7 @@ const AchievementsStats = () => {
           {completedAchievements.length}/{achievements.length}
         </p>
       </div>
-      <div className="flex items-center gap-2 xs:max-lg:w-full xs:max-lg:justify-between lg:flex-col">
+      <div className="flex items-center gap-2 xs:max-lg:hidden xs:max-lg:w-full xs:max-lg:justify-between lg:flex-col">
         <h3 className="xs:text-md font-bold uppercase lg:text-lg">
           Progress %:
         </h3>

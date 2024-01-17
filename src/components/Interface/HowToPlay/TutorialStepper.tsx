@@ -54,7 +54,7 @@ const TutorialStepper = ({
             style={{ width: progress + "%" }}
           />
         </div>
-        <div className="mt-6 w-full overflow-hidden">
+        <div className="w-full overflow-hidden xs:mt-2 lg:mt-6">
           <div className="flex" style={{ width: 100 * 5 + "%" }}>
             <Step1 currentStep={currentStep} />
             <Step2 currentStep={currentStep} />
@@ -63,13 +63,13 @@ const TutorialStepper = ({
             <FinalStep currentStep={currentStep} />
           </div>
         </div>
-        <div className="mt-6 flex w-full items-center justify-between">
+        <div className="flex w-full items-center justify-between xs:mt-2 xs:max-lg:flex-col-reverse xs:max-lg:gap-2 lg:mt-6">
           <button
             disabled={currentStep === 1}
             onClick={() => setCurrentStep((prev) => prev - 1)}
             className={`${
-              currentStep === 1 ? "opacity-0" : ""
-            } btn btn-red transition-all duration-200 enabled:hover:bg-cp-red/50`}
+              currentStep === 1 ? "opacity-0" : "btn btn-red"
+            } transition-opacity duration-200 enabled:hover:bg-cp-red/50`}
           >
             Previous
           </button>
