@@ -2,9 +2,9 @@
 
 import { fadeIn } from "@/src/utils/fadeIn";
 import { motion } from "framer-motion";
-import { CheckCircle } from "lucide-react";
-import { FaRegCheckCircle } from "react-icons/fa";
+import { FaPlus, FaRegCheckCircle } from "react-icons/fa";
 import { GiOpenBook } from "react-icons/gi";
+import { LuAlertCircle } from "react-icons/lu";
 
 const Step2 = ({ currentStep }: { currentStep: number }) => {
   return (
@@ -19,16 +19,20 @@ const Step2 = ({ currentStep }: { currentStep: number }) => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="flex flex-col"
+        className="flex flex-col lg:max-w-[80%]"
       >
         <h2 className="flex items-center gap-2 text-2xl font-bold uppercase text-white">
           Missions <GiOpenBook />
         </h2>
         <div className="flex flex-col">
-          <p className="text-lg text-white">
+          <p className="text-md text-white">
             Here you can create missions to complete. Click the{" "}
-            <span className="text-cp-yellow">Create Mission (+)</span> button to
-            open the form.
+            <span className="inline-block font-bold uppercase text-cp-yellow">
+              <span className="flex items-center gap-1">
+                Create Mission <FaPlus />
+              </span>
+            </span>{" "}
+            button to open the form.
           </p>
           <p className="text-md text-white">
             In the form you can define mission's{" "}
@@ -42,6 +46,17 @@ const Step2 = ({ currentStep }: { currentStep: number }) => {
             and split it into various{" "}
             <span className="font-bold uppercase text-cp-cyan">Subtasks</span>.
           </p>
+          <p className="text-md text-white">
+            After clicking{" "}
+            <span className="font-bold uppercase text-cp-yellow">Create</span>{" "}
+            button, mission will appear in{" "}
+            <span className="inline-block font-bold uppercase text-cp-cyan">
+              <span className="flex items-center gap-1">
+                Active <LuAlertCircle />
+              </span>
+            </span>{" "}
+            section.
+          </p>
           <p className="text-md mt-2 text-white">
             <span className="font-bold uppercase text-cp-red">DIFFICULTY:</span>{" "}
             Be fair with yourself when you set up mission's difficulty level.
@@ -52,8 +67,8 @@ const Step2 = ({ currentStep }: { currentStep: number }) => {
           <p className="text-md mt-2 text-white">
             <span className="font-bold uppercase text-cp-red">SUBTASKS:</span>{" "}
             You don't have to split mission into smaller parts. If mission is
-            simple you can leave it empty. App will create one subtask based on
-            your mission's title.
+            simple you can leave it empty. The app will create one subtask based
+            on your mission's title.
           </p>
           <p className="text-md mt-2 text-white">
             If you check all your subtasks as completed,{" "}

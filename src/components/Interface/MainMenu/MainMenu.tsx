@@ -21,6 +21,15 @@ const MainMenu = () => {
     }
   };
 
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+    document.body.style.overflow = "";
+  };
+
   const navLinks = links.map((link) => (
     <Link
       onMouseEnter={() => playSound(link.disabled)}
@@ -49,7 +58,7 @@ const MainMenu = () => {
           className="mt-10 flex flex-col gap-4 text-white"
         >
           <button
-            onClick={() => setIsOpen(true)}
+            onClick={openModal}
             onMouseEnter={() => playSound(false)}
             className="btn-menu text-white hover:border-cp-cyan hover:text-cp-cyan disabled:text-white/50 disabled:hover:border-transparent"
           >
@@ -73,7 +82,7 @@ const MainMenu = () => {
           </button> */}
         </motion.div>
       </section>
-      <TutorialStepper isOpen={isOpen} closeStepper={() => setIsOpen(false)} />
+      <TutorialStepper isOpen={isOpen} closeStepper={closeModal} />
     </>
   );
 };
