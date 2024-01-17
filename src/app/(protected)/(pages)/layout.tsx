@@ -1,6 +1,5 @@
 import MobileNav from "@/src/components/Interface/shared/MobileNav";
 import Navbar from "@/src/components/Interface/shared/Navbar";
-import { Toaster } from "sonner";
 
 export default function PagesLayout({
   children,
@@ -12,17 +11,6 @@ export default function PagesLayout({
       <Navbar />
       <MobileNav />
       {children}
-      <Toaster
-        position="top-center"
-        toastOptions={{
-          unstyled: true,
-          classNames: {
-            toast:
-              "bg-black border-2 border-cp-cyan px-4 text-cp-cyan py-2 w-full text-center overflow-hidden",
-            title: "font-bold xs:text-md lg:text-lg",
-          },
-        }}
-      />
     </>
   );
 }

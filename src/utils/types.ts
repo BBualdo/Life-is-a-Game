@@ -54,6 +54,7 @@ export type User = {
   totalMissionsAdded: number;
   totalMissionsCompleted: number;
   missions: MissionSchema[];
+  hasCompletedTutorial: boolean;
 };
 
 export type UserProfileEditType = {

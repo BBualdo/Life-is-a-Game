@@ -24,6 +24,7 @@ const initialState: User = {
   totalMissionsAdded: 0,
   totalMissionsCompleted: 0,
   missions: [],
+  hasCompletedTutorial: false,
 };
 
 const userSlice = createSlice({
@@ -169,6 +170,12 @@ const userSlice = createSlice({
         state.totalMissionsCompleted = state.totalMissionsCompleted + 1;
       }
     },
+    // Complete tutorial reducer
+    completeTutorial: (state) => {
+      if (!state.hasCompletedTutorial) {
+        state.hasCompletedTutorial = !state.hasCompletedTutorial;
+      }
+    },
   },
 });
 
@@ -184,5 +191,6 @@ export const {
   toggleSubtaskComplition,
   updateMission,
   deleteMission,
+  completeTutorial,
 } = userSlice.actions;
 export default userSlice.reducer;

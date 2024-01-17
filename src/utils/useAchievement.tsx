@@ -96,6 +96,10 @@ const useAchievement = () => {
         achievement.requirements ===
         "Complete every field in profile dashboard.",
     ),
+    // Complete Tutorial Achievement
+    completeTutorial: user.achievements.find(
+      (achievement) => achievement.requirements === "Complete 'How To Play'.",
+    ),
   };
 
   useEffect(() => {
@@ -192,6 +196,10 @@ const useAchievement = () => {
       user.lastName !== undefined
     ) {
       tryUnlockAchievement(achievementsMap.completeProfileFields!);
+    }
+    // Complete tutorial achievement check
+    if (user.hasCompletedTutorial) {
+      tryUnlockAchievement(achievementsMap.completeTutorial!);
     }
   }, [user]);
 };
