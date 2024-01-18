@@ -195,7 +195,8 @@ const useAchievement = () => {
     if (
       user.bio !== undefined &&
       user.currentGoal !== undefined &&
-      user.lastName !== undefined
+      user.lastName !== undefined &&
+      user.avatar !== ""
     ) {
       tryUnlockAchievement(achievementsMap.completeProfileFields!);
     }
