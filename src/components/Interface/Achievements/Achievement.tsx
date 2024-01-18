@@ -7,7 +7,7 @@ const Achievement = ({ achievement }: { achievement: Achievement }) => {
   return (
     <div
       className={clsx(
-        "flex items-center justify-between border-y border-light-silver/20 py-4 pr-4 text-white transition-all duration-200 hover:bg-white/10",
+        "relative flex items-center justify-between border-y border-light-silver/20 py-4 pr-4 text-white transition-all duration-200 hover:bg-white/10",
         { "opacity-50": !achievement.isUnlocked },
       )}
     >
@@ -24,7 +24,7 @@ const Achievement = ({ achievement }: { achievement: Achievement }) => {
       </div>
 
       {achievement.unlockDate && (
-        <p className="lg:text-md font-bold text-cp-green xs:text-sm">
+        <p className="lg:text-md font-bold text-cp-green xs:text-xs xs:max-lg:absolute xs:max-lg:bottom-1 xs:max-lg:right-1">
           <GiTrophy className="inline" /> {achievement.unlockDate}
         </p>
       )}
