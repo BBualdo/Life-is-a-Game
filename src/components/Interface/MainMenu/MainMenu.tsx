@@ -11,15 +11,7 @@ import { useState } from "react";
 import TutorialStepper from "../HowToPlay/TutorialStepper";
 
 const MainMenu = () => {
-  const [audio] = useState(new Audio("/assets/audio/hoverEffect.mp3"));
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  const playSound = (disabled: boolean) => {
-    if (!disabled) {
-      audio.currentTime = 0;
-      audio.play();
-    }
-  };
 
   const openModal = () => {
     setIsOpen(true);
@@ -31,11 +23,7 @@ const MainMenu = () => {
   };
 
   const navLinks = links.map((link) => (
-    <Link
-      onMouseEnter={() => playSound(link.disabled)}
-      key={link.key}
-      href={link.href}
-    >
+    <Link key={link.key} href={link.href}>
       <button
         disabled={link.disabled}
         className="btn-menu w-full text-white hover:border-cp-cyan hover:text-cp-cyan disabled:text-white/50 disabled:hover:border-transparent"
@@ -49,6 +37,9 @@ const MainMenu = () => {
     <>
       <Backdrop />
       <section className="xs:px-4 md:px-[120px]">
+        <p className="absolute right-2 top-1 text-sm text-cp-red">
+          version: 1.0.0
+        </p>
         <MenuLogo />
         <motion.div
           variants={fadeIn("right", 0.7, 1, 1.2)}
@@ -59,18 +50,11 @@ const MainMenu = () => {
         >
           <button
             onClick={openModal}
-            onMouseEnter={() => playSound(false)}
             className="btn-menu text-white hover:border-cp-cyan hover:text-cp-cyan disabled:text-white/50 disabled:hover:border-transparent"
           >
             How to Play
           </button>
           {navLinks}
-          <button
-            disabled
-            className="btn-menu text-white hover:border-cp-cyan hover:text-cp-cyan disabled:text-white/50 disabled:hover:border-transparent"
-          >
-            Settings
-          </button>
           {/* TODO: Allow to log out when authentication will be implemented */}
           {/* <button
             disabled
