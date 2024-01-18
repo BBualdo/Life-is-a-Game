@@ -27,6 +27,8 @@ export type MissionSchema = {
   difficulty: DifficultiesType;
   xp: number;
   subtasks: SubtaskType[];
+  creationDate: string;
+  complitionDate: string;
 };
 
 export type EditMissionSchema = {

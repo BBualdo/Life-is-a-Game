@@ -24,6 +24,8 @@ export const missionFormSchema = z.object({
       isCompleted: z.boolean(),
     }),
   ),
+  creationDate: z.string(),
+  complitionDate: z.string(),
 });
 
 // Signup Zod Schema

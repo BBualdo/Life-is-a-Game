@@ -15,9 +15,12 @@ import { v4 as uuidv4 } from "uuid";
 import { missionFormSchema } from "@/src/utils/schemas";
 import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 import { toast } from "sonner";
+import { format } from "@/src/lib/utils";
 
 const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
   const dispatch = useDispatch<AppDispatch>();
+
+  const date = new Date();
 
   const form = useForm<z.infer<typeof missionFormSchema>>({
     resolver: zodResolver(missionFormSchema),
@@ -29,6 +32,8 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
       difficulty: "Challenging",
       xp: 150,
       subtasks: [],
+      creationDate: format(date),
+      complitionDate: "",
     },
   });
 
