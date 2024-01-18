@@ -16,7 +16,8 @@ const MissionDetails = ({
 }: {
   selectedMission: MissionSchema;
 }) => {
-  const { id, title, description, subtasks, creationDate } = selectedMission;
+  const { id, title, description, subtasks, creationDate, complitionDate } =
+    selectedMission;
   const dispatch = useDispatch<AppDispatch>();
 
   const missionCompleted = selectedMission.status === "completed";
@@ -35,12 +36,23 @@ const MissionDetails = ({
         {!missionCompleted && <EditMissionButton />}
       </div>
       <div className="flex flex-col xs:gap-6 lg:gap-10">
-        <p className="text-sm text-light-silver">
-          Created:{" "}
-          <span className="font-bold uppercase text-cp-cyan">
-            {creationDate}
-          </span>
-        </p>
+        <div className="flex flex-col">
+          <p className="text-sm text-light-silver">
+            Created:{" "}
+            <span className="font-bold uppercase text-cp-cyan">
+              {creationDate}
+            </span>
+          </p>
+          {complitionDate && (
+            <p className="text-sm text-light-silver">
+              Completed:{" "}
+              <span className="font-bold uppercase text-cp-green">
+                {complitionDate}
+              </span>
+            </p>
+          )}
+        </div>
+
         <ul className="flex flex-col gap-2">
           {subtasks.map((subtask) => (
             <li

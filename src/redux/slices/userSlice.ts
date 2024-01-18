@@ -1,5 +1,6 @@
 import achievements from "@/src/data/achievements";
 import levels from "@/src/data/levels";
+import { format } from "@/src/lib/utils";
 import {
   Achievement,
   MissionSchema,
@@ -163,7 +164,11 @@ const userSlice = createSlice({
       if (missionToComplete) {
         const updatedMissions = state.missions.map((mission) =>
           mission.id === id
-            ? { ...mission, status: "completed" as const }
+            ? {
+                ...mission,
+                status: "completed" as const,
+                complitionDate: format(new Date()),
+              }
             : mission,
         );
         state.missions = updatedMissions;
