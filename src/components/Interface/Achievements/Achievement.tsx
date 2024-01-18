@@ -1,25 +1,31 @@
 import { Achievement } from "@/src/utils/types";
 import clsx from "clsx";
+import Image from "next/image";
+import { GiTrophy } from "react-icons/gi";
 
 const Achievement = ({ achievement }: { achievement: Achievement }) => {
   return (
     <div
       className={clsx(
-        "flex items-center justify-between border-y border-light-silver/20 p-4 text-white transition-all duration-200 hover:bg-white/10",
+        "flex items-center justify-between border-y border-light-silver/20 py-4 pr-4 text-white transition-all duration-200 hover:bg-white/10",
         { "opacity-50": !achievement.isUnlocked },
       )}
     >
-      <div className="flex flex-col xs:max-lg:max-w-[70%]">
-        <h3 className="text-white shadow-white text-shadow-lg xs:text-lg lg:text-xl">
-          {achievement.title}
-        </h3>
-        <p className="lg:text-md text-light-silver xs:text-sm">
-          {achievement.requirements}
-        </p>
+      <div className="flex items-center gap-2">
+        <Image alt="" src={achievement.image} width={50} height={50} />
+        <div className="flex flex-col xs:max-lg:max-w-[70%]">
+          <h3 className="text-white shadow-white text-shadow-lg xs:text-lg lg:text-xl">
+            {achievement.title}
+          </h3>
+          <p className="lg:text-md text-light-silver xs:text-sm">
+            {achievement.requirements}
+          </p>
+        </div>
       </div>
+
       {achievement.unlockDate && (
-        <p className="xs:text-md font-bold text-cp-green lg:text-lg">
-          {achievement.unlockDate}
+        <p className="lg:text-md font-bold text-cp-green xs:text-sm">
+          <GiTrophy className="inline" /> {achievement.unlockDate}
         </p>
       )}
 
