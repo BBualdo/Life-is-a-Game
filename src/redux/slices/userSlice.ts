@@ -81,6 +81,7 @@ const userSlice = createSlice({
         const updatedAchievement = {
           ...achievementToUnlock,
           isUnlocked: true,
+          unlockDate: format(new Date()),
         };
         const updatedAchievements = state.achievements.map((achievement) =>
           achievement.id === updatedAchievement.id

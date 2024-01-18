@@ -9,6 +9,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 10,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -17,6 +18,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 10,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -25,6 +27,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 25,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -33,6 +36,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 10,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -41,6 +45,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 25,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -49,6 +54,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 50,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -57,6 +63,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 75,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -65,6 +72,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 100,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -73,6 +81,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 250,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -81,6 +90,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 200,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -89,6 +99,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 25,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -97,6 +108,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 50,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -105,6 +117,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 100,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -113,6 +126,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 250,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -121,6 +135,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 500,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -129,6 +144,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 50,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -137,6 +153,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 100,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -145,6 +162,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 250,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -153,6 +171,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 500,
     isUnlocked: false,
+    unlockDate: "",
   },
   {
     id: uuidv4(),
@@ -161,6 +180,7 @@ const achievements: Achievement[] = [
     image: "",
     xp: 2500,
     isUnlocked: false,
+    unlockDate: "",
   },
 ];
 

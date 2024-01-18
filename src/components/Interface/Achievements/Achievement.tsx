@@ -17,6 +17,11 @@ const Achievement = ({ achievement }: { achievement: Achievement }) => {
           {achievement.requirements}
         </p>
       </div>
+      {achievement.unlockDate && (
+        <p className="xs:text-md font-bold text-cp-green lg:text-lg">
+          {achievement.unlockDate}
+        </p>
+      )}
 
       <p className="xs:text-md text-cp-white flex items-center gap-1 font-bold lg:text-lg">
         {achievement.xp} <p>XP</p>

@@ -74,4 +74,5 @@ export type Achievement = {
   image: string;
   xp: number;
   isUnlocked: boolean;
+  unlockDate: string;
 };
