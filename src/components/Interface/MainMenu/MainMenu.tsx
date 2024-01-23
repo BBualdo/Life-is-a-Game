@@ -38,7 +38,7 @@ const MainMenu = () => {
       <Backdrop />
       <section className="xs:px-4 md:px-[120px]">
         <p className="absolute right-2 top-1 text-sm text-cp-red">
-          version: 1.0.0
+          version: beta 0.5.0
         </p>
         <MenuLogo />
         <motion.div
