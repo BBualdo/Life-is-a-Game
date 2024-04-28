@@ -1,9 +1,9 @@
-import { Achievement } from "@/src/utils/types";
+import { AchievementType } from "@/src/utils/types";
 import clsx from "clsx";
 import Image from "next/image";
 import { GiTrophy } from "react-icons/gi";
 
-const Achievement = ({ achievement }: { achievement: Achievement }) => {
+const Achievement = ({ achievement }: { achievement: AchievementType }) => {
   return (
     <div
       className={clsx(

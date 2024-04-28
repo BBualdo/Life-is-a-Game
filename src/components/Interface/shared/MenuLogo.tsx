@@ -1,7 +1,6 @@
 "use client";
 
 import { arcade } from "@/src/fonts";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/src/utils/fadeIn";
 import Logo from "./Logo";

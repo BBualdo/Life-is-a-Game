@@ -52,7 +52,7 @@ export type User = {
   bio: string | undefined;
   level: Level;
   xp: number;
-  achievements: Achievement[];
+  achievements: AchievementType[];
   totalMissionsAdded: number;
   totalMissionsCompleted: number;
   missions: MissionSchema[];
@@ -67,7 +67,7 @@ export type UserProfileEditType = {
   bio?: string | undefined;
 };
 
-export type Achievement = {
+export type AchievementType = {
   id: string;
   title: string;
   requirements: string;

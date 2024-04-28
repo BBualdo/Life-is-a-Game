@@ -2,7 +2,7 @@ import achievements from "@/src/data/achievements";
 import levels from "@/src/data/levels";
 import { format } from "@/src/lib/utils";
 import {
-  Achievement,
+  AchievementType,
   MissionSchema,
   User,
   UserProfileEditType,
@@ -74,7 +74,7 @@ const userSlice = createSlice({
     },
 
     // Achievement Reducers
-    unlockAchievement: (state, action: PayloadAction<Achievement>) => {
+    unlockAchievement: (state, action: PayloadAction<AchievementType>) => {
       const achievementToUnlock = action.payload;
 
       if (!achievementToUnlock.isUnlocked) {

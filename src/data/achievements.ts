@@ -1,7 +1,7 @@
-import { Achievement } from "../utils/types";
+import { AchievementType } from "../utils/types";
 import { v4 as uuidv4 } from "uuid";
 
-const achievements: Achievement[] = [
+const achievements: AchievementType[] = [
   {
     id: uuidv4(),
     title: "Neon Novice",

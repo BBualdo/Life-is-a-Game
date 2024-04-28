@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch, useAppSelector } from "../redux/store";
 import { useEffect } from "react";
 import { giveXP, unlockAchievement } from "../redux/slices/userSlice";
-import { Achievement } from "./types";
+import { AchievementType } from "./types";
 import { toast } from "sonner";
 
 const useAchievement = () => {
@@ -15,7 +15,7 @@ const useAchievement = () => {
     (achievement) => achievement.isUnlocked,
   );
 
-  const tryUnlockAchievement = (achievement: Achievement) => {
+  const tryUnlockAchievement = (achievement: AchievementType) => {
     if (achievement && !achievement.isUnlocked) {
       dispatch(unlockAchievement(achievement));
       toast(achievement.title, {
