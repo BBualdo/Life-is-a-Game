@@ -9,6 +9,8 @@ import { motion } from "framer-motion";
 import { fadeIn } from "@/src/utils/fadeIn";
 import { useState } from "react";
 import TutorialStepper from "../HowToPlay/TutorialStepper";
+import { GiPowerButton } from "react-icons/gi";
+import { useRouter } from "next/navigation";
 
 const MainMenu = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -21,6 +23,8 @@ const MainMenu = () => {
     setIsOpen(false);
     document.body.style.overflow = "";
   };
+
+  const router = useRouter();
 
   const navLinks = links.map((link) => (
     <Link key={link.key} href={link.href}>
@@ -56,14 +60,13 @@ const MainMenu = () => {
           </button>
           {navLinks}
           {/* TODO: Allow to log out when authentication will be implemented */}
-          {/* <button
-            disabled
+         <button
             className="btn-menu flex items-center gap-2 text-cp-red enabled:hover:border-cp-red enabled:hover:text-cp-red-hover disabled:text-cp-red/50"
             onClick={() => router.push("/login")}
           >
             <GiPowerButton />
             Logout
-          </button> */}
+          </button>
         </motion.div>
       </section>
       <TutorialStepper isOpen={isOpen} closeStepper={closeModal} />

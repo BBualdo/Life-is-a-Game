@@ -10,10 +10,10 @@ const useUser = () => {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (user.id && pathname === "/get-started") {
+    if (user.id && pathname === "/login") {
       router.replace("/");
     } else if (!user.id) {
-      router.replace("/get-started");
+      router.replace("/login");
     }
   }, [user.id, router]);
 };

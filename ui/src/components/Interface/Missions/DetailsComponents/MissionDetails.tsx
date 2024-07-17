@@ -16,7 +16,7 @@ const MissionDetails = ({
 }: {
   selectedMission: MissionSchema;
 }) => {
-  const { id, title, description, subtasks, creationDate, complitionDate } =
+  const { id, title, description, subtasks, creationDate, completionDate } =
     selectedMission;
   const dispatch = useDispatch<AppDispatch>();
 
@@ -43,11 +43,11 @@ const MissionDetails = ({
               {creationDate}
             </span>
           </p>
-          {complitionDate && (
+          {completionDate && (
             <p className="text-sm text-light-silver">
               Completed:{" "}
               <span className="font-bold uppercase text-cp-green">
-                {complitionDate}
+                {completionDate}
               </span>
             </p>
           )}

@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={`bg-black ${play.className}`}>
         <ReduxProvider>
           <>
-            {children}{" "}
+            {children}
             <Toaster
               position="top-center"
               toastOptions={{

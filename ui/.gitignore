@@ -42,3 +42,4 @@ next-env.d.ts
 #trash
 **/Trash
 **/Future Ideas
+/src/Deprecated/

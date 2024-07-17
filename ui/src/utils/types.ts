@@ -28,7 +28,7 @@ export type MissionSchema = {
   xp: number;
   subtasks: SubtaskType[];
   creationDate: string;
-  complitionDate: string;
+  completionDate: string;
 };
 
 export type EditMissionSchema = {
