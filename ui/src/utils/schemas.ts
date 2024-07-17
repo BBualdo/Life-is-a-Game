@@ -25,7 +25,7 @@ export const missionFormSchema = z.object({
     }),
   ),
   creationDate: z.string(),
-  complitionDate: z.string(),
+  completionDate: z.string(),
 });
 
 // Signup Zod Schema

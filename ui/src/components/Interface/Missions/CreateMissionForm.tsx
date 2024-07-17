@@ -33,7 +33,7 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
       xp: 150,
       subtasks: [],
       creationDate: format(date),
-      complitionDate: "",
+      completionDate: "",
     },
   });
 
