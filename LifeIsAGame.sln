@@ -8,6 +8,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{15D13E27-83B2-436D-B29E-DCF999DB897C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,5 +19,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15D13E27-83B2-436D-B29E-DCF999DB897C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15D13E27-83B2-436D-B29E-DCF999DB897C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15D13E27-83B2-436D-B29E-DCF999DB897C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15D13E27-83B2-436D-B29E-DCF999DB897C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

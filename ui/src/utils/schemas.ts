@@ -20,7 +20,7 @@ export const missionFormSchema = z.object({
   subtasks: z.array(
     z.object({
       id: z.string(),
-      title: z.string(),
+      title: z.string().max(50, {message: "Subtask title is too long."}),
       isCompleted: z.boolean(),
     }),
   ),
@@ -66,10 +66,10 @@ export const userCreatorSchema = z.object({
   firstName: z
     .string()
     .min(3, { message: "First name must be at least 3 characters." })
-    .max(15, { message: "First name can't be longer than 15 characters." }),
+    .max(24, { message: "First name can't be longer than 15 characters." }),
   lastName: z
     .string()
-    .max(25, { message: "Last name can't be longer than 25 characters." })
+    .max(32, { message: "Last name can't be longer than 25 characters." })
     .optional(),
   username: z
     .string()
