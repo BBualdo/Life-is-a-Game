@@ -1,4 +1,5 @@
-﻿using Data.Models;
+﻿using Data.Helpers;
+using Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,6 @@ public class LiagDbContext(DbContextOptions options) : IdentityDbContext<User>(o
 
   protected override void OnModelCreating(ModelBuilder builder)
   {
-    base.OnModelCreating(builder);
+    builder.Entity<Achievement>().HasData(AchievementSeeder.GetAchievements());
   }
 }
