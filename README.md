@@ -43,7 +43,13 @@ This is an application where users can set missions for themselves, track their 
 - External Providers Auth (Facebook, Google, GitHub) (soon)
 
 ## My process
-Coming soon...
+
+#### Backend
+1. Defined Models with Data Annotations and created DbContext using Entity Framework Core with ASP.NET Identity.
+2. Ensured that Achievements are created on Database creation.
+3. Created DTOs for login, register and reset password purpose.
+4. Configured ASP.NET Identity.
+5. AuthService implementation to store responsibility for actions like login, logout, registering and password recovery. For now I only implemented methods responsible for login, register and logout. Wondered what these methods should return, so I created ```AuthOperationResult``` class which purpose is to store results of auth operations.
 
 ### 🧰 Built with
 

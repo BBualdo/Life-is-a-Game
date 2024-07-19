@@ -13,6 +13,7 @@ public class User : IdentityUser
   [Required] public int Level { get; set; }
   [Required] public int TotalMissionsAdded { get; set; }
   [Required] public int TotalMissionsCompleted { get; set; }
+  [Required] public int TotalXpGained { get; set; }
   public string? AvatarUrl { get; set; }
   [Required] public bool HasCompletedTutorial { get; set; }
 }
