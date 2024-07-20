@@ -40,24 +40,24 @@ export type EditMissionSchema = {
 
 export type Level = { level: number; ceil: number };
 
-export type User = {
-  id: string | undefined;
-  avatar: string;
-  username: string;
-  email: string | undefined;
-  firstName: string;
-  lastName: string | undefined;
-  xpGained: number;
-  currentGoal: string | undefined;
-  bio: string | undefined;
-  level: Level;
-  xp: number;
-  achievements: AchievementType[];
-  totalMissionsAdded: number;
-  totalMissionsCompleted: number;
-  missions: MissionSchema[];
-  hasCompletedTutorial: boolean;
-};
+// export type User = {
+//   id: string | undefined;
+//   avatar: string;
+//   username: string;
+//   email: string | undefined;
+//   firstName: string;
+//   lastName: string | undefined;
+//   xpGained: number;
+//   currentGoal: string | undefined;
+//   bio: string | undefined;
+//   level: Level;
+//   xp: number;
+//   achievements: AchievementType[];
+//   totalMissionsAdded: number;
+//   totalMissionsCompleted: number;
+//   missions: MissionSchema[];
+//   hasCompletedTutorial: boolean;
+// };
 
 export type UserProfileEditType = {
   firstName: string;

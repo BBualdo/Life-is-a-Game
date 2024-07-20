@@ -17,7 +17,8 @@ import { Input } from "@/src/shadcn/ui/input";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { loginFormSchema } from "@/src/utils/schemas";
+import loginFormSchema from "@/src/schemas/loginFormSchema";
+import UserService from "@/src/services/userService";
 
 // Login Component
 const LoginForm = () => {
@@ -31,8 +32,8 @@ const LoginForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof loginFormSchema>) {
-    router.push("/");
+  async function onSubmit(values: z.infer<typeof loginFormSchema>) {
+    await UserService.login(values.email, values.password);
   }
 
   return (

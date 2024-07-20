@@ -15,7 +15,8 @@ import { Input } from "@/src/shadcn/ui/input";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { signupFormSchema } from "@/src/utils/schemas";
+import signupFormSchema from "@/src/schemas/signUpFormSchema";
+import UserService from "@/src/services/userService";
 
 // Signup Component
 const SignupForm = () => {
@@ -31,12 +32,9 @@ const SignupForm = () => {
     },
   });
 
-  function onSubmit({
-    email,
-    password,
-    username,
-  }: z.infer<typeof signupFormSchema>) {
-    router.push("/");
+  async function onSubmit(values: z.infer<typeof signupFormSchema>) {
+    const { username, email, password } = values;
+    await UserService.register(username, email, password);
   }
 
   return (
