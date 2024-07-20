@@ -1,4 +1,5 @@
-﻿using Contracts;
+﻿using System.Security.Claims;
+using Contracts;
 using Contracts.DTO.Auth;
 using Data.Models;
 using Microsoft.AspNetCore.Identity;
@@ -10,7 +11,34 @@ public class AuthService(UserManager<User> userManager, SignInManager<User> sign
   private readonly UserManager<User> _userManager = userManager;
   private readonly SignInManager<User> _signInManager = signInManager;
 
-  public async Task<AuthOperationResult> Login(LoginDto loginDto, bool isPersistent)
+  public async Task<UserDto?> GetCurrentUser(ClaimsPrincipal claims)
+  {
+    var user = await _userManager.GetUserAsync(claims);
+
+    if (user is null) return null;
+    
+    var userDto = new UserDto
+    {
+      Id = user.Id,
+      Username = user.UserName,
+      Email = user.Email,
+      Level = user.Level,
+      Xp = user.Xp,
+      FirstName = user.FirstName,
+      LastName = user.LastName,
+      CurrentGoal = user.CurrentGoal,
+      Bio = user.Bio,
+      AvatarUrl = user.AvatarUrl,
+      TotalMissionsAdded = user.TotalMissionsAdded,
+      TotalMissionsCompleted = user.TotalMissionsCompleted,
+      TotalXpGained = user.TotalXpGained,
+      HasCompletedTutorial = user.HasCompletedTutorial
+    };
+    
+    return userDto;
+  }
+
+  public async Task<AuthOperationResult> Login(LoginDto loginDto)
   {
     var user = await _userManager.FindByEmailAsync(loginDto.Email!);
 
@@ -23,7 +51,7 @@ public class AuthService(UserManager<User> userManager, SignInManager<User> sign
       };
     
     var result =
-      await _signInManager.PasswordSignInAsync(user, loginDto.Password!, isPersistent, lockoutOnFailure: false);
+      await _signInManager.PasswordSignInAsync(user, loginDto.Password!, loginDto.RememberMe, lockoutOnFailure: false);
 
     if (result.Succeeded)
       return new AuthOperationResult

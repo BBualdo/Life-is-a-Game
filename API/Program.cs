@@ -1,7 +1,9 @@
+using Contracts;
 using Data;
 using Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,9 +13,14 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<LiagDbContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
 builder.Services.AddAuthorization();
-builder.Services.AddIdentityCore<User>()
-  .AddEntityFrameworkStores<LiagDbContext>();
+
+builder.Services.AddIdentity<User, IdentityRole>()
+  .AddEntityFrameworkStores<LiagDbContext>()
+  .AddSignInManager<SignInManager<User>>();
+
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(LiagDbContext))]
-    [Migration("20240718145207_Initial")]
+    [Migration("20240719140033_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -55,7 +55,7 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("0ef6d16d-6e39-47d9-ba9f-b96d1a58003f"),
+                            Id = new Guid("80df3ace-5a60-4935-aaca-167fc3a263eb"),
                             ImageUrl = "https://ibb.co/zmnKFD4",
                             Requirements = "Complete 'How To Play'.",
                             Title = "Neon Novice",
@@ -63,7 +63,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("dc35f4db-b368-4984-8089-7d76c3a3151c"),
+                            Id = new Guid("eda2a134-4451-4487-a307-260dbb9ca0ad"),
                             ImageUrl = "https://ibb.co/5nLkGL3",
                             Requirements = "Add your first mission.",
                             Title = "Mission Maverick",
@@ -71,7 +71,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("fe4230b1-ffd4-4f83-8b1a-dc05cce3e1d7"),
+                            Id = new Guid("83953144-8887-441a-95b0-51b93b2627c6"),
                             ImageUrl = "https://ibb.co/vHRxKWn",
                             Requirements = "Complete your first mission.",
                             Title = "Codebreaker Initiate",
@@ -79,7 +79,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e46799bf-6bd2-4e15-a3a5-98b894a6b48e"),
+                            Id = new Guid("57e3151c-974c-4a82-bb4d-4a6fad2ec229"),
                             ImageUrl = "https://ibb.co/z8NJnzy",
                             Requirements = "Complete every field in profile dashboard.",
                             Title = "Profile Overdrive",
@@ -87,7 +87,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("007e33eb-5319-42d9-b07e-b049e1fdccfa"),
+                            Id = new Guid("d6cabe6d-2ff0-4d2c-ae79-4d56448fe01c"),
                             ImageUrl = "https://ibb.co/XzjWXMw",
                             Requirements = "Complete mission on 'Daily' difficulty.",
                             Title = "Daily Data Dynamo",
@@ -95,7 +95,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("237107f6-4c04-4be4-841a-e2fcc41f9c73"),
+                            Id = new Guid("330b242a-abe1-49ab-af2b-681b791a1bb8"),
                             ImageUrl = "https://ibb.co/2hj4PXS",
                             Requirements = "Complete mission on 'Drop of Sweat' difficulty.",
                             Title = "Sweat-Proof Runner",
@@ -103,7 +103,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2a8170df-8c36-465b-a1ce-e87a5a2f9e34"),
+                            Id = new Guid("69db42a9-e83d-4722-94ff-dd77477bb088"),
                             ImageUrl = "https://ibb.co/4NXkrCj",
                             Requirements = "Complete mission on 'Challenging' difficulty.",
                             Title = "Chaos Conqueror",
@@ -111,7 +111,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("88e7120b-4847-45b0-8770-5477b76f4b67"),
+                            Id = new Guid("3b17665c-d11e-4515-871a-7d5462f6e2d7"),
                             ImageUrl = "https://ibb.co/0qDhmWQ",
                             Requirements = "Complete mission on 'Life-Hacker' difficulty.",
                             Title = "Life-Hacker Elite",
@@ -119,7 +119,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("47963d06-d80c-42d5-9a70-4c9fed8fb8b4"),
+                            Id = new Guid("83841a4e-4527-47cb-a5f8-db78bef76ec1"),
                             ImageUrl = "https://ibb.co/KmHMCW4",
                             Requirements = "Complete mission on 'Anti-Procrastinator' difficulty.",
                             Title = "Procrastination Purged",
@@ -127,7 +127,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("6e2de50c-b653-4671-8762-f76d252c0a06"),
+                            Id = new Guid("56fe8c2b-912e-415c-8733-942824c1c1e0"),
                             ImageUrl = "https://ibb.co/Yj4tPhs",
                             Requirements = "Complete mission on every difficulty level.",
                             Title = "Difficulty Dominator",
@@ -135,7 +135,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("b61335ce-c7a1-429c-abd5-f74170692d76"),
+                            Id = new Guid("1aa30ffa-3267-4c66-817f-a8a162803f94"),
                             ImageUrl = "https://ibb.co/F07jvbr",
                             Requirements = "Give up a mission with at least one subtask completed.",
                             Title = "Strategic Surrender",
@@ -143,7 +143,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("012c0cf4-df13-470c-89ca-92b2b71f6203"),
+                            Id = new Guid("186a8ee6-ba6b-4667-9465-a40d7c9d1a7e"),
                             ImageUrl = "https://ibb.co/LCyGq50",
                             Requirements = "Complete 5 missions.",
                             Title = "Mission Maestro",
@@ -151,7 +151,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("5f1d7219-912e-43ee-9d9c-89a554edd95c"),
+                            Id = new Guid("6d772e41-de1e-4eca-a5f5-08ce50f9f67c"),
                             ImageUrl = "https://ibb.co/jw0FHYB",
                             Requirements = "Complete 10 missions.",
                             Title = "Deca-Task Dynamo",
@@ -159,7 +159,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("55c8ee9d-4bfd-4cd1-8242-7920cc12d37a"),
+                            Id = new Guid("f5daf402-f6dc-4d01-a8fc-0165e6fe3e34"),
                             ImageUrl = "https://ibb.co/9ZpHpn2",
                             Requirements = "Complete 25 missions.",
                             Title = "Quarter Century Quasar",
@@ -167,7 +167,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d3d47579-70fd-4db5-8b9e-c6f855a38327"),
+                            Id = new Guid("d9c051dc-8090-4245-9f0b-6ff174f8c43a"),
                             ImageUrl = "https://ibb.co/S0q7ffZ",
                             Requirements = "Complete 50 missions.",
                             Title = "Half Century Hero",
@@ -175,7 +175,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("0e50c532-f40e-473c-95f2-96d35a65f591"),
+                            Id = new Guid("cf216b19-9f26-446d-aab0-cf1a8f511cb1"),
                             ImageUrl = "https://ibb.co/dPFMmmC",
                             Requirements = "Reach level 5.",
                             Title = "Level 5 Luminary",
@@ -183,7 +183,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("36835e3e-c32a-4fe4-bd05-e88bfa7a3f31"),
+                            Id = new Guid("ec9b66a9-2730-4b35-a09d-2bb70675129b"),
                             ImageUrl = "https://ibb.co/0BMKrsB",
                             Requirements = "Reach level 10.",
                             Title = "Deca-Level Dynamo",
@@ -191,7 +191,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c2857b11-8b74-4b37-981c-a93356d0faec"),
+                            Id = new Guid("ce58961b-99f6-4420-9dfc-681ae2f38f70"),
                             ImageUrl = "https://ibb.co/9v8QNFR",
                             Requirements = "Reach level 25.",
                             Title = "Quarter Century Cipher",
@@ -199,7 +199,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ed7f377a-d5de-4967-80c5-0604d3d622f1"),
+                            Id = new Guid("db8c7142-a1de-4e95-8055-614dd1a081b1"),
                             ImageUrl = "https://ibb.co/MfYTBR0",
                             Requirements = "Reach level 50.",
                             Title = "Half Century Hacker",
@@ -207,7 +207,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("76bc32d5-d641-45a1-889a-0b78ba06e44f"),
+                            Id = new Guid("a492f799-c04f-4580-a5f3-b9a1f6dfbf80"),
                             ImageUrl = "https://ibb.co/5YL1vqR",
                             Requirements = "Unlock every achievement.",
                             Title = "Achievement Unleashed",
@@ -375,6 +375,9 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("TotalMissionsCompleted")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalXpGained")
                         .HasColumnType("int");
 
                     b.Property<bool>("TwoFactorEnabled")

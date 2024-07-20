@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{572C97AC-0470-4A5C-8D57-3876FB08A62A}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		BACKLOG.md = BACKLOG.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{15D13E27-83B2-436D-B29E-DCF999DB897C}"

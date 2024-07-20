@@ -1,11 +1,12 @@
-﻿using Contracts.DTO.Auth;
-using Microsoft.AspNetCore.Identity;
+﻿using System.Security.Claims;
+using Contracts.DTO.Auth;
 
 namespace Contracts;
 
 public interface IAuthService
 {
-  Task<AuthOperationResult> Login(LoginDto loginDto, bool isPersistent);
+  Task<UserDto?> GetCurrentUser(ClaimsPrincipal claims);
+  Task<AuthOperationResult> Login(LoginDto loginDto);
   Task<AuthOperationResult> Register(RegisterDto registerDto);
   Task Logout();
   Task ForgotPassword();
