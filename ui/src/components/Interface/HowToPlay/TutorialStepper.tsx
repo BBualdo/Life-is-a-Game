@@ -10,8 +10,6 @@ import Step3 from "./Step3";
 import Step4 from "./Step4";
 import FinalStep from "./FinalStep";
 import { useDispatch } from "react-redux";
-import useAchievement from "@/src/utils/useAchievement";
-import { completeTutorial } from "@/src/redux/slices/userSlice";
 import { AppDispatch } from "@/src/redux/store";
 
 const TutorialStepper = ({
@@ -21,12 +19,10 @@ const TutorialStepper = ({
   isOpen: boolean;
   closeStepper: () => void;
 }) => {
-  useAchievement();
   const [currentStep, setCurrentStep] = useState(1);
   const dispatch = useDispatch<AppDispatch>();
 
   const handleStepperDone = () => {
-    dispatch(completeTutorial());
     closeStepper();
     setCurrentStep(1);
   };

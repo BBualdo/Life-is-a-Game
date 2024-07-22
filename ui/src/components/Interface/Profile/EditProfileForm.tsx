@@ -6,22 +6,20 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
-import { User } from "@/src/utils/types";
 import { toast } from "sonner";
-import { userCreatorSchema } from "@/src/utils/schemas";
-import { updateProfile } from "@/src/redux/slices/userSlice";
 import FirstName from "./FormComponents/FirstName";
 import Username from "./FormComponents/Username";
 import LastName from "./FormComponents/LastName";
 import CurrentGoal from "./FormComponents/CurrentGoal";
 import Bio from "./FormComponents/Bio";
+import IUser from "@/src/models/IUser";
 
 const EditProfileForm = ({
   closeModal,
   user,
 }: {
   closeModal: () => void;
-  user: User;
+  user: IUser;
 }) => {
   const dispatch = useDispatch<AppDispatch>();
 
@@ -38,8 +36,8 @@ const EditProfileForm = ({
     },
   });
 
-  function onSubmit(values: z.infer<typeof userCreatorSchema>) {
-    dispatch(updateProfile(values));
+  function onSubmit() {
+    //TODO: Implement updating profile info
     toast("Profile has been updated!");
     closeModal();
   }

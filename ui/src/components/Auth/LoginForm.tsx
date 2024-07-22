@@ -18,7 +18,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import loginFormSchema from "@/src/schemas/loginFormSchema";
-import UserService from "@/src/services/userService";
+import ILoginData from "@/src/models/ILoginData";
+import AuthService from "@/src/services/AuthService";
 
 // Login Component
 const LoginForm = () => {
@@ -33,7 +34,14 @@ const LoginForm = () => {
   });
 
   async function onSubmit(values: z.infer<typeof loginFormSchema>) {
-    await UserService.login(values.email, values.password);
+    const loginData: ILoginData = { ...values, rememberMe: false };
+    try {
+      await AuthService.login(loginData);
+      router.push("/");
+    } catch (error) {
+      //TODO: Handle errors
+      console.log(error);
+    }
   }
 
   return (

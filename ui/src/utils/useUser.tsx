@@ -1,21 +1,27 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
-import { useAppSelector } from "../redux/store";
+import { AppDispatch, useAppSelector } from "../redux/store";
 import { useEffect } from "react";
+import AuthService from "@/src/services/AuthService";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/src/redux/slices/authSlice";
 
 const useUser = () => {
-  const user = useAppSelector((state) => state.userReducer);
-  const router = useRouter();
-  const pathname = usePathname();
+  const user = useAppSelector((state) => state.auth.user);
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    if (user.id && pathname === "/login") {
-      router.replace("/");
-    } else if (!user.id) {
-      router.replace("/login");
+    if (!user) {
+      try {
+        AuthService.getCurrentUser().then((res) => dispatch(setUser(res.data)));
+      } catch (error) {
+        //TODO: Handle errors
+        console.log(error);
+      }
     }
-  }, [user.id, router]);
+  }, [user, dispatch]);
+
+  return user;
 };
 
 export default useUser;

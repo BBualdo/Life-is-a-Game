@@ -10,12 +10,10 @@ import UserStats from "./UserStats";
 import UserBio from "./UserBio";
 import UserGoal from "./UserGoal";
 import EditProfileButton from "./EditProfileButton";
-import { useAppSelector } from "@/src/redux/store";
-import useAchievement from "@/src/utils/useAchievement";
+import useUser from "@/src/utils/useUser";
 
 const UserData = () => {
-  useAchievement();
-  const user = useAppSelector((state) => state.userReducer);
+  const user = useUser()!;
 
   return (
     <motion.section

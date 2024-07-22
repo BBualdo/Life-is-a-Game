@@ -11,9 +11,16 @@ import { useState } from "react";
 import TutorialStepper from "../HowToPlay/TutorialStepper";
 import { GiPowerButton } from "react-icons/gi";
 import { useRouter } from "next/navigation";
+import AuthService from "@/src/services/AuthService";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/src/redux/store";
+import authSlice, { clearUser } from "@/src/redux/slices/authSlice";
+import useUser from "@/src/utils/useUser";
 
 const MainMenu = () => {
+  useUser();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const dispatch = useDispatch<AppDispatch>();
 
   const openModal = () => {
     setIsOpen(true);
@@ -36,6 +43,12 @@ const MainMenu = () => {
       </button>
     </Link>
   ));
+
+  async function logout() {
+    await AuthService.logout();
+    dispatch(clearUser());
+    router.push("/login");
+  }
 
   return (
     <>
@@ -60,9 +73,9 @@ const MainMenu = () => {
           </button>
           {navLinks}
           {/* TODO: Allow to log out when authentication will be implemented */}
-         <button
+          <button
             className="btn-menu flex items-center gap-2 text-cp-red enabled:hover:border-cp-red enabled:hover:text-cp-red-hover disabled:text-cp-red/50"
-            onClick={() => router.push("/login")}
+            onClick={logout}
           >
             <GiPowerButton />
             Logout

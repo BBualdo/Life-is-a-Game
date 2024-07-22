@@ -8,6 +8,7 @@ import { IoClose } from "react-icons/io5";
 import EditProfileForm from "./EditProfileForm";
 
 import { useAppSelector } from "@/src/redux/store";
+import useUser from "@/src/utils/useUser";
 
 const EditProfileButton = ({
   children,
@@ -17,8 +18,7 @@ const EditProfileButton = ({
   className: ClassValue;
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const user = useAppSelector((state) => state.userReducer);
-
+  const user = useUser()!;
   const openModal = () => {
     setIsOpen(true);
   };

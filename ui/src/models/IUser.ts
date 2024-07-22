@@ -15,3 +15,5 @@ interface IUser {
   avatarUrl: string;
   hasCompletedTutorial: boolean;
 }
+
+export default IUser;

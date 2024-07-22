@@ -1,18 +1,11 @@
 "use client";
 
-import {
-  completeMission,
-  deleteMission,
-  unlockAchievement,
-} from "@/src/redux/slices/userSlice";
-import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 import { AppDispatch, useAppSelector } from "@/src/redux/store";
 import { MissionSchema } from "@/src/utils/types";
 import { useDispatch } from "react-redux";
 import Modal from "../../shared/Modal";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
-import { giveXP } from "@/src/redux/slices/userSlice";
 import { toast } from "sonner";
 
 const MissionButtons = ({

@@ -5,23 +5,24 @@ import Image from "next/image";
 import CircleProgressBar from "./CircleProgressBar";
 import { AppDispatch, useAppSelector } from "@/src/redux/store";
 import { useDispatch } from "react-redux";
-import { levelUp } from "@/src/redux/slices/userSlice";
 import { toast } from "sonner";
 import UserDefaultAvatar from "../UserDefaultAvatar";
 import Link from "next/link";
+import useUser from "@/src/utils/useUser";
+import levels from "@/src/data/levels";
 
 const UserAvatar = () => {
-  const user = useAppSelector((state) => state.userReducer);
-  const { xp, level, avatar } = user;
+  const user = useUser()!;
+  const { xp, level, avatarUrl } = user;
   const dispatch = useDispatch<AppDispatch>();
 
   const calculateProgress = () => {
-    let progress = (xp / level.ceil) * 100;
+    let progress = (xp / levels[level - 1].ceil) * 100;
 
     if (progress >= 100) {
-      dispatch(levelUp());
-      toast(`You have reached level ${level.level + 1}!`);
-      progress = (xp / level.ceil) * 100;
+      //TODO: Implement leveling up
+      toast(`You have reached level ${level + 1}!`);
+      progress = (xp / levels[level - 1].ceil) * 100;
     }
 
     return progress;
@@ -50,8 +51,8 @@ const UserAvatar = () => {
           // onClick={() => setIsOpen(true)}
           className="relative h-[50px] w-[50px] cursor-pointer overflow-hidden rounded-full transition-all duration-200 lg:border-2 lg:border-light-silver lg:hover:border-cp-cyan"
         >
-          {avatar ? (
-            <Image src={avatar} alt="" fill objectFit="cover" priority />
+          {avatarUrl ? (
+            <Image src={avatarUrl} alt="" fill objectFit="cover" priority />
           ) : (
             <UserDefaultAvatar user={user} variant="small" />
           )}
@@ -61,9 +62,7 @@ const UserAvatar = () => {
         </div>
 
         <div className="absolute -bottom-3 flex h-[20px] w-[20px] rotate-45 items-center justify-center border-2 border-light-silver bg-black lg:hidden">
-          <p className="text-md -rotate-45 font-bold text-cp-cyan">
-            {level.level}
-          </p>
+          <p className="text-md -rotate-45 font-bold text-cp-cyan">{level}</p>
         </div>
       </div>
 

@@ -16,7 +16,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import signupFormSchema from "@/src/schemas/signUpFormSchema";
-import UserService from "@/src/services/userService";
+import AuthService from "@/src/services/AuthService";
+import IRegisterData from "@/src/models/IRegisterData";
 
 // Signup Component
 const SignupForm = () => {
@@ -33,8 +34,14 @@ const SignupForm = () => {
   });
 
   async function onSubmit(values: z.infer<typeof signupFormSchema>) {
-    const { username, email, password } = values;
-    await UserService.register(username, email, password);
+    const registerData: IRegisterData = { ...values };
+    try {
+      await AuthService.register(registerData);
+      router.push("/login");
+    } catch (error) {
+      //TODO: Handle errors
+      console.log(error);
+    }
   }
 
   return (

@@ -10,10 +10,8 @@ import DifficultyPicker from "./FormComponents/DifficultyPicker";
 import SubtasksList from "./FormComponents/SubtasksList";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
-import { addMission } from "@/src/redux/slices/userSlice";
 import { v4 as uuidv4 } from "uuid";
 import { missionFormSchema } from "@/src/utils/schemas";
-import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 import { toast } from "sonner";
 import { format } from "@/src/lib/utils";
 
@@ -45,8 +43,7 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
         isCompleted: false,
       });
     }
-    dispatch(addMission(values));
-    dispatch(setSelectedMission(values));
+    //TODO: Implement adding missions
     toast("Mission has been added!");
     closeModal();
   }

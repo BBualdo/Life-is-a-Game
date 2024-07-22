@@ -53,6 +53,8 @@ This is an application where users can set missions for themselves, track their 
 6. Implemented ```AuthController``` with basic authorization endpoints.
 7. Created endpoint to get current logged-in user info (```UserDto```).
 8. Refactored login and sign-up **Zod schemas** (like including regex validators in password), created ```UserService``` React class and added methods for login and register, which for now are just sending POST request via **Axios** without error and loading handling or routing. Successful response adds token in Cookies. I also had to provide CORS policy.
+9. Now the most difficulty part has begun - refactoring half of an existing Next.js/Redux codebase to handle authentication and authorization and make space for existing real database data and for not implemented yet. I started with auth, because it's the hardest and most important thing. I deleted all Redux files except store and created ```authSlice``` to keep currently logged-in user data, which forced me to consider refactoring ```useUser``` hook and every component which uses user data. Furthermore, I have to handle routing unauthorized users to login page and authorized from login page if they try to reach it directly via URL.
+10. Handled routes protection using Next.js ```middleware```.
 
 ### 🧰 Built with
 
