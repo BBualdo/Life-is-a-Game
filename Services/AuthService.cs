@@ -47,7 +47,7 @@ public class AuthService(UserManager<User> userManager, SignInManager<User> sign
       {
         Success = false,
         Message = "Login attempt failed.",
-        Errors = new List<string> { "User doesn't exist." }
+        Errors = ["User doesn't exist."]
       };
     
     var result =
@@ -63,7 +63,8 @@ public class AuthService(UserManager<User> userManager, SignInManager<User> sign
     return new AuthOperationResult
     {
       Success = false,
-      Message = "Login attempt failed."
+      Message = "Login attempt failed.",
+      Errors = ["Invalid email or password."]
     };
 
   }

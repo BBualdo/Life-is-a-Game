@@ -23,9 +23,13 @@ import AuthService from "@/src/services/AuthService";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
 import { setUser } from "@/src/redux/slices/authSlice";
+import { toast } from "sonner";
+import { PiWarningCircleFill } from "react-icons/pi";
+import { useState } from "react";
 
 // Login Component
 const LoginForm = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
 
@@ -38,15 +42,31 @@ const LoginForm = () => {
   });
 
   async function onSubmit(values: z.infer<typeof loginFormSchema>) {
+    if (isLoading) return;
     const loginData: ILoginData = { ...values, rememberMe: false };
     try {
+      setIsLoading(true);
       await AuthService.login(loginData);
       const user = await AuthService.getCurrentUser();
       dispatch(setUser(user.data));
+      setIsLoading(false);
       router.push("/");
-    } catch (error) {
-      //TODO: Handle errors
-      console.log(error);
+    } catch (error: any) {
+      setIsLoading(false);
+      if (error.response) {
+        toast.error(error.response.data.message, {
+          description: error.response.data.errors.map(
+            (e: string, index: number) => <p key={index}>{e}</p>,
+          ),
+          icon: <PiWarningCircleFill />,
+        });
+      } else {
+        toast.error("Login failed!", {
+          description:
+            "Server error occurred. Please try again later or contact customer support.",
+          icon: <PiWarningCircleFill />,
+        });
+      }
     }
   }
 
@@ -103,10 +123,11 @@ const LoginForm = () => {
             )}
           />
           <button
+            disabled={isLoading}
             type="submit"
-            className="btn btn-cyan hover:btn-red hover:bg-cp-red/30"
+            className="btn btn-cyan enabled:hover:btn-red enabled:hover:bg-cp-red/30"
           >
-            Log in
+            {isLoading ? "Hacking..." : "Log in"}
           </button>
           <div className="relative mt-3 flex w-full items-center justify-center border">
             <span className="absolute -top-2 text-xs uppercase text-cp-yellow backdrop-blur-sm">
@@ -114,8 +135,12 @@ const LoginForm = () => {
             </span>
           </div>
           <Link href="/signup">
-            <button type="button" className="btn btn-yellow hover:bg-black">
-              Create account
+            <button
+              disabled={isLoading}
+              type="button"
+              className="btn btn-yellow enabled:hover:bg-black"
+            >
+              {isLoading ? "Hacking..." : "Create Account"}
             </button>
           </Link>
         </form>

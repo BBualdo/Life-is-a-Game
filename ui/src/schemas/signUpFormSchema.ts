@@ -9,12 +9,12 @@ const signupFormSchema = z
   .object({
     username: z
       .string()
-      .min(4, { message: "Username must be at least 4 characters." })
+      .min(4, { message: "Username must be at least 4 characters long." })
       .max(50),
     email: z.string().email({ message: "Email must be valid." }),
     password: z
       .string()
-      .min(6, { message: "Password must be at least 6 characters." })
+      .min(6, { message: "Password must be at least 6 characters long." })
       .max(30)
       .regex(digitValidator, {
         message: "Password must contain at least one digit.",

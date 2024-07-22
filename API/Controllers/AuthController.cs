@@ -37,7 +37,7 @@ namespace API.Controllers
             if (result.Success)
                 return Ok(result.Message);
 
-            return BadRequest(new { message = result.Message, errros = result.Errors });
+            return BadRequest(new { message = result.Message, errors = result.Errors });
         }
 
         [HttpPost("logout")]
