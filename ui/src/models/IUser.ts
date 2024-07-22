@@ -4,7 +4,6 @@ interface IUser {
   email: string;
   firstName: string | undefined;
   lastName: string | undefined;
-  xpGained: number;
   currentGoal: string | undefined;
   bio: string | undefined;
   xp: number;

@@ -20,10 +20,14 @@ import { useRouter } from "next/navigation";
 import loginFormSchema from "@/src/schemas/loginFormSchema";
 import ILoginData from "@/src/models/ILoginData";
 import AuthService from "@/src/services/AuthService";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/src/redux/store";
+import { setUser } from "@/src/redux/slices/authSlice";
 
 // Login Component
 const LoginForm = () => {
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
 
   const loginForm = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
@@ -37,6 +41,8 @@ const LoginForm = () => {
     const loginData: ILoginData = { ...values, rememberMe: false };
     try {
       await AuthService.login(loginData);
+      const user = await AuthService.getCurrentUser();
+      dispatch(setUser(user.data));
       router.push("/");
     } catch (error) {
       //TODO: Handle errors

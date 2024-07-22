@@ -4,7 +4,6 @@ import Link from "next/link";
 import MenuLogo from "../shared/MenuLogo";
 import links from "@/src/data/nav-links";
 import Backdrop from "./Backdrop";
-
 import { motion } from "framer-motion";
 import { fadeIn } from "@/src/utils/fadeIn";
 import { useState } from "react";
@@ -14,11 +13,9 @@ import { useRouter } from "next/navigation";
 import AuthService from "@/src/services/AuthService";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
-import authSlice, { clearUser } from "@/src/redux/slices/authSlice";
-import useUser from "@/src/utils/useUser";
+import { clearUser } from "@/src/redux/slices/authSlice";
 
 const MainMenu = () => {
-  useUser();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
 

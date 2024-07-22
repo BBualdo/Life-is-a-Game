@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "@/src/redux/slices/authSlice";
 
 const useUser = () => {
-  const user = useAppSelector((state) => state.auth.user);
+  const user = useAppSelector((state) => state.authReducer.user);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const useUser = () => {
         AuthService.getCurrentUser().then((res) => dispatch(setUser(res.data)));
       } catch (error) {
         //TODO: Handle errors
-        console.log(error);
+        console.log("Fetching user data error: " + error);
       }
     }
   }, [user, dispatch]);

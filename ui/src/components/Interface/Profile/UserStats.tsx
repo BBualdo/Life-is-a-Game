@@ -26,7 +26,7 @@ const UserStats = ({ user }: { user: IUser }) => {
             Total XP Gained:
           </h2>
           <h3 className="font-bold text-cp-red xs:text-xl lg:text-3xl">
-            {user.xpGained}
+            {user.totalXpGained}
           </h3>
         </div>
       </div>
