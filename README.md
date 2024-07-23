@@ -58,6 +58,8 @@ This is an application where users can set missions for themselves, track their 
 11. Added fetching current user data to form submit logic and configured **Redux-Persist** to keep user data upon refreshing page without need to make extra requests.
 12. Added toasts (snackbars) upon successful registering and errors as well. I have also taken care of loading state until request is performed to prevent user from taking any actions like spamming login button, etc.
 13. Introduced **RememberMe** checkbox in login form.
+14. Updated User to store external providers IDs and deleted **is_unlocked** row from **UserAchievements** table, because record presence is already a sign that achievement is unlocked.
+15. Created ```AchievementsRepository```, ```AchievementsService``` and ```AchievementsController``` to get all achievements as well as those unlocked by user, and to unlock specific achievement.
 
 ### 🧰 Built with
 
@@ -67,6 +69,7 @@ This is an application where users can set missions for themselves, track their 
 - RadixUI
 - Framer-Motion
 - Redux Toolkit
+- Redux-Persist
 - Axios
 - React Hook Form
 - Zod
@@ -79,9 +82,7 @@ This is an application where users can set missions for themselves, track their 
 
 ### What I have learned
 
-#### ASP.NET Identity:
-
-- Difference between ```AddIdentity```
+- Difference between ```AddIdentity```, ```AddIdentityCore``` and ```AddDefaultIdentity```.
 
 ### Useful resources
 Coming soon...

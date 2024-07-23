@@ -1,4 +1,3 @@
-using System.Security.Claims;
 using Contracts;
 using Contracts.DTO.Auth;
 using Microsoft.AspNetCore.Authorization;
@@ -16,14 +15,14 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult> GetUser()
         {
-            var user = await _authService.GetCurrentUser(User);
+            var user = await _authService.GetCurrentUserAsync(User);
             return Ok(user);
         }
 
         [HttpPost("login")]
         public async Task<ActionResult> Login(LoginDto loginDto)
         {
-            var result = await _authService.Login(loginDto);
+            var result = await _authService.LoginAsync(loginDto);
             if (result.Success)
                 return Ok(result.Message);
 
@@ -33,7 +32,7 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult> Register(RegisterDto registerDto)
         {
-            var result = await _authService.Register(registerDto);
+            var result = await _authService.RegisterAsync(registerDto);
             if (result.Success)
                 return Ok(result.Message);
 
@@ -43,7 +42,7 @@ namespace API.Controllers
         [HttpPost("logout")]
         public async Task<ActionResult> Logout()
         {
-            await _authService.Logout();
+            await _authService.LogoutAsync();
             return Ok(new { message = "Logout successful." });
         }
     }

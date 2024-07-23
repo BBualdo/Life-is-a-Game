@@ -16,4 +16,7 @@ public class User : IdentityUser
   [Required] public int TotalXpGained { get; set; }
   public string? AvatarUrl { get; set; }
   [Required] public bool HasCompletedTutorial { get; set; }
+  public string? GoogleId { get; set; }
+  public string? GithubId { get; set; }
+  public string? FacebookId { get; set; }
 }

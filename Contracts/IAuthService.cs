@@ -5,13 +5,13 @@ namespace Contracts;
 
 public interface IAuthService
 {
-  Task<UserDto?> GetCurrentUser(ClaimsPrincipal claims);
-  Task<AuthOperationResult> Login(LoginDto loginDto);
-  Task<AuthOperationResult> Register(RegisterDto registerDto);
-  Task Logout();
-  Task ForgotPassword();
-  Task ResetPassword();
-  Task LoginWithGithub();
-  Task LoginWithGoogle();
-  Task LoginWithFacebook();
+  Task<UserDto?> GetCurrentUserAsync(ClaimsPrincipal claims);
+  Task<AuthOperationResult> LoginAsync(LoginDto loginDto);
+  Task<AuthOperationResult> RegisterAsync(RegisterDto registerDto);
+  Task LogoutAsync();
+  Task ForgotPasswordAsync();
+  Task ResetPasswordAsync();
+  Task LoginWithGithubAsync();
+  Task LoginWithGoogleAsync();
+  Task LoginWithFacebookAsync();
 }

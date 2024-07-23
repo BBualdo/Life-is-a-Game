@@ -3,6 +3,7 @@ using Data;
 using Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Repository;
 using Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<LiagDbContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
-builder.Services.AddAuthorization();
+builder.Services.AddAuthentication();
 
 builder.Services.AddIdentity<User, IdentityRole>(options =>
   {
@@ -33,9 +34,9 @@ builder.Services.ConfigureApplicationCookie(options =>
   options.SlidingExpiration = true;
 });
 
-builder.Services.AddAuthentication();
-
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAchievementsRepository, AchievementsRepository>();
+builder.Services.AddScoped<IAchievementsService, AchievementsService>();
 
 builder.Services.AddCors(options =>
   options.AddPolicy("default", policyBuilder => 
@@ -54,6 +55,7 @@ app.UseHttpsRedirection();
 
 app.UseCors("default");
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

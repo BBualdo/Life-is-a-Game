@@ -11,7 +11,7 @@ public class AuthService(UserManager<User> userManager, SignInManager<User> sign
   private readonly UserManager<User> _userManager = userManager;
   private readonly SignInManager<User> _signInManager = signInManager;
 
-  public async Task<UserDto?> GetCurrentUser(ClaimsPrincipal claims)
+  public async Task<UserDto?> GetCurrentUserAsync(ClaimsPrincipal claims)
   {
     var user = await _userManager.GetUserAsync(claims);
 
@@ -38,7 +38,7 @@ public class AuthService(UserManager<User> userManager, SignInManager<User> sign
     return userDto;
   }
 
-  public async Task<AuthOperationResult> Login(LoginDto loginDto)
+  public async Task<AuthOperationResult> LoginAsync(LoginDto loginDto)
   {
     var user = await _userManager.FindByEmailAsync(loginDto.Email!);
 
@@ -69,7 +69,7 @@ public class AuthService(UserManager<User> userManager, SignInManager<User> sign
 
   }
 
-  public async Task<AuthOperationResult> Register(RegisterDto registerDto)
+  public async Task<AuthOperationResult> RegisterAsync(RegisterDto registerDto)
   {
     var user = new User
     {
@@ -99,32 +99,32 @@ public class AuthService(UserManager<User> userManager, SignInManager<User> sign
     };
   }
 
-  public async Task Logout()
+  public async Task LogoutAsync()
   {
     await _signInManager.SignOutAsync();
   }
 
-  public Task ForgotPassword()
+  public Task ForgotPasswordAsync()
   {
     throw new NotImplementedException();
   }
 
-  public Task ResetPassword()
+  public Task ResetPasswordAsync()
   {
     throw new NotImplementedException();
   }
 
-  public Task LoginWithGithub()
+  public Task LoginWithGithubAsync()
   {
     throw new NotImplementedException();
   }
 
-  public Task LoginWithGoogle()
+  public Task LoginWithGoogleAsync()
   {
     throw new NotImplementedException();
   }
 
-  public Task LoginWithFacebook()
+  public Task LoginWithFacebookAsync()
   {
     throw new NotImplementedException();
   }
