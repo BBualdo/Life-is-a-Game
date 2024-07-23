@@ -52,160 +52,160 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b4c06454-b242-4462-afb1-46e7434007ce"),
-                            ImageUrl = "https://ibb.co/zmnKFD4",
+                            Id = new Guid("ad79c52e-67f3-4a43-8110-31963c73e93b"),
+                            ImageUrl = "https://i.ibb.co/kGHYJvS/tutorial.jpg",
                             Requirements = "Complete 'How To Play'.",
                             Title = "Neon Novice",
                             XpReward = 10
                         },
                         new
                         {
-                            Id = new Guid("171a541d-38a3-4416-a69e-4a17baa8adc3"),
-                            ImageUrl = "https://ibb.co/5nLkGL3",
+                            Id = new Guid("3ead240b-0e27-4dce-94ab-935b904e42ef"),
+                            ImageUrl = "https://i.ibb.co/KLWDbWg/add-first.jpg",
                             Requirements = "Add your first mission.",
                             Title = "Mission Maverick",
                             XpReward = 10
                         },
                         new
                         {
-                            Id = new Guid("3f78ee6b-53c0-477a-ad02-cce0ef63dce6"),
-                            ImageUrl = "https://ibb.co/vHRxKWn",
+                            Id = new Guid("df390ad4-49a8-4b39-be97-7eb027ca305d"),
+                            ImageUrl = "https://i.ibb.co/473Z5Lr/complete-first.jpg",
                             Requirements = "Complete your first mission.",
                             Title = "Codebreaker Initiate",
                             XpReward = 25
                         },
                         new
                         {
-                            Id = new Guid("28babd3d-65bc-4fa5-891b-bf97c6391d09"),
-                            ImageUrl = "https://ibb.co/z8NJnzy",
+                            Id = new Guid("09b43108-64aa-44a8-80cc-aeec90153e60"),
+                            ImageUrl = "https://i.ibb.co/DGLpVZx/profile.jpg",
                             Requirements = "Complete every field in profile dashboard.",
                             Title = "Profile Overdrive",
                             XpReward = 10
                         },
                         new
                         {
-                            Id = new Guid("1fba5715-69db-4cec-991e-96d735099a10"),
-                            ImageUrl = "https://ibb.co/XzjWXMw",
+                            Id = new Guid("b1ba83e9-4ddd-424c-b597-ad45cf1f1e73"),
+                            ImageUrl = "https://i.ibb.co/RCYg2d5/daily.jpg",
                             Requirements = "Complete mission on 'Daily' difficulty.",
                             Title = "Daily Data Dynamo",
                             XpReward = 25
                         },
                         new
                         {
-                            Id = new Guid("03deb41d-50d7-4f0f-941d-c02a4f64ae03"),
-                            ImageUrl = "https://ibb.co/2hj4PXS",
+                            Id = new Guid("9426edb6-cbc1-4047-bb2e-c899b0e4f878"),
+                            ImageUrl = "https://i.ibb.co/c3Nntzw/drop-of-sweat.jpg",
                             Requirements = "Complete mission on 'Drop of Sweat' difficulty.",
                             Title = "Sweat-Proof Runner",
                             XpReward = 50
                         },
                         new
                         {
-                            Id = new Guid("11e3cd46-f722-4925-a749-7534a4f2b906"),
-                            ImageUrl = "https://ibb.co/4NXkrCj",
+                            Id = new Guid("21ac2513-3ce1-4c8c-9477-376897e0c817"),
+                            ImageUrl = "https://i.ibb.co/zfBdvCS/challenging.jpg",
                             Requirements = "Complete mission on 'Challenging' difficulty.",
                             Title = "Chaos Conqueror",
                             XpReward = 75
                         },
                         new
                         {
-                            Id = new Guid("f1bbad9d-d4db-4838-bf78-e483f3a7b8c8"),
-                            ImageUrl = "https://ibb.co/0qDhmWQ",
+                            Id = new Guid("b09ce195-8678-45c1-b9fe-a4ee725bb8b8"),
+                            ImageUrl = "https://i.ibb.co/PxmwFbt/life-hacker.jpg",
                             Requirements = "Complete mission on 'Life-Hacker' difficulty.",
                             Title = "Life-Hacker Elite",
                             XpReward = 100
                         },
                         new
                         {
-                            Id = new Guid("576a47b5-ba39-4726-9882-c0f40a0b75cb"),
-                            ImageUrl = "https://ibb.co/KmHMCW4",
+                            Id = new Guid("73fa8aed-868f-4181-9e7c-edc9eb7d777a"),
+                            ImageUrl = "https://i.ibb.co/R7WxLcr/anti-procrastinator.jpg",
                             Requirements = "Complete mission on 'Anti-Procrastinator' difficulty.",
                             Title = "Procrastination Purged",
                             XpReward = 250
                         },
                         new
                         {
-                            Id = new Guid("b1b99495-4dd0-414f-9071-70bf5d35bbad"),
-                            ImageUrl = "https://ibb.co/Yj4tPhs",
+                            Id = new Guid("1b088116-543a-4eca-8f2e-f6188a76ba17"),
+                            ImageUrl = "https://i.ibb.co/12Y97TW/every-difficulty.jpg",
                             Requirements = "Complete mission on every difficulty level.",
                             Title = "Difficulty Dominator",
                             XpReward = 200
                         },
                         new
                         {
-                            Id = new Guid("3bbb87e1-6df8-4a5d-a26e-c4717f13572b"),
-                            ImageUrl = "https://ibb.co/F07jvbr",
+                            Id = new Guid("308d1d92-8035-47e6-a238-dd3d3db8db41"),
+                            ImageUrl = "https://i.ibb.co/X3JvBZQ/give-up.jpg",
                             Requirements = "Give up a mission with at least one subtask completed.",
                             Title = "Strategic Surrender",
                             XpReward = 25
                         },
                         new
                         {
-                            Id = new Guid("a15cde08-b1b2-4594-b7e2-aae1148c2ec7"),
-                            ImageUrl = "https://ibb.co/LCyGq50",
+                            Id = new Guid("124573bc-ac58-487c-b0a8-2130782945f3"),
+                            ImageUrl = "https://i.ibb.co/sF4BDHg/missions5.jpg",
                             Requirements = "Complete 5 missions.",
                             Title = "Mission Maestro",
                             XpReward = 50
                         },
                         new
                         {
-                            Id = new Guid("38df1376-cca4-4ca7-96ca-593849df3fcc"),
-                            ImageUrl = "https://ibb.co/jw0FHYB",
+                            Id = new Guid("7215696c-12e2-4f44-943d-8365ae615fd3"),
+                            ImageUrl = "https://i.ibb.co/Jp6PCT0/missions10.jpg",
                             Requirements = "Complete 10 missions.",
                             Title = "Deca-Task Dynamo",
                             XpReward = 100
                         },
                         new
                         {
-                            Id = new Guid("fbf0d5f7-a903-45f8-aea8-4b9acd1e68a3"),
-                            ImageUrl = "https://ibb.co/9ZpHpn2",
+                            Id = new Guid("ab51a9b3-fb28-4ee8-ba95-7adf7ae2fcfd"),
+                            ImageUrl = "https://i.ibb.co/rdQ2QkM/missions25.jpg",
                             Requirements = "Complete 25 missions.",
                             Title = "Quarter Century Quasar",
                             XpReward = 250
                         },
                         new
                         {
-                            Id = new Guid("d4f66a08-6642-4304-a679-fb7f77aadbe0"),
-                            ImageUrl = "https://ibb.co/S0q7ffZ",
+                            Id = new Guid("739e4ef4-c483-4e7c-972e-3ae07d842cf3"),
+                            ImageUrl = "https://i.ibb.co/zbKH66t/missions50.jpg",
                             Requirements = "Complete 50 missions.",
                             Title = "Half Century Hero",
                             XpReward = 500
                         },
                         new
                         {
-                            Id = new Guid("ba0bf1aa-d50b-49e2-857c-ec5993a27d07"),
-                            ImageUrl = "https://ibb.co/dPFMmmC",
+                            Id = new Guid("771f78b2-ce92-4f2e-8abf-8e82264d18cf"),
+                            ImageUrl = "https://i.ibb.co/PcKjDDX/level5.jpg",
                             Requirements = "Reach level 5.",
                             Title = "Level 5 Luminary",
                             XpReward = 50
                         },
                         new
                         {
-                            Id = new Guid("246fd828-e4f7-4a64-9fd0-ce9eb4268e62"),
-                            ImageUrl = "https://ibb.co/0BMKrsB",
+                            Id = new Guid("d520ca39-4ca1-45e8-8748-b6052a95fcc6"),
+                            ImageUrl = "https://i.ibb.co/6vP8FXv/level10.jpg",
                             Requirements = "Reach level 10.",
                             Title = "Deca-Level Dynamo",
                             XpReward = 100
                         },
                         new
                         {
-                            Id = new Guid("623fd6b7-3759-4281-91b8-be0c9bacdf78"),
-                            ImageUrl = "https://ibb.co/9v8QNFR",
+                            Id = new Guid("77d71d19-b756-4d51-a456-1e7c912d2f32"),
+                            ImageUrl = "https://i.ibb.co/Qcbyf2s/level25.jpg",
                             Requirements = "Reach level 25.",
                             Title = "Quarter Century Cipher",
                             XpReward = 250
                         },
                         new
                         {
-                            Id = new Guid("283b9c13-6949-4faa-92ee-ab0f34687bb7"),
-                            ImageUrl = "https://ibb.co/MfYTBR0",
+                            Id = new Guid("922ee236-1547-4d8f-ba09-13feb87bcd5a"),
+                            ImageUrl = "https://i.ibb.co/XDhBYzR/level50.jpg",
                             Requirements = "Reach level 50.",
                             Title = "Half Century Hacker",
                             XpReward = 500
                         },
                         new
                         {
-                            Id = new Guid("36a32379-7062-4c7d-943e-44d2c7e57ebe"),
-                            ImageUrl = "https://ibb.co/5YL1vqR",
+                            Id = new Guid("3fb91549-da81-407f-addb-c631531cb3df"),
+                            ImageUrl = "https://i.ibb.co/tZDHcyJ/all-achievements.jpg",
                             Requirements = "Unlock every achievement.",
                             Title = "Achievement Unleashed",
                             XpReward = 2500

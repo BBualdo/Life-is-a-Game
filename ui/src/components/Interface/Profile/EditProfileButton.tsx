@@ -8,7 +8,7 @@ import { IoClose } from "react-icons/io5";
 import EditProfileForm from "./EditProfileForm";
 
 import { useAppSelector } from "@/src/redux/store";
-import useUser from "@/src/utils/useUser";
+import useUser from "@/src/utils/hooks/useUser";
 
 const EditProfileButton = ({
   children,

@@ -60,6 +60,7 @@ This is an application where users can set missions for themselves, track their 
 13. Introduced **RememberMe** checkbox in login form.
 14. Updated User to store external providers IDs and deleted **is_unlocked** row from **UserAchievements** table, because record presence is already a sign that achievement is unlocked.
 15. Created ```AchievementsRepository```, ```AchievementsService``` and ```AchievementsController``` to get all achievements as well as those unlocked by user, and to unlock specific achievement.
+16. Refactored frontend for handling achievements from database. When user logs in and goes into **Achievements** page, React ```useAchievements``` custom hook is calling ```AchievementsService``` for fetching fresh **Achievements** and **UserAchievements** data, saves them in **Redux** state, which is also saved in localStorage. I have mapped **UserAchievements** to JS Map for faster unlocked achievements searching. Then achievements are compared to user achievements to determine, which are unlocked and when. 
 
 ### 🧰 Built with
 
@@ -83,6 +84,7 @@ This is an application where users can set missions for themselves, track their 
 ### What I have learned
 
 - Difference between ```AddIdentity```, ```AddIdentityCore``` and ```AddDefaultIdentity```.
+- Reminded about using ```Maps``` and ```Array.reduce()``` function to sum things up without having to create temporary variable.
 
 ### Useful resources
 Coming soon...

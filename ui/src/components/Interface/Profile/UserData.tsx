@@ -10,7 +10,7 @@ import UserStats from "./UserStats";
 import UserBio from "./UserBio";
 import UserGoal from "./UserGoal";
 import EditProfileButton from "./EditProfileButton";
-import useUser from "@/src/utils/useUser";
+import useUser from "@/src/utils/hooks/useUser";
 
 const UserData = () => {
   const user = useUser()!;

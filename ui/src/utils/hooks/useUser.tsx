@@ -1,6 +1,6 @@
 "use client";
 
-import { AppDispatch, useAppSelector } from "../redux/store";
+import { AppDispatch, useAppSelector } from "../../redux/store";
 import { useEffect } from "react";
 import AuthService from "@/src/services/AuthService";
 import { useDispatch } from "react-redux";

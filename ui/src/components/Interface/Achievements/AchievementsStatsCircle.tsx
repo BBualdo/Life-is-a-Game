@@ -1,19 +1,23 @@
 "use client";
 
-import { useAppSelector } from "@/src/redux/store";
+import useAchievements from "@/src/utils/hooks/useAchievements";
+import Loading from "@/src/app/loading";
+import IUserAchievement from "@/src/models/IUserAchievement";
 
 const AchievementsStatsCircle = () => {
-  const achievements = useAppSelector(
-    (state) => state.userReducer.achievements,
-  );
+  const { achievements, userAchievements, isLoading } = useAchievements();
 
-  const completedAchievements = achievements.filter(
-    (achievement) => achievement.isUnlocked === true,
+  if (isLoading) return <Loading />;
+  if (!achievements || !userAchievements) return null;
+
+  const userAchievementsMap = new Map<string, IUserAchievement>(
+    userAchievements.map((ua) => [ua.achievementId, ua]),
   );
 
   const progress = Math.floor(
-    (completedAchievements.length / achievements.length) * 100,
+    (userAchievementsMap.size / achievements.length) * 100,
   );
+
   return (
     <div className="group flex h-[60px] w-[60px] items-center justify-center overflow-hidden rounded-full border-2 border-cp-cyan backdrop-blur-lg">
       <p className="text-xl text-white">{progress}%</p>

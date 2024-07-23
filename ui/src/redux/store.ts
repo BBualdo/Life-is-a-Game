@@ -1,6 +1,8 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import authReducer from "@/src/redux/slices/authSlice";
+import achievementsReducer from "@/src/redux/slices/achievementsSlice";
+import userAchievementsReducer from "@/src/redux/slices/userAchievementsSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
@@ -10,7 +12,11 @@ const persistConfig = {
   storage,
 };
 
-const rootReducers = combineReducers({ authReducer });
+const rootReducers = combineReducers({
+  authReducer,
+  achievementsReducer,
+  userAchievementsReducer,
+});
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);
 

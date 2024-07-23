@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 import UserDefaultAvatar from "../UserDefaultAvatar";
 import Link from "next/link";
-import useUser from "@/src/utils/useUser";
+import useUser from "@/src/utils/hooks/useUser";
 import levels from "@/src/data/levels";
 
 const UserAvatar = () => {

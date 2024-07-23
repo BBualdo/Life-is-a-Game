@@ -14,7 +14,7 @@ public class AchievementSeeder
         Title = "Neon Novice",
         Requirements = "Complete 'How To Play'.",
         XpReward = 10,
-        ImageUrl = "https://ibb.co/zmnKFD4"
+        ImageUrl = "https://i.ibb.co/kGHYJvS/tutorial.jpg"
       },
       new()
       {
@@ -22,7 +22,7 @@ public class AchievementSeeder
         Title = "Mission Maverick",
         Requirements = "Add your first mission.",
         XpReward = 10,
-        ImageUrl = "https://ibb.co/5nLkGL3"
+        ImageUrl = "https://i.ibb.co/KLWDbWg/add-first.jpg"
       },
       new()
       {
@@ -30,7 +30,7 @@ public class AchievementSeeder
         Title = "Codebreaker Initiate",
         Requirements = "Complete your first mission.",
         XpReward = 25,
-        ImageUrl = "https://ibb.co/vHRxKWn"
+        ImageUrl = "https://i.ibb.co/473Z5Lr/complete-first.jpg"
       },
       new()
       {
@@ -38,7 +38,7 @@ public class AchievementSeeder
         Title = "Profile Overdrive",
         Requirements = "Complete every field in profile dashboard.",
         XpReward = 10,
-        ImageUrl = "https://ibb.co/z8NJnzy"
+        ImageUrl = "https://i.ibb.co/DGLpVZx/profile.jpg"
       },
       new()
       {
@@ -46,7 +46,7 @@ public class AchievementSeeder
         Title = "Daily Data Dynamo",
         Requirements = "Complete mission on 'Daily' difficulty.",
         XpReward = 25,
-        ImageUrl = "https://ibb.co/XzjWXMw"
+        ImageUrl = "https://i.ibb.co/RCYg2d5/daily.jpg"
       },
       new()
       {
@@ -54,7 +54,7 @@ public class AchievementSeeder
         Title = "Sweat-Proof Runner",
         Requirements = "Complete mission on 'Drop of Sweat' difficulty.",
         XpReward = 50,
-        ImageUrl = "https://ibb.co/2hj4PXS"
+        ImageUrl = "https://i.ibb.co/c3Nntzw/drop-of-sweat.jpg"
       },
       new()
       {
@@ -62,7 +62,7 @@ public class AchievementSeeder
         Title = "Chaos Conqueror",
         Requirements = "Complete mission on 'Challenging' difficulty.",
         XpReward = 75,
-        ImageUrl = "https://ibb.co/4NXkrCj"
+        ImageUrl = "https://i.ibb.co/zfBdvCS/challenging.jpg"
       },
       new()
       {
@@ -70,7 +70,7 @@ public class AchievementSeeder
         Title = "Life-Hacker Elite",
         Requirements = "Complete mission on 'Life-Hacker' difficulty.",
         XpReward = 100,
-        ImageUrl = "https://ibb.co/0qDhmWQ"
+        ImageUrl = "https://i.ibb.co/PxmwFbt/life-hacker.jpg"
       },
       new()
       {
@@ -78,7 +78,7 @@ public class AchievementSeeder
         Title = "Procrastination Purged",
         Requirements = "Complete mission on 'Anti-Procrastinator' difficulty.",
         XpReward = 250,
-        ImageUrl = "https://ibb.co/KmHMCW4"
+        ImageUrl = "https://i.ibb.co/R7WxLcr/anti-procrastinator.jpg"
       },
       new()
       {
@@ -86,7 +86,7 @@ public class AchievementSeeder
         Title = "Difficulty Dominator",
         Requirements = "Complete mission on every difficulty level.",
         XpReward = 200,
-        ImageUrl = "https://ibb.co/Yj4tPhs"
+        ImageUrl = "https://i.ibb.co/12Y97TW/every-difficulty.jpg"
       },
       new()
       {
@@ -94,7 +94,7 @@ public class AchievementSeeder
         Title = "Strategic Surrender",
         Requirements = "Give up a mission with at least one subtask completed.",
         XpReward = 25,
-        ImageUrl = "https://ibb.co/F07jvbr"
+        ImageUrl = "https://i.ibb.co/X3JvBZQ/give-up.jpg"
       },
       new()
       {
@@ -102,7 +102,7 @@ public class AchievementSeeder
         Title = "Mission Maestro",
         Requirements = "Complete 5 missions.",
         XpReward = 50,
-        ImageUrl = "https://ibb.co/LCyGq50"
+        ImageUrl = "https://i.ibb.co/sF4BDHg/missions5.jpg"
       },
       new()
       {
@@ -110,7 +110,7 @@ public class AchievementSeeder
         Title = "Deca-Task Dynamo",
         Requirements = "Complete 10 missions.",
         XpReward = 100,
-        ImageUrl = "https://ibb.co/jw0FHYB"
+        ImageUrl = "https://i.ibb.co/Jp6PCT0/missions10.jpg"
       },
       new()
       {
@@ -118,7 +118,7 @@ public class AchievementSeeder
         Title = "Quarter Century Quasar",
         Requirements = "Complete 25 missions.",
         XpReward = 250,
-        ImageUrl = "https://ibb.co/9ZpHpn2"
+        ImageUrl = "https://i.ibb.co/rdQ2QkM/missions25.jpg"
       },
       new()
       {
@@ -126,7 +126,7 @@ public class AchievementSeeder
         Title = "Half Century Hero",
         Requirements = "Complete 50 missions.",
         XpReward = 500,
-        ImageUrl = "https://ibb.co/S0q7ffZ"
+        ImageUrl = "https://i.ibb.co/zbKH66t/missions50.jpg"
       },
       new()
       {
@@ -134,7 +134,7 @@ public class AchievementSeeder
         Title = "Level 5 Luminary",
         Requirements = "Reach level 5.",
         XpReward = 50,
-        ImageUrl = "https://ibb.co/dPFMmmC"
+        ImageUrl = "https://i.ibb.co/PcKjDDX/level5.jpg"
       },
       new()
       {
@@ -142,7 +142,7 @@ public class AchievementSeeder
         Title = "Deca-Level Dynamo",
         Requirements = "Reach level 10.",
         XpReward = 100,
-        ImageUrl = "https://ibb.co/0BMKrsB"
+        ImageUrl = "https://i.ibb.co/6vP8FXv/level10.jpg"
       },
       new()
       {
@@ -150,7 +150,7 @@ public class AchievementSeeder
         Title = "Quarter Century Cipher",
         Requirements = "Reach level 25.",
         XpReward = 250,
-        ImageUrl = "https://ibb.co/9v8QNFR"
+        ImageUrl = "https://i.ibb.co/Qcbyf2s/level25.jpg"
       },
       new()
       {
@@ -158,7 +158,7 @@ public class AchievementSeeder
         Title = "Half Century Hacker",
         Requirements = "Reach level 50.",
         XpReward = 500,
-        ImageUrl = "https://ibb.co/MfYTBR0"
+        ImageUrl = "https://i.ibb.co/XDhBYzR/level50.jpg"
       },
       new()
       {
@@ -166,7 +166,7 @@ public class AchievementSeeder
         Title = "Achievement Unleashed",
         Requirements = "Unlock every achievement.",
         XpReward = 2500,
-        ImageUrl = "https://ibb.co/5YL1vqR"
+        ImageUrl = "https://i.ibb.co/tZDHcyJ/all-achievements.jpg"
       }
     };
     return achievements;

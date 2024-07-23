@@ -1,7 +1,7 @@
 "use client";
 
 import { toast } from "sonner";
-import useUser from "@/src/utils/useUser";
+import useUser from "@/src/utils/hooks/useUser";
 import levels from "@/src/data/levels";
 
 const UserBannerXP = () => {

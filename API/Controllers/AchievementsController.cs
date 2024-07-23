@@ -7,12 +7,12 @@ namespace API.Controllers
 {
     [Route("api/achievements")]
     [ApiController]
+    [Authorize]
     public class AchievementsController(IAchievementsService achievementsService) : ControllerBase
     {
         private readonly IAchievementsService _achievementsService = achievementsService;
-
+        
         [HttpGet("getAchievements")]
-        [Authorize]
         public async Task<ActionResult<IEnumerable<Achievement>>> GetAchievements()
         {
             var achievements = await _achievementsService.GetAchievementsAsync();
@@ -20,7 +20,6 @@ namespace API.Controllers
         }
 
         [HttpGet("getUserAchievements")]
-        [Authorize]
         public async Task<ActionResult<IEnumerable<UserAchievement>>> GetUserAchievements(string userId)
         {
             var userAchievements = await _achievementsService.GetUserAchievementsAsync(userId);
@@ -28,7 +27,6 @@ namespace API.Controllers
         }
 
         [HttpPost("unlock/{achievementId:guid}")]
-        [Authorize]
         public async Task<ActionResult> UnlockAchievement(string userId, Guid achievementId)
         {
             var achievement = await _achievementsService.UnlockAchievementAsync(userId, achievementId);

@@ -14,6 +14,8 @@ import AuthService from "@/src/services/AuthService";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
 import { clearUser } from "@/src/redux/slices/authSlice";
+import { clearUserAchievements } from "@/src/redux/slices/userAchievementsSlice";
+import { clearAchievements } from "@/src/redux/slices/achievementsSlice";
 
 const MainMenu = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -44,6 +46,8 @@ const MainMenu = () => {
   async function logout() {
     await AuthService.logout();
     dispatch(clearUser());
+    dispatch(clearUserAchievements());
+    dispatch(clearAchievements());
     router.push("/login");
   }
 

@@ -11,7 +11,7 @@ public class AchievementsRepository(LiagDbContext dbContext) : IAchievementsRepo
 
     public async Task<IEnumerable<Achievement>> GetAchievementsAsync()
     {
-        return await _dbContext.Achievements.ToListAsync();
+        return await _dbContext.Achievements.OrderBy(ach => ach.XpReward).ToListAsync();
     }
 
     public async Task<IEnumerable<UserAchievement>> GetUserAchievementsAsync(string userId)
