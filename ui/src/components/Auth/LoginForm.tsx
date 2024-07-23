@@ -26,6 +26,8 @@ import { setUser } from "@/src/redux/slices/authSlice";
 import { toast } from "sonner";
 import { PiWarningCircleFill } from "react-icons/pi";
 import { useState } from "react";
+import { Checkbox } from "@/src/shadcn/ui/checkbox";
+import { Label } from "@/src/shadcn/ui/label";
 
 // Login Component
 const LoginForm = () => {
@@ -38,12 +40,13 @@ const LoginForm = () => {
     defaultValues: {
       email: "",
       password: "",
+      rememberMe: false,
     },
   });
 
   async function onSubmit(values: z.infer<typeof loginFormSchema>) {
     if (isLoading) return;
-    const loginData: ILoginData = { ...values, rememberMe: false };
+    const loginData: ILoginData = { ...values };
     try {
       setIsLoading(true);
       await AuthService.login(loginData);
@@ -119,6 +122,28 @@ const LoginForm = () => {
                   <Input className="min-w-[360px]" type="password" {...field} />
                 </FormControl>
                 <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={loginForm.control}
+            name="rememberMe"
+            render={({ field }) => (
+              <FormItem className="flex w-full items-center gap-2">
+                <FormControl>
+                  <Checkbox
+                    id="rememberMe"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    className="scale-75"
+                  />
+                </FormControl>
+                <Label
+                  htmlFor="rememberMe"
+                  className="!mt-0 cursor-pointer uppercase text-cp-cyan"
+                >
+                  Remember Me
+                </Label>
               </FormItem>
             )}
           />

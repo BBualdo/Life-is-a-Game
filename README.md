@@ -57,6 +57,7 @@ This is an application where users can set missions for themselves, track their 
 10. Handled routes protection using Next.js ```middleware```.
 11. Added fetching current user data to form submit logic and configured **Redux-Persist** to keep user data upon refreshing page without need to make extra requests.
 12. Added toasts (snackbars) upon successful registering and errors as well. I have also taken care of loading state until request is performed to prevent user from taking any actions like spamming login button, etc.
+13. Introduced **RememberMe** checkbox in login form.
 
 ### 🧰 Built with
 
