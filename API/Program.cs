@@ -38,6 +38,7 @@ builder.Services.AddScoped<IAchievementsRepository, AchievementsRepository>();
 builder.Services.AddScoped<IMissionsRepository, MissionsRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IAchievementsService, AchievementsService>();
+builder.Services.AddScoped<IMissionsService, MissionsService>();
 
 builder.Services.AddCors(options =>
   options.AddPolicy("default", policyBuilder => 
