@@ -27,7 +27,11 @@ public class MissionsService(IMissionsRepository missionsRepository) : IMissions
 
     public async Task UpdateMissionAsync(UpdateMissionDto missionDto)
     {
-        var mission = missionDto.ToMission();
+        var mission = await _missionsRepository.GetMissionByIdAsync(missionDto.Id);
+        mission.Title = missionDto.Title;
+        mission.Description = missionDto.Description;
+        mission.Subtasks = missionDto.Subtasks?.Select(subtask => subtask.ToSubtask(mission.Id)).ToList();
+        
         await _missionsRepository.UpdateMissionAsync(mission);
     }
 

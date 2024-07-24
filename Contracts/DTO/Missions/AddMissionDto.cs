@@ -1,4 +1,5 @@
-﻿using Data.Enums;
+﻿using Contracts.DTO.Subtasks;
+using Data.Enums;
 using Data.Models;
 
 namespace Contracts.DTO.Missions;
@@ -9,20 +10,21 @@ public class AddMissionDto
     public string? Description { get; set; }
     public DifficultyLevel Difficulty { get; set; }
     public int XpReward { get; set; }
-    public List<Subtask>? Subtasks { get; set; }
+    public List<SubtaskDto>? Subtasks { get; set; }
     public string? UserId { get; set; }
 
     public Mission ToMission()
     {
+        var missionId = Guid.NewGuid();
         return new Mission
         {
-            Id = Guid.NewGuid(),
+            Id = missionId,
             Title = Title,
             Description = Description,
             Difficulty = Difficulty,
             XpReward = XpReward,
             CreatedAt = DateTime.UtcNow,
-            Subtasks = Subtasks,
+            Subtasks = Subtasks?.Select(subtask => subtask.ToSubtask(missionId)).ToList(),
             UserId = UserId,
             IsCompleted = false,
         };

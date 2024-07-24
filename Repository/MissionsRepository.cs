@@ -17,7 +17,8 @@ public class MissionsRepository(LiagDbContext dbContext) : IMissionsRepository
 
     public async Task<Mission> GetMissionByIdAsync(Guid missionId)
     {
-        return await _dbContext.Missions.Include(mission => mission.Subtasks).FirstAsync(mission => mission.Id == missionId);
+        Mission mission = await _dbContext.Missions.Include(mission => mission.Subtasks).FirstAsync(mission => mission.Id == missionId);
+        return mission;
     }
 
     public async Task AddMissionAsync(Mission mission)
