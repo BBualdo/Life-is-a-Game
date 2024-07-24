@@ -34,8 +34,9 @@ builder.Services.ConfigureApplicationCookie(options =>
   options.SlidingExpiration = true;
 });
 
-builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IAchievementsRepository, AchievementsRepository>();
+builder.Services.AddScoped<IMissionsRepository, MissionsRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IAchievementsService, AchievementsService>();
 
 builder.Services.AddCors(options =>

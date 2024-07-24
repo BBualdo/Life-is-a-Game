@@ -3,8 +3,6 @@ import { cookies } from "next/headers";
 
 export function middleware(req: NextRequest) {
   let token = cookies().get("LIAGToken")?.value;
-  console.log("Token: ", token);
-  console.log("Pathname: ", req.nextUrl.pathname);
 
   if (
     token &&
