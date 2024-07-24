@@ -24,7 +24,7 @@ public class AddMissionDto
             Difficulty = Difficulty,
             XpReward = XpReward,
             CreatedAt = DateTime.UtcNow,
-            Subtasks = Subtasks?.Select(subtask => subtask.ToSubtask(missionId)).ToList(),
+            Subtasks = Subtasks?.Select(subtask => subtask.ToSubtask()).ToList(),
             UserId = UserId,
             IsCompleted = false,
         };

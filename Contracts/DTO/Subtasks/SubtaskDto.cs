@@ -7,14 +7,13 @@ public class SubtaskDto
     public string? Title { get; set; }
     public bool IsCompleted { get; set; }
 
-    public Subtask ToSubtask(Guid missionId)
+    public Subtask ToSubtask()
     {
         return new Subtask
         {
             Id = Guid.NewGuid(),
             Title = Title,
             IsCompleted = IsCompleted,
-            MissionId = missionId
         };
     }
 }

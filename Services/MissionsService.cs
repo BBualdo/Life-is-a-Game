@@ -30,7 +30,7 @@ public class MissionsService(IMissionsRepository missionsRepository) : IMissions
         var mission = await _missionsRepository.GetMissionByIdAsync(missionDto.Id);
         mission.Title = missionDto.Title;
         mission.Description = missionDto.Description;
-        mission.Subtasks = missionDto.Subtasks?.Select(subtask => subtask.ToSubtask(mission.Id)).ToList();
+        mission.Subtasks = missionDto.Subtasks?.Select(subtask => subtask.ToSubtask()).ToList();
         
         await _missionsRepository.UpdateMissionAsync(mission);
     }

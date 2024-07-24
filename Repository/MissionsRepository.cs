@@ -12,13 +12,12 @@ public class MissionsRepository(LiagDbContext dbContext) : IMissionsRepository
     
     public async Task<IEnumerable<Mission>> GetMissionsAsync(string userId)
     {
-        return await _dbContext.Missions.Include(mission => mission.Subtasks).ToListAsync();
+        return await _dbContext.Missions.Where(mission => mission.UserId == userId).Include(mission => mission.Subtasks).ToListAsync();
     }
 
     public async Task<Mission> GetMissionByIdAsync(Guid missionId)
     {
-        Mission mission = await _dbContext.Missions.Include(mission => mission.Subtasks).FirstAsync(mission => mission.Id == missionId);
-        return mission;
+        return await _dbContext.Missions.Include(mission => mission.Subtasks).FirstAsync(mission => mission.Id == missionId);
     }
 
     public async Task AddMissionAsync(Mission mission)

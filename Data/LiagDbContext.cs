@@ -17,5 +17,10 @@ public class LiagDbContext(DbContextOptions options) : IdentityDbContext<User>(o
   {
     base.OnModelCreating(builder);
     builder.Entity<Achievement>().HasData(AchievementSeeder.GetAchievements());
+    
+    builder.Entity<Subtask>()
+      .HasOne(st => st.Mission)
+      .WithMany(m => m.Subtasks)
+      .HasForeignKey(st => st.MissionId);
   }
 }

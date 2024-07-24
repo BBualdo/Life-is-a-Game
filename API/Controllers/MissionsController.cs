@@ -1,12 +1,14 @@
 using Contracts;
 using Contracts.DTO.Missions;
 using Data.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     [Route("api/missions")]
     [ApiController]
+    [Authorize]
     public class MissionsController(IMissionsService missionsService) : ControllerBase
     {
         private readonly IMissionsService _missionsService = missionsService;
