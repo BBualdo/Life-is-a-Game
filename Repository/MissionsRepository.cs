@@ -20,16 +20,14 @@ public class MissionsRepository(LiagDbContext dbContext) : IMissionsRepository
         return await _dbContext.Missions.Include(mission => mission.Subtasks).FirstAsync(mission => mission.Id == missionId);
     }
 
-    public async Task AddMissionAsync(AddMissionDto missionDto)
+    public async Task AddMissionAsync(Mission mission)
     {
-        var mission = missionDto.ToMission();
         await _dbContext.Missions.AddAsync(mission);
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task UpdateMissionAsync(UpdateMissionDto missionDto)
+    public async Task UpdateMissionAsync(Mission mission)
     {
-        var mission = missionDto.ToMission();
         _dbContext.Missions.Entry(mission).State = EntityState.Modified;
         await _dbContext.SaveChangesAsync();
     }

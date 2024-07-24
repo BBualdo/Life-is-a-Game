@@ -18,14 +18,17 @@ public class MissionsService(IMissionsRepository missionsRepository) : IMissions
         return await _missionsRepository.GetMissionByIdAsync(missionId);
     }
 
-    public async Task AddMissionAsync(AddMissionDto missionDto)
+    public async Task<Mission> AddMissionAsync(AddMissionDto missionDto)
     {
-        await _missionsRepository.AddMissionAsync(missionDto);
+        var mission = missionDto.ToMission();
+        await _missionsRepository.AddMissionAsync(mission);
+        return mission;
     }
 
     public async Task UpdateMissionAsync(UpdateMissionDto missionDto)
     {
-        await _missionsRepository.UpdateMissionAsync(missionDto);
+        var mission = missionDto.ToMission();
+        await _missionsRepository.UpdateMissionAsync(mission);
     }
 
     public async Task CompleteMissionAsync(Guid missionId)
