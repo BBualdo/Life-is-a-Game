@@ -44,9 +44,23 @@ const missionsSlice = createSlice({
         }
       }
     },
+    deleteMission: (state, action: PayloadAction<string>) => {
+      if (state.missions) {
+        const id = action.payload;
+        const missionToDelete = state.missions.find((m) => m.id === id);
+        if (missionToDelete) {
+          state.missions = state.missions.filter((m) => m !== missionToDelete);
+        }
+      }
+    },
   },
 });
 
-export const { setMissions, clearMissions, addMission, updateMission } =
-  missionsSlice.actions;
+export const {
+  setMissions,
+  clearMissions,
+  addMission,
+  updateMission,
+  deleteMission,
+} = missionsSlice.actions;
 export default missionsSlice.reducer;

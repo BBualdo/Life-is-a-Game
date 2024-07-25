@@ -8,6 +8,8 @@ import { IoClose } from "react-icons/io5";
 import { toast } from "sonner";
 import IMission from "@/src/models/IMission";
 import { clearSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
+import MissionsService from "@/src/services/MissionsService";
+import { deleteMission } from "@/src/redux/slices/missionsSlice";
 
 const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -28,12 +30,20 @@ const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
     (subtask) => !subtask.isCompleted,
   );
 
-  const giveUpMission = () => {
+  async function giveUpMission() {
     // TODO: 'Give up a mission with at least one subtask completed.' achievement check
-    // TODO: Delete Mission
-    dispatch(clearSelectedMission());
-    toast("Mission removed!");
-  };
+    await MissionsService.deleteMission(selectedMission.id)
+      .then(() => {
+        dispatch(deleteMission(selectedMission.id));
+        dispatch(clearSelectedMission());
+        toast("Mission removed!");
+      })
+      .catch(() => {
+        toast.error("Mission deleting failed!");
+      });
+
+    closeModal();
+  }
 
   const missionComplete = () => {
     // TODO: Complete Mission
