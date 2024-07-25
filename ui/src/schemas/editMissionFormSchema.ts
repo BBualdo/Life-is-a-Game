@@ -1,7 +1,7 @@
 import * as z from "zod";
-import DifficultyLevel from "@/src/enums/DifficultyLevel";
 
-export const missionFormSchema = z.object({
+const editMissionFormSchema = z.object({
+  id: z.string(),
   title: z
     .string()
     .min(6, { message: "Mission title is too short." })
@@ -9,8 +9,6 @@ export const missionFormSchema = z.object({
   description: z
     .string()
     .max(2000, { message: "Mission description is too long." }),
-  difficulty: z.nativeEnum(DifficultyLevel),
-  xpReward: z.number(),
   subtasks: z.array(
     z.object({
       id: z.string(),
@@ -18,5 +16,6 @@ export const missionFormSchema = z.object({
       isCompleted: z.boolean(),
     }),
   ),
-  userId: z.string(),
 });
+
+export default editMissionFormSchema;

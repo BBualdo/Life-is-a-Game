@@ -1,6 +1,5 @@
 "use client";
 
-import { difficultyLevels } from "@/src/data/difficultyLevels";
 import {
   FormControl,
   FormField,
@@ -11,7 +10,7 @@ import { Slider } from "@/src/shadcn/ui/slider";
 import { Dispatch, SetStateAction } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
-import { missionFormSchema } from "@/src/utils/schemas";
+import addMissionFormSchema from "@/src/schemas/addMissionFormSchema";
 
 const DifficultySlider = ({
   form,
@@ -19,7 +18,7 @@ const DifficultySlider = ({
   setDifficulty,
   difficultyLevel,
 }: {
-  form: UseFormReturn<z.infer<typeof missionFormSchema>>;
+  form: UseFormReturn<z.infer<typeof addMissionFormSchema>>;
   difficulty: number[];
   setDifficulty: Dispatch<SetStateAction<number[]>>;
   difficultyLevel: number;

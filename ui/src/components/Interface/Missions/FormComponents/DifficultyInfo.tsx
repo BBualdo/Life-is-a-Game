@@ -5,27 +5,27 @@ import { FormField } from "@/src/shadcn/ui/form";
 import { useEffect } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
-import { missionFormSchema } from "@/src/utils/schemas";
+import addMissionFormSchema from "@/src/schemas/addMissionFormSchema";
 
 const DifficultyInfo = ({
   form,
   difficultyLevel,
   xp,
 }: {
-  form: UseFormReturn<z.infer<typeof missionFormSchema>>;
+  form: UseFormReturn<z.infer<typeof addMissionFormSchema>>;
   difficultyLevel: number;
   xp: number;
 }) => {
   const { setValue } = form;
 
   useEffect(() => {
-    setValue("xp", xp);
+    setValue("xpReward", xp);
   }, [setValue, xp]);
 
   return (
     <FormField
       control={form.control}
-      name="xp"
+      name="xpReward"
       render={({ field }) => {
         return (
           <div className="flex items-stretch gap-1 xs:max-lg:flex-col">

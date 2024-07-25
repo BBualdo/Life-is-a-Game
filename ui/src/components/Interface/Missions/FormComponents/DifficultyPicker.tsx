@@ -6,12 +6,12 @@ import DifficultySlider from "./DifficultySlider";
 import { UseFormReturn } from "react-hook-form";
 import { difficultyLevels } from "@/src/data/difficultyLevels";
 import { z } from "zod";
-import { missionFormSchema } from "@/src/utils/schemas";
+import addMissionFormSchema from "@/src/schemas/addMissionFormSchema";
 
 const DifficultyPicker = ({
   form,
 }: {
-  form: UseFormReturn<z.infer<typeof missionFormSchema>>;
+  form: UseFormReturn<z.infer<typeof addMissionFormSchema>>;
 }) => {
   const [difficulty, setDifficulty] = useState<number[]>([50]);
   const [difficultyLevel, setDifficultyLevel] = useState(2);

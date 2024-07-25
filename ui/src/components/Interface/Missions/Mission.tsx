@@ -68,13 +68,12 @@ const Mission = ({
         </div>
 
         <p
-          className={clsx("flex items-center gap-1 xs:text-lg lg:text-xl", {
+          className={clsx("xs:text-lg lg:text-xl", {
             "text-cp-cyan": !missionCompleted,
             "text-cp-green": missionCompleted,
           })}
         >
-          {mission.xpReward}
-          <p>XP</p>
+          {mission.xpReward} XP
         </p>
       </div>
       <div

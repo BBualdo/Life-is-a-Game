@@ -8,13 +8,16 @@ import {
 } from "@/src/shadcn/ui/form";
 import { Input } from "@/src/shadcn/ui/input";
 import { UseFormReturn } from "react-hook-form";
-import { missionFormSchema } from "@/src/utils/schemas";
 import { z } from "zod";
+import addMissionFormSchema from "@/src/schemas/addMissionFormSchema";
+import editMissionFormSchema from "@/src/schemas/editMissionFormSchema";
 
 const Title = ({
   form,
 }: {
-  form: UseFormReturn<z.infer<typeof missionFormSchema>>;
+  form:
+    | UseFormReturn<z.infer<typeof addMissionFormSchema>>
+    | UseFormReturn<z.infer<typeof editMissionFormSchema>>;
 }) => {
   return (
     <FormField

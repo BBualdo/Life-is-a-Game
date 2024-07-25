@@ -10,33 +10,32 @@ import SubtasksList from "./FormComponents/SubtasksList";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
 import { v4 as uuidv4 } from "uuid";
-import { missionFormSchema } from "@/src/utils/schemas";
-import { MissionSchema } from "@/src/utils/types";
 import { toast } from "sonner";
+import IMission from "@/src/models/IMission";
+import MissionsService from "@/src/services/MissionsService";
+import { updateMission } from "@/src/redux/slices/missionsSlice";
+import editMissionFormSchema from "@/src/schemas/editMissionFormSchema";
 
 const EditMissionForm = ({
   closeModal,
   mission,
 }: {
   closeModal: () => void;
-  mission: MissionSchema;
+  mission: IMission;
 }) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const form = useForm<z.infer<typeof missionFormSchema>>({
-    resolver: zodResolver(missionFormSchema),
+  const form = useForm<z.infer<typeof editMissionFormSchema>>({
+    resolver: zodResolver(editMissionFormSchema),
     defaultValues: {
       id: mission.id,
-      status: mission.status,
       title: mission.title,
       description: mission.description,
-      difficulty: mission.difficulty,
-      xp: mission.xp,
       subtasks: mission.subtasks,
     },
   });
 
-  function onSubmit(values: z.infer<typeof missionFormSchema>) {
+  async function onSubmit(values: z.infer<typeof editMissionFormSchema>) {
     if (values.subtasks.length === 0) {
       values.subtasks.push({
         id: uuidv4(),
@@ -44,8 +43,17 @@ const EditMissionForm = ({
         isCompleted: false,
       });
     }
-    //TODO: Implement updating missions
-    toast("Mission has been updated!");
+
+    await MissionsService.updateMission(values)
+      .then(() => {
+        dispatch(updateMission(values));
+        toast("Mission has been updated!");
+      })
+      .catch(() => {
+        // TODO: Handle errors
+        toast.error("Updating mission failed!");
+      });
+
     closeModal();
   }
 

@@ -17,12 +17,15 @@ import { v4 as uuidv4 } from "uuid";
 import { IoClose } from "react-icons/io5";
 import ISubtask from "@/src/models/ISubtask";
 import { z } from "zod";
-import { missionFormSchema } from "@/src/utils/schemas";
+import addMissionFormSchema from "@/src/schemas/addMissionFormSchema";
+import editMissionFormSchema from "@/src/schemas/editMissionFormSchema";
 
 const SubtasksList = ({
   form,
 }: {
-  form: UseFormReturn<z.infer<typeof missionFormSchema>>;
+  form:
+    | UseFormReturn<z.infer<typeof addMissionFormSchema>>
+    | UseFormReturn<z.infer<typeof editMissionFormSchema>>;
 }) => {
   const [subtasksArr, setSubtasksArr] = useState<ISubtask[]>(
     form.getValues().subtasks,
