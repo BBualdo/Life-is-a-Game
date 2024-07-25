@@ -27,7 +27,7 @@ namespace API.Controllers
             return Ok(mission);
         }
 
-        [HttpPost("createMission")]
+        [HttpPost("addMission")]
         public async Task<ActionResult> AddMission(AddMissionDto missionDto)
         {
             var mission = await _missionsService.AddMissionAsync(missionDto);

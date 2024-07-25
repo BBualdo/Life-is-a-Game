@@ -3,6 +3,8 @@ import { TypedUseSelectorHook, useSelector } from "react-redux";
 import authReducer from "@/src/redux/slices/authSlice";
 import achievementsReducer from "@/src/redux/slices/achievementsSlice";
 import userAchievementsReducer from "@/src/redux/slices/userAchievementsSlice";
+import missionsReducer from "@/src/redux/slices/missionsSlice";
+import selectedMissionReducer from "@/src/redux/slices/selectedMissionSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
@@ -16,6 +18,8 @@ const rootReducers = combineReducers({
   authReducer,
   achievementsReducer,
   userAchievementsReducer,
+  missionsReducer,
+  selectedMissionReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);

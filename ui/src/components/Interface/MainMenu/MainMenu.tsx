@@ -16,6 +16,7 @@ import { AppDispatch } from "@/src/redux/store";
 import { clearUser } from "@/src/redux/slices/authSlice";
 import { clearUserAchievements } from "@/src/redux/slices/userAchievementsSlice";
 import { clearAchievements } from "@/src/redux/slices/achievementsSlice";
+import { clearMissions } from "@/src/redux/slices/missionsSlice";
 
 const MainMenu = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -48,6 +49,7 @@ const MainMenu = () => {
     dispatch(clearUser());
     dispatch(clearUserAchievements());
     dispatch(clearAchievements());
+    dispatch(clearMissions());
     router.push("/login");
   }
 

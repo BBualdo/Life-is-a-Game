@@ -6,24 +6,26 @@ import { MissionSchema } from "@/src/utils/types";
 import clsx from "clsx";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
+import IMission from "@/src/models/IMission";
+import DifficultyLevel from "@/src/enums/DifficultyLevel";
 
 const Mission = ({
   mission,
   selectedMission,
 }: {
-  mission: MissionSchema;
-  selectedMission: MissionSchema;
+  mission: IMission;
+  selectedMission: IMission;
 }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const completedSubtasks = mission.subtasks.filter(
-    (subtask) => subtask.isCompleted === true,
+    (subtask) => subtask.isCompleted,
   );
   const progress = Math.ceil(
     (completedSubtasks.length / mission.subtasks.length) * 100,
   );
 
-  const missionCompleted = mission.status === "completed";
+  const missionCompleted = mission.isCompleted;
 
   return (
     <button
@@ -59,7 +61,7 @@ const Mission = ({
             <h3 className="lg:text-md xs:text-sm">
               Difficulty:{" "}
               <span className="lg:text-md font-bold uppercase text-cp-red xs:text-sm">
-                {mission.difficulty}
+                {DifficultyLevel[mission.difficulty]}
               </span>
             </h3>
           </div>
@@ -71,7 +73,7 @@ const Mission = ({
             "text-cp-green": missionCompleted,
           })}
         >
-          {mission.xp}
+          {mission.xpReward}
           <p>XP</p>
         </p>
       </div>

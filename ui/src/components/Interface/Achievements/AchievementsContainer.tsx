@@ -11,7 +11,7 @@ import IUserAchievement from "@/src/models/IUserAchievement";
 const AchievementsContainer = () => {
   const { achievements, userAchievements, isLoading } = useAchievements();
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <Loading text="Loading Achievements..." />;
   if (!achievements || !userAchievements) return null;
 
   const userAchievementsMap = new Map<string, IUserAchievement>(
