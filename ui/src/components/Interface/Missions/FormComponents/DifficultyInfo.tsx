@@ -2,16 +2,17 @@
 
 import { difficultyLevels } from "@/src/data/difficultyLevels";
 import { FormField } from "@/src/shadcn/ui/form";
-import { MissionSchema } from "@/src/utils/types";
 import { useEffect } from "react";
 import { UseFormReturn } from "react-hook-form";
+import { z } from "zod";
+import { missionFormSchema } from "@/src/utils/schemas";
 
 const DifficultyInfo = ({
   form,
   difficultyLevel,
   xp,
 }: {
-  form: UseFormReturn<MissionSchema>;
+  form: UseFormReturn<z.infer<typeof missionFormSchema>>;
   difficultyLevel: number;
   xp: number;
 }) => {

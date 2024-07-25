@@ -19,8 +19,11 @@ const missionsSlice = createSlice({
     clearMissions: (state) => {
       state.missions = null;
     },
+    addMission: (state, action: PayloadAction<IMission>) => {
+      state.missions?.push(action.payload);
+    },
   },
 });
 
-export const { setMissions, clearMissions } = missionsSlice.actions;
+export const { setMissions, clearMissions, addMission } = missionsSlice.actions;
 export default missionsSlice.reducer;

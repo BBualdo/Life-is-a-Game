@@ -64,7 +64,9 @@ This is an application where users can set missions for themselves, track their 
 17. Created Repository => Service => Controller for **Missions** management. First, I set up assigning missionId Foreign Key in Subtasks manually in Dto object, but then I have made some research about **EF Core Navigation Properties**, so I have added ```public Mission Mission { get; set; }``` into my Subtask Model class. Now it sets missionId automatically. However, I have problem when trying to update Mission with subtasks, probably because lack of subtask management layer, so that's what I was going to do.
 18. Assigned empty list to ```List<Subtask>``` in Mission model to avoid nullable checks.
 19. When updating mission, I had to insert login to manually determine which subtask exists in mission already, which one is new and which one is missing, so it can be removed. I decided to make subtask ID mandatory for creating new one to simplify the process. I'm going to use **uuid** in React to achieve this.  
-20. Created TypeScript ```IMission``` and ```ISubtask``` models as well as DTOs for adding and updating missions purposes, and also ```MissionsService``` class with necessary methods and finally ```useMisssions``` hook to centralize missions data. Then I implemented Redux ```missionsSlice``` and ```selectedMissionSlice``` again. After reworking some variables, filtering and other code parts to fit fresh approach, I've successfully managed displaying missions with all details and selecting missions to work. 
+20. Created TypeScript ```IMission``` and ```ISubtask``` models as well as DTOs for adding and updating missions purposes, and also ```MissionsService``` class with necessary methods and finally ```useMisssions``` hook to centralize missions data. Then I implemented Redux ```missionsSlice``` and ```selectedMissionSlice``` again. After reworking some variables, filtering and other code parts to fit fresh approach, I've successfully managed displaying missions with all details and selecting missions to work.
+21. Refactored ```CreateMissionForm``` and Zod Schema to fit current data expected and returned from API. Adding missions works.
+22. Meanwhile, I found out that despite token being present in cookies it can be expired which prevents user from performing authorized operation. Have to keep this in mind and introduce refreshing tokens.
 
 ### 🧰 Built with
 
@@ -89,6 +91,8 @@ This is an application where users can set missions for themselves, track their 
 
 - Difference between ```AddIdentity```, ```AddIdentityCore``` and ```AddDefaultIdentity```.
 - Reminded about using ```Maps``` and ```Array.reduce()``` function to sum things up without having to create temporary variable.
+- Meaning of **Entity Framework Core** Navigation Properties and that EF is not so good at updating nested objects
+- Tokens doesn't disappear from cookies just like in Swagger, they just expire and that has to be handled
 
 ### Useful resources
 Coming soon...

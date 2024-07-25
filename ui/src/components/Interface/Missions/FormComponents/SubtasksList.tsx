@@ -9,16 +9,22 @@ import {
   FormMessage,
 } from "@/src/shadcn/ui/form";
 import { Input } from "@/src/shadcn/ui/input";
-import { MissionSchema, SubtaskType } from "@/src/utils/types";
 import { useRef, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 import Subtask from "./Subtask";
 
 import { v4 as uuidv4 } from "uuid";
 import { IoClose } from "react-icons/io5";
+import ISubtask from "@/src/models/ISubtask";
+import { z } from "zod";
+import { missionFormSchema } from "@/src/utils/schemas";
 
-const SubtasksList = ({ form }: { form: UseFormReturn<MissionSchema> }) => {
-  const [subtasksArr, setSubtasksArr] = useState<SubtaskType[]>(
+const SubtasksList = ({
+  form,
+}: {
+  form: UseFormReturn<z.infer<typeof missionFormSchema>>;
+}) => {
+  const [subtasksArr, setSubtasksArr] = useState<ISubtask[]>(
     form.getValues().subtasks,
   );
   const [subtaskErr, setSubtaskErr] = useState<boolean>(false);
@@ -32,7 +38,7 @@ const SubtasksList = ({ form }: { form: UseFormReturn<MissionSchema> }) => {
       setSubtaskErr(true);
       return;
     } else {
-      const newSubtask: SubtaskType = {
+      const newSubtask: ISubtask = {
         id: uuidv4(),
         title: inputValue,
         isCompleted: false,

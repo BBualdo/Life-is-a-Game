@@ -13,29 +13,27 @@ import { AppDispatch } from "@/src/redux/store";
 import { v4 as uuidv4 } from "uuid";
 import { missionFormSchema } from "@/src/utils/schemas";
 import { toast } from "sonner";
-import { format } from "@/src/lib/utils";
+import useUser from "@/src/utils/hooks/useUser";
+import MissionsService from "@/src/services/MissionsService";
+import { addMission } from "@/src/redux/slices/missionsSlice";
 
 const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
+  const user = useUser()!;
   const dispatch = useDispatch<AppDispatch>();
-
-  const date = new Date();
 
   const form = useForm<z.infer<typeof missionFormSchema>>({
     resolver: zodResolver(missionFormSchema),
     defaultValues: {
-      id: uuidv4(),
-      status: "active",
       title: "",
       description: "",
-      difficulty: "Challenging",
-      xp: 150,
+      difficulty: 2,
+      xpReward: 150,
       subtasks: [],
-      creationDate: format(date),
-      completionDate: "",
+      userId: user.id,
     },
   });
 
-  function onSubmit(values: z.infer<typeof missionFormSchema>) {
+  async function onSubmit(values: z.infer<typeof missionFormSchema>) {
     if (values.subtasks.length === 0) {
       values.subtasks.push({
         id: uuidv4(),
@@ -43,8 +41,17 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
         isCompleted: false,
       });
     }
-    //TODO: Implement adding missions
-    toast("Mission has been added!");
+
+    await MissionsService.addMission(values)
+      .then((res) => {
+        dispatch(addMission(res.data));
+        toast("Mission has been added!");
+      })
+      .catch((error) => {
+        //TODO: Handle errors
+        toast.error("Adding mission failed!");
+      });
+
     closeModal();
   }
 

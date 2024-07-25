@@ -8,9 +8,10 @@ import {
   FormLabel,
 } from "@/src/shadcn/ui/form";
 import { Slider } from "@/src/shadcn/ui/slider";
-import { MissionSchema } from "@/src/utils/types";
 import { Dispatch, SetStateAction } from "react";
 import { UseFormReturn } from "react-hook-form";
+import { z } from "zod";
+import { missionFormSchema } from "@/src/utils/schemas";
 
 const DifficultySlider = ({
   form,
@@ -18,7 +19,7 @@ const DifficultySlider = ({
   setDifficulty,
   difficultyLevel,
 }: {
-  form: UseFormReturn<MissionSchema>;
+  form: UseFormReturn<z.infer<typeof missionFormSchema>>;
   difficulty: number[];
   setDifficulty: Dispatch<SetStateAction<number[]>>;
   difficultyLevel: number;
@@ -37,9 +38,7 @@ const DifficultySlider = ({
               value={difficulty}
               onValueChange={(value) => {
                 setDifficulty(value);
-                field.onChange(
-                  (field.value = difficultyLevels[difficultyLevel].title),
-                );
+                field.onChange((field.value = difficultyLevel));
               }}
             />
           </FormControl>
