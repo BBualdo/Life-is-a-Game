@@ -28,7 +28,7 @@ public class MissionsRepository(LiagDbContext dbContext) : IMissionsRepository
 
     public async Task UpdateMissionAsync(Mission mission)
     {
-        _dbContext.Missions.Entry(mission).State = EntityState.Modified;
+        _dbContext.Entry(mission).State = EntityState.Modified;
         await _dbContext.SaveChangesAsync();
     }
 

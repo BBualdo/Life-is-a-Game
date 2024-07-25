@@ -14,6 +14,6 @@ public class Mission
   [Required] public DateTime? CreatedAt { get; set; }
   [Required] public bool IsCompleted { get; set; }
   public DateTime? CompletedAt { get; set; }
-  public List<Subtask>? Subtasks { get; set; }
+  public List<Subtask> Subtasks { get; set; } = [];
   [Required] [ForeignKey(nameof(User))] public string? UserId { get; set; }
 }

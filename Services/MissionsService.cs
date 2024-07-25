@@ -1,12 +1,14 @@
 ﻿using Contracts;
 using Contracts.DTO.Missions;
+using Contracts.DTO.Subtasks;
 using Data.Models;
 
 namespace Services;
 
-public class MissionsService(IMissionsRepository missionsRepository) : IMissionsService
+public class MissionsService(IMissionsRepository missionsRepository, ISubtasksService subtasksService) : IMissionsService
 {
     private readonly IMissionsRepository _missionsRepository = missionsRepository;
+    private readonly ISubtasksService _subtasksService = subtasksService;
     
     public async Task<IEnumerable<Mission>> GetMissionsAsync(string userId)
     {
@@ -30,7 +32,34 @@ public class MissionsService(IMissionsRepository missionsRepository) : IMissions
         var mission = await _missionsRepository.GetMissionByIdAsync(missionDto.Id);
         mission.Title = missionDto.Title;
         mission.Description = missionDto.Description;
-        mission.Subtasks = missionDto.Subtasks?.Select(subtask => subtask.ToSubtask()).ToList();
+
+        var existingSubtasks = mission.Subtasks;
+
+        foreach (var subtaskDto in missionDto.Subtasks)
+        {
+            var commonSubtask = existingSubtasks.FirstOrDefault(st => st.Id == subtaskDto.Id);
+            if (commonSubtask != null)
+            {
+                commonSubtask.Title = subtaskDto.Title;
+                commonSubtask.IsCompleted = subtaskDto.IsCompleted;
+                await _subtasksService.UpdateSubtaskAsync(commonSubtask);
+            }
+            else
+            {
+                var newSubtask = subtaskDto.ToSubtask(mission.Id);
+                await _subtasksService.AddSubtaskAsync(newSubtask);
+            }
+        }
+
+        var subtaskIdsToRemove = existingSubtasks
+            .Where(st => missionDto.Subtasks.All(dto => st.Id != dto.Id))
+            .Select(st => st.Id)
+            .ToList();
+
+        foreach (var subtaskId in subtaskIdsToRemove)
+        {
+            await _subtasksService.DeleteSubtaskAsync(subtaskId);
+        }
         
         await _missionsRepository.UpdateMissionAsync(mission);
     }

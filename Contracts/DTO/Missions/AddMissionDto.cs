@@ -10,7 +10,7 @@ public class AddMissionDto
     public string? Description { get; set; }
     public DifficultyLevel Difficulty { get; set; }
     public int XpReward { get; set; }
-    public List<SubtaskDto>? Subtasks { get; set; }
+    public List<SubtaskDto> Subtasks { get; set; } = [];
     public string? UserId { get; set; }
 
     public Mission ToMission()
@@ -24,7 +24,7 @@ public class AddMissionDto
             Difficulty = Difficulty,
             XpReward = XpReward,
             CreatedAt = DateTime.UtcNow,
-            Subtasks = Subtasks?.Select(subtask => subtask.ToSubtask()).ToList(),
+            Subtasks = Subtasks.Select(subtask => subtask.ToSubtask(missionId)).ToList(),
             UserId = UserId,
             IsCompleted = false,
         };
