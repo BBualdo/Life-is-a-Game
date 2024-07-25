@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import useUser from "@/src/utils/hooks/useUser";
 import MissionsService from "@/src/services/MissionsService";
 import { addMission } from "@/src/redux/slices/missionsSlice";
+import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 
 const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
   const user = useUser()!;
@@ -45,6 +46,7 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
     await MissionsService.addMission(values)
       .then((res) => {
         dispatch(addMission(res.data));
+        dispatch(setSelectedMission(res.data));
         toast("Mission has been added!");
       })
       .catch((error) => {

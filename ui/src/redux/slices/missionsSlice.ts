@@ -20,7 +20,7 @@ const missionsSlice = createSlice({
       state.missions = null;
     },
     addMission: (state, action: PayloadAction<IMission>) => {
-      state.missions?.push(action.payload);
+      state.missions?.unshift(action.payload);
     },
   },
 });
