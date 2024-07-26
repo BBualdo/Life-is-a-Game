@@ -3,9 +3,14 @@
 import { toast } from "sonner";
 import useUser from "@/src/utils/hooks/useUser";
 import levels from "@/src/data/levels";
+import Loading from "@/src/app/loading";
 
 const UserBannerXP = () => {
-  const { xp, level } = useUser()!;
+  const { user, isLoadingUser } = useUser();
+
+  if (isLoadingUser) return <Loading text="" />;
+  if (!user) return null;
+  const { xp, level } = user;
 
   const calculateProgress = () => {
     let progress = (xp / levels[level - 1].ceil) * 100;

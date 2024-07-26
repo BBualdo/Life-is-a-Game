@@ -11,9 +11,13 @@ import UserBio from "./UserBio";
 import UserGoal from "./UserGoal";
 import EditProfileButton from "./EditProfileButton";
 import useUser from "@/src/utils/hooks/useUser";
+import Loading from "@/src/app/loading";
 
 const UserData = () => {
-  const user = useUser()!;
+  const { user, isLoadingUser } = useUser();
+
+  if (isLoadingUser) return <Loading text="Loading User..." />;
+  if (!user) return null;
 
   return (
     <motion.section

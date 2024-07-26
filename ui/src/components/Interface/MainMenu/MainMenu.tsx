@@ -10,17 +10,14 @@ import { useState } from "react";
 import TutorialStepper from "../HowToPlay/TutorialStepper";
 import { GiPowerButton } from "react-icons/gi";
 import { useRouter } from "next/navigation";
-import AuthService from "@/src/services/AuthService";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
-import { clearUser } from "@/src/redux/slices/authSlice";
-import { clearUserAchievements } from "@/src/redux/slices/userAchievementsSlice";
-import { clearAchievements } from "@/src/redux/slices/achievementsSlice";
-import { clearMissions } from "@/src/redux/slices/missionsSlice";
+import logout from "@/src/utils/logout";
 
 const MainMenu = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
 
   const openModal = () => {
     setIsOpen(true);
@@ -30,8 +27,6 @@ const MainMenu = () => {
     setIsOpen(false);
     document.body.style.overflow = "";
   };
-
-  const router = useRouter();
 
   const navLinks = links.map((link) => (
     <Link key={link.key} href={link.href}>
@@ -43,15 +38,6 @@ const MainMenu = () => {
       </button>
     </Link>
   ));
-
-  async function logout() {
-    await AuthService.logout();
-    dispatch(clearUser());
-    dispatch(clearUserAchievements());
-    dispatch(clearAchievements());
-    dispatch(clearMissions());
-    router.push("/login");
-  }
 
   return (
     <>
@@ -78,7 +64,7 @@ const MainMenu = () => {
           {/* TODO: Allow to log out when authentication will be implemented */}
           <button
             className="btn-menu flex items-center gap-2 text-cp-red enabled:hover:border-cp-red enabled:hover:text-cp-red-hover disabled:text-cp-red/50"
-            onClick={logout}
+            onClick={async () => await logout(dispatch, router)}
           >
             <GiPowerButton />
             Logout

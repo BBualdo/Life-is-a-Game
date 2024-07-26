@@ -22,7 +22,7 @@ import ILoginData from "@/src/models/ILoginData";
 import AuthService from "@/src/services/AuthService";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
-import { setUser } from "@/src/redux/slices/authSlice";
+import { setIsLoggedOut, setUser } from "@/src/redux/slices/authSlice";
 import { toast } from "sonner";
 import { PiWarningCircleFill } from "react-icons/pi";
 import { useState } from "react";
@@ -52,6 +52,7 @@ const LoginForm = () => {
       await AuthService.login(loginData);
       const user = await AuthService.getCurrentUser();
       dispatch(setUser(user.data));
+      dispatch(setIsLoggedOut(false));
       setIsLoading(false);
       router.push("/");
     } catch (error: any) {

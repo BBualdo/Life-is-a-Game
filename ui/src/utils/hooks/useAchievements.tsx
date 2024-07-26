@@ -11,9 +11,9 @@ import useUser from "@/src/utils/hooks/useUser";
 import { setUserAchievements } from "@/src/redux/slices/userAchievementsSlice";
 
 const useAchievements = () => {
-  const { id } = useUser()!;
-
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { user } = useUser();
+  const [isLoadingAchievements, setIsLoadingAchievements] =
+    useState<boolean>(true);
 
   const achievements: IAchievement[] | null | undefined = useAppSelector(
     (state) => state.achievementsReducer.achievements,
@@ -35,9 +35,9 @@ const useAchievements = () => {
       }
     }
 
-    if (!userAchievements) {
+    if (!userAchievements && user) {
       try {
-        AchievementsService.getUserAchievements(id).then((res) =>
+        AchievementsService.getUserAchievements(user.id).then((res) =>
           dispatch(setUserAchievements(res.data)),
         );
       } catch (error) {
@@ -46,10 +46,10 @@ const useAchievements = () => {
       }
     }
 
-    setIsLoading(false);
-  }, [id, achievements, userAchievements, dispatch]);
+    setIsLoadingAchievements(false);
+  }, [user, achievements, userAchievements, dispatch]);
 
-  return { achievements, userAchievements, isLoading };
+  return { achievements, userAchievements, isLoadingAchievements };
 };
 
 export default useAchievements;

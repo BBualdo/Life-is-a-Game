@@ -3,10 +3,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type InitialState = {
   user: IUser | null | undefined;
+  isLoggedOut: boolean;
 };
 
 const initialState: InitialState = {
   user: undefined,
+  isLoggedOut: true,
 };
 
 const authSlice = createSlice({
@@ -19,8 +21,11 @@ const authSlice = createSlice({
     clearUser: (state) => {
       state.user = null;
     },
+    setIsLoggedOut: (state, action: PayloadAction<boolean>) => {
+      state.isLoggedOut = action.payload;
+    },
   },
 });
 
 export default authSlice.reducer;
-export const { setUser, clearUser } = authSlice.actions;
+export const { setUser, clearUser, setIsLoggedOut } = authSlice.actions;

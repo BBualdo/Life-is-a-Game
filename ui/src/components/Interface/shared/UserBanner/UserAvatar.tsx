@@ -1,20 +1,30 @@
 "use client";
 
 import Image from "next/image";
-
 import CircleProgressBar from "./CircleProgressBar";
-import { AppDispatch, useAppSelector } from "@/src/redux/store";
+import { AppDispatch } from "@/src/redux/store";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 import UserDefaultAvatar from "../UserDefaultAvatar";
-import Link from "next/link";
 import useUser from "@/src/utils/hooks/useUser";
 import levels from "@/src/data/levels";
+import { useState } from "react";
+import UserModal from "@/src/components/Interface/shared/UserBanner/UserModal";
+import Loading from "@/src/app/loading";
 
 const UserAvatar = () => {
-  const user = useUser()!;
-  const { xp, level, avatarUrl } = user;
+  const { user, isLoadingUser } = useUser();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
+
+  if (isLoadingUser) return <Loading text="" />;
+  if (!user) return;
+
+  const { xp, level, avatarUrl } = user;
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   const calculateProgress = () => {
     let progress = (xp / levels[level - 1].ceil) * 100;
@@ -28,27 +38,11 @@ const UserAvatar = () => {
     return progress;
   };
 
-  // TODO: This is commented out, because for now once user create profile, he can't log out
-
-  // const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  // useEffect(() => {
-  //   const handleBodyClick = () => {
-  //     setIsOpen(false);
-  //   };
-
-  //   document.body.addEventListener("click", handleBodyClick);
-
-  //   return () => {
-  //     document.body.removeEventListener("click", handleBodyClick);
-  //   };
-  // }, []);
-
   return (
-    <Link href="/profile">
+    <>
       <div className="relative flex items-center justify-center">
         <div
-          // onClick={() => setIsOpen(true)}
+          onClick={() => setIsOpen(true)}
           className="relative h-[50px] w-[50px] cursor-pointer overflow-hidden rounded-full transition-all duration-200 lg:border-2 lg:border-light-silver lg:hover:border-cp-cyan"
         >
           {avatarUrl ? (
@@ -66,8 +60,8 @@ const UserAvatar = () => {
         </div>
       </div>
 
-      {/* {isOpen && <UserModal />} */}
-    </Link>
+      {isOpen && <UserModal closeModal={closeModal} />}
+    </>
   );
 };
 

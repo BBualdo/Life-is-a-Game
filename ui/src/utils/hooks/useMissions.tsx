@@ -8,17 +8,13 @@ import { setMissions } from "@/src/redux/slices/missionsSlice";
 import useUser from "@/src/utils/hooks/useUser";
 
 const useMissions = () => {
-  const user = useUser();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { user } = useUser();
+  const [isLoadingMissions, setIsLoadingMissions] = useState<boolean>(true);
   const missions = useAppSelector((state) => state.missionsReducer.missions);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    if (!user) {
-      return;
-    }
-
-    if (!missions) {
+    if (!missions && user) {
       try {
         MissionsService.getMissions(user.id).then((res) =>
           dispatch(setMissions(res.data)),
@@ -29,10 +25,10 @@ const useMissions = () => {
       }
     }
 
-    setIsLoading(false);
+    setIsLoadingMissions(false);
   }, [user, missions, dispatch]);
 
-  return { missions, isLoading };
+  return { missions, isLoadingMissions };
 };
 
 export default useMissions;

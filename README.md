@@ -71,6 +71,7 @@ This is an application where users can set missions for themselves, track their 
 24. Refactored deleting missions.
 25. Refactored toggling subtasks' completion.
 26. Refactored completing mission.
+27. Uncommented mini-modal invoked by click on the avatar in navbar, which lets user log out from any page. However, I had to introduce ```isLoggedOut``` property in Redux ```authSlice``` state, because logging out sets various state as null and in custom hooks I'm checking if specific state is null to decide if request should be made. Without that property, when user was logging out, ```useUser``` hook performed request for getting current user data.
 
 #### NOTE: Every operation sends requests to API and updates the data in Database, however to prevent redundant data fetching after each update I'm using Redux-Persist to update UI. After user logout Redux I'm clearing all information, so after logging in fresh data is fetched and saved in Redux again.
 
