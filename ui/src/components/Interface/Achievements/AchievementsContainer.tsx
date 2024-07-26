@@ -9,9 +9,10 @@ import Loading from "@/src/app/loading";
 import IUserAchievement from "@/src/models/IUserAchievement";
 
 const AchievementsContainer = () => {
-  const { achievements, userAchievements, isLoading } = useAchievements();
+  const { achievements, userAchievements, isLoadingAchievements } =
+    useAchievements();
 
-  if (isLoading) return <Loading text="Loading Achievements..." />;
+  if (isLoadingAchievements) return <Loading text="Loading Achievements..." />;
   if (!achievements || !userAchievements) return null;
 
   const userAchievementsMap = new Map<string, IUserAchievement>(

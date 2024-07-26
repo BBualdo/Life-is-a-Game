@@ -40,8 +40,8 @@ const Achievement = ({
         </p>
       )}
 
-      <p className="xs:text-md text-cp-white flex items-center gap-1 font-bold lg:text-lg">
-        {achievement.xpReward} <p>XP</p>
+      <p className="xs:text-md text-cp-white font-bold lg:text-lg">
+        {achievement.xpReward} XP
       </p>
     </div>
   );

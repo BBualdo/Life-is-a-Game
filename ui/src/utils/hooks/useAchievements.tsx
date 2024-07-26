@@ -24,7 +24,7 @@ const useAchievements = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    if (!achievements) {
+    if (!achievements && user) {
       try {
         AchievementsService.getAchievements().then((res) =>
           dispatch(setAchievements(res.data)),
