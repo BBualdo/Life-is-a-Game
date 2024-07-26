@@ -19,7 +19,7 @@ import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 import addMissionFormSchema from "@/src/schemas/addMissionFormSchema";
 
 const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
-  const user = useUser()!;
+  const { user } = useUser();
   const dispatch = useDispatch<AppDispatch>();
 
   const form = useForm<z.infer<typeof addMissionFormSchema>>({
@@ -30,7 +30,7 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
       difficulty: 2,
       xpReward: 150,
       subtasks: [],
-      userId: user.id,
+      userId: user?.id,
     },
   });
 

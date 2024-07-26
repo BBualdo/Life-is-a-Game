@@ -1,8 +1,8 @@
-﻿using Data.Models;
+﻿using Contracts.DTO.User;
 
 namespace Contracts;
 
 public interface ILevelsService
 {
-    Task<User?> AddXpAsync(string userId, int xpAmount);
+    Task<UserXpResponseDto?> AddXpAsync(string userId, int xpAmount);
 }

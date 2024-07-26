@@ -77,6 +77,7 @@ This is an application where users can set missions for themselves, track their 
 
 28. ```ILevelsService``` implementation with method responsible for updating user's xp and level accordingly.
 29. Created ```UserController``` with ```AddXp``` endpoint and tested it with **Swagger**.
+30. Introduced React ```UserService``` and invoked it's ```addXp``` method into ```completeMission``` function. I also refactored returned data from ```AddXp``` endpoint from entire user object to ```xp```, ```level``` and ```totalXpGained```, which are updated in Redux user state.
 
 ### 🧰 Built with
 

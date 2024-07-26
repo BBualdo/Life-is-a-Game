@@ -1,5 +1,6 @@
 import IUser from "@/src/models/IUser";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import IUserXpResponse from "@/src/services/DTO/IUserXpResponse";
 
 type InitialState = {
   user: IUser | null | undefined;
@@ -24,8 +25,15 @@ const authSlice = createSlice({
     setIsLoggedOut: (state, action: PayloadAction<boolean>) => {
       state.isLoggedOut = action.payload;
     },
+    setUserXp: (state, action: PayloadAction<IUserXpResponse>) => {
+      const { level, xp, totalXpGained } = action.payload;
+      if (state.user) {
+        state.user = { ...state.user, level, xp, totalXpGained };
+      }
+    },
   },
 });
 
 export default authSlice.reducer;
-export const { setUser, clearUser, setIsLoggedOut } = authSlice.actions;
+export const { setUser, clearUser, setIsLoggedOut, setUserXp } =
+  authSlice.actions;

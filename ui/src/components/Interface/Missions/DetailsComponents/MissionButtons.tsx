@@ -13,6 +13,8 @@ import {
   completeMission,
   deleteMission,
 } from "@/src/redux/slices/missionsSlice";
+import UserService from "@/src/services/UserService";
+import { setUser, setUserXp } from "@/src/redux/slices/authSlice";
 
 const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -50,9 +52,20 @@ const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
 
   async function missionComplete() {
     await MissionsService.completeMission(selectedMission.id)
-      .then(() => {
+      .then(async () => {
         dispatch(completeMission({ missionId: selectedMission.id }));
-        // TODO: Give XP
+
+        await UserService.addXp(
+          selectedMission.userId,
+          selectedMission.xpReward,
+        )
+          .then((res) => {
+            dispatch(setUserXp(res.data));
+          })
+          .catch(() => {
+            toast.error("Adding XP failed!");
+          });
+
         toast("Mission completed!", {
           description: `You received ${selectedMission.xpReward}XP.`,
         });

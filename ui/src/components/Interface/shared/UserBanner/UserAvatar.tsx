@@ -18,7 +18,7 @@ const UserAvatar = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   if (isLoadingUser) return <Loading text="" />;
-  if (!user) return;
+  if (!user) return null;
 
   const { xp, level, avatarUrl } = user;
 
