@@ -69,6 +69,7 @@ This is an application where users can set missions for themselves, track their 
 22. Meanwhile, I found out that despite token being present in cookies it can be expired which prevents user from performing authorized operation. Have to keep this in mind and introduce refreshing tokens.
 23. Refactored ```EditMissionForm``` and created separate Zod Schema to fit current data expected and returned from API. Updating missions works.
 24. Refactored deleting missions.
+25. Refactored toggling subtasks' completion.
 
 ### 🧰 Built with
 

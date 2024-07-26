@@ -38,12 +38,26 @@ class MissionsService {
     });
   }
 
+  static async toggleSubtask(
+    subtaskId: string,
+  ): Promise<AxiosResponse<any, any>> {
+    return await axios.put(
+      baseUrl + `missions/${subtaskId}/toggle`,
+      {},
+      { withCredentials: true },
+    );
+  }
+
   static async completeMission(
     missionId: string,
   ): Promise<AxiosResponse<any, any>> {
-    return await axios.put(baseUrl + `missions/${missionId}/complete`, {
-      withCredentials: true,
-    });
+    return await axios.put(
+      baseUrl + `missions/${missionId}/complete`,
+      {},
+      {
+        withCredentials: true,
+      },
+    );
   }
 }
 

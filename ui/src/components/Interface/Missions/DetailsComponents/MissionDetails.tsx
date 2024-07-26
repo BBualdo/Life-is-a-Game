@@ -10,6 +10,9 @@ import EditMissionButton from "../EditMissionButton";
 import MissionButtons from "./MissionButtons";
 import IMission from "@/src/models/IMission";
 import { format } from "date-fns";
+import MissionsService from "@/src/services/MissionsService";
+import { toast } from "sonner";
+import { toggleSubtask } from "@/src/redux/slices/missionsSlice";
 
 const MissionDetails = ({ selectedMission }: { selectedMission: IMission }) => {
   const { id, title, description, subtasks, createdAt, completedAt } =
@@ -18,11 +21,18 @@ const MissionDetails = ({ selectedMission }: { selectedMission: IMission }) => {
 
   const missionCompleted = selectedMission.isCompleted;
 
-  const handleSubtaskChange = (subtaskId: string) => {
+  async function handleSubtaskChange(subtaskId: string) {
     if (!missionCompleted) {
-      // TODO: Toggle subtask completion
+      await MissionsService.toggleSubtask(subtaskId)
+        .then(() => {
+          dispatch(toggleSubtask({ missionId: id, subtaskId: subtaskId }));
+        })
+        .catch(() => {
+          // TODO: Handle errors
+          toast.error("Toggling subtask failed!");
+        });
     }
-  };
+  }
 
   return (
     <div className="flex h-full w-full flex-col xs:max-lg:mt-4">

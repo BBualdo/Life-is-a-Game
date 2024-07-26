@@ -9,9 +9,10 @@ namespace API.Controllers
     [Route("api/missions")]
     [ApiController]
     [Authorize]
-    public class MissionsController(IMissionsService missionsService) : ControllerBase
+    public class MissionsController(IMissionsService missionsService, ISubtasksService subtasksService) : ControllerBase
     {
         private readonly IMissionsService _missionsService = missionsService;
+        private readonly ISubtasksService _subtasksService = subtasksService;
 
         [HttpGet("getMissions")]
         public async Task<ActionResult<IEnumerable<Mission>>> GetMissions(string userId)
@@ -54,6 +55,13 @@ namespace API.Controllers
         {
             await _missionsService.DeleteMissionAsync(missionId);
             return Ok(new { message = "Mission Deleted." });
+        }
+
+        [HttpPut("{subtaskId:guid}/toggle")]
+        public async Task<ActionResult> ToggleSubtask(Guid subtaskId)
+        {
+            await _subtasksService.ToggleSubtaskComplete(subtaskId);
+            return NoContent();
         }
     }
 }

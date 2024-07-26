@@ -53,6 +53,20 @@ const missionsSlice = createSlice({
         }
       }
     },
+    toggleSubtask: (
+      state,
+      action: PayloadAction<{ missionId: string; subtaskId: string }>,
+    ) => {
+      if (state.missions) {
+        const { missionId, subtaskId } = action.payload;
+        const mission = state.missions.find((m) => m.id === missionId);
+        if (mission) {
+          mission.subtasks = mission.subtasks.map((st) =>
+            st.id === subtaskId ? { ...st, isCompleted: !st.isCompleted } : st,
+          );
+        }
+      }
+    },
   },
 });
 
@@ -62,5 +76,6 @@ export const {
   addMission,
   updateMission,
   deleteMission,
+  toggleSubtask,
 } = missionsSlice.actions;
 export default missionsSlice.reducer;
