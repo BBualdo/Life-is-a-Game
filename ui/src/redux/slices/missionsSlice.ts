@@ -44,10 +44,10 @@ const missionsSlice = createSlice({
         }
       }
     },
-    deleteMission: (state, action: PayloadAction<string>) => {
+    deleteMission: (state, action: PayloadAction<{ missionId: string }>) => {
       if (state.missions) {
-        const id = action.payload;
-        const missionToDelete = state.missions.find((m) => m.id === id);
+        const { missionId } = action.payload;
+        const missionToDelete = state.missions.find((m) => m.id === missionId);
         if (missionToDelete) {
           state.missions = state.missions.filter((m) => m !== missionToDelete);
         }
@@ -67,6 +67,17 @@ const missionsSlice = createSlice({
         }
       }
     },
+    completeMission: (state, action: PayloadAction<{ missionId: string }>) => {
+      if (state.missions) {
+        const { missionId } = action.payload;
+        const mission = state.missions.find((m) => m.id === missionId);
+        state.missions = state.missions.map((m) =>
+          m === mission
+            ? { ...m, isCompleted: true, completedAt: new Date() }
+            : m,
+        );
+      }
+    },
   },
 });
 
@@ -77,5 +88,6 @@ export const {
   updateMission,
   deleteMission,
   toggleSubtask,
+  completeMission,
 } = missionsSlice.actions;
 export default missionsSlice.reducer;

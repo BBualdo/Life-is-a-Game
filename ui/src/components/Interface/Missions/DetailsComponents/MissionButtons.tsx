@@ -9,7 +9,10 @@ import { toast } from "sonner";
 import IMission from "@/src/models/IMission";
 import { clearSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 import MissionsService from "@/src/services/MissionsService";
-import { deleteMission } from "@/src/redux/slices/missionsSlice";
+import {
+  completeMission,
+  deleteMission,
+} from "@/src/redux/slices/missionsSlice";
 
 const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -34,7 +37,7 @@ const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
     // TODO: 'Give up a mission with at least one subtask completed.' achievement check
     await MissionsService.deleteMission(selectedMission.id)
       .then(() => {
-        dispatch(deleteMission(selectedMission.id));
+        dispatch(deleteMission({ missionId: selectedMission.id }));
         dispatch(clearSelectedMission());
         toast("Mission removed!");
       })
@@ -45,14 +48,20 @@ const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
     closeModal();
   }
 
-  const missionComplete = () => {
-    // TODO: Complete Mission
+  async function missionComplete() {
+    await MissionsService.completeMission(selectedMission.id)
+      .then(() => {
+        dispatch(completeMission({ missionId: selectedMission.id }));
+        // TODO: Give XP
+        toast("Mission completed!", {
+          description: `You received ${selectedMission.xpReward}XP.`,
+        });
+      })
+      .catch(() => {
+        toast.error("Something went wrong!");
+      });
     dispatch(clearSelectedMission());
-    // TODO: Give XP
-    toast("Mission completed!", {
-      description: `You received ${selectedMission.xpReward}XP.`,
-    });
-  };
+  }
 
   return (
     <>

@@ -70,6 +70,9 @@ This is an application where users can set missions for themselves, track their 
 23. Refactored ```EditMissionForm``` and created separate Zod Schema to fit current data expected and returned from API. Updating missions works.
 24. Refactored deleting missions.
 25. Refactored toggling subtasks' completion.
+26. Refactored completing mission.
+
+#### NOTE: Every operation sends requests to API and updates the data in Database, however to prevent redundant data fetching after each update I'm using Redux-Persist to update UI. After user logout Redux I'm clearing all information, so after logging in fresh data is fetched and saved in Redux again.
 
 ### 🧰 Built with
 
