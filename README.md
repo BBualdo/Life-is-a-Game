@@ -76,6 +76,7 @@ This is an application where users can set missions for themselves, track their 
 #### NOTE: Every operation sends requests to API and updates the data in Database, however to prevent redundant data fetching after each update I'm using Redux-Persist to update UI. After user logout Redux is clearing all information, so after logging in fresh data is fetched and saved in Redux again.
 
 28. ```ILevelsService``` implementation with method responsible for updating user's xp and level accordingly.
+29. Created ```UserController``` with ```AddXp``` endpoint and tested it with **Swagger**.
 
 ### 🧰 Built with
 
