@@ -6,18 +6,22 @@ import links from "@/src/constants/nav-links";
 import Backdrop from "./Backdrop";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/src/utils/fadeIn";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TutorialStepper from "../HowToPlay/TutorialStepper";
 import { GiPowerButton } from "react-icons/gi";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
 import logout from "@/src/utils/logout";
+import useUser from "@/src/utils/hooks/useUser";
+import useAchievementsUnlocker from "@/src/utils/hooks/useAchievementsUnlocker";
 
 const MainMenu = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
+  const { user } = useUser();
+  const { checkLevelAchievements } = useAchievementsUnlocker();
 
   const openModal = () => {
     setIsOpen(true);
@@ -27,6 +31,10 @@ const MainMenu = () => {
     setIsOpen(false);
     document.body.style.overflow = "";
   };
+
+  useEffect(() => {
+    if (user) checkLevelAchievements(user);
+  }, [user]);
 
   const navLinks = links.map((link) => (
     <Link key={link.key} href={link.href}>

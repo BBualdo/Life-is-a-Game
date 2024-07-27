@@ -12,6 +12,7 @@ import IUserAchievement from "@/src/models/IUserAchievement";
 import IMission from "@/src/models/IMission";
 import ACHIEVEMENT_KEYS from "@/src/constants/achievements";
 import DifficultyLevel from "@/src/enums/DifficultyLevel";
+import IUser from "@/src/models/IUser";
 
 const useAchievementsUnlocker = () => {
   const { userAchievements, achievements } = useAchievements();
@@ -106,7 +107,25 @@ const useAchievementsUnlocker = () => {
       );
   }
 
-  return { tryUnlockAchievement, checkMissionAchievements };
+  async function checkLevelAchievements(user: IUser) {
+    if (user.level >= 5)
+      await tryUnlockAchievement(ACHIEVEMENT_KEYS.REACH_LEVEL_5);
+
+    if (user.level >= 10)
+      await tryUnlockAchievement(ACHIEVEMENT_KEYS.REACH_LEVEL_10);
+
+    if (user.level >= 25)
+      await tryUnlockAchievement(ACHIEVEMENT_KEYS.REACH_LEVEL_25);
+
+    if (user.level >= 50)
+      await tryUnlockAchievement(ACHIEVEMENT_KEYS.REACH_LEVEL_50);
+  }
+
+  return {
+    tryUnlockAchievement,
+    checkMissionAchievements,
+    checkLevelAchievements,
+  };
 };
 
 export default useAchievementsUnlocker;

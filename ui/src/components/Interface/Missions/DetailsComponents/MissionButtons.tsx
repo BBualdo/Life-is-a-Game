@@ -20,11 +20,13 @@ import {
 } from "@/src/redux/slices/authSlice";
 import useAchievementsUnlocker from "@/src/utils/hooks/useAchievementsUnlocker";
 import useMissions from "@/src/utils/hooks/useMissions";
+import ACHIEVEMENT_KEYS from "@/src/constants/achievements";
 
 const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { missions } = useMissions();
-  const { checkMissionAchievements } = useAchievementsUnlocker();
+  const { checkMissionAchievements, tryUnlockAchievement } =
+    useAchievementsUnlocker();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -41,9 +43,11 @@ const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
   );
 
   async function giveUpMission() {
-    // TODO: 'Give up a mission with at least one subtask completed.' achievement check
     await MissionsService.deleteMission(selectedMission.id)
       .then(() => {
+        if (selectedMission.subtasks.some((st) => st.isCompleted)) {
+          tryUnlockAchievement(ACHIEVEMENT_KEYS.GIVE_UP_WITH_SUBTASK);
+        }
         dispatch(deleteMission({ missionId: selectedMission.id }));
         dispatch(clearSelectedMission());
         toast("Mission removed!");
