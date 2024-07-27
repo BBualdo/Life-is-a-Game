@@ -19,12 +19,8 @@ public class AchievementsRepository(LiagDbContext dbContext) : IAchievementsRepo
         return await _dbContext.UserAchievements.Where(ach => ach.UserId == userId).ToListAsync();
     }
 
-    public async Task<Achievement?> UnlockAchievementAsync(string userId, Guid achievementId)
+    public async Task<UserAchievement?> UnlockAchievementAsync(string userId, Achievement achievement)
     {
-        var achievement = await FindAchievement(achievementId);
-        
-        if (achievement is null) return null;
-        
         var userAchievement = new UserAchievement
         {
             Id = Guid.NewGuid(),
@@ -36,10 +32,10 @@ public class AchievementsRepository(LiagDbContext dbContext) : IAchievementsRepo
         await _dbContext.UserAchievements.AddAsync(userAchievement);
         await _dbContext.SaveChangesAsync();
         
-        return achievement;
+        return userAchievement;
     }
 
-    private async Task<Achievement?> FindAchievement(Guid achievementId)
+    public async Task<Achievement?> FindAchievementByIdAsync(Guid achievementId)
     {
         var achievement = await _dbContext.Achievements.FindAsync(achievementId);
         return achievement;

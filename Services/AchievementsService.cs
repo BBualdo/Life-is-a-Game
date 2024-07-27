@@ -1,25 +1,44 @@
 ﻿using Contracts;
+using Contracts.DTO.Achievements;
 using Data.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Services;
 
-public class AchievementsService(IAchievementsRepository repository) : IAchievementsService
+public class AchievementsService(IAchievementsRepository achievementsRepository, UserManager<User> userManager, ILevelsService levelsService) : IAchievementsService
 {
-    private readonly IAchievementsRepository _repository = repository;
+    private readonly IAchievementsRepository _achievementsRepository = achievementsRepository;
+    private readonly UserManager<User> _userManager = userManager;
+    private readonly ILevelsService _levelsService = levelsService;
     
     public async Task<IEnumerable<Achievement>> GetAchievementsAsync()
     {
-        return await _repository.GetAchievementsAsync();
+        return await _achievementsRepository.GetAchievementsAsync();
     }
 
     public async Task<IEnumerable<UserAchievement>> GetUserAchievementsAsync(string userId)
     {
-        return await _repository.GetUserAchievementsAsync(userId);
+        return await _achievementsRepository.GetUserAchievementsAsync(userId);
     }
 
-    public async Task<Achievement?> UnlockAchievementAsync(string userId, Guid achievementId)
+    public async Task<AchievementUnlockDto?> UnlockAchievementAsync(string userId, Guid achievementId)
     {
-        var achievement = await _repository.UnlockAchievementAsync(userId, achievementId);
-        return achievement;
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user is null) return null;
+
+        var achievement = await _achievementsRepository.FindAchievementByIdAsync(achievementId);
+        if (achievement is null) return null;
+        
+        var userAchievement = await _achievementsRepository.UnlockAchievementAsync(userId, achievement);
+        if (userAchievement is null) return null;
+        
+        var response = await _levelsService.AddXpAsync(userId, achievement.XpReward);
+        
+        return new AchievementUnlockDto
+        {
+            UserAchievementId = userAchievement.Id,
+            Achievement = achievement,
+            UpdatedXp = response
+        };
     }
 }

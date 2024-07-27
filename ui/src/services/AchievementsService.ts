@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { baseUrl } from "@/src/utils/config";
 import IAchievement from "@/src/models/IAchievement";
 import IUserAchievement from "@/src/models/IUserAchievement";
+import IAchievementUnlockDto from "@/src/services/DTO/IAchievementUnlockDto";
 
 class AchievementsService {
   static async getAchievements(): Promise<AxiosResponse<IAchievement[]>> {
@@ -19,6 +20,17 @@ class AchievementsService {
       },
       withCredentials: true,
     });
+  }
+
+  static async unlockAchievement(
+    achievementId: string,
+    userId: string,
+  ): Promise<AxiosResponse<IAchievementUnlockDto>> {
+    return await axios.put(
+      baseUrl + `achievements/${achievementId}/unlock`,
+      {},
+      { params: { userId }, withCredentials: true },
+    );
   }
 }
 

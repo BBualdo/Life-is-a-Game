@@ -79,6 +79,7 @@ This is an application where users can set missions for themselves, track their 
 29. Created ```UserController``` with ```AddXp``` endpoint and tested it with **Swagger**.
 30. Introduced React ```UserService``` and invoked it's ```addXp``` method into ```completeMission``` function. I also refactored returned data from ```AddXp``` endpoint from entire user object to ```xp```, ```level``` and ```totalXpGained```, which are updated in Redux user state.
 31. Taken care of incrementing ***Missions Added** and **Missions Completed** stats.
+32. Implemented logic for unlocking achievements. ```AchievementsService``` gets user's and achievement's ID and unlocks it for that user. In React, I centralized logic for finding and unlocking achievements if they are not already achieved by using ```useAchievementUnlocker``` custom hook. API endpoint returns ```AchievementUnlockDto``` with ```UserAchievement``` ID, ```Achievement``` title and requirements and updated XP and Level to update values in Redux and affect UI accordingly. For now, I only tested it on 'Complete Tutorial' achievement.
 
 ### 🧰 Built with
 

@@ -6,5 +6,6 @@ public interface IAchievementsRepository
 {
     Task<IEnumerable<Achievement>> GetAchievementsAsync();
     Task<IEnumerable<UserAchievement>> GetUserAchievementsAsync(string userId);
-    Task<Achievement?> UnlockAchievementAsync(string userId, Guid achievementId);
+    Task<UserAchievement?> UnlockAchievementAsync(string userId, Achievement achievement);
+    Task<Achievement?> FindAchievementByIdAsync(Guid achievementId);
 }

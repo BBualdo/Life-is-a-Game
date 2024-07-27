@@ -19,9 +19,12 @@ const userAchievementsSlice = createSlice({
     clearUserAchievements: (state) => {
       state.userAchievements = null;
     },
+    unlockAchievement: (state, action: PayloadAction<IUserAchievement>) => {
+      if (state.userAchievements) state.userAchievements.push(action.payload);
+    },
   },
 });
 
-export const { setUserAchievements, clearUserAchievements } =
+export const { setUserAchievements, clearUserAchievements, unlockAchievement } =
   userAchievementsSlice.actions;
 export default userAchievementsSlice.reducer;
