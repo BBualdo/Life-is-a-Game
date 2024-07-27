@@ -1,13 +1,15 @@
 ﻿using Contracts;
 using Contracts.DTO.Missions;
 using Data.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Services;
 
-public class MissionsService(IMissionsRepository missionsRepository, ISubtasksService subtasksService) : IMissionsService
+public class MissionsService(IMissionsRepository missionsRepository, ISubtasksService subtasksService, UserManager<User> userManager) : IMissionsService
 {
     private readonly IMissionsRepository _missionsRepository = missionsRepository;
     private readonly ISubtasksService _subtasksService = subtasksService;
+    private readonly UserManager<User> _userManager = userManager;
     
     public async Task<IEnumerable<Mission>> GetMissionsAsync(string userId)
     {
@@ -19,10 +21,17 @@ public class MissionsService(IMissionsRepository missionsRepository, ISubtasksSe
         return await _missionsRepository.GetMissionByIdAsync(missionId);
     }
 
-    public async Task<Mission> AddMissionAsync(AddMissionDto missionDto)
+    public async Task<Mission?> AddMissionAsync(string userId, AddMissionDto missionDto)
     {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user is null) return null;
+        
         var mission = missionDto.ToMission();
         await _missionsRepository.AddMissionAsync(mission);
+        
+        user.TotalMissionsAdded++;
+        await _userManager.UpdateAsync(user);
+        
         return mission;
     }
 
@@ -63,9 +72,15 @@ public class MissionsService(IMissionsRepository missionsRepository, ISubtasksSe
         await _missionsRepository.UpdateMissionAsync(mission);
     }
 
-    public async Task CompleteMissionAsync(Guid missionId)
+    public async Task CompleteMissionAsync(string userId, Guid missionId)
     {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user is null) return;
+        
         await _missionsRepository.CompleteMissionAsync(missionId);
+
+        user.TotalMissionsCompleted++;
+        await _userManager.UpdateAsync(user);
     }
 
     public async Task DeleteMissionAsync(Guid missionId)

@@ -50,11 +50,15 @@ class MissionsService {
 
   static async completeMission(
     missionId: string,
+    userId: string,
   ): Promise<AxiosResponse<any, any>> {
     return await axios.put(
       baseUrl + `missions/${missionId}/complete`,
       {},
       {
+        params: {
+          userId,
+        },
         withCredentials: true,
       },
     );

@@ -17,6 +17,7 @@ import MissionsService from "@/src/services/MissionsService";
 import { addMission } from "@/src/redux/slices/missionsSlice";
 import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 import addMissionFormSchema from "@/src/schemas/addMissionFormSchema";
+import { setUserMissionsCounters } from "@/src/redux/slices/authSlice";
 
 const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
   const { user } = useUser();
@@ -46,6 +47,7 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
     await MissionsService.addMission(values)
       .then((res) => {
         dispatch(addMission(res.data));
+        dispatch(setUserMissionsCounters("ADD_MISSION"));
         dispatch(setSelectedMission(res.data));
         toast("Mission has been added!");
       })

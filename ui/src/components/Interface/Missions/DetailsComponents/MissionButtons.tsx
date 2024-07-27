@@ -14,7 +14,10 @@ import {
   deleteMission,
 } from "@/src/redux/slices/missionsSlice";
 import UserService from "@/src/services/UserService";
-import { setUser, setUserXp } from "@/src/redux/slices/authSlice";
+import {
+  setUserMissionsCounters,
+  setUserXp,
+} from "@/src/redux/slices/authSlice";
 
 const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -51,9 +54,13 @@ const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
   }
 
   async function missionComplete() {
-    await MissionsService.completeMission(selectedMission.id)
+    await MissionsService.completeMission(
+      selectedMission.id,
+      selectedMission.userId,
+    )
       .then(async () => {
         dispatch(completeMission({ missionId: selectedMission.id }));
+        dispatch(setUserMissionsCounters("COMPLETE_MISSION"));
 
         await UserService.addXp(
           selectedMission.userId,

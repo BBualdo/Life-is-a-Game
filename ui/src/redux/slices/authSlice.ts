@@ -31,9 +31,21 @@ const authSlice = createSlice({
         state.user = { ...state.user, level, xp, totalXpGained };
       }
     },
+    setUserMissionsCounters: (state, action: PayloadAction<string>) => {
+      if (state.user) {
+        if (action.payload === "ADD_MISSION") state.user.totalMissionsAdded++;
+        if (action.payload === "COMPLETE_MISSION")
+          state.user.totalMissionsCompleted++;
+      }
+    },
   },
 });
 
 export default authSlice.reducer;
-export const { setUser, clearUser, setIsLoggedOut, setUserXp } =
-  authSlice.actions;
+export const {
+  setUser,
+  clearUser,
+  setIsLoggedOut,
+  setUserXp,
+  setUserMissionsCounters,
+} = authSlice.actions;

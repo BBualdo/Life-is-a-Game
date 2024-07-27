@@ -31,7 +31,7 @@ namespace API.Controllers
         [HttpPost("addMission")]
         public async Task<ActionResult> AddMission(AddMissionDto missionDto)
         {
-            var mission = await _missionsService.AddMissionAsync(missionDto);
+            var mission = await _missionsService.AddMissionAsync(missionDto.UserId!, missionDto);
             return CreatedAtAction(nameof(AddMission), mission);
         }
 
@@ -44,9 +44,9 @@ namespace API.Controllers
         }
 
         [HttpPut("{missionId:guid}/complete")]
-        public async Task<ActionResult> CompleteMission(Guid missionId)
+        public async Task<ActionResult> CompleteMission(Guid missionId, [FromQuery] string userId)
         {
-            await _missionsService.CompleteMissionAsync(missionId);
+            await _missionsService.CompleteMissionAsync(userId, missionId);
             return Ok(new {message = "Mission Complete."});
         }
 
