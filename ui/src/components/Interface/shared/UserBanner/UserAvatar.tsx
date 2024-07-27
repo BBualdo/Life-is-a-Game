@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 import UserDefaultAvatar from "../UserDefaultAvatar";
 import useUser from "@/src/utils/hooks/useUser";
-import levels from "@/src/data/levels";
+import levels from "@/src/constants/levels";
 import { useState } from "react";
 import UserModal from "@/src/components/Interface/shared/UserBanner/UserModal";
 import Loading from "@/src/app/loading";

@@ -1,6 +1,6 @@
 "use client";
 
-import { difficultyLevels } from "@/src/data/difficultyLevels";
+import { difficultyLevels } from "@/src/constants/difficultyLevels";
 import { FormField } from "@/src/shadcn/ui/form";
 import { useEffect } from "react";
 import { UseFormReturn } from "react-hook-form";

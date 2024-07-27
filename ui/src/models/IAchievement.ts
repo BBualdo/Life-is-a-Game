@@ -1,7 +1,8 @@
 interface IAchievement {
   id: string;
+  key: string;
   title: string;
-  requirement: string;
+  requirements: string;
   xpReward: number;
   imageUrl: string;
 }

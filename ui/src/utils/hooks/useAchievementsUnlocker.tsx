@@ -11,38 +11,45 @@ import { unlockAchievement } from "@/src/redux/slices/userAchievementsSlice";
 import IUserAchievement from "@/src/models/IUserAchievement";
 
 const useAchievementsUnlocker = (): {
-  findAndUnlock: (achievementId: string) => Promise<void>;
+  findAndUnlock: (achievementKey: string) => Promise<void>;
 } => {
-  const { userAchievements } = useAchievements();
+  const { userAchievements, achievements } = useAchievements();
   const { user } = useUser();
   const dispatch = useDispatch<AppDispatch>();
 
-  async function findAndUnlock(achievementId: string) {
-    if (!userAchievements || !user) return;
+  async function findAndUnlock(achievementKey: string) {
+    if (!userAchievements || !user || !achievements) return;
+
+    const achievement = achievements.find((ach) => ach.key === achievementKey);
+    if (!achievement) return;
 
     const userAchievement = userAchievements.find(
-      (ua) => ua.achievementId === achievementId,
+      (ua) => ua.achievementId === achievement.id,
     );
     if (userAchievement) return;
 
-    await AchievementsService.unlockAchievement(achievementId, user.id)
-      .then((res) => {
-        toast(res.data.message, { description: res.data.description });
+    try {
+      const res = await AchievementsService.unlockAchievement(
+        achievement.id,
+        user.id,
+      );
+      const { message, description, userAchievementId, updatedXp } = res.data;
 
-        const newUserAchievement: IUserAchievement = {
-          id: res.data.userAchievementId,
-          achievementId,
-          unlockedAt: new Date(),
-          userId: user.id,
-        };
+      toast(message, { description });
 
-        dispatch(unlockAchievement(newUserAchievement));
-        dispatch(setUserXp(res.data.updatedXp));
-      })
-      .catch(() => {
-        //TODO:Error handling
-        toast.error("Achievement unlocking failed!");
-      });
+      const newUserAchievement: IUserAchievement = {
+        id: userAchievementId,
+        achievementId: achievement.id,
+        unlockedAt: new Date(),
+        userId: user.id,
+      };
+
+      dispatch(unlockAchievement(newUserAchievement));
+      dispatch(setUserXp(updatedXp));
+    } catch {
+      //TODO:Error handling
+      toast.error("Achievement unlocking failed!");
+    }
   }
 
   return { findAndUnlock };

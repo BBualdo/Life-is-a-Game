@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import MenuLogo from "../shared/MenuLogo";
-import links from "@/src/data/nav-links";
+import links from "@/src/constants/nav-links";
 import Backdrop from "./Backdrop";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/src/utils/fadeIn";

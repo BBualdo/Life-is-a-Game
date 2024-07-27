@@ -1,6 +1,6 @@
 "use client";
 
-import avatars from "@/src/data/avatars";
+import avatars from "@/src/constants/avatars";
 import { updateAvatar } from "@/src/redux/slices/authSlice";
 import { AppDispatch, useAppSelector } from "@/src/redux/store";
 import Image from "next/image";

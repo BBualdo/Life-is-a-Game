@@ -3,7 +3,7 @@
 import { AppDispatch } from "@/src/redux/store";
 import { useDispatch } from "react-redux";
 import IUser from "@/src/models/IUser";
-import levels from "@/src/data/levels";
+import levels from "@/src/constants/levels";
 
 const UserXP = ({ user }: { user: IUser }) => {
   const { xp, level } = user;

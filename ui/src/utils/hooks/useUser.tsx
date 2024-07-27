@@ -17,7 +17,7 @@ const useUser = () => {
         AuthService.getCurrentUser().then((res) => dispatch(setUser(res.data)));
       } catch (error) {
         //TODO: Handle errors
-        console.log("Fetching user data error: " + error);
+        console.log("Fetching user constants error: " + error);
       }
     }
 

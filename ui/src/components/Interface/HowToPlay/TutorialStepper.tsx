@@ -10,6 +10,7 @@ import Step3 from "./Step3";
 import Step4 from "./Step4";
 import FinalStep from "./FinalStep";
 import useAchievementsUnlocker from "@/src/utils/hooks/useAchievementsUnlocker";
+import ACHIEVEMENT_KEYS from "@/src/constants/achievements";
 
 const TutorialStepper = ({
   isOpen,
@@ -22,8 +23,8 @@ const TutorialStepper = ({
   const { findAndUnlock } = useAchievementsUnlocker();
 
   const handleStepperDone = async () => {
-    // Check for tutorial complete achievement
-    await findAndUnlock("0a6e91d2-3b5c-4516-bcab-a80bb0bbc5f0");
+    // Check for 'Complete How to Play' Achievement
+    await findAndUnlock(ACHIEVEMENT_KEYS.COMPLETE_TUTORIAL);
 
     closeStepper();
     setCurrentStep(1);

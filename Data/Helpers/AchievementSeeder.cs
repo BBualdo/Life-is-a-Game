@@ -11,6 +11,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "COMPLETE_TUTORIAL",
         Title = "Neon Novice",
         Requirements = "Complete 'How To Play'.",
         XpReward = 10,
@@ -19,6 +20,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "ADD_FIRST_MISSION",
         Title = "Mission Maverick",
         Requirements = "Add your first mission.",
         XpReward = 10,
@@ -27,6 +29,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "COMPLETE_FIRST_MISSION",
         Title = "Codebreaker Initiate",
         Requirements = "Complete your first mission.",
         XpReward = 25,
@@ -35,6 +38,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "COMPLETE_PROFILE",
         Title = "Profile Overdrive",
         Requirements = "Complete every field in profile dashboard.",
         XpReward = 10,
@@ -43,6 +47,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "COMPLETE_DAILY_MISSION",
         Title = "Daily Data Dynamo",
         Requirements = "Complete mission on 'Daily' difficulty.",
         XpReward = 25,
@@ -51,6 +56,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "COMPLETE_DROP_OF_SWEAT_MISSION",
         Title = "Sweat-Proof Runner",
         Requirements = "Complete mission on 'Drop of Sweat' difficulty.",
         XpReward = 50,
@@ -59,6 +65,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "COMPLETE_CHALLENGING_MISSION",
         Title = "Chaos Conqueror",
         Requirements = "Complete mission on 'Challenging' difficulty.",
         XpReward = 75,
@@ -67,6 +74,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "COMPLETE_LIFE_HACKER_MISSION",
         Title = "Life-Hacker Elite",
         Requirements = "Complete mission on 'Life-Hacker' difficulty.",
         XpReward = 100,
@@ -75,6 +83,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "COMPLETE_ANTI_PROCRASTINATOR_MISSION",
         Title = "Procrastination Purged",
         Requirements = "Complete mission on 'Anti-Procrastinator' difficulty.",
         XpReward = 250,
@@ -83,6 +92,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "COMPLETE_ALL_DIFFICULTY_LEVELS",
         Title = "Difficulty Dominator",
         Requirements = "Complete mission on every difficulty level.",
         XpReward = 200,
@@ -91,6 +101,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "GIVE_UP_WITH_SUBTASK",
         Title = "Strategic Surrender",
         Requirements = "Give up a mission with at least one subtask completed.",
         XpReward = 25,
@@ -99,6 +110,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "COMPLETE_5_MISSIONS",
         Title = "Mission Maestro",
         Requirements = "Complete 5 missions.",
         XpReward = 50,
@@ -107,6 +119,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "COMPLETE_10_MISSIONS",
         Title = "Deca-Task Dynamo",
         Requirements = "Complete 10 missions.",
         XpReward = 100,
@@ -115,6 +128,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "COMPLETE_25_MISSIONS",
         Title = "Quarter Century Quasar",
         Requirements = "Complete 25 missions.",
         XpReward = 250,
@@ -123,6 +137,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "COMPLETE_50_MISSIONS",
         Title = "Half Century Hero",
         Requirements = "Complete 50 missions.",
         XpReward = 500,
@@ -131,6 +146,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "REACH_LEVEL_5",
         Title = "Level 5 Luminary",
         Requirements = "Reach level 5.",
         XpReward = 50,
@@ -139,6 +155,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "REACH_LEVEL_10",
         Title = "Deca-Level Dynamo",
         Requirements = "Reach level 10.",
         XpReward = 100,
@@ -147,6 +164,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "REACH_LEVEL_25",
         Title = "Quarter Century Cipher",
         Requirements = "Reach level 25.",
         XpReward = 250,
@@ -155,6 +173,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "REACH_LEVEL_50",
         Title = "Half Century Hacker",
         Requirements = "Reach level 50.",
         XpReward = 500,
@@ -163,6 +182,7 @@ public class AchievementSeeder
       new()
       {
         Id = Guid.NewGuid(),
+        Key = "UNLOCK_ALL_ACHIEVEMENTS",
         Title = "Achievement Unleashed",
         Requirements = "Unlock every achievement.",
         XpReward = 2500,

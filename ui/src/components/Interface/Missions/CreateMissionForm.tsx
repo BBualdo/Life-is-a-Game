@@ -18,10 +18,13 @@ import { addMission } from "@/src/redux/slices/missionsSlice";
 import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 import addMissionFormSchema from "@/src/schemas/addMissionFormSchema";
 import { setUserMissionsCounters } from "@/src/redux/slices/authSlice";
+import useAchievementsUnlocker from "@/src/utils/hooks/useAchievementsUnlocker";
+import ACHIEVEMENT_KEYS from "@/src/constants/achievements";
 
 const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
   const { user } = useUser();
   const dispatch = useDispatch<AppDispatch>();
+  const { findAndUnlock } = useAchievementsUnlocker();
 
   const form = useForm<z.infer<typeof addMissionFormSchema>>({
     resolver: zodResolver(addMissionFormSchema),
@@ -45,11 +48,13 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
     }
 
     await MissionsService.addMission(values)
-      .then((res) => {
+      .then(async (res) => {
         dispatch(addMission(res.data));
         dispatch(setUserMissionsCounters("ADD_MISSION"));
         dispatch(setSelectedMission(res.data));
         toast("Mission has been added!");
+        // Check for 'Add first mission' Achievement
+        await findAndUnlock(ACHIEVEMENT_KEYS.ADD_FIRST_MISSION);
       })
       .catch(() => {
         //TODO: Handle errors

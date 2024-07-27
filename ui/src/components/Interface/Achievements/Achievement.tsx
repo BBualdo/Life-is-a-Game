@@ -13,7 +13,6 @@ const Achievement = ({
   userAchievements: Map<string, IUserAchievement>;
 }) => {
   const userAchievement = userAchievements.get(achievement.id);
-
   return (
     <div
       className={clsx(
@@ -28,7 +27,7 @@ const Achievement = ({
             {achievement.title}
           </h3>
           <p className="lg:text-md text-light-silver xs:text-sm">
-            {achievement.requirement}
+            {achievement.requirements}
           </p>
         </div>
       </div>

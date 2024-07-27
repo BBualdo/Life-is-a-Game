@@ -2,7 +2,7 @@
 
 import { toast } from "sonner";
 import useUser from "@/src/utils/hooks/useUser";
-import levels from "@/src/data/levels";
+import levels from "@/src/constants/levels";
 import Loading from "@/src/app/loading";
 
 const UserBannerXP = () => {

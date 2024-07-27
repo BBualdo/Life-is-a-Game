@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import DifficultyInfo from "./DifficultyInfo";
 import DifficultySlider from "./DifficultySlider";
 import { UseFormReturn } from "react-hook-form";
-import { difficultyLevels } from "@/src/data/difficultyLevels";
+import { difficultyLevels } from "@/src/constants/difficultyLevels";
 import { z } from "zod";
 import addMissionFormSchema from "@/src/schemas/addMissionFormSchema";
 
