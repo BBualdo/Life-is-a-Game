@@ -20,11 +20,10 @@ const TutorialStepper = ({
   closeStepper: () => void;
 }) => {
   const [currentStep, setCurrentStep] = useState(1);
-  const { findAndUnlock } = useAchievementsUnlocker();
+  const { tryUnlockAchievement } = useAchievementsUnlocker();
 
   const handleStepperDone = async () => {
-    // Check for 'Complete How to Play' Achievement
-    await findAndUnlock(ACHIEVEMENT_KEYS.COMPLETE_TUTORIAL);
+    await tryUnlockAchievement(ACHIEVEMENT_KEYS.COMPLETE_TUTORIAL);
 
     closeStepper();
     setCurrentStep(1);

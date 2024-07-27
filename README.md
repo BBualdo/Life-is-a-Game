@@ -81,6 +81,7 @@ This is an application where users can set missions for themselves, track their 
 31. Taken care of incrementing **Missions Added** and **Missions Completed** stats.
 32. Implemented logic for unlocking achievements. ```AchievementsService``` gets user's and achievement's ID and unlocks it for that user. In React, I centralized logic for finding and unlocking achievements if they are not already achieved by using ```useAchievementUnlocker``` custom hook. API endpoint returns ```AchievementUnlockDto``` with ```UserAchievement``` ID, ```Achievement``` title and requirements and updated XP and Level to update values in Redux and affect UI accordingly. For now, I only tested it on 'Complete Tutorial' achievement.
 33. I extended ```Achievement``` table with **Key** property to identify achievements safer. Now, ```findAndUnlock``` method in ```useAchievementUnlocker``` hook accepts that key instead of hard coded id which can be changed over time (like migrating from development to production).
+34. I have renamed ```findAndUnlock``` method to ```tryUnlockAchievement```, because it's more verbose. Naming is the most difficult part of programming, they say. I also separated achievements for completing missions to ```checkMissionAchievements```, just not to bomb ```missionComplete``` function with a lot of code.
 
 ### 🧰 Built with
 

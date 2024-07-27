@@ -19,10 +19,12 @@ import {
   setUserXp,
 } from "@/src/redux/slices/authSlice";
 import useAchievementsUnlocker from "@/src/utils/hooks/useAchievementsUnlocker";
+import useMissions from "@/src/utils/hooks/useMissions";
 
 const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { findAndUnlock } = useAchievementsUnlocker();
+  const { missions } = useMissions();
+  const { checkMissionAchievements } = useAchievementsUnlocker();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -77,28 +79,7 @@ const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
           description: `You received ${selectedMission.xpReward}XP.`,
         });
 
-        // Check for 'Complete First Mission' Achievement
-        await findAndUnlock("");
-        // Check for 'Complete 5 Missions' Achievement
-        await findAndUnlock("");
-        // Check for 'Complete 10 Missions' Achievement
-        await findAndUnlock("");
-        // Check for 'Complete 25 Missions' Achievement
-        await findAndUnlock("");
-        // Check for 'Complete 50 Missions' Achievement
-        await findAndUnlock("");
-        // Check for 'Complete 'Daily' difficulty Mission' Achievement
-        await findAndUnlock("");
-        // Check for 'Complete 'Drop of Sweat' difficulty Mission' Achievement
-        await findAndUnlock("");
-        // Check for 'Complete 'Challenging' difficulty Mission' Achievement
-        await findAndUnlock("");
-        // Check for 'Complete 'Life-Hacker' difficulty Mission' Achievement
-        await findAndUnlock("");
-        // Check for 'Complete 'Anti-Procrastinator' difficulty Mission' Achievement
-        await findAndUnlock("");
-        // Check for 'Complete on every difficulty' Achievement
-        await findAndUnlock("");
+        await checkMissionAchievements(selectedMission, missions!);
       })
       .catch(() => {
         toast.error("Something went wrong!");

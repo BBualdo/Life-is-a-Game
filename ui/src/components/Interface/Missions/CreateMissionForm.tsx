@@ -24,7 +24,7 @@ import ACHIEVEMENT_KEYS from "@/src/constants/achievements";
 const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
   const { user } = useUser();
   const dispatch = useDispatch<AppDispatch>();
-  const { findAndUnlock } = useAchievementsUnlocker();
+  const { tryUnlockAchievement } = useAchievementsUnlocker();
 
   const form = useForm<z.infer<typeof addMissionFormSchema>>({
     resolver: zodResolver(addMissionFormSchema),
@@ -52,9 +52,10 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
         dispatch(addMission(res.data));
         dispatch(setUserMissionsCounters("ADD_MISSION"));
         dispatch(setSelectedMission(res.data));
+
+        await tryUnlockAchievement(ACHIEVEMENT_KEYS.ADD_FIRST_MISSION);
+
         toast("Mission has been added!");
-        // Check for 'Add first mission' Achievement
-        await findAndUnlock(ACHIEVEMENT_KEYS.ADD_FIRST_MISSION);
       })
       .catch(() => {
         //TODO: Handle errors
