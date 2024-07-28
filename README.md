@@ -85,6 +85,7 @@ This is an application where users can set missions for themselves, track their 
 35. Achievements for leveling up has been moved into ```checkLevelAchievements``` function, called in Main Menu, but it should be called in more common place or in multiple places to ensure that user gets the achievement wherever he is. I will come back to that later, because I have to implement profile editing for one of achievements.
 36. Created ```IProfileService``` to handle profile edit. In React same procedure - DTO model, ```UserService``` extended with ```updateProfile``` method, accepting **firstName**, **lastName**, **currentGoal** and **bio**, and also Redux reducer function that updates user info locally.
 37. At this moment, I realised that ```authSlice``` is actually not a good naming, because in fact, it mainly operates on user object, so I changed it to ```userSlice```.
+38. Handled profile updating in React as well as errors by introducing ```OperationResult``` object returned from that endpoint. I also have to return it from ```AuthService``` operations to make error handling easier.
 
 ### 🧰 Built with
 

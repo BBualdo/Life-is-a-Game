@@ -39,7 +39,7 @@ const userSlice = createSlice({
           state.user.totalMissionsCompleted++;
       }
     },
-    setUserInfo: (state, action: PayloadAction<IEditProfileDto>) => {
+    updateUserInfo: (state, action: PayloadAction<IEditProfileDto>) => {
       if (state.user) {
         const { firstName, lastName, currentGoal, bio } = action.payload;
         state.user = { ...state.user, firstName, lastName, currentGoal, bio };
@@ -55,5 +55,5 @@ export const {
   setIsLoggedOut,
   setUserXp,
   setUserMissionsCounters,
-  setUserInfo,
+  updateUserInfo,
 } = userSlice.actions;

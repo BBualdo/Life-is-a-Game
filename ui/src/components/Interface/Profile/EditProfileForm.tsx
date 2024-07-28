@@ -8,11 +8,14 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
 import { toast } from "sonner";
 import FirstName from "./FormComponents/FirstName";
-import Username from "./FormComponents/Username";
 import LastName from "./FormComponents/LastName";
 import CurrentGoal from "./FormComponents/CurrentGoal";
 import Bio from "./FormComponents/Bio";
 import IUser from "@/src/models/IUser";
+import editProfileInfoSchema from "@/src/schemas/editProfileInfoSchema";
+import UserService from "@/src/services/UserService";
+import { updateUserInfo } from "@/src/redux/slices/userSlice";
+import { PiWarningCircleFill } from "react-icons/pi";
 
 const EditProfileForm = ({
   closeModal,
@@ -25,20 +28,38 @@ const EditProfileForm = ({
 
   const { firstName, lastName, username, currentGoal, bio } = user;
 
-  const form = useForm<z.infer<typeof userCreatorSchema>>({
-    resolver: zodResolver(userCreatorSchema),
+  const form = useForm<z.infer<typeof editProfileInfoSchema>>({
+    resolver: zodResolver(editProfileInfoSchema),
     defaultValues: {
       firstName,
       lastName,
-      username,
       currentGoal,
       bio,
     },
   });
 
-  function onSubmit() {
-    //TODO: Implement updating profile info
-    toast("Profile has been updated!");
+  async function onSubmit(values: z.infer<typeof editProfileInfoSchema>) {
+    try {
+      const res = await UserService.updateProfile(user.id, values);
+      dispatch(updateUserInfo(values));
+      toast(res.data.message);
+    } catch (error: any) {
+      if (error.res) {
+        toast.error(error.res.data.message, {
+          description: error.res.data.errors?.map(
+            (error: string, index: number) => <p key={index}>{error}</p>,
+          ),
+          icon: <PiWarningCircleFill />,
+        });
+      } else {
+        toast.error("Profile update failed!", {
+          description:
+            "Server error occurred. Please try again later or contact customer support.",
+          icon: <PiWarningCircleFill />,
+        });
+      }
+    }
+
     closeModal();
   }
 
@@ -46,7 +67,6 @@ const EditProfileForm = ({
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="mt-4 space-y-4">
         <div className="flex w-full flex-col justify-center xs:gap-2 xs:max-lg:flex-col lg:gap-6">
-          <Username form={form} />
           <FirstName form={form} />
           <LastName form={form} />
           <CurrentGoal form={form} />

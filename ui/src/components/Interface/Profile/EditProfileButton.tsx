@@ -6,9 +6,8 @@ import { useState } from "react";
 import Modal from "../shared/Modal";
 import { IoClose } from "react-icons/io5";
 import EditProfileForm from "./EditProfileForm";
-
-import { useAppSelector } from "@/src/redux/store";
 import useUser from "@/src/utils/hooks/useUser";
+import Loading from "@/src/app/loading";
 
 const EditProfileButton = ({
   children,
@@ -18,7 +17,8 @@ const EditProfileButton = ({
   className: ClassValue;
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const user = useUser()!;
+  const { user, isLoadingUser } = useUser();
+
   const openModal = () => {
     setIsOpen(true);
   };
@@ -26,6 +26,9 @@ const EditProfileButton = ({
   const closeModal = () => {
     setIsOpen(false);
   };
+
+  if (isLoadingUser) return <Loading />;
+  if (!user) return null;
 
   return (
     <>

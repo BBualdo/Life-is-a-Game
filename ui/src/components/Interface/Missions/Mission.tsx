@@ -2,7 +2,6 @@
 
 import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 import { AppDispatch } from "@/src/redux/store";
-import { MissionSchema } from "@/src/utils/types";
 import clsx from "clsx";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { useDispatch } from "react-redux";

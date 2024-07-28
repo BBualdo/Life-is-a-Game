@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { baseUrl } from "@/src/utils/config";
 import IUserXpResponse from "@/src/services/DTO/IUserXpResponse";
 import IEditProfileDto from "@/src/services/DTO/IEditProfileDto";
+import IOperationResult from "@/src/models/IOperationResult";
 
 class UserService {
   static async addXp(
@@ -18,7 +19,7 @@ class UserService {
   static async updateProfile(
     userId: string,
     profileInfo: IEditProfileDto,
-  ): Promise<AxiosResponse<any, any>> {
+  ): Promise<AxiosResponse<IOperationResult>> {
     return await axios.put(
       baseUrl + `user/${userId}/update-profile`,
       profileInfo,

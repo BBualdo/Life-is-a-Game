@@ -25,8 +25,10 @@ namespace API.Controllers
         [HttpPut("{userId}/update-profile")]
         public async Task<ActionResult> UpdateProfileInfo(string userId, EditProfileDto profileDto)
         {
-            await _profileService.UpdateProfile(userId, profileDto);
-            return NoContent();
+            var result = await _profileService.UpdateProfile(userId, profileDto);
+            if (!result.Success) return BadRequest(new { message = result.Message, errors = result.Errors });
+
+            return Ok(new {message = result.Message});
         }
     }
 }
