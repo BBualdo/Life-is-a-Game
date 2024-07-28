@@ -36,10 +36,11 @@ This is an application where users can set missions for themselves, track their 
 
 - Slider-like tutorial showing main concepts of an app
 - Creating, tracking, updating and deleting missions
+- Verbose difficulty level system - user adjust slider getting hints in which cases that difficulty would be appropriate
 - Gaining XP and leveling up
 - Earning achievements
 - Editing profile information (Avatar, Bio, Current Goal, etc.)
-- Authentication and Authorization (soon)
+- Authentication and Authorization
 - External Providers Auth (Facebook, Google, GitHub) (soon)
 
 ## My process
@@ -111,9 +112,10 @@ This is an application where users can set missions for themselves, track their 
 ### What I have learned
 
 - Difference between ```AddIdentity```, ```AddIdentityCore``` and ```AddDefaultIdentity```.
-- Reminded about using ```Maps``` and ```Array.reduce()``` function to sum things up without having to create temporary variable.
+- Reminded about using ```Map``` and ```Array.reduce()``` function to sum things up without having to create temporary variable.
 - Meaning of **Entity Framework Core** Navigation Properties and that EF is not so good at updating nested objects
 - Tokens doesn't disappear from cookies just like in Swagger, they just expire and that has to be handled
+- Using ```Set``` to store unique values and manage them easily
 
 ### Useful resources
 Coming soon...
