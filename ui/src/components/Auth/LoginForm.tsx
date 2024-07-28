@@ -29,7 +29,6 @@ import { useState } from "react";
 import { Checkbox } from "@/src/shadcn/ui/checkbox";
 import { Label } from "@/src/shadcn/ui/label";
 
-// Login Component
 const LoginForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
@@ -53,8 +52,8 @@ const LoginForm = () => {
       const user = await AuthService.getCurrentUser();
       dispatch(setUser(user.data));
       dispatch(setIsLoggedOut(false));
-      setIsLoading(false);
       router.push("/");
+      setIsLoading(false);
     } catch (error: any) {
       setIsLoading(false);
       if (error.response) {

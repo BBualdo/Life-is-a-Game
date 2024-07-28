@@ -13,6 +13,7 @@ import EditProfileButton from "./EditProfileButton";
 import useUser from "@/src/utils/hooks/useUser";
 import Loading from "@/src/app/loading";
 import useAchievementsUnlocker from "@/src/utils/hooks/useAchievementsUnlocker";
+import UserLinks from "@/src/components/Interface/Profile/UserLinks";
 
 const UserData = () => {
   const { user, isLoadingUser } = useUser();
@@ -45,6 +46,7 @@ const UserData = () => {
       <UserStats user={user} />
       <UserGoal user={user} />
       <UserBio user={user} />
+      <UserLinks user={user} />
     </motion.section>
   );
 };

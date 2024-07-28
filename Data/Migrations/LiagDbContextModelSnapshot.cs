@@ -57,7 +57,7 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9d6505af-5ac5-4cbb-8d2b-5cee9aeb35b3"),
+                            Id = new Guid("41bb8b79-ae97-4d3a-a32f-54d233dbf858"),
                             ImageUrl = "https://i.ibb.co/kGHYJvS/tutorial.jpg",
                             Key = "COMPLETE_TUTORIAL",
                             Requirements = "Complete 'How To Play'.",
@@ -66,7 +66,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("95da7ac3-489f-4a5e-99b0-cf0590ec3786"),
+                            Id = new Guid("d1ef7adb-1968-4fc9-8fea-a8eeacd4be9e"),
                             ImageUrl = "https://i.ibb.co/KLWDbWg/add-first.jpg",
                             Key = "ADD_FIRST_MISSION",
                             Requirements = "Add your first mission.",
@@ -75,7 +75,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a84b4884-a7bb-47b4-9dfa-aa9e18f2e922"),
+                            Id = new Guid("ce522009-d197-426e-918c-9b55341c89ce"),
                             ImageUrl = "https://i.ibb.co/473Z5Lr/complete-first.jpg",
                             Key = "COMPLETE_FIRST_MISSION",
                             Requirements = "Complete your first mission.",
@@ -84,7 +84,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("b804cf6d-6652-4cce-8873-f1cb6ee0813d"),
+                            Id = new Guid("d69b2719-527f-406a-b710-17bd3025f460"),
                             ImageUrl = "https://i.ibb.co/DGLpVZx/profile.jpg",
                             Key = "COMPLETE_PROFILE",
                             Requirements = "Complete every field in profile dashboard.",
@@ -93,7 +93,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a46063f9-b670-401a-a130-d2a0ec05fe8d"),
+                            Id = new Guid("fd0c6301-94a9-4464-87e6-d93f92e825a6"),
                             ImageUrl = "https://i.ibb.co/RCYg2d5/daily.jpg",
                             Key = "COMPLETE_DAILY_MISSION",
                             Requirements = "Complete mission on 'Daily' difficulty.",
@@ -102,7 +102,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d9e3b4ca-df78-4412-be8a-660eb7a14403"),
+                            Id = new Guid("481a053b-cd75-46e6-a2a2-d2d546ac8859"),
                             ImageUrl = "https://i.ibb.co/c3Nntzw/drop-of-sweat.jpg",
                             Key = "COMPLETE_DROP_OF_SWEAT_MISSION",
                             Requirements = "Complete mission on 'Drop of Sweat' difficulty.",
@@ -111,7 +111,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("8db477e0-da3e-4cec-9a02-6d207dd16d2c"),
+                            Id = new Guid("4ebd2736-94a0-4fe0-91c2-19bd95a139df"),
                             ImageUrl = "https://i.ibb.co/zfBdvCS/challenging.jpg",
                             Key = "COMPLETE_CHALLENGING_MISSION",
                             Requirements = "Complete mission on 'Challenging' difficulty.",
@@ -120,7 +120,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2cf3e6bf-6b15-41ca-93a4-c7fb958fe447"),
+                            Id = new Guid("c7757f74-4d50-46de-8e17-eaa4ef79ea59"),
                             ImageUrl = "https://i.ibb.co/PxmwFbt/life-hacker.jpg",
                             Key = "COMPLETE_LIFE_HACKER_MISSION",
                             Requirements = "Complete mission on 'Life-Hacker' difficulty.",
@@ -129,7 +129,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("9f461c34-446f-4159-8728-314407beed74"),
+                            Id = new Guid("4ae3ed8a-086f-4e75-97fd-24cad7fdc950"),
                             ImageUrl = "https://i.ibb.co/R7WxLcr/anti-procrastinator.jpg",
                             Key = "COMPLETE_ANTI_PROCRASTINATOR_MISSION",
                             Requirements = "Complete mission on 'Anti-Procrastinator' difficulty.",
@@ -138,7 +138,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("073d92d7-e3a1-49a9-873c-8b423839309e"),
+                            Id = new Guid("c9800e7e-b9de-4bc1-8453-1cc23d20cec3"),
                             ImageUrl = "https://i.ibb.co/12Y97TW/every-difficulty.jpg",
                             Key = "COMPLETE_ALL_DIFFICULTY_LEVELS",
                             Requirements = "Complete mission on every difficulty level.",
@@ -147,7 +147,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7cd41541-8d3a-4ed8-ae77-fcae6c5533f2"),
+                            Id = new Guid("c7f83bd8-79db-4622-ab79-c12b8c700653"),
                             ImageUrl = "https://i.ibb.co/X3JvBZQ/give-up.jpg",
                             Key = "GIVE_UP_WITH_SUBTASK",
                             Requirements = "Give up a mission with at least one subtask completed.",
@@ -156,7 +156,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("fa8695d1-23b0-4714-a69c-0b71c68b2ead"),
+                            Id = new Guid("efe7041a-e99c-428f-9aff-921ffa3cdc91"),
                             ImageUrl = "https://i.ibb.co/sF4BDHg/missions5.jpg",
                             Key = "COMPLETE_5_MISSIONS",
                             Requirements = "Complete 5 missions.",
@@ -165,7 +165,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3ce7f7de-e6a4-4f5b-848f-9512b6755644"),
+                            Id = new Guid("2c291e43-d627-4c2c-8894-c93516536c1a"),
                             ImageUrl = "https://i.ibb.co/Jp6PCT0/missions10.jpg",
                             Key = "COMPLETE_10_MISSIONS",
                             Requirements = "Complete 10 missions.",
@@ -174,7 +174,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("b6a496e7-8a8d-4adf-ac0e-56ef2468bad8"),
+                            Id = new Guid("8cf74b82-39b3-41c8-aad1-7df5c917026d"),
                             ImageUrl = "https://i.ibb.co/rdQ2QkM/missions25.jpg",
                             Key = "COMPLETE_25_MISSIONS",
                             Requirements = "Complete 25 missions.",
@@ -183,7 +183,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("8553417d-5fbe-4c15-9921-5634821871fd"),
+                            Id = new Guid("6bcf31ef-16a0-4150-9d3b-494869c43ef4"),
                             ImageUrl = "https://i.ibb.co/zbKH66t/missions50.jpg",
                             Key = "COMPLETE_50_MISSIONS",
                             Requirements = "Complete 50 missions.",
@@ -192,7 +192,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("9d7158ec-ebca-4d44-bf93-72f2affb6e8a"),
+                            Id = new Guid("6eb4d5ce-c9eb-4cc5-8fba-dcb19a154b6d"),
                             ImageUrl = "https://i.ibb.co/PcKjDDX/level5.jpg",
                             Key = "REACH_LEVEL_5",
                             Requirements = "Reach level 5.",
@@ -201,7 +201,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e9269f9e-5e3f-4d51-bb77-1b81332d5462"),
+                            Id = new Guid("a145c80a-94f0-4bb8-9a20-682a87ed26dd"),
                             ImageUrl = "https://i.ibb.co/6vP8FXv/level10.jpg",
                             Key = "REACH_LEVEL_10",
                             Requirements = "Reach level 10.",
@@ -210,7 +210,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7511eaa1-d007-4b5e-af58-760f1dc52e23"),
+                            Id = new Guid("1edcb72a-368e-4438-8cb1-8887d9d52cd5"),
                             ImageUrl = "https://i.ibb.co/Qcbyf2s/level25.jpg",
                             Key = "REACH_LEVEL_25",
                             Requirements = "Reach level 25.",
@@ -219,7 +219,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ee35684f-755b-415e-a058-87f15324a657"),
+                            Id = new Guid("1357cf7f-483a-4662-ab96-25193efc0cdb"),
                             ImageUrl = "https://i.ibb.co/XDhBYzR/level50.jpg",
                             Key = "REACH_LEVEL_50",
                             Requirements = "Reach level 50.",
@@ -228,7 +228,7 @@ namespace Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("90498f2b-8467-43cd-92d6-1c2bc83d40f9"),
+                            Id = new Guid("2be61b37-b91e-42d8-ba11-51c857ac54d6"),
                             ImageUrl = "https://i.ibb.co/tZDHcyJ/all-achievements.jpg",
                             Key = "UNLOCK_ALL_ACHIEVEMENTS",
                             Requirements = "Unlock every achievement.",
@@ -365,9 +365,6 @@ namespace Data.Migrations
 
                     b.Property<string>("GoogleId")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("HasCompletedTutorial")
-                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .HasMaxLength(32)

@@ -89,6 +89,7 @@ This is an application where users can set missions for themselves, track their 
 38. Handled profile updating in React as well as errors by introducing ```OperationResult``` object returned from that endpoint. I also have to return it from ```AuthService``` operations to make error handling easier.
 39. Handled avatar updating by updating ```ProfileService```, ```UserController``` and Redux ```userSlice```. Avatar local path is sent to API and updated in DB as AvatarURL. In future user will be able to upload his own profile images.
 40. Added remaining achievements checks and centralized achievement unlock check in ```useAchievementUnlocked``` by passing functions into ```useEffect```. Then I invoked that hook in every common component to make sure user unlocks achievement as soon as he meets requirements.
+41. Added profile UI for managing linked external providers. It checks if user has Google ID, Facebook ID or GitHub ID to determine if switch should be checked or not. I also modified ```UserDto``` to include those IDs.
 
 ### 🧰 Built with
 

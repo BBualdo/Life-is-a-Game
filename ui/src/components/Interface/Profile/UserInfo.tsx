@@ -4,7 +4,7 @@ import IUser from "@/src/models/IUser";
 const UserInfo = ({ user }: { user: IUser }) => {
   return (
     <>
-      <div className="mt-4 flex xs:gap-2   lg:gap-4">
+      <div className="mt-4 flex xs:gap-2 lg:gap-4">
         <div className="flex-1 border border-white p-2">
           <h2 className="lg:text-md uppercase text-white xs:text-sm">
             Username:

@@ -12,7 +12,9 @@ interface IUser {
   totalMissionsCompleted: number;
   totalXpGained: number;
   avatarUrl: string;
-  hasCompletedTutorial: boolean;
+  githubId: string | undefined;
+  facebookId: string | undefined;
+  googleId: string | undefined;
 }
 
 export default IUser;

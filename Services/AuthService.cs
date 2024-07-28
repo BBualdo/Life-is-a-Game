@@ -32,7 +32,9 @@ public class AuthService(UserManager<User> userManager, SignInManager<User> sign
       TotalMissionsAdded = user.TotalMissionsAdded,
       TotalMissionsCompleted = user.TotalMissionsCompleted,
       TotalXpGained = user.TotalXpGained,
-      HasCompletedTutorial = user.HasCompletedTutorial
+      FacebookId = user.FacebookId,
+      GithubId = user.GithubId,
+      GoogleId = user.GoogleId
     };
     
     return userDto;
