@@ -13,7 +13,7 @@ const initialState: InitialState = {
   isLoggedOut: true,
 };
 
-const authSlice = createSlice({
+const userSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
@@ -48,7 +48,7 @@ const authSlice = createSlice({
   },
 });
 
-export default authSlice.reducer;
+export default userSlice.reducer;
 export const {
   setUser,
   clearUser,
@@ -56,4 +56,4 @@ export const {
   setUserXp,
   setUserMissionsCounters,
   setUserInfo,
-} = authSlice.actions;
+} = userSlice.actions;

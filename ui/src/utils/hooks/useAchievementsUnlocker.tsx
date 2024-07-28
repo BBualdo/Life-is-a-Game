@@ -6,7 +6,7 @@ import useUser from "@/src/utils/hooks/useUser";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
 import { toast } from "sonner";
-import { setUserXp } from "@/src/redux/slices/authSlice";
+import { setUserXp } from "@/src/redux/slices/userSlice";
 import { unlockAchievement } from "@/src/redux/slices/userAchievementsSlice";
 import IUserAchievement from "@/src/models/IUserAchievement";
 import IMission from "@/src/models/IMission";

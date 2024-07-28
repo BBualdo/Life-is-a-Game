@@ -1,5 +1,5 @@
 import AuthService from "@/src/services/AuthService";
-import { clearUser, setIsLoggedOut } from "@/src/redux/slices/authSlice";
+import { clearUser, setIsLoggedOut } from "@/src/redux/slices/userSlice";
 import { clearUserAchievements } from "@/src/redux/slices/userAchievementsSlice";
 import { clearAchievements } from "@/src/redux/slices/achievementsSlice";
 import { clearMissions } from "@/src/redux/slices/missionsSlice";

@@ -1,7 +1,7 @@
 "use client";
 
 import avatars from "@/src/constants/avatars";
-import { updateAvatar } from "@/src/redux/slices/authSlice";
+import { updateAvatar } from "@/src/redux/slices/userSlice";
 import { AppDispatch, useAppSelector } from "@/src/redux/store";
 import Image from "next/image";
 import { FaRegCheckCircle } from "react-icons/fa";

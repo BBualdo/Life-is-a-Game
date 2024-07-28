@@ -17,7 +17,7 @@ import UserService from "@/src/services/UserService";
 import {
   setUserMissionsCounters,
   setUserXp,
-} from "@/src/redux/slices/authSlice";
+} from "@/src/redux/slices/userSlice";
 import useAchievementsUnlocker from "@/src/utils/hooks/useAchievementsUnlocker";
 import useMissions from "@/src/utils/hooks/useMissions";
 import ACHIEVEMENT_KEYS from "@/src/constants/achievements";

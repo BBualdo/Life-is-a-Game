@@ -4,7 +4,7 @@ import { AppDispatch, useAppSelector } from "../../redux/store";
 import { useEffect, useState } from "react";
 import AuthService from "@/src/services/AuthService";
 import { useDispatch } from "react-redux";
-import { setUser } from "@/src/redux/slices/authSlice";
+import { setUser } from "@/src/redux/slices/userSlice";
 
 const useUser = () => {
   const { user, isLoggedOut } = useAppSelector((state) => state.authReducer);

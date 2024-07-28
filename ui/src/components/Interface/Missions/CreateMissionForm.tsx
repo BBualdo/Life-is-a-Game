@@ -17,7 +17,7 @@ import MissionsService from "@/src/services/MissionsService";
 import { addMission } from "@/src/redux/slices/missionsSlice";
 import { setSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 import addMissionFormSchema from "@/src/schemas/addMissionFormSchema";
-import { setUserMissionsCounters } from "@/src/redux/slices/authSlice";
+import { setUserMissionsCounters } from "@/src/redux/slices/userSlice";
 import useAchievementsUnlocker from "@/src/utils/hooks/useAchievementsUnlocker";
 import ACHIEVEMENT_KEYS from "@/src/constants/achievements";
 

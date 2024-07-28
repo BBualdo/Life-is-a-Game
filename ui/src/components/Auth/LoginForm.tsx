@@ -22,7 +22,7 @@ import ILoginData from "@/src/models/ILoginData";
 import AuthService from "@/src/services/AuthService";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
-import { setIsLoggedOut, setUser } from "@/src/redux/slices/authSlice";
+import { setIsLoggedOut, setUser } from "@/src/redux/slices/userSlice";
 import { toast } from "sonner";
 import { PiWarningCircleFill } from "react-icons/pi";
 import { useState } from "react";

@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
-import authReducer from "@/src/redux/slices/authSlice";
+import authReducer from "@/src/redux/slices/userSlice";
 import achievementsReducer from "@/src/redux/slices/achievementsSlice";
 import userAchievementsReducer from "@/src/redux/slices/userAchievementsSlice";
 import missionsReducer from "@/src/redux/slices/missionsSlice";
