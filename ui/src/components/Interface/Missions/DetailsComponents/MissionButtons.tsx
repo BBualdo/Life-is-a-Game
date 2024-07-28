@@ -24,9 +24,7 @@ import ACHIEVEMENT_KEYS from "@/src/constants/achievements";
 
 const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { missions } = useMissions();
-  const { checkMissionAchievements, tryUnlockAchievement } =
-    useAchievementsUnlocker();
+  const { tryUnlockAchievement } = useAchievementsUnlocker();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -82,8 +80,6 @@ const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
         toast("Mission completed!", {
           description: `You received ${selectedMission.xpReward}XP.`,
         });
-
-        await checkMissionAchievements(selectedMission, missions!);
       })
       .catch(() => {
         toast.error("Something went wrong!");

@@ -54,6 +54,6 @@ export const difficultyLevels: DifficultyLevel[] = [
       { id: 1, title: "Completing a marathon" },
       { id: 2, title: "Starting a business" },
     ],
-    xpMultiplier: 5,
+    xpMultiplier: 30,
   },
 ];

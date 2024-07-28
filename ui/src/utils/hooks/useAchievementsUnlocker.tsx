@@ -13,10 +13,13 @@ import IMission from "@/src/models/IMission";
 import ACHIEVEMENT_KEYS from "@/src/constants/achievements";
 import DifficultyLevel from "@/src/enums/DifficultyLevel";
 import IUser from "@/src/models/IUser";
+import { useEffect } from "react";
+import useMissions from "@/src/utils/hooks/useMissions";
 
 const useAchievementsUnlocker = () => {
   const { userAchievements, achievements } = useAchievements();
   const { user } = useUser();
+  const { missions } = useMissions();
   const dispatch = useDispatch<AppDispatch>();
 
   async function tryUnlockAchievement(achievementKey: string) {
@@ -29,6 +32,8 @@ const useAchievementsUnlocker = () => {
       (ua) => ua.achievementId === achievement.id,
     );
     if (userAchievement) return;
+
+    console.log("unlocking achievement: " + achievementKey);
 
     try {
       const res = await AchievementsService.unlockAchievement(
@@ -54,15 +59,13 @@ const useAchievementsUnlocker = () => {
     }
   }
 
-  async function checkMissionAchievements(
-    selectedMission: IMission,
-    missions: IMission[],
-  ) {
+  async function checkMissionAchievements(missions: IMission[]) {
     const completedDifficulties = new Set(
       missions.filter((m) => m.isCompleted).map((m) => m.difficulty),
     );
 
-    await tryUnlockAchievement(ACHIEVEMENT_KEYS.COMPLETE_FIRST_MISSION);
+    if (user!.totalMissionsCompleted >= 1)
+      await tryUnlockAchievement(ACHIEVEMENT_KEYS.COMPLETE_FIRST_MISSION);
 
     if (user!.totalMissionsCompleted >= 5)
       await tryUnlockAchievement(ACHIEVEMENT_KEYS.COMPLETE_5_MISSIONS);
@@ -76,21 +79,21 @@ const useAchievementsUnlocker = () => {
     if (user!.totalMissionsCompleted >= 50)
       await tryUnlockAchievement(ACHIEVEMENT_KEYS.COMPLETE_50_MISSIONS);
 
-    if (selectedMission.difficulty === DifficultyLevel.Daily)
+    if (completedDifficulties.has(DifficultyLevel.Daily))
       await tryUnlockAchievement(ACHIEVEMENT_KEYS.COMPLETE_DAILY_MISSION);
 
-    if (selectedMission.difficulty === DifficultyLevel["Drop of Sweat"])
+    if (completedDifficulties.has(DifficultyLevel["Drop of Sweat"]))
       await tryUnlockAchievement(
         ACHIEVEMENT_KEYS.COMPLETE_DROP_OF_SWEAT_MISSION,
       );
 
-    if (selectedMission.difficulty === DifficultyLevel.Challenging)
+    if (completedDifficulties.has(DifficultyLevel.Challenging))
       await tryUnlockAchievement(ACHIEVEMENT_KEYS.COMPLETE_CHALLENGING_MISSION);
 
-    if (selectedMission.difficulty === DifficultyLevel["Life-Hacker"])
+    if (completedDifficulties.has(DifficultyLevel["Life-Hacker"]))
       await tryUnlockAchievement(ACHIEVEMENT_KEYS.COMPLETE_LIFE_HACKER_MISSION);
 
-    if (selectedMission.difficulty === DifficultyLevel["Anti-Procrastinator"])
+    if (completedDifficulties.has(DifficultyLevel["Anti-Procrastinator"]))
       await tryUnlockAchievement(
         ACHIEVEMENT_KEYS.COMPLETE_ANTI_PROCRASTINATOR_MISSION,
       );
@@ -107,7 +110,7 @@ const useAchievementsUnlocker = () => {
       );
   }
 
-  async function checkLevelAchievements(user: IUser) {
+  async function checkProfileAchievements(user: IUser) {
     if (user.level >= 5)
       await tryUnlockAchievement(ACHIEVEMENT_KEYS.REACH_LEVEL_5);
 
@@ -119,12 +122,46 @@ const useAchievementsUnlocker = () => {
 
     if (user.level >= 50)
       await tryUnlockAchievement(ACHIEVEMENT_KEYS.REACH_LEVEL_50);
+
+    if (
+      user.firstName &&
+      user.lastName &&
+      user.currentGoal &&
+      user.bio &&
+      user.avatarUrl
+    ) {
+      await tryUnlockAchievement(ACHIEVEMENT_KEYS.COMPLETE_PROFILE);
+    }
   }
+
+  async function checkAllAchievements() {
+    if (userAchievements && achievements) {
+      const userAchievementIds = new Set(
+        userAchievements.map((ua) => ua.achievementId),
+      );
+      const achievementIds = new Set(achievements.map((ach) => ach.id));
+
+      const allAchievementUnlocked = Array.from(achievementIds).every(
+        (id) =>
+          userAchievementIds.has(id) ||
+          id === ACHIEVEMENT_KEYS.UNLOCK_ALL_ACHIEVEMENTS,
+      );
+
+      if (allAchievementUnlocked)
+        await tryUnlockAchievement(ACHIEVEMENT_KEYS.UNLOCK_ALL_ACHIEVEMENTS);
+    }
+  }
+
+  useEffect(() => {
+    if (user) checkProfileAchievements(user);
+
+    if (missions) checkMissionAchievements(missions);
+
+    checkAllAchievements();
+  }, [user, user?.level, missions]);
 
   return {
     tryUnlockAchievement,
-    checkMissionAchievements,
-    checkLevelAchievements,
   };
 };
 

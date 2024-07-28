@@ -12,9 +12,11 @@ import UserGoal from "./UserGoal";
 import EditProfileButton from "./EditProfileButton";
 import useUser from "@/src/utils/hooks/useUser";
 import Loading from "@/src/app/loading";
+import useAchievementsUnlocker from "@/src/utils/hooks/useAchievementsUnlocker";
 
 const UserData = () => {
   const { user, isLoadingUser } = useUser();
+  useAchievementsUnlocker();
 
   if (isLoadingUser) return <Loading text="Loading User..." />;
   if (!user) return null;
