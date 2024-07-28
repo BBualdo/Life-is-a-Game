@@ -83,6 +83,8 @@ This is an application where users can set missions for themselves, track their 
 33. I extended ```Achievement``` table with **Key** property to identify achievements safer. Now, ```findAndUnlock``` method in ```useAchievementUnlocker``` hook accepts that key instead of hard coded id which can be changed over time (like migrating from development to production).
 34. I have renamed ```findAndUnlock``` method to ```tryUnlockAchievement```, because it's more verbose. Naming is the most difficult part of programming, they say. I also separated achievements for completing missions to ```checkMissionAchievements```, just not to bomb ```missionComplete``` function with a lot of code.
 35. Achievements for leveling up has been moved into ```checkLevelAchievements``` function, called in Main Menu, but it should be called in more common place or in multiple places to ensure that user gets the achievement wherever he is. I will come back to that later, because I have to implement profile editing for one of achievements.
+36. Created ```IProfileService``` to handle profile edit. In React same procedure - DTO model, ```UserService``` extended with ```updateProfile``` method, accepting **firstName**, **lastName**, **currentGoal** and **bio**, and also Redux reducer function that updates user info locally.
+37. At this moment, I realised that ```authSlice``` is actually not a good naming, because in fact, it mainly operates on user object, so I changed it to ```userSlice```.
 
 ### 🧰 Built with
 

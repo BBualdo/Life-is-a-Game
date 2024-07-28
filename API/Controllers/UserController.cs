@@ -8,9 +8,10 @@ namespace API.Controllers
     [Route("api/user")]
     [ApiController]
     [Authorize]
-    public class UserController(ILevelsService levelsService) : ControllerBase
+    public class UserController(ILevelsService levelsService, IProfileService profileService) : ControllerBase
     {
         private readonly ILevelsService _levelsService = levelsService;
+        private readonly IProfileService _profileService = profileService;
 
         [HttpPost("add-xp")]
         public async Task<ActionResult<UserXpResponseDto>> AddXp(AddXpDto addXpDto)
@@ -19,6 +20,13 @@ namespace API.Controllers
            if (response is null) return NotFound(new { message = "User not found!" });
 
            return Ok(response);
+        }
+
+        [HttpPut("{userId}/update-profile")]
+        public async Task<ActionResult> UpdateProfileInfo(string userId, EditProfileDto profileDto)
+        {
+            await _profileService.UpdateProfile(userId, profileDto);
+            return NoContent();
         }
     }
 }

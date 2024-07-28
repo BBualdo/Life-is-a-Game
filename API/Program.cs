@@ -42,6 +42,7 @@ builder.Services.AddScoped<IAchievementsService, AchievementsService>();
 builder.Services.AddScoped<IMissionsService, MissionsService>();
 builder.Services.AddScoped<ISubtasksService, SubtasksService>();
 builder.Services.AddScoped<ILevelsService, LevelsService>();
+builder.Services.AddScoped<IProfileService, ProfileService>();
 
 builder.Services.AddCors(options =>
   options.AddPolicy("default", policyBuilder => 

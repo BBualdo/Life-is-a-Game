@@ -1,6 +1,7 @@
 import IUser from "@/src/models/IUser";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import IUserXpResponse from "@/src/services/DTO/IUserXpResponse";
+import IEditProfileDto from "@/src/services/DTO/IEditProfileDto";
 
 type InitialState = {
   user: IUser | null | undefined;
@@ -38,6 +39,12 @@ const authSlice = createSlice({
           state.user.totalMissionsCompleted++;
       }
     },
+    setUserInfo: (state, action: PayloadAction<IEditProfileDto>) => {
+      if (state.user) {
+        const { firstName, lastName, currentGoal, bio } = action.payload;
+        state.user = { ...state.user, firstName, lastName, currentGoal, bio };
+      }
+    },
   },
 });
 
@@ -48,4 +55,5 @@ export const {
   setIsLoggedOut,
   setUserXp,
   setUserMissionsCounters,
+  setUserInfo,
 } = authSlice.actions;
