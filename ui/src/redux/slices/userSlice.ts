@@ -45,6 +45,11 @@ const userSlice = createSlice({
         state.user = { ...state.user, firstName, lastName, currentGoal, bio };
       }
     },
+    setUserAvatar: (state, action: PayloadAction<string>) => {
+      if (state.user) {
+        state.user.avatarUrl = action.payload;
+      }
+    },
   },
 });
 
@@ -56,4 +61,5 @@ export const {
   setUserXp,
   setUserMissionsCounters,
   updateUserInfo,
+  setUserAvatar,
 } = userSlice.actions;

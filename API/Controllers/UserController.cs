@@ -25,10 +25,19 @@ namespace API.Controllers
         [HttpPut("{userId}/update-profile")]
         public async Task<ActionResult> UpdateProfileInfo(string userId, EditProfileDto profileDto)
         {
-            var result = await _profileService.UpdateProfile(userId, profileDto);
+            var result = await _profileService.UpdateProfileAsync(userId, profileDto);
             if (!result.Success) return BadRequest(new { message = result.Message, errors = result.Errors });
 
             return Ok(new {message = result.Message});
+        }
+
+        [HttpPut("{userId}/update-avatar")]
+        public async Task<ActionResult> UpdateAvatar(string userId, string avatarPath)
+        {
+            var result = await _profileService.UpdateAvatarAsync(userId, avatarPath);
+            if (!result.Success) return BadRequest(new { message = result.Message, errors = result.Errors });
+
+            return Ok(new { message = result.Message });
         }
     }
 }

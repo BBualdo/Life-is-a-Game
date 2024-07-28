@@ -26,6 +26,17 @@ class UserService {
       { withCredentials: true },
     );
   }
+
+  static async updateAvatar(
+    userId: string,
+    avatarPath: string,
+  ): Promise<AxiosResponse<IOperationResult>> {
+    return await axios.put(
+      baseUrl + `user/${userId}/update-avatar`,
+      {},
+      { params: { avatarPath }, withCredentials: true },
+    );
+  }
 }
 
 export default UserService;

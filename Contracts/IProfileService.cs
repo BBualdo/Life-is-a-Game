@@ -4,5 +4,6 @@ namespace Contracts;
 
 public interface IProfileService
 {
-    Task<OperationResult> UpdateProfile(string userId, EditProfileDto profileDto);
+    Task<OperationResult> UpdateProfileAsync(string userId, EditProfileDto profileDto);
+    Task<OperationResult> UpdateAvatarAsync(string userId, string avatarPath);
 }
