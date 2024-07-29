@@ -45,7 +45,7 @@ This is an application where users can set missions for themselves, track their 
 
 ## My process
 
-#### Backend implementation
+### Backend implementation
 1. Defined Models with Data Annotations and created ```DbContext``` using **Entity Framework Core** with **ASP.NET Identity**.
 2. Ensured that Achievements are created on Database creation.
 3. Created DTOs for login, register and reset password purpose.
@@ -90,6 +90,9 @@ This is an application where users can set missions for themselves, track their 
 39. Handled avatar updating by updating ```ProfileService```, ```UserController``` and Redux ```userSlice```. Avatar local path is sent to API and updated in DB as AvatarURL. In future user will be able to upload his own profile images.
 40. Added remaining achievements checks and centralized achievement unlock check in ```useAchievementUnlocked``` by passing functions into ```useEffect```. Then I invoked that hook in every common component to make sure user unlocks achievement as soon as he meets requirements.
 41. Added profile UI for managing linked external providers. It checks if user has Google ID, Facebook ID or GitHub ID to determine if switch should be checked or not. I also modified ```UserDto``` to include those IDs.
+
+#### External Auth
+42. Starting with GitHub, I set up Application on the platform, which gave me ClientID. I implemented ```loginWithGithub``` method in ```AuthService```, which simply redirects user to ```https://github.com/login/oauth/authorize``` with specified query parameters. After successful log-in, user is redirected to ```/github-callback``` page. I also created that callback pages for Facebook and Google in advance.
 
 ### 🧰 Built with
 
