@@ -1,6 +1,8 @@
 ﻿using System.Security.Claims;
 using Contracts;
 using Contracts.DTO.Auth;
+using Contracts.DTO.User;
+using Data.Helpers;
 using Data.Models;
 using Microsoft.AspNetCore.Identity;
 
@@ -116,17 +118,17 @@ public class AuthService(UserManager<User> userManager, SignInManager<User> sign
     throw new NotImplementedException();
   }
 
-  public Task LoginWithGithubAsync()
+  public async Task<OperationResult> LoginWithGithubAsync(string code)
+  {
+    var token = await ExternalAuthHelpers.ExchangeCodeForTokenAsync(code, new Uri("https://github.com/login/oauth/access_token"));
+  }
+
+  public Task<OperationResult> LoginWithGoogleAsync(string code)
   {
     throw new NotImplementedException();
   }
 
-  public Task LoginWithGoogleAsync()
-  {
-    throw new NotImplementedException();
-  }
-
-  public Task LoginWithFacebookAsync()
+  public Task<OperationResult> LoginWithFacebookAsync(string code)
   {
     throw new NotImplementedException();
   }

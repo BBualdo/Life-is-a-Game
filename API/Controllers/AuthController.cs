@@ -1,5 +1,6 @@
 using Contracts;
 using Contracts.DTO.Auth;
+using Data.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -44,6 +45,12 @@ namespace API.Controllers
         {
             await _authService.LogoutAsync();
             return Ok(new { message = "Logout successful." });
+        }
+
+        [HttpGet("login-with-github")]
+        public async Task<ActionResult> LoginWithGithub(string code)
+        {
+         
         }
     }
 }

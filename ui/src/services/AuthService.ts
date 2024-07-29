@@ -34,7 +34,7 @@ class AuthService {
     });
   }
 
-  static loginWithGithub = () => {
+  static loginWithGithub(): void {
     const params = new URLSearchParams({
       client_id: externalParams.github.clientId!,
       redirect_uri: externalParams.github.redirectUri,
@@ -43,7 +43,14 @@ class AuthService {
       prompt: "select_account",
     });
     window.location.href = `https://github.com/login/oauth/authorize?${params.toString()}`;
-  };
+  }
+
+  static async handleGithubCallback(code: string) {
+    return axios.get(baseUrl + "auth/login-with-github", {
+      params: { code },
+      withCredentials: true,
+    });
+  }
 }
 
 export default AuthService;

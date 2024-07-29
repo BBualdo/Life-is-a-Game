@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using Contracts.DTO.Auth;
+using Contracts.DTO.User;
 
 namespace Contracts;
 
@@ -11,7 +12,7 @@ public interface IAuthService
   Task LogoutAsync();
   Task ForgotPasswordAsync();
   Task ResetPasswordAsync();
-  Task LoginWithGithubAsync();
-  Task LoginWithGoogleAsync();
-  Task LoginWithFacebookAsync();
+  Task<OperationResult> LoginWithGithubAsync(string code);
+  Task<OperationResult> LoginWithGoogleAsync(string code);
+  Task<OperationResult> LoginWithFacebookAsync(string code);
 }
