@@ -7,8 +7,8 @@ namespace Contracts;
 public interface IAuthService
 {
   Task<UserDto?> GetCurrentUserAsync(ClaimsPrincipal claims);
-  Task<AuthOperationResult> LoginAsync(LoginDto loginDto);
-  Task<AuthOperationResult> RegisterAsync(RegisterDto registerDto);
+  Task<OperationResult> LoginAsync(LoginDto loginDto);
+  Task<OperationResult> RegisterAsync(RegisterDto registerDto);
   Task LogoutAsync();
   Task ForgotPasswordAsync();
   Task ResetPasswordAsync();

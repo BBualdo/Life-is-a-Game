@@ -40,6 +40,7 @@ builder.Services.AddScoped<IAchievementsRepository, AchievementsRepository>();
 builder.Services.AddScoped<IMissionsRepository, MissionsRepository>();
 builder.Services.AddScoped<ISubtasksRepository, SubtasksRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IGithubService, GithubService>();
 builder.Services.AddScoped<IAchievementsService, AchievementsService>();
 builder.Services.AddScoped<IMissionsService, MissionsService>();
 builder.Services.AddScoped<ISubtasksService, SubtasksService>();

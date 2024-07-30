@@ -4,6 +4,7 @@ import ILoginData from "@/src/models/ILoginData";
 import IRegisterData from "@/src/models/IRegisterData";
 import IUser from "@/src/models/IUser";
 import generateRandomString from "@/src/utils/generateRandomString";
+import IOperationResult from "@/src/models/IOperationResult";
 
 class AuthService {
   static async login(loginData: ILoginData): Promise<AxiosResponse<any, any>> {
@@ -38,14 +39,16 @@ class AuthService {
     const params = new URLSearchParams({
       client_id: externalParams.github.clientId!,
       redirect_uri: externalParams.github.redirectUri,
-      scope: "read:user",
+      scope: "user user:email",
       state: generateRandomString(),
       prompt: "select_account",
     });
     window.location.href = `https://github.com/login/oauth/authorize?${params.toString()}`;
   }
 
-  static async handleGithubCallback(code: string) {
+  static async handleGithubCallback(
+    code: string,
+  ): Promise<AxiosResponse<IOperationResult>> {
     return axios.get(baseUrl + "auth/login-with-github", {
       params: { code },
       withCredentials: true,

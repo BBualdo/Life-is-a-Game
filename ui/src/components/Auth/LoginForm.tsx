@@ -49,9 +49,6 @@ const LoginForm = () => {
     try {
       setIsLoading(true);
       await AuthService.login(loginData);
-      const user = await AuthService.getCurrentUser();
-      dispatch(setUser(user.data));
-      dispatch(setIsLoggedOut(false));
       router.push("/");
       setIsLoading(false);
     } catch (error: any) {

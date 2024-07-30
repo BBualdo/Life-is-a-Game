@@ -6,7 +6,7 @@ import links from "@/src/constants/nav-links";
 import Backdrop from "./Backdrop";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/src/utils/fadeIn";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TutorialStepper from "../HowToPlay/TutorialStepper";
 import { GiPowerButton } from "react-icons/gi";
 import { useRouter } from "next/navigation";
@@ -14,6 +14,8 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
 import logout from "@/src/utils/logout";
 import useAchievementsUnlocker from "@/src/utils/hooks/useAchievementsUnlocker";
+import AuthService from "@/src/services/AuthService";
+import { setIsLoggedOut, setUser } from "@/src/redux/slices/userSlice";
 
 const MainMenu = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -29,6 +31,13 @@ const MainMenu = () => {
     setIsOpen(false);
     document.body.style.overflow = "";
   };
+
+  useEffect(() => {
+    AuthService.getCurrentUser().then((res) => {
+      dispatch(setUser(res.data));
+      dispatch(setIsLoggedOut(false));
+    });
+  }, []);
 
   const navLinks = links.map((link) => (
     <Link key={link.key} href={link.href}>

@@ -93,7 +93,7 @@ This is an application where users can set missions for themselves, track their 
 
 #### External Auth
 42. Starting with GitHub, I set up Application on the platform, which gave me ClientID and ClientSecret. I implemented ```loginWithGithub``` method in ```AuthService```, which simply redirects user to ```https://github.com/login/oauth/authorize``` with specified query parameters. After successful log-in, user is redirected to ```/github-callback``` page. I also created that callback pages for Facebook and Google in advance.
-43. In callback page I check for ```code``` in query parameters. If there is no code included, user is redirected to the ```/login``` page. Otherwise, application sends that code to ```/auth/login-with-github``` endpoint. In the following ```AuthController``` method I create new client with ```IHttpClientFactory``` and pass it with received code to service method. That method handles exchanging code for token...
+43. In callback page I check for ```code``` in query parameters. If there is no code included, user is redirected to the ```/login``` page. Otherwise, application sends that code to ```/auth/login-with-github``` endpoint. In the following ```AuthController``` method I create new client with ```IHttpClientFactory``` and pass it with received code to service method. ```IAuthService``` is responsible for exchanging code for token and ```IGithubService``` for getting user data and emails (GitHub requires separate request for user emails if it's not public). Then I check if user with specified email already exists. If true, I check assign ```GithubId``` to his account and log-in, else I create new user and do the same.
 
 ### 🧰 Built with
 

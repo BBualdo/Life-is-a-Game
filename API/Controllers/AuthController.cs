@@ -53,9 +53,11 @@ namespace API.Controllers
         public async Task<ActionResult> LoginWithGithub(string code)
         {
             var client = _httpClientFactory.CreateClient();
-            await _authService.LoginWithGithubAsync(code, client);
+            var result = await _authService.LoginWithGithubAsync(code, client);
 
-            return NoContent();
+            if (!result.Success) return BadRequest(new { message = result.Message, errors = result.Errors });
+            
+            return Ok(result.Message);
         }
     }
 }
