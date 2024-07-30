@@ -12,7 +12,7 @@ public interface IAuthService
   Task LogoutAsync();
   Task ForgotPasswordAsync();
   Task ResetPasswordAsync();
-  Task<OperationResult> LoginWithGithubAsync(string code);
-  Task<OperationResult> LoginWithGoogleAsync(string code);
-  Task<OperationResult> LoginWithFacebookAsync(string code);
+  Task<OperationResult> LoginWithGithubAsync(string code, HttpClient client);
+  Task<OperationResult> LoginWithGoogleAsync(string code, HttpClient client);
+  Task<OperationResult> LoginWithFacebookAsync(string code, HttpClient client);
 }

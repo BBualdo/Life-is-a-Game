@@ -5,13 +5,15 @@ using Contracts.DTO.User;
 using Data.Helpers;
 using Data.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 
 namespace Services;
 
-public class AuthService(UserManager<User> userManager, SignInManager<User> signInManager) : IAuthService
+public class AuthService(UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration configuration) : IAuthService
 {
   private readonly UserManager<User> _userManager = userManager;
   private readonly SignInManager<User> _signInManager = signInManager;
+  private readonly IConfiguration _configuration = configuration;
 
   public async Task<UserDto?> GetCurrentUserAsync(ClaimsPrincipal claims)
   {
@@ -118,17 +120,34 @@ public class AuthService(UserManager<User> userManager, SignInManager<User> sign
     throw new NotImplementedException();
   }
 
-  public async Task<OperationResult> LoginWithGithubAsync(string code)
+  public async Task<OperationResult> LoginWithGithubAsync(string code, HttpClient client)
   {
-    var token = await ExternalAuthHelpers.ExchangeCodeForTokenAsync(code, new Uri("https://github.com/login/oauth/access_token"));
+    var exchangeParams = new ExchangeCodeParams
+    {
+      Code = code,
+      ClientId = _configuration["ExternalAuth:Github:ClientId"]!,
+      ClientSecret = _configuration["ExternalAuth:Github:ClientSecret"]!,
+      RequestUri = "https://github.com/login/oauth/access_token",
+      RedirectUri = "http://localhost:3000/github-callback"
+    };
+            
+    var token = await ExternalAuthHelpers.ExchangeCodeForTokenAsync(exchangeParams, client);
+    if (token is null)
+      return new OperationResult
+      {
+        Success = false,
+        Message = "Something went wrong when retrieving access token."
+      };
+
+    return new OperationResult();
   }
 
-  public Task<OperationResult> LoginWithGoogleAsync(string code)
+  public Task<OperationResult> LoginWithGoogleAsync(string code, HttpClient client)
   {
     throw new NotImplementedException();
   }
 
-  public Task<OperationResult> LoginWithFacebookAsync(string code)
+  public Task<OperationResult> LoginWithFacebookAsync(string code, HttpClient client)
   {
     throw new NotImplementedException();
   }

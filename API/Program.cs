@@ -34,6 +34,8 @@ builder.Services.ConfigureApplicationCookie(options =>
   options.SlidingExpiration = true;
 });
 
+builder.Services.AddHttpClient();
+
 builder.Services.AddScoped<IAchievementsRepository, AchievementsRepository>();
 builder.Services.AddScoped<IMissionsRepository, MissionsRepository>();
 builder.Services.AddScoped<ISubtasksRepository, SubtasksRepository>();

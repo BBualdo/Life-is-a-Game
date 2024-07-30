@@ -92,7 +92,8 @@ This is an application where users can set missions for themselves, track their 
 41. Added profile UI for managing linked external providers. It checks if user has Google ID, Facebook ID or GitHub ID to determine if switch should be checked or not. I also modified ```UserDto``` to include those IDs.
 
 #### External Auth
-42. Starting with GitHub, I set up Application on the platform, which gave me ClientID. I implemented ```loginWithGithub``` method in ```AuthService```, which simply redirects user to ```https://github.com/login/oauth/authorize``` with specified query parameters. After successful log-in, user is redirected to ```/github-callback``` page. I also created that callback pages for Facebook and Google in advance.
+42. Starting with GitHub, I set up Application on the platform, which gave me ClientID and ClientSecret. I implemented ```loginWithGithub``` method in ```AuthService```, which simply redirects user to ```https://github.com/login/oauth/authorize``` with specified query parameters. After successful log-in, user is redirected to ```/github-callback``` page. I also created that callback pages for Facebook and Google in advance.
+43. In callback page I check for ```code``` in query parameters. If there is no code included, user is redirected to the ```/login``` page. Otherwise, application sends that code to ```/auth/login-with-github``` endpoint. In the following ```AuthController``` method I create new client with ```IHttpClientFactory``` and pass it with received code to service method. That method handles exchanging code for token...
 
 ### 🧰 Built with
 

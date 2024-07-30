@@ -8,9 +8,11 @@ namespace API.Controllers
 {
     [Route("api/auth")]
     [ApiController]
-    public class AuthController(IAuthService authService) : ControllerBase
+    public class AuthController(IAuthService authService, IHttpClientFactory httpClientFactory, IConfiguration configuration) : ControllerBase
     {
         private readonly IAuthService _authService = authService;
+        private readonly IHttpClientFactory _httpClientFactory = httpClientFactory;
+        private readonly IConfiguration _configuration = configuration;
 
         [HttpGet("currentUser")]
         [Authorize]
@@ -50,7 +52,10 @@ namespace API.Controllers
         [HttpGet("login-with-github")]
         public async Task<ActionResult> LoginWithGithub(string code)
         {
-         
+            var client = _httpClientFactory.CreateClient();
+            await _authService.LoginWithGithubAsync(code, client);
+
+            return NoContent();
         }
     }
 }
