@@ -13,8 +13,7 @@ public interface IAuthService
   Task LogoutAsync();
   Task ForgotPasswordAsync();
   Task ResetPasswordAsync();
-  Task<OperationResult> LoginWithGithubAsync(string code, HttpClient client);
-  Task<OperationResult> LinkGithubAccountAsync(User user, string githubId);
+  Task<OperationResult> LoginOrLinkWithGithubAsync(string code, HttpClient client, string? userId = null);
   Task<OperationResult> UnlinkAccountAsync(string providerName, string userId);
   Task<OperationResult> LoginWithGoogleAsync(string code, HttpClient client);
   Task<OperationResult> LoginWithFacebookAsync(string code, HttpClient client);

@@ -50,10 +50,22 @@ class AuthService {
   static async handleGithubCallback(
     code: string,
   ): Promise<AxiosResponse<IOperationResult>> {
-    return axios.get(baseUrl + "auth/login-with-github", {
+    return await axios.get(baseUrl + "auth/login-with-github", {
       params: { code },
       withCredentials: true,
     });
+  }
+
+  static async linkAccount(
+    code: string,
+    userId: string,
+    providerName: string,
+  ): Promise<AxiosResponse<IOperationResult>> {
+    return await axios.post(
+      baseUrl + "auth/link-account",
+      {},
+      { params: { code, userId, providerName }, withCredentials: true },
+    );
   }
 
   static async unlinkAccount(

@@ -50,6 +50,26 @@ const userSlice = createSlice({
         state.user.avatarUrl = action.payload;
       }
     },
+    setUserProviderId: (
+      state,
+      action: PayloadAction<"Github" | "Google" | "Facebook">,
+    ) => {
+      if (state.user) {
+        const provider = action.payload;
+
+        switch (provider) {
+          case "Github":
+            state.user.githubId = "secret";
+            break;
+          case "Facebook":
+            state.user.facebookId = "secret";
+            break;
+          case "Google":
+            state.user.googleId = "secret";
+            break;
+        }
+      }
+    },
     clearUserProviderId: (
       state,
       action: PayloadAction<"Github" | "Google" | "Facebook">,
@@ -81,5 +101,6 @@ export const {
   setUserMissionsCounters,
   updateUserInfo,
   setUserAvatar,
+  setUserProviderId,
   clearUserProviderId,
 } = userSlice.actions;

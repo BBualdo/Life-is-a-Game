@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
 import { clearUserProviderId } from "@/src/redux/slices/userSlice";
 import { toast } from "sonner";
-import description from "@/src/components/Interface/Missions/FormComponents/Description";
 import { PiWarningCircleFill } from "react-icons/pi";
 
 const UserLink = ({ provider, user }: { provider: Provider; user: IUser }) => {
@@ -19,38 +18,40 @@ const UserLink = ({ provider, user }: { provider: Provider; user: IUser }) => {
 
   const idName = provider.idName as keyof IUser;
 
+  async function unlinkAccount(providerName: string, userId: string) {
+    try {
+      const res = await AuthService.unlinkAccount(provider.name, user.id);
+      dispatch(
+        clearUserProviderId(provider.name as "Google" | "Github" | "Facebook"),
+      );
+      toast.success(res.data.message);
+    } catch (error: any) {
+      if (error.response) {
+        toast.error(error.response.data.message, {
+          description: error.response.data.errors?.map(
+            (e: string, index: number) => <p key={index}>{e}</p>,
+          ),
+          icon: <PiWarningCircleFill />,
+        });
+      } else {
+        toast.error("Login failed!", {
+          description:
+            "Server error occurred. Please try again later or contact customer support.",
+          icon: <PiWarningCircleFill />,
+        });
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   const toggleAccountLink = async (idName: keyof IUser) => {
     if (isLoading) return;
     setIsLoading(true);
     if (user[idName]) {
-      try {
-        const res = await AuthService.unlinkAccount(provider.name, user.id);
-        dispatch(
-          clearUserProviderId(
-            provider.name as "Google" | "Github" | "Facebook",
-          ),
-        );
-        toast.success(res.data.message);
-      } catch (error: any) {
-        if (error.response) {
-          toast.error(error.response.data.message, {
-            description: error.response.data.errors?.map(
-              (e: string, index: number) => <p key={index}>{e}</p>,
-            ),
-            icon: <PiWarningCircleFill />,
-          });
-        } else {
-          toast.error("Login failed!", {
-            description:
-              "Server error occurred. Please try again later or contact customer support.",
-            icon: <PiWarningCircleFill />,
-          });
-        }
-      } finally {
-        setIsLoading(false);
-      }
+      await unlinkAccount(provider.name, user.id);
     } else {
-      console.log(`Connect ${provider.name} link...`);
+      AuthService.loginWithGithub();
     }
   };
 
