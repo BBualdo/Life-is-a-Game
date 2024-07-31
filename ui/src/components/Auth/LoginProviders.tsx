@@ -23,6 +23,7 @@ const LoginProviders = () => {
         animate={{ scale: 1 }}
         transition={{ type: "spring", delay: 1 }}
         className="flex items-center justify-center"
+        onClick={() => AuthService.loginWithGoogle()}
       >
         <FaGoogle className="text-2xl text-cp-cyan transition-all duration-200 hover:text-cp-red" />
       </motion.button>

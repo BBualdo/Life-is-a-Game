@@ -60,6 +60,10 @@ const UserLink = ({ provider, user }: { provider: Provider; user: IUser }) => {
           AuthService.loginWithFacebook();
           break;
         }
+        case "Google": {
+          AuthService.loginWithGoogle();
+          break;
+        }
       }
     }
   };

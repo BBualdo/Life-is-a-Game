@@ -71,6 +71,17 @@ namespace API.Controllers
             
             return Ok(result.Message);
         }
+        
+        [HttpGet("login-with-google")]
+        public async Task<ActionResult> LoginWithGoogle(string code)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var result = await _authService.LoginOrLinkWithGoogleAsync(code, client);
+
+            if (!result.Success) return BadRequest(new { message = result.Message, errors = result.Errors });
+            
+            return Ok(result.Message);
+        }
 
         [HttpPost("link-account")]
         public async Task<ActionResult> LinkAccount(string code, string userId, string providerName)
@@ -84,6 +95,9 @@ namespace API.Controllers
                     break;
                 case "Facebook":
                     result = await _authService.LoginOrLinkWithFacebookAsync(code, client, userId);
+                    break;
+                case "Google":
+                    result = await _authService.LoginOrLinkWithGoogleAsync(code, client, userId);
                     break;
                 
                 default:

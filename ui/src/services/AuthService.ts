@@ -78,6 +78,28 @@ class AuthService {
     });
   }
 
+  static loginWithGoogle(): void {
+    const params = new URLSearchParams({
+      client_id: externalParams.google.clientId!,
+      redirect_uri: externalParams.google.redirectUri,
+      response_type: "code",
+      scope: "profile email",
+      state: generateRandomString(),
+      access_type: "offline",
+    });
+
+    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
+  }
+
+  static async handleGoogleCallback(
+    code: string,
+  ): Promise<AxiosResponse<IOperationResult>> {
+    return await axios.get(baseUrl + "auth/login-with-google", {
+      params: { code },
+      withCredentials: true,
+    });
+  }
+
   static async linkAccount(
     code: string,
     userId: string,

@@ -1,26 +1,23 @@
-﻿using System.Net.Http.Headers;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using Contracts;
 using Contracts.DTO.Auth;
 using Contracts.DTO.User;
 using Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 
 namespace Services;
 
 public class AuthService(
     UserManager<User> userManager,
     SignInManager<User> signInManager,
-    IConfiguration configuration,
     IGithubService githubService,
-    IFacebookService facebookService) : IAuthService
+    IFacebookService facebookService,
+    IGoogleService googleService) : IAuthService
 {
-    private readonly IConfiguration _configuration = configuration;
     private readonly IGithubService _githubService = githubService;
     private readonly IFacebookService _facebookService = facebookService;
+    private readonly IGoogleService _googleService = googleService;
     private readonly SignInManager<User> _signInManager = signInManager;
     private readonly UserManager<User> _userManager = userManager;
 
@@ -221,48 +218,97 @@ public class AuthService(
         }
     }
 
-    public async Task<OperationResult> UnlinkAccountAsync(string providerName, string userId)
+    public async Task<OperationResult> LoginOrLinkWithGoogleAsync(string code, HttpClient client, string? userId = null)
     {
-        var user = await _userManager.FindByIdAsync(userId);
-        if (user is null)
+        var token = await _googleService.ExchangeCodeForTokenAsync(code, client);
+        if (token is null)
             return new OperationResult
             {
                 Success = false,
-                Message = "User doesn't exist."
+                Message = "Google login failed!",
+                Errors = ["Something went wrong when retrieving access token."]
             };
 
-        switch (providerName)
+        var googleUser = await _googleService.GetUserInfo(token, client);
+        if (googleUser is null)
+            return new OperationResult
+            {
+                Success = false,
+                Message = "Google login failed!",
+                Errors = ["Couldn't find user or user doesn't have public email address."]
+            };
+
+        // If userId is null that means user is logging in
+        if (userId is null)
         {
-            case "Google":
-                user.GoogleId = null;
-                break;
-            case "Github":
-                user.GithubId = null;
-                break;
-            case "Facebook":
-                user.FacebookId = null;
-                break;
+            var user = await _userManager.FindByEmailAsync(googleUser.Email!) ?? new User
+            {
+                Email = googleUser.Email,
+                UserName = await GenerateUsernameSuffixAsync(googleUser.Username!),
+                Level = 1,
+                Xp = 0,
+                TotalMissionsAdded = 0,
+                TotalMissionsCompleted = 0,
+                TotalXpGained = 0
+            };
+
+            if (user.GoogleId is null)
+            {
+                user.GoogleId = googleUser.Id;
+                await _userManager.UpdateAsync(user);
+            }
+
+            await _signInManager.SignInAsync(user, false);
+            return new OperationResult
+            {
+                Success = true,
+                Message = "User signed in successfully!"
+            };
         }
+        // If userId is not null that means user is logged in and want to link his account
+        else
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user is null)
+                return new OperationResult
+                {
+                    Success = false,
+                    Message = "Linking Google account failed!",
+                    Errors = ["User doesn't exist."]
+                };
 
-        var result = await _userManager.UpdateAsync(user);
-        if (!result.Succeeded)
+            if (user.GoogleId != null)
+                return new OperationResult
+                {
+                    Success = false,
+                    Message = "Linking Google account failed!",
+                    Errors = ["That account already has Google account assigned."]
+                };
+
+            if (await _userManager.Users.Where(u => u.GoogleId == googleUser.Id).FirstOrDefaultAsync() != null)
+                return new OperationResult
+                {
+                    Success = false,
+                    Message = "Linking Google account failed!",
+                    Errors = ["That Google account is already assigned to other user."]
+                };
+
+            user.GoogleId = googleUser.Id;
+            var result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded)
+                return new OperationResult
+                {
+                    Success = false,
+                    Message = "Linking Google account failed!",
+                    Errors = result.Errors.Select(e => e.Description)
+                };
+
             return new OperationResult
             {
-                Success = false,
-                Message = $"Unlinking account from {providerName} failed!",
-                Errors = result.Errors.Select(e => e.Description)
+                Success = true,
+                Message = "Google account linked successfully!"
             };
-
-        return new OperationResult
-        {
-            Success = true,
-            Message = $"Account unlinked from {providerName}!"
-        };
-    }
-
-    public Task<OperationResult> LoginWithGoogleAsync(string code, HttpClient client)
-    {
-        throw new NotImplementedException();
+        }
     }
 
     public async Task<OperationResult> LoginOrLinkWithFacebookAsync(string code, HttpClient client, string? userId = null)
@@ -357,6 +403,45 @@ public class AuthService(
                 Message = "Facebook account linked successfully!"
             };
         }
+    }
+    
+    public async Task<OperationResult> UnlinkAccountAsync(string providerName, string userId)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user is null)
+            return new OperationResult
+            {
+                Success = false,
+                Message = "User doesn't exist."
+            };
+
+        switch (providerName)
+        {
+            case "Google":
+                user.GoogleId = null;
+                break;
+            case "Github":
+                user.GithubId = null;
+                break;
+            case "Facebook":
+                user.FacebookId = null;
+                break;
+        }
+
+        var result = await _userManager.UpdateAsync(user);
+        if (!result.Succeeded)
+            return new OperationResult
+            {
+                Success = false,
+                Message = $"Unlinking account from {providerName} failed!",
+                Errors = result.Errors.Select(e => e.Description)
+            };
+
+        return new OperationResult
+        {
+            Success = true,
+            Message = $"Account unlinked from {providerName}!"
+        };
     }
 
     private async Task<string> GenerateUsernameSuffixAsync(string baseUsername)

@@ -97,6 +97,8 @@ This is an application where users can set missions for themselves, track their 
 44. Added ability to unlink account from Github and fixed problem with linking logging in with that account again. I had to create separate if statement when user is already in Database and after checking his Github ID - log him in.
 45. Refactored ```AuthService``` ```LoginWithGithubAsync``` method to ```LoginOrLinkWithGithubAsync``` which now additionally accepts userId as optional parameter. If userId is provided, that means user is logged in already and only wants to link his account with Github. Otherwise, it means user is not logged in and want to perform logging in with Github and optionally linking if not linked already. That was a challenge actually, had to take paper and pen and draw that schema to see, which code can be reused to follow ```DRY``` principle. I also had to modify ```github-callback``` page to check if user is already logged in to perform linking action, and also I had to check if Github account which user wants to link his profile with is already assigned to one.
 46. Moving to the Facebook, I created my application on ```Meta for Developers``` platform. Remaining steps were almost the same, but it forced me to all External Auth Services have ```ExchangeCodeForTokenAsync``` method, because there was too many significant differences to handle in reusable method. I also had to assign email as username for new user, because Facebook doesn't have username. 
+47. Moving to Google, I've made the same steps - created app on ```GCP```, handling frontend requests and responses, creating additional controller endpoint, service and handling user logging in and linking/unlinking account with Google.
+
 ### 🧰 Built with
 
 - Next.js

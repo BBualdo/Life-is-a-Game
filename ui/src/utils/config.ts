@@ -8,4 +8,8 @@ export const externalParams = {
     clientId: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID,
     redirectUri: "http://localhost:3000/facebook-callback",
   },
+  google: {
+    clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+    redirectUri: "http://localhost:3000/google-callback",
+  },
 };
