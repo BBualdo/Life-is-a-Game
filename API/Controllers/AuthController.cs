@@ -59,5 +59,13 @@ namespace API.Controllers
             
             return Ok(result.Message);
         }
+
+        [HttpPost("unlink-account")]
+        public async Task<ActionResult> UnlinkGithubAccount(string providerName, string userId)
+        {
+            var result = await _authService.UnlinkAccountAsync(providerName, userId);
+            if (!result.Success) return BadRequest(new { message = result.Message, errors = result.Errors });
+            return Ok(new { message = result.Message } );
+        }
     }
 }

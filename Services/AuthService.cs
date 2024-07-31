@@ -150,7 +150,32 @@ public class AuthService(UserManager<User> userManager, SignInManager<User> sign
         Message = "Couldn't find user or user doesn't have public email address."
       };
 
-    var user = await _githubService.FindOrCreateUser(githubUser);
+    var user = await _userManager.FindByEmailAsync(githubUser.Email!);
+
+    if (user != null)
+    {
+      if (user.GithubId is null) await LinkGithubAccountAsync(user, githubUser.Id!);
+      await _signInManager.SignInAsync(user, isPersistent: false);
+      return new OperationResult
+      {
+        Success = true,
+        Message = "User signed in successfully"
+      };
+    }
+
+    if (user is null)
+    {
+      user = new User
+      {
+        Email = githubUser.Email,
+        UserName = githubUser.Username,
+        Level = 1,
+        Xp = 0,
+        TotalMissionsAdded = 0,
+        TotalMissionsCompleted = 0,
+        TotalXpGained = 0
+      };
+    }
 
     if (user.GithubId is null)
     {
@@ -167,7 +192,7 @@ public class AuthService(UserManager<User> userManager, SignInManager<User> sign
         Errors = createResult.Errors.Select(e => e.Description)
       };
 
-      var linkingResult = await LinkAccountWithGithub(user, githubUser.Id!);
+      var linkingResult = await LinkGithubAccountAsync(user, githubUser.Id!);
       if (!linkingResult.Success) return linkingResult;
     }
 
@@ -180,7 +205,7 @@ public class AuthService(UserManager<User> userManager, SignInManager<User> sign
     };
   }
 
-  public async Task<OperationResult> LinkAccountWithGithub(User user, string githubId)
+  public async Task<OperationResult> LinkGithubAccountAsync(User user, string githubId)
   {
     user.GithubId = githubId;
     var result = await _userManager.UpdateAsync(user);
@@ -198,21 +223,38 @@ public class AuthService(UserManager<User> userManager, SignInManager<User> sign
     };
   }
   
-  public async Task<OperationResult> UnlinkAccountWithGithub(User user)
+  public async Task<OperationResult> UnlinkAccountAsync(string providerName, string userId)
   {
-    user.GithubId = null;
+    var user = await _userManager.FindByIdAsync(userId);
+    if (user is null)
+      return new OperationResult
+      {
+        Success = false,
+        Message = "User doesn't exist."
+      };
+
+    switch (providerName)
+    {
+      case "Google": user.GoogleId = null;
+        break;
+      case "Github": user.GithubId = null;
+        break;
+      case "Facebook": user.FacebookId = null;
+        break;
+    }
+    
     var result = await _userManager.UpdateAsync(user);
     if (!result.Succeeded) return new OperationResult
     {
       Success = false,
-      Message = "Unlinking account with GitHub failed!",
+      Message = $"Unlinking account from {providerName} failed!",
       Errors = result.Errors.Select(e => e.Description)
     };
 
     return new OperationResult
     {
       Success = true,
-      Message = "Account unlinked with GitHub!"
+      Message = $"Account unlinked from {providerName}!"
     };
   }
 

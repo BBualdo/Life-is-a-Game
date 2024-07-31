@@ -34,27 +34,6 @@ public class GithubService(UserManager<User> userManager) : IGithubService
         return user;
     }
 
-    public async Task<User> FindOrCreateUser(GithubUser githubUser)
-    {
-        var user = await _userManager.FindByEmailAsync(githubUser.Email!);
-
-        if (user is null)
-        {
-            user = new User
-            {
-                Email = githubUser.Email,
-                UserName = githubUser.Username,
-                Level = 1,
-                Xp = 0,
-                TotalMissionsAdded = 0,
-                TotalMissionsCompleted = 0,
-                TotalXpGained = 0
-            };
-        }
-
-        return user;
-    }
-
     private async Task<GithubEmail?> GetGithubUserEmail(string accessToken, HttpClient client)
     {
         var request = new HttpRequestMessage(HttpMethod.Get, "https://api.github.com/user/emails");

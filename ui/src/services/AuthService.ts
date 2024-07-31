@@ -5,6 +5,7 @@ import IRegisterData from "@/src/models/IRegisterData";
 import IUser from "@/src/models/IUser";
 import generateRandomString from "@/src/utils/generateRandomString";
 import IOperationResult from "@/src/models/IOperationResult";
+import { Provider } from "@/src/constants/externalProviders";
 
 class AuthService {
   static async login(loginData: ILoginData): Promise<AxiosResponse<any, any>> {
@@ -53,6 +54,20 @@ class AuthService {
       params: { code },
       withCredentials: true,
     });
+  }
+
+  static async unlinkAccount(
+    providerName: string,
+    userId: string,
+  ): Promise<AxiosResponse<IOperationResult>> {
+    return await axios.post(
+      baseUrl + `auth/unlink-account`,
+      {},
+      {
+        params: { providerName, userId },
+        withCredentials: true,
+      },
+    );
   }
 }
 
