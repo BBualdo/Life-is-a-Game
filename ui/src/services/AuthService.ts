@@ -56,6 +56,28 @@ class AuthService {
     });
   }
 
+  static loginWithFacebook(): void {
+    const params = new URLSearchParams({
+      client_id: externalParams.facebook.clientId!,
+      redirect_uri: externalParams.facebook.redirectUri,
+      response_type: "code",
+      scope: "email",
+      state: generateRandomString(),
+      auth_type: "reauthenticate",
+    });
+
+    window.location.href = `https://www.facebook.com/v20.0/dialog/oauth?${params.toString()}`;
+  }
+
+  static async handleFacebookCallback(
+    code: string,
+  ): Promise<AxiosResponse<IOperationResult>> {
+    return await axios.get(baseUrl + "auth/login-with-facebook", {
+      params: { code },
+      withCredentials: true,
+    });
+  }
+
   static async linkAccount(
     code: string,
     userId: string,

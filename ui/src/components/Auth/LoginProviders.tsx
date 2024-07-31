@@ -44,6 +44,7 @@ const LoginProviders = () => {
         animate={{ scale: 1 }}
         transition={{ type: "spring", delay: 2 }}
         className="flex items-center justify-center"
+        onClick={() => AuthService.loginWithFacebook()}
       >
         <FaFacebook className="text-2xl text-cp-cyan transition-all duration-200 hover:text-cp-red" />
       </motion.button>

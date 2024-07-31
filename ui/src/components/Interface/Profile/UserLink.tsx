@@ -24,7 +24,7 @@ const UserLink = ({ provider, user }: { provider: Provider; user: IUser }) => {
       dispatch(
         clearUserProviderId(provider.name as "Google" | "Github" | "Facebook"),
       );
-      toast.success(res.data.message);
+      toast(res.data.message);
     } catch (error: any) {
       if (error.response) {
         toast.error(error.response.data.message, {
@@ -51,7 +51,16 @@ const UserLink = ({ provider, user }: { provider: Provider; user: IUser }) => {
     if (user[idName]) {
       await unlinkAccount(provider.name, user.id);
     } else {
-      AuthService.loginWithGithub();
+      switch (provider.name) {
+        case "Github": {
+          AuthService.loginWithGithub();
+          break;
+        }
+        case "Facebook": {
+          AuthService.loginWithFacebook();
+          break;
+        }
+      }
     }
   };
 

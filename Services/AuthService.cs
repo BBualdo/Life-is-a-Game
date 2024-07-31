@@ -15,10 +15,12 @@ public class AuthService(
     UserManager<User> userManager,
     SignInManager<User> signInManager,
     IConfiguration configuration,
-    IGithubService githubService) : IAuthService
+    IGithubService githubService,
+    IFacebookService facebookService) : IAuthService
 {
     private readonly IConfiguration _configuration = configuration;
     private readonly IGithubService _githubService = githubService;
+    private readonly IFacebookService _facebookService = facebookService;
     private readonly SignInManager<User> _signInManager = signInManager;
     private readonly UserManager<User> _userManager = userManager;
 
@@ -128,16 +130,7 @@ public class AuthService(
 
     public async Task<OperationResult> LoginOrLinkWithGithubAsync(string code, HttpClient client, string? userId = null)
     {
-        var exchangeParams = new ExchangeCodeParams
-        {
-            Code = code,
-            ClientId = _configuration["ExternalAuth:Github:ClientId"]!,
-            ClientSecret = _configuration["ExternalAuth:Github:ClientSecret"]!,
-            RequestUri = "https://github.com/login/oauth/access_token",
-            RedirectUri = "http://localhost:3000/github-callback"
-        };
-
-        var token = await ExchangeCodeForTokenAsync(exchangeParams, client);
+        var token = await _githubService.ExchangeCodeForTokenAsync(code, client);
         if (token is null)
             return new OperationResult
             {
@@ -146,7 +139,7 @@ public class AuthService(
                 Errors = ["Something went wrong when retrieving access token."]
             };
 
-        var githubUser = await _githubService.GetGithubUserInfo(token, client);
+        var githubUser = await _githubService.GetUserInfo(token, client);
         if (githubUser is null)
             return new OperationResult
             {
@@ -272,32 +265,98 @@ public class AuthService(
         throw new NotImplementedException();
     }
 
-    public Task<OperationResult> LoginWithFacebookAsync(string code, HttpClient client)
+    public async Task<OperationResult> LoginOrLinkWithFacebookAsync(string code, HttpClient client, string? userId = null)
     {
-        throw new NotImplementedException();
-    }
-
-    private async Task<string?> ExchangeCodeForTokenAsync(ExchangeCodeParams exchangeParams, HttpClient client)
-    {
-        var request = new HttpRequestMessage
-        {
-            Method = HttpMethod.Post,
-            RequestUri = new Uri(exchangeParams.RequestUri),
-            Content = new FormUrlEncodedContent(new Dictionary<string, string>
+        var token = await _facebookService.ExchangeCodeForTokenAsync(code, client);
+        if (token is null)
+            return new OperationResult
             {
-                { "client_id", exchangeParams.ClientId },
-                { "client_secret", exchangeParams.ClientSecret },
-                { "code", exchangeParams.Code },
-                { "redirect_uri", exchangeParams.RedirectUri }
-            })
-        };
-        request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                Success = false,
+                Message = "Facebook login failed!",
+                Errors = ["Something went wrong when retrieving access token."]
+            };
 
-        var response = await client.SendAsync(request);
-        var content = await response.Content.ReadAsStringAsync();
+        var facebookUser = await _facebookService.GetUserInfo(token, client);
+        if (facebookUser is null)
+            return new OperationResult
+            {
+                Success = false,
+                Message = "Facebook login failed!",
+                Errors = ["Couldn't find user or user doesn't have public email address."]
+            };
 
-        var tokenResponse = JsonConvert.DeserializeObject<TokenResponse>(content);
-        return tokenResponse?.Token;
+        // If userId is null that means user is logging in
+        if (userId is null)
+        {
+            var user = await _userManager.FindByEmailAsync(facebookUser.Email!) ?? new User
+            {
+                // Facebook doesn't provide username
+                Email = facebookUser.Email,
+                UserName = facebookUser.Email,
+                Level = 1,
+                Xp = 0,
+                TotalMissionsAdded = 0,
+                TotalMissionsCompleted = 0,
+                TotalXpGained = 0
+            };
+
+            if (user.FacebookId is null)
+            {
+                user.FacebookId = facebookUser.Id;
+                await _userManager.UpdateAsync(user);
+            }
+
+            await _signInManager.SignInAsync(user, false);
+            return new OperationResult
+            {
+                Success = true,
+                Message = "User signed in successfully!"
+            };
+        }
+        // If userId is not null that means user is logged in and want to link his account
+        else
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user is null)
+                return new OperationResult
+                {
+                    Success = false,
+                    Message = "Linking Facebook account failed!",
+                    Errors = ["User doesn't exist."]
+                };
+
+            if (user.FacebookId != null)
+                return new OperationResult
+                {
+                    Success = false,
+                    Message = "Linking Facebook account failed!",
+                    Errors = ["That account already has Facebook account assigned."]
+                };
+
+            if (await _userManager.Users.Where(u => u.FacebookId == facebookUser.Id).FirstOrDefaultAsync() != null)
+                return new OperationResult
+                {
+                    Success = false,
+                    Message = "Linking Facebook account failed!",
+                    Errors = ["That Facebook account is already assigned to other user."]
+                };
+
+            user.FacebookId = facebookUser.Id;
+            var result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded)
+                return new OperationResult
+                {
+                    Success = false,
+                    Message = "Linking Facebook account failed!",
+                    Errors = result.Errors.Select(e => e.Description)
+                };
+
+            return new OperationResult
+            {
+                Success = true,
+                Message = "Facebook account linked successfully!"
+            };
+        }
     }
 
     private async Task<string> GenerateUsernameSuffixAsync(string baseUsername)

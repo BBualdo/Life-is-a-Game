@@ -4,5 +4,6 @@ namespace Contracts;
 
 public interface IGithubService
 {
-    Task<GithubUser?> GetGithubUserInfo(string accessToken, HttpClient client);
+    Task<string?> ExchangeCodeForTokenAsync(string code, HttpClient client);
+    Task<GithubUser?> GetUserInfo(string accessToken, HttpClient client);
 }

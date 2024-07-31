@@ -33,7 +33,7 @@ const GithubCallback = () => {
     if (!user) {
       AuthService.handleGithubCallback(code)
         .then(() => {
-          router.push("/");
+          router.replace("/");
         })
         .catch((error: any) => {
           if (error.response) {
@@ -57,7 +57,7 @@ const GithubCallback = () => {
       AuthService.linkAccount(code, user.id, "Github")
         .then(() => {
           dispatch(setUserProviderId("Github"));
-          router.push("/profile");
+          router.replace("/profile");
         })
         .catch((error: any) => {
           if (error.response) {
