@@ -13,11 +13,13 @@ public class AuthService(
     SignInManager<User> signInManager,
     IGithubService githubService,
     IFacebookService facebookService,
-    IGoogleService googleService) : IAuthService
+    IGoogleService googleService,
+    ILogsService logger) : IAuthService
 {
-    private readonly IGithubService _githubService = githubService;
     private readonly IFacebookService _facebookService = facebookService;
+    private readonly IGithubService _githubService = githubService;
     private readonly IGoogleService _googleService = googleService;
+    private readonly ILogsService _logger = logger;
     private readonly SignInManager<User> _signInManager = signInManager;
     private readonly UserManager<User> _userManager = userManager;
 
@@ -55,12 +57,15 @@ public class AuthService(
         var user = await _userManager.FindByEmailAsync(loginDto.Email!);
 
         if (user is null)
+        {
+            await _logger.InsertLog("User '{0}' failed to login via form.", loginDto.Email!);
             return new OperationResult
             {
                 Success = false,
                 Message = "Login attempt failed.",
                 Errors = ["User doesn't exist."]
             };
+        }
 
         var result =
             await _signInManager.PasswordSignInAsync(user, loginDto.Password!, loginDto.RememberMe, false);
@@ -72,6 +77,7 @@ public class AuthService(
                 Message = "Login Successful."
             };
 
+        await _logger.InsertLog("User '{0}' tried to login with wrong password.", loginDto.Email!);
         return new OperationResult
         {
             Success = false,
@@ -102,6 +108,7 @@ public class AuthService(
                 Message = "Register successful."
             };
 
+        await _logger.InsertLog("User '{0}' failed to register account via form.", registerDto.Email!);
         return new OperationResult
         {
             Success = false,
@@ -129,21 +136,28 @@ public class AuthService(
     {
         var token = await _githubService.ExchangeCodeForTokenAsync(code, client);
         if (token is null)
+        {
+            await _logger.InsertLog("User failed to login or link account via Github because token retrieving error.");
             return new OperationResult
             {
                 Success = false,
                 Message = "Github login failed!",
                 Errors = ["Something went wrong when retrieving access token."]
             };
+        }
 
         var githubUser = await _githubService.GetUserInfo(token, client);
         if (githubUser is null)
+        {
+            await _logger.InsertLog(
+                "User failed to login or link account via Github because user info retrieving error.");
             return new OperationResult
             {
                 Success = false,
                 Message = "Github login failed!",
                 Errors = ["Couldn't find user or user doesn't have public email address."]
             };
+        }
 
         // If userId is null that means user is logging in
         if (userId is null)
@@ -165,12 +179,16 @@ public class AuthService(
 
                 var result = await _userManager.CreateAsync(user);
                 if (!result.Succeeded)
+                {
+                    await _logger.InsertLog("User '{0}' failed to login via Github. Errors: {1}",
+                        user.Email!, string.Join(", ", result.Errors.Select(e => e.Description)));
                     return new OperationResult
                     {
                         Success = false,
                         Message = "Github login failed!",
                         Errors = result.Errors.Select(e => e.Description)
                     };
+                }
             }
 
             if (user.GithubId is null)
@@ -178,12 +196,16 @@ public class AuthService(
                 user.GithubId = githubUser.Id;
                 var result = await _userManager.UpdateAsync(user);
                 if (!result.Succeeded)
+                {
+                    await _logger.InsertLog("User '{0}' failed to login via Github. Errors: {1}",
+                        user.Email!, string.Join(", ", result.Errors.Select(e => e.Description)));
                     return new OperationResult
                     {
                         Success = false,
                         Message = "Github login failed!",
                         Errors = result.Errors.Select(e => e.Description)
                     };
+                }
             }
 
             await _signInManager.SignInAsync(user, false);
@@ -198,38 +220,53 @@ public class AuthService(
         {
             var user = await _userManager.FindByIdAsync(userId);
             if (user is null)
+            {
+                await _logger.InsertLog(
+                    "User {0} failed to link his Github account, because user wasn't found in Database. That's requires inspection in passing userId when linking Github account.",
+                    githubUser.Email!);
                 return new OperationResult
                 {
                     Success = false,
                     Message = "Linking Github account failed!",
                     Errors = ["User doesn't exist."]
                 };
+            }
+            
 
             if (user.GithubId != null)
+            {
+                await _logger.InsertLog("User {0} tried to link his account with Github but it's already assigned with one. Frontend linking account methods need to be investigated.", user.Email!);
                 return new OperationResult
                 {
                     Success = false,
                     Message = "Linking Github account failed!",
                     Errors = ["That account already has Github account assigned."]
                 };
+            }
 
             if (await _userManager.Users.Where(u => u.GithubId == githubUser.Id).FirstOrDefaultAsync() != null)
+            {
+                await _logger.InsertLog("User {0} tried to link his account with Github account which was already linked with other account.", user.Email!);
                 return new OperationResult
                 {
                     Success = false,
                     Message = "Linking Github account failed!",
                     Errors = ["That Github account is already assigned to other user."]
                 };
+            }
 
             user.GithubId = githubUser.Id;
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded)
+            {
+                await _logger.InsertLog("User {0} failed to link his account with Github. Errors: {1}", user.Email!, string.Join(", ", result.Errors.Select(e => e.Description)));
                 return new OperationResult
                 {
                     Success = false,
                     Message = "Linking Github account failed!",
                     Errors = result.Errors.Select(e => e.Description)
                 };
+            }
 
             return new OperationResult
             {
@@ -243,21 +280,28 @@ public class AuthService(
     {
         var token = await _googleService.ExchangeCodeForTokenAsync(code, client);
         if (token is null)
+        {
+            await _logger.InsertLog("User failed to login or link account via Google because token retrieving error.");
             return new OperationResult
             {
                 Success = false,
                 Message = "Google login failed!",
                 Errors = ["Something went wrong when retrieving access token."]
             };
+        }
 
         var googleUser = await _googleService.GetUserInfo(token, client);
         if (googleUser is null)
+        {
+            await _logger.InsertLog(
+                "User failed to login or link account via Google because user info retrieving error.");
             return new OperationResult
             {
                 Success = false,
                 Message = "Google login failed!",
                 Errors = ["Couldn't find user or user doesn't have public email address."]
             };
+        }
 
         // If userId is null that means user is logging in
         if (userId is null)
@@ -279,12 +323,16 @@ public class AuthService(
 
                 var result = await _userManager.CreateAsync(user);
                 if (!result.Succeeded)
+                {
+                    await _logger.InsertLog("User '{0}' failed to login via Google. Errors: {1}",
+                        user.Email!, string.Join(", ", result.Errors.Select(e => e.Description)));
                     return new OperationResult
                     {
                         Success = false,
                         Message = "Google login failed!",
                         Errors = result.Errors.Select(e => e.Description)
                     };
+                }
             }
 
             if (user.GoogleId is null)
@@ -292,12 +340,16 @@ public class AuthService(
                 user.GoogleId = googleUser.Id;
                 var result = await _userManager.UpdateAsync(user);
                 if (!result.Succeeded)
+                {
+                    await _logger.InsertLog("User '{0}' failed to login via Google. Errors: {1}",
+                        user.Email!, string.Join(", ", result.Errors.Select(e => e.Description)));
                     return new OperationResult
                     {
                         Success = false,
                         Message = "Google login failed!",
                         Errors = result.Errors.Select(e => e.Description)
                     };
+                }
             }
 
             await _signInManager.SignInAsync(user, false);
@@ -312,38 +364,53 @@ public class AuthService(
         {
             var user = await _userManager.FindByIdAsync(userId);
             if (user is null)
+            {
+                await _logger.InsertLog(
+                    "User {0} failed to link his Google account, because user wasn't found in Database. That's requires inspection in passing userId when linking Google account.",
+                    googleUser.Email!);
                 return new OperationResult
                 {
                     Success = false,
                     Message = "Linking Google account failed!",
                     Errors = ["User doesn't exist."]
                 };
+            }
 
             if (user.GoogleId != null)
+            {
+                await _logger.InsertLog("User {0} tried to link his account with Google but it's already assigned with one. Frontend linking account methods need to be investigated.", user.Email!);
                 return new OperationResult
                 {
                     Success = false,
                     Message = "Linking Google account failed!",
                     Errors = ["That account already has Google account assigned."]
                 };
+            }
 
             if (await _userManager.Users.Where(u => u.GoogleId == googleUser.Id).FirstOrDefaultAsync() != null)
+            {
+                await _logger.InsertLog("User {0} tried to link his account with Google account which was already linked with other account.", user.Email!);
                 return new OperationResult
                 {
                     Success = false,
                     Message = "Linking Google account failed!",
                     Errors = ["That Google account is already assigned to other user."]
                 };
+            }
 
             user.GoogleId = googleUser.Id;
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded)
+            {
+                await _logger.InsertLog("User {0} failed to link his account with Google. Errors: {1}", user.Email!, string.Join(", ", result.Errors.Select(e => e.Description)));
                 return new OperationResult
                 {
                     Success = false,
                     Message = "Linking Google account failed!",
                     Errors = result.Errors.Select(e => e.Description)
                 };
+            }
+                
 
             return new OperationResult
             {
@@ -353,25 +420,34 @@ public class AuthService(
         }
     }
 
-    public async Task<OperationResult> LoginOrLinkWithFacebookAsync(string code, HttpClient client, string? userId = null)
+    public async Task<OperationResult> LoginOrLinkWithFacebookAsync(string code, HttpClient client,
+        string? userId = null)
     {
         var token = await _facebookService.ExchangeCodeForTokenAsync(code, client);
         if (token is null)
+        {
+            await _logger.InsertLog(
+                "User failed to login or link account via Facebook because token retrieving error.");
             return new OperationResult
             {
                 Success = false,
                 Message = "Facebook login failed!",
                 Errors = ["Something went wrong when retrieving access token."]
             };
+        }
 
         var facebookUser = await _facebookService.GetUserInfo(token, client);
         if (facebookUser is null)
+        {
+            await _logger.InsertLog(
+                "User failed to login or link account via Facebook because user info retrieving error.");
             return new OperationResult
             {
                 Success = false,
                 Message = "Facebook login failed!",
                 Errors = ["Couldn't find user or user doesn't have public email address."]
             };
+        }
 
         // If userId is null that means user is logging in
         if (userId is null)
@@ -393,12 +469,16 @@ public class AuthService(
 
                 var result = await _userManager.CreateAsync(user);
                 if (!result.Succeeded)
+                {
+                    await _logger.InsertLog("User '{0}' failed to login via Facebook. Errors: {1}",
+                        user.Email!, string.Join(", ", result.Errors.Select(e => e.Description)));
                     return new OperationResult
                     {
                         Success = false,
                         Message = "Facebook login failed!",
                         Errors = result.Errors.Select(e => e.Description)
                     };
+                }
             }
 
             if (user.FacebookId is null)
@@ -406,12 +486,16 @@ public class AuthService(
                 user.FacebookId = facebookUser.Id;
                 var result = await _userManager.UpdateAsync(user);
                 if (!result.Succeeded)
+                {
+                    await _logger.InsertLog("User '{0}' failed to login via Facebook. Errors: {1}",
+                        user.Email!, string.Join(", ", result.Errors.Select(e => e.Description)));
                     return new OperationResult
                     {
                         Success = false,
                         Message = "Facebook login failed!",
                         Errors = result.Errors.Select(e => e.Description)
                     };
+                }
             }
 
             await _signInManager.SignInAsync(user, false);
@@ -426,38 +510,57 @@ public class AuthService(
         {
             var user = await _userManager.FindByIdAsync(userId);
             if (user is null)
+            {
+                await _logger.InsertLog(
+                    "User {0} failed to link his Facebook account, because user wasn't found in Database. That's requires inspection in passing userId when linking Facebook account.",
+                    facebookUser.Email!);
                 return new OperationResult
                 {
                     Success = false,
                     Message = "Linking Facebook account failed!",
                     Errors = ["User doesn't exist."]
                 };
+            }
 
             if (user.FacebookId != null)
+            {
+                await _logger.InsertLog(
+                    "User {0} tried to link his account with Facebook but it's already assigned with one. Frontend linking account methods need to be investigated.",
+                    user.Email!);
                 return new OperationResult
                 {
                     Success = false,
                     Message = "Linking Facebook account failed!",
                     Errors = ["That account already has Facebook account assigned."]
                 };
+            }
 
             if (await _userManager.Users.Where(u => u.FacebookId == facebookUser.Id).FirstOrDefaultAsync() != null)
+            {
+                await _logger.InsertLog(
+                    "User {0} tried to link his account with Facebook account which was already linked with other account.",
+                    user.Email!);
                 return new OperationResult
                 {
                     Success = false,
                     Message = "Linking Facebook account failed!",
                     Errors = ["That Facebook account is already assigned to other user."]
                 };
+            }
 
             user.FacebookId = facebookUser.Id;
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded)
+            {
+                await _logger.InsertLog("User {0} failed to link his account with Facebook. Errors: {1}",
+                    user.Email!, string.Join(", ", result.Errors.Select(e => e.Description)));
                 return new OperationResult
                 {
                     Success = false,
                     Message = "Linking Facebook account failed!",
                     Errors = result.Errors.Select(e => e.Description)
                 };
+            }
 
             return new OperationResult
             {
@@ -466,7 +569,7 @@ public class AuthService(
             };
         }
     }
-    
+
     public async Task<OperationResult> UnlinkAccountAsync(string providerName, string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);
@@ -492,12 +595,16 @@ public class AuthService(
 
         var result = await _userManager.UpdateAsync(user);
         if (!result.Succeeded)
+        {
+            await _logger.InsertLog("User {0} failed trying to disconnect his account from {1}.",
+                user.Email!, providerName);
             return new OperationResult
             {
                 Success = false,
                 Message = $"Unlinking account from {providerName} failed!",
                 Errors = result.Errors.Select(e => e.Description)
             };
+        }
 
         return new OperationResult
         {

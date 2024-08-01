@@ -40,6 +40,7 @@ builder.Services.AddHttpClient();
 builder.Services.AddScoped<IAchievementsRepository, AchievementsRepository>();
 builder.Services.AddScoped<IMissionsRepository, MissionsRepository>();
 builder.Services.AddScoped<ISubtasksRepository, SubtasksRepository>();
+builder.Services.AddScoped<IErrorLogsRepository, ErrorLogsRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IGithubService, GithubService>();
 builder.Services.AddScoped<IFacebookService, FacebookService>();
@@ -49,6 +50,7 @@ builder.Services.AddScoped<IMissionsService, MissionsService>();
 builder.Services.AddScoped<ISubtasksService, SubtasksService>();
 builder.Services.AddScoped<ILevelsService, LevelsService>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
+builder.Services.AddScoped<ILogsService, LogsService>();
 
 builder.Services.AddCors(options =>
   options.AddPolicy("default", policyBuilder => 
