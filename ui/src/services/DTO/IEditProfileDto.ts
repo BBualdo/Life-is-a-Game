@@ -1,4 +1,5 @@
 interface IEditProfileDto {
+  username: string;
   firstName?: string;
   lastName?: string;
   currentGoal?: string;

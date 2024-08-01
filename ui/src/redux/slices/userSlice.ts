@@ -41,8 +41,16 @@ const userSlice = createSlice({
     },
     updateUserInfo: (state, action: PayloadAction<IEditProfileDto>) => {
       if (state.user) {
-        const { firstName, lastName, currentGoal, bio } = action.payload;
-        state.user = { ...state.user, firstName, lastName, currentGoal, bio };
+        const { firstName, lastName, currentGoal, bio, username } =
+          action.payload;
+        state.user = {
+          ...state.user,
+          firstName,
+          lastName,
+          currentGoal,
+          bio,
+          username,
+        };
       }
     },
     setUserAvatar: (state, action: PayloadAction<string>) => {

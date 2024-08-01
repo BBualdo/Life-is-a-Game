@@ -10,7 +10,7 @@ const signupFormSchema = z
     username: z
       .string()
       .min(4, { message: "Username must be at least 4 characters long." })
-      .max(50),
+      .max(50, { message: "Username is too long." }),
     email: z.string().email({ message: "Email must be valid." }),
     password: z
       .string()

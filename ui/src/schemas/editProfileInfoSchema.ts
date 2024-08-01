@@ -1,6 +1,10 @@
 import { z } from "zod";
 
 const editProfileInfoSchema = z.object({
+  username: z
+    .string()
+    .min(4, { message: "Username must be at least 4 characters long." })
+    .max(50, { message: "Username is too long." }),
   firstName: z
     .string()
     .min(3, { message: "First name must be at least 3 characters." })

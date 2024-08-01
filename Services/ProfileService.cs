@@ -18,6 +18,7 @@ public class ProfileService(UserManager<User> userManager) : IProfileService
             Message = "User not found!"
         };
 
+        user.UserName = profileDto.Username;
         user.FirstName = profileDto.FirstName;
         user.LastName = profileDto.LastName;
         user.CurrentGoal = profileDto.CurrentGoal;

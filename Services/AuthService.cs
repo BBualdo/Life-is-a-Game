@@ -512,7 +512,7 @@ public class AuthService(
         var counter = 1;
         while (await _userManager.FindByNameAsync(username) != null)
         {
-            username = $"{username}{counter}";
+            username = $"{username}_{counter}";
             counter++;
         }
 

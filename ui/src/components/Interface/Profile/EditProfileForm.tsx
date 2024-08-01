@@ -16,6 +16,7 @@ import editProfileInfoSchema from "@/src/schemas/editProfileInfoSchema";
 import UserService from "@/src/services/UserService";
 import { updateUserInfo } from "@/src/redux/slices/userSlice";
 import { PiWarningCircleFill } from "react-icons/pi";
+import Username from "@/src/components/Interface/Profile/FormComponents/Username";
 
 const EditProfileForm = ({
   closeModal,
@@ -31,6 +32,7 @@ const EditProfileForm = ({
   const form = useForm<z.infer<typeof editProfileInfoSchema>>({
     resolver: zodResolver(editProfileInfoSchema),
     defaultValues: {
+      username,
       firstName,
       lastName,
       currentGoal,
@@ -44,9 +46,9 @@ const EditProfileForm = ({
       dispatch(updateUserInfo(values));
       toast(res.data.message);
     } catch (error: any) {
-      if (error.res) {
-        toast.error(error.res.data.message, {
-          description: error.res.data.errors?.map(
+      if (error.response) {
+        toast.error(error.response.data.message, {
+          description: error.response.data.errors?.map(
             (error: string, index: number) => <p key={index}>{error}</p>,
           ),
           icon: <PiWarningCircleFill />,
@@ -67,6 +69,7 @@ const EditProfileForm = ({
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="mt-4 space-y-4">
         <div className="flex w-full flex-col justify-center xs:gap-2 xs:max-lg:flex-col lg:gap-6">
+          <Username form={form} />
           <FirstName form={form} />
           <LastName form={form} />
           <CurrentGoal form={form} />
