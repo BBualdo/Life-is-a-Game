@@ -20,6 +20,7 @@ builder.Services.AddAuthentication();
 builder.Services.AddIdentity<User, IdentityRole>(options =>
   {
     options.User.RequireUniqueEmail = true;
+    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ ";
   })
   .AddEntityFrameworkStores<LiagDbContext>()
   .AddSignInManager<SignInManager<User>>();

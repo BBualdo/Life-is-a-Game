@@ -148,21 +148,42 @@ public class AuthService(
         // If userId is null that means user is logging in
         if (userId is null)
         {
-            var user = await _userManager.FindByEmailAsync(githubUser.Email!) ?? new User
+            var user = await _userManager.FindByEmailAsync(githubUser.Email!);
+
+            if (user is null)
             {
-                Email = githubUser.Email,
-                UserName = await GenerateUsernameSuffixAsync(githubUser.Username!),
-                Level = 1,
-                Xp = 0,
-                TotalMissionsAdded = 0,
-                TotalMissionsCompleted = 0,
-                TotalXpGained = 0
-            };
+                user = new User
+                {
+                    Email = githubUser.Email,
+                    UserName = await GenerateUsernameSuffixAsync(githubUser.Username!),
+                    Level = 1,
+                    Xp = 0,
+                    TotalMissionsAdded = 0,
+                    TotalMissionsCompleted = 0,
+                    TotalXpGained = 0
+                };
+
+                var result = await _userManager.CreateAsync(user);
+                if (!result.Succeeded)
+                    return new OperationResult
+                    {
+                        Success = false,
+                        Message = "Github login failed!",
+                        Errors = result.Errors.Select(e => e.Description)
+                    };
+            }
 
             if (user.GithubId is null)
             {
                 user.GithubId = githubUser.Id;
-                await _userManager.UpdateAsync(user);
+                var result = await _userManager.UpdateAsync(user);
+                if (!result.Succeeded)
+                    return new OperationResult
+                    {
+                        Success = false,
+                        Message = "Github login failed!",
+                        Errors = result.Errors.Select(e => e.Description)
+                    };
             }
 
             await _signInManager.SignInAsync(user, false);
@@ -241,21 +262,42 @@ public class AuthService(
         // If userId is null that means user is logging in
         if (userId is null)
         {
-            var user = await _userManager.FindByEmailAsync(googleUser.Email!) ?? new User
+            var user = await _userManager.FindByEmailAsync(googleUser.Email!);
+
+            if (user is null)
             {
-                Email = googleUser.Email,
-                UserName = await GenerateUsernameSuffixAsync(googleUser.Username!),
-                Level = 1,
-                Xp = 0,
-                TotalMissionsAdded = 0,
-                TotalMissionsCompleted = 0,
-                TotalXpGained = 0
-            };
+                user = new User
+                {
+                    Email = googleUser.Email,
+                    UserName = await GenerateUsernameSuffixAsync(googleUser.Username!),
+                    Level = 1,
+                    Xp = 0,
+                    TotalMissionsAdded = 0,
+                    TotalMissionsCompleted = 0,
+                    TotalXpGained = 0
+                };
+
+                var result = await _userManager.CreateAsync(user);
+                if (!result.Succeeded)
+                    return new OperationResult
+                    {
+                        Success = false,
+                        Message = "Google login failed!",
+                        Errors = result.Errors.Select(e => e.Description)
+                    };
+            }
 
             if (user.GoogleId is null)
             {
                 user.GoogleId = googleUser.Id;
-                await _userManager.UpdateAsync(user);
+                var result = await _userManager.UpdateAsync(user);
+                if (!result.Succeeded)
+                    return new OperationResult
+                    {
+                        Success = false,
+                        Message = "Google login failed!",
+                        Errors = result.Errors.Select(e => e.Description)
+                    };
             }
 
             await _signInManager.SignInAsync(user, false);
@@ -334,22 +376,42 @@ public class AuthService(
         // If userId is null that means user is logging in
         if (userId is null)
         {
-            var user = await _userManager.FindByEmailAsync(facebookUser.Email!) ?? new User
+            var user = await _userManager.FindByEmailAsync(facebookUser.Email!);
+
+            if (user is null)
             {
-                // Facebook doesn't provide username
-                Email = facebookUser.Email,
-                UserName = facebookUser.Email,
-                Level = 1,
-                Xp = 0,
-                TotalMissionsAdded = 0,
-                TotalMissionsCompleted = 0,
-                TotalXpGained = 0
-            };
+                user = new User
+                {
+                    Email = facebookUser.Email,
+                    UserName = facebookUser.Email,
+                    Level = 1,
+                    Xp = 0,
+                    TotalMissionsAdded = 0,
+                    TotalMissionsCompleted = 0,
+                    TotalXpGained = 0
+                };
+
+                var result = await _userManager.CreateAsync(user);
+                if (!result.Succeeded)
+                    return new OperationResult
+                    {
+                        Success = false,
+                        Message = "Facebook login failed!",
+                        Errors = result.Errors.Select(e => e.Description)
+                    };
+            }
 
             if (user.FacebookId is null)
             {
                 user.FacebookId = facebookUser.Id;
-                await _userManager.UpdateAsync(user);
+                var result = await _userManager.UpdateAsync(user);
+                if (!result.Succeeded)
+                    return new OperationResult
+                    {
+                        Success = false,
+                        Message = "Facebook login failed!",
+                        Errors = result.Errors.Select(e => e.Description)
+                    };
             }
 
             await _signInManager.SignInAsync(user, false);
