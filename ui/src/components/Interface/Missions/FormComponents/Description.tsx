@@ -9,15 +9,12 @@ import {
 import { Textarea } from "@/src/shadcn/ui/textarea";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
-import addMissionFormSchema from "@/src/schemas/addMissionFormSchema";
-import editMissionFormSchema from "@/src/schemas/editMissionFormSchema";
+import combinedMissionFormSchema from "@/src/schemas/combinedMissionFormSchema";
 
 const Description = ({
   form,
 }: {
-  form:
-    | UseFormReturn<z.infer<typeof addMissionFormSchema>>
-    | UseFormReturn<z.infer<typeof editMissionFormSchema>>;
+  form: UseFormReturn<z.infer<typeof combinedMissionFormSchema>>;
 }) => {
   return (
     <FormField

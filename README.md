@@ -113,7 +113,8 @@ This is an application where users can set missions for themselves, track their 
 
 #### Code cleanup
 54. Moved each ```{provider}-callback``` code into one reusable ```useExternalAuthCallback``` hook with ```providerName``` parameter.
-
+55. Cleaned up not used code and imports.
+56. Created Zod Union type to combine add and edit mission form schema - ```combinedMissionFormSchema```.
 
 ### 🧰 Built with
 

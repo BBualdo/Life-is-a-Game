@@ -26,7 +26,7 @@ const DifficultyInfo = ({
     <FormField
       control={form.control}
       name="xpReward"
-      render={({ field }) => {
+      render={() => {
         return (
           <div className="flex items-stretch gap-1 xs:max-lg:flex-col">
             <div className="flex flex-1 flex-col gap-4 border-2 border-cp-cyan bg-black xs:p-4 lg:p-8">

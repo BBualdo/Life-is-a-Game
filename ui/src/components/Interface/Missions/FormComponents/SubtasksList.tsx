@@ -17,16 +17,13 @@ import { v4 as uuidv4 } from "uuid";
 import { IoClose } from "react-icons/io5";
 import ISubtask from "@/src/models/ISubtask";
 import { z } from "zod";
-import addMissionFormSchema from "@/src/schemas/addMissionFormSchema";
-import editMissionFormSchema from "@/src/schemas/editMissionFormSchema";
 import { KeyboardEvent } from "react";
+import combinedMissionFormSchema from "@/src/schemas/combinedMissionFormSchema";
 
 const SubtasksList = ({
   form,
 }: {
-  form:
-    | UseFormReturn<z.infer<typeof addMissionFormSchema>>
-    | UseFormReturn<z.infer<typeof editMissionFormSchema>>;
+  form: UseFormReturn<z.infer<typeof combinedMissionFormSchema>>;
 }) => {
   const [subtasksArr, setSubtasksArr] = useState<ISubtask[]>(
     form.getValues().subtasks,
@@ -84,7 +81,7 @@ const SubtasksList = ({
     <FormField
       control={form.control}
       name="subtasks"
-      render={({ field }) => (
+      render={() => (
         <FormItem>
           <FormLabel className="text-sm font-bold uppercase tracking-[4px] text-cp-cyan">
             Subtasks
