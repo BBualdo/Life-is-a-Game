@@ -30,9 +30,9 @@ public class AchievementsService(IAchievementsRepository achievementsRepository,
         if (achievement is null) return null;
         
         var userAchievement = await _achievementsRepository.UnlockAchievementAsync(userId, achievement);
-        if (userAchievement is null) return null;
         
         var response = await _levelsService.AddXpAsync(userId, achievement.XpReward);
+        if (response is null) return null;
         
         return new AchievementUnlockDto
         {

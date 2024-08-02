@@ -19,7 +19,7 @@ public class AchievementsRepository(LiagDbContext dbContext) : IAchievementsRepo
         return await _dbContext.UserAchievements.Where(ach => ach.UserId == userId).ToListAsync();
     }
 
-    public async Task<UserAchievement?> UnlockAchievementAsync(string userId, Achievement achievement)
+    public async Task<UserAchievement> UnlockAchievementAsync(string userId, Achievement achievement)
     {
         var userAchievement = new UserAchievement
         {
