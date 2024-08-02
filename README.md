@@ -46,8 +46,11 @@ This is an application where users can set missions for themselves, track their 
 ## My process
 
 ### Backend implementation
+
 1. Defined Models with Data Annotations and created ```DbContext``` using **Entity Framework Core** with **ASP.NET Identity**.
 2. Ensured that Achievements are created on Database creation.
+
+#### Authorization and Authentication
 3. Created DTOs for login, register and reset password purpose.
 4. Configured **ASP.NET Identity**.
 5. ```AuthService``` implementation to store responsibility for actions like login, logout, registering and password recovery. For now, I only implemented methods responsible for login, register and logout. Wondered what these methods should return, so I created ```AuthOperationResult``` class which purpose is to store results of auth operations.
@@ -59,6 +62,8 @@ This is an application where users can set missions for themselves, track their 
 11. Added fetching current user data to form submit logic and configured **Redux-Persist** to keep user data upon refreshing page without need to make extra requests.
 12. Added toasts (snackbars) upon successful registering and errors as well. I have also taken care of loading state until request is performed to prevent user from taking any actions like spamming login button, etc.
 13. Introduced **RememberMe** checkbox in login form.
+
+#### CRUD Operations
 14. Updated User to store external providers IDs and deleted **is_unlocked** row from **UserAchievements** table, because record presence is already a sign that achievement is unlocked.
 15. Created ```AchievementsRepository```, ```AchievementsService``` and ```AchievementsController``` to get all achievements as well as those unlocked by user, and to unlock specific achievement.
 16. Refactored frontend for handling achievements from database. When user logs in and goes into **Achievements** page, React ```useAchievements``` custom hook is calling ```AchievementsService``` for fetching fresh **Achievements** and **UserAchievements** data, saves them in **Redux** state, which is also saved in localStorage. I have mapped **UserAchievements** to JS Map for faster unlocked achievements searching. Then achievements are compared to user achievements to determine, which are unlocked and when. 
@@ -100,7 +105,10 @@ This is an application where users can set missions for themselves, track their 
 47. Moving to Google, I've made the same steps - created app on ```GCP```, handling frontend requests and responses, creating additional controller endpoint, service and handling user logging in and linking/unlinking account with Google.
 48. A problem occured when trying to create account based on email from external provider. I forgot to invoke ```UserManager.CreateAsync()``` method. Now it's fixed and good to go.
 49. Added ability to update Username with other profile details.
+#### Logging and Unit Testing
 50. Added ```Logging``` service and added it to log potential errors and log it into ```ErrorLogs``` database table. I have to keep this in mind while formatting responses in future to log every potential error.
+51. Created **xUnit** project for testing and used **FakeItEasy** package to for Mocking purposes.
+52. Tested ```ILevelsService```.
 
 ### 🧰 Built with
 
@@ -114,11 +122,13 @@ This is an application where users can set missions for themselves, track their 
 - Axios
 - React Hook Form
 - Zod
-- Typescript
+- TypeScript
 - C#
 - ASP.NET Identity
 - Entity Framework Core
 - SQL Server
+- xUnit
+- FakeItEasy
 
 
 ### What I have learned
