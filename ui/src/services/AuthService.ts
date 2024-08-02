@@ -5,7 +5,6 @@ import IRegisterData from "@/src/models/IRegisterData";
 import IUser from "@/src/models/IUser";
 import generateRandomString from "@/src/utils/generateRandomString";
 import IOperationResult from "@/src/models/IOperationResult";
-import { Provider } from "@/src/constants/externalProviders";
 
 class AuthService {
   static async login(loginData: ILoginData): Promise<AxiosResponse<any, any>> {

@@ -2,7 +2,7 @@
 
 import { cn } from "@/src/lib/utils";
 import { ClassValue } from "clsx";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import Modal from "../shared/Modal";
 import { IoClose } from "react-icons/io5";
 import EditProfileForm from "./EditProfileForm";
@@ -13,7 +13,7 @@ const EditProfileButton = ({
   children,
   className,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className: ClassValue;
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import CircleProgressBar from "./CircleProgressBar";
-import { AppDispatch } from "@/src/redux/store";
-import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 import UserDefaultAvatar from "../UserDefaultAvatar";
 import useUser from "@/src/utils/hooks/useUser";
@@ -15,7 +13,6 @@ import Loading from "@/src/app/loading";
 const UserAvatar = () => {
   const { user, isLoadingUser } = useUser();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const dispatch = useDispatch<AppDispatch>();
 
   if (isLoadingUser) return <Loading text="" />;
   if (!user) return null;
@@ -30,7 +27,6 @@ const UserAvatar = () => {
     let progress = (xp / levels[level - 1].ceil) * 100;
 
     if (progress >= 100) {
-      //TODO: Implement leveling up
       toast(`You have reached level ${level + 1}!`);
       progress = (xp / levels[level - 1].ceil) * 100;
     }

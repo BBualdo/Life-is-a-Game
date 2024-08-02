@@ -22,7 +22,7 @@ import {
 } from "@/src/redux/slices/selectedMissionSlice";
 
 const MissionsContainer = () => {
-  const { missions, isLoading } = useMissions();
+  const { missions, isLoadingMissions } = useMissions();
   const [missionsCategory, setMissionsCategory] = useState<
     "active" | "completed"
   >("active");
@@ -44,7 +44,7 @@ const MissionsContainer = () => {
     }
   }, [missions, selectedMission, dispatch]);
 
-  if (isLoading) return <Loading text="Loading Missions..." />;
+  if (isLoadingMissions) return <Loading text="Loading Missions..." />;
   if (!missions) return null;
 
   const activeMissions = missions.filter((mission) => !mission.isCompleted);

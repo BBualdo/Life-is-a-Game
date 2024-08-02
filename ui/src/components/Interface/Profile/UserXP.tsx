@@ -1,19 +1,13 @@
-"use client";
-
-import { AppDispatch } from "@/src/redux/store";
-import { useDispatch } from "react-redux";
 import IUser from "@/src/models/IUser";
 import levels from "@/src/constants/levels";
 
 const UserXP = ({ user }: { user: IUser }) => {
   const { xp, level } = user;
-  const dispatch = useDispatch<AppDispatch>();
 
   const calculateProgress = () => {
     let progress = (xp / levels[level - 1].ceil) * 100;
 
     if (progress >= 100) {
-      //TODO: Implement leveling up
       progress = (xp / levels[level - 1].ceil) * 100;
     }
 

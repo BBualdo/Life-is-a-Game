@@ -19,7 +19,6 @@ import {
   setUserXp,
 } from "@/src/redux/slices/userSlice";
 import useAchievementsUnlocker from "@/src/utils/hooks/useAchievementsUnlocker";
-import useMissions from "@/src/utils/hooks/useMissions";
 import ACHIEVEMENT_KEYS from "@/src/constants/achievements";
 
 const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
@@ -74,6 +73,7 @@ const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
             dispatch(setUserXp(res.data));
           })
           .catch(() => {
+            // TODO:Error handling
             toast.error("Adding XP failed!");
           });
 
@@ -82,6 +82,7 @@ const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
         });
       })
       .catch(() => {
+        // TODO: Error handling
         toast.error("Something went wrong!");
       });
     dispatch(clearSelectedMission());

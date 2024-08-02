@@ -16,7 +16,6 @@ const UserBannerXP = () => {
     let progress = (xp / levels[level - 1].ceil) * 100;
 
     if (progress >= 100) {
-      //TODO: Implement leveling up
       toast(`You have reached level ${level + 1}!`);
       progress = (xp / levels[level - 1].ceil) * 100;
     }

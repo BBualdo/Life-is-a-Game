@@ -32,7 +32,6 @@ import { Label } from "@/src/shadcn/ui/label";
 const LoginForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
-  const dispatch = useDispatch<AppDispatch>();
 
   const loginForm = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),

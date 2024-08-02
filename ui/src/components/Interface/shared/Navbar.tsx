@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { arcade } from "@/src/fonts";
 import { usePathname } from "next/navigation";

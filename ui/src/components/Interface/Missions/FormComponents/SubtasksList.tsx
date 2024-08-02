@@ -19,6 +19,7 @@ import ISubtask from "@/src/models/ISubtask";
 import { z } from "zod";
 import addMissionFormSchema from "@/src/schemas/addMissionFormSchema";
 import editMissionFormSchema from "@/src/schemas/editMissionFormSchema";
+import { KeyboardEvent } from "react";
 
 const SubtasksList = ({
   form,
@@ -60,7 +61,7 @@ const SubtasksList = ({
     form.setValue("subtasks", filteredSubtasks);
   };
 
-  const handleSubtaskAdd = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleSubtaskAdd = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();
       addSubtask();
