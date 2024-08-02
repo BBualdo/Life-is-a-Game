@@ -28,14 +28,14 @@ namespace API.Controllers
             return Ok(mission);
         }
 
-        [HttpPost("addMission")]
+        [HttpPost("add-mission")]
         public async Task<ActionResult> AddMission(AddMissionDto missionDto)
         {
             var mission = await _missionsService.AddMissionAsync(missionDto.UserId!, missionDto);
             return CreatedAtAction(nameof(AddMission), mission);
         }
 
-        [HttpPut("updateMission/{missionId:guid}")]
+        [HttpPut("update-mission/{missionId:guid}")]
         public async Task<ActionResult> UpdateMission(Guid missionId, UpdateMissionDto missionDto)
         {
             if (missionId != missionDto.Id) return BadRequest();

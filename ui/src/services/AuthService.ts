@@ -30,7 +30,7 @@ class AuthService {
   }
 
   static async getCurrentUser(): Promise<AxiosResponse<IUser>> {
-    return await axios.get(baseUrl + "auth/currentUser", {
+    return await axios.get(baseUrl + "auth/current-user", {
       withCredentials: true,
     });
   }

@@ -9,6 +9,7 @@ import AchievementsService from "@/src/services/AchievementsService";
 import { setAchievements } from "@/src/redux/slices/achievementsSlice";
 import useUser from "@/src/utils/hooks/useUser";
 import { setUserAchievements } from "@/src/redux/slices/userAchievementsSlice";
+import { toast } from "sonner";
 
 const useAchievements = () => {
   const { user } = useUser();
@@ -29,9 +30,8 @@ const useAchievements = () => {
         AchievementsService.getAchievements().then((res) =>
           dispatch(setAchievements(res.data)),
         );
-      } catch (error) {
-        //TODO:Handle errors
-        console.error("Fetching achievements error: " + error);
+      } catch {
+        toast.error("Could not get achievements list!");
       }
     }
 
@@ -40,9 +40,8 @@ const useAchievements = () => {
         AchievementsService.getUserAchievements(user.id).then((res) =>
           dispatch(setUserAchievements(res.data)),
         );
-      } catch (error) {
-        //TODO:Handle errors
-        console.error("Fetching user achievements error: " + error);
+      } catch {
+        toast.error("Could not get your achievements list!");
       }
     }
 

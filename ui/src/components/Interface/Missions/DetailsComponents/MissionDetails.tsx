@@ -28,7 +28,6 @@ const MissionDetails = ({ selectedMission }: { selectedMission: IMission }) => {
           dispatch(toggleSubtask({ missionId: id, subtaskId: subtaskId }));
         })
         .catch(() => {
-          // TODO: Handle errors
           toast.error("Toggling subtask failed!");
         });
     }

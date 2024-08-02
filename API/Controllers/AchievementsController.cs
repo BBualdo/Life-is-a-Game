@@ -12,14 +12,14 @@ public class AchievementsController(IAchievementsService achievementsService) : 
 {
     private readonly IAchievementsService _achievementsService = achievementsService;
 
-    [HttpGet("getAchievements")]
+    [HttpGet("get-achievements")]
     public async Task<ActionResult<IEnumerable<Achievement>>> GetAchievements()
     {
         var achievements = await _achievementsService.GetAchievementsAsync();
         return Ok(achievements);
     }
 
-    [HttpGet("getUserAchievements")]
+    [HttpGet("get-user-achievements")]
     public async Task<ActionResult<IEnumerable<UserAchievement>>> GetUserAchievements(string userId)
     {
         var userAchievements = await _achievementsService.GetUserAchievementsAsync(userId);

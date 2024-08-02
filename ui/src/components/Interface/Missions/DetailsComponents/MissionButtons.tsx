@@ -73,8 +73,9 @@ const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
             dispatch(setUserXp(res.data));
           })
           .catch(() => {
-            // TODO:Error handling
-            toast.error("Adding XP failed!");
+            toast.error(
+              "Adding XP failed! If you won't get it within 24 hours please contact our support.",
+            );
           });
 
         toast("Mission completed!", {
@@ -82,8 +83,9 @@ const MissionButtons = ({ selectedMission }: { selectedMission: IMission }) => {
         });
       })
       .catch(() => {
-        // TODO: Error handling
-        toast.error("Something went wrong!");
+        toast.error(
+          "Something went wrong! Please try again later or contact our support!",
+        );
       });
     dispatch(clearSelectedMission());
   }

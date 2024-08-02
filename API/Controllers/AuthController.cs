@@ -15,7 +15,7 @@ namespace API.Controllers
         private readonly IHttpClientFactory _httpClientFactory = httpClientFactory;
         private readonly IConfiguration _configuration = configuration;
 
-        [HttpGet("currentUser")]
+        [HttpGet("current-user")]
         [Authorize]
         public async Task<ActionResult> GetUser()
         {

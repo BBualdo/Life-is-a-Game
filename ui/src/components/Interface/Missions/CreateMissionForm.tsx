@@ -58,7 +58,6 @@ const CreateMissionForm = ({ closeModal }: { closeModal: () => void }) => {
         toast("Mission has been added!");
       })
       .catch(() => {
-        //TODO: Handle errors
         toast.error("Adding mission failed!");
       });
 

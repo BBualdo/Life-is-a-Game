@@ -50,7 +50,6 @@ const EditMissionForm = ({
         toast("Mission has been updated!");
       })
       .catch(() => {
-        // TODO: Handle errors
         toast.error("Updating mission failed!");
       });
 
@@ -60,8 +59,11 @@ const EditMissionForm = ({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="mt-4 space-y-4">
+        {/*@ts-ignore*/}
         <Title form={form} />
+        {/*@ts-ignore*/}
         <Description form={form} />
+        {/*@ts-ignore*/}
         <SubtasksList form={form} />
         <div className="flex items-center justify-center xs:gap-2 xs:max-lg:flex-col lg:gap-10">
           <button className="btn btn-yellow hover:bg-black">Update</button>

@@ -6,7 +6,7 @@ import IUpdateMissionDto from "@/src/services/DTO/IUpdateMissionDto";
 
 class MissionsService {
   static async getMissions(userId: string): Promise<AxiosResponse<IMission[]>> {
-    return await axios.get(baseUrl + "missions/getMissions", {
+    return await axios.get(baseUrl + "missions/get-missions", {
       params: { userId },
       withCredentials: true,
     });
@@ -15,7 +15,7 @@ class MissionsService {
   static async addMission(
     mission: IAddMissionDto,
   ): Promise<AxiosResponse<IMission>> {
-    return await axios.post(baseUrl + "missions/addMission", mission, {
+    return await axios.post(baseUrl + "missions/add-mission", mission, {
       withCredentials: true,
     });
   }
@@ -24,7 +24,7 @@ class MissionsService {
     mission: IUpdateMissionDto,
   ): Promise<AxiosResponse<any, any>> {
     return await axios.put(
-      baseUrl + `missions/updateMission/${mission.id}`,
+      baseUrl + `missions/update-mission/${mission.id}`,
       mission,
       { withCredentials: true },
     );

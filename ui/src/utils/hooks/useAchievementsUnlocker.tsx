@@ -54,8 +54,9 @@ const useAchievementsUnlocker = () => {
       dispatch(unlockAchievement(newUserAchievement));
       dispatch(setUserXp(updatedXp));
     } catch {
-      //TODO:Error handling
-      toast.error("Achievement unlocking failed!");
+      toast.error(
+        "Achievement unlocking failed! If it won't unlock in 24 hours, please contact support.",
+      );
     }
   }
 
