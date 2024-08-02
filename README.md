@@ -111,6 +111,10 @@ This is an application where users can set missions for themselves, track their 
 52. Tested ```ILevelsService```.
 53. Tested ```IMissionsService``` and ```ISubtasksService``` partially by the way.
 
+#### Code cleanup
+54. Moved each ```{provider}-callback``` code into one reusable ```useExternalAuthCallback``` hook with ```providerName``` parameter.
+
+
 ### 🧰 Built with
 
 - Next.js
@@ -136,9 +140,12 @@ This is an application where users can set missions for themselves, track their 
 
 - Difference between ```AddIdentity```, ```AddIdentityCore``` and ```AddDefaultIdentity```.
 - Reminded about using ```Map``` and ```Array.reduce()``` function to sum things up without having to create temporary variable.
-- Meaning of **Entity Framework Core** Navigation Properties and that EF is not so good at updating nested objects
-- Tokens doesn't disappear from cookies just like in Swagger, they just expire and that has to be handled
-- Using ```Set``` to store unique values and manage them easily
+- Meaning of **Entity Framework Core** Navigation Properties and that EF is not so good at updating nested objects.
+- Tokens doesn't disappear from cookies just like in Swagger, they just expire and that has to be handled.
+- Using ```Set``` to store unique values and manage them easily.
+- Using ```xUnit``` ```Theory``` with ```InlineData```.
+- Mocking services and repositories using ```FakeItEasy``` .NET library.
+- Displaying code Unit Test coverage using ```dotCover```.
 
 ### Useful resources
 Coming soon...
