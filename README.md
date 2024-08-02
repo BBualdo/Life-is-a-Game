@@ -109,6 +109,7 @@ This is an application where users can set missions for themselves, track their 
 50. Added ```Logging``` service and added it to log potential errors and log it into ```ErrorLogs``` database table. I have to keep this in mind while formatting responses in future to log every potential error.
 51. Created **xUnit** project for testing and used **FakeItEasy** package to for Mocking purposes.
 52. Tested ```ILevelsService```.
+53. Tested ```IMissionsService``` and ```ISubtasksService``` partially by the way.
 
 ### 🧰 Built with
 
