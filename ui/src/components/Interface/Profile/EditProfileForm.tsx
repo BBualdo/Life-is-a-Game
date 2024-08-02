@@ -51,13 +51,11 @@ const EditProfileForm = ({
           description: error.response.data.errors?.map(
             (error: string, index: number) => <p key={index}>{error}</p>,
           ),
-          icon: <PiWarningCircleFill />,
         });
       } else {
         toast.error("Profile update failed!", {
           description:
             "Server error occurred. Please try again later or contact customer support.",
-          icon: <PiWarningCircleFill />,
         });
       }
     }

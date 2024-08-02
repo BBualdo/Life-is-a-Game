@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-
 import { Play } from "next/font/google";
-
 import "./globals.css";
 import ReduxProvider from "../redux/ReduxProvider";
 import { Toaster } from "sonner";
+import { ReactNode } from "react";
+import { PiWarningCircleFill } from "react-icons/pi";
 
 export const metadata: Metadata = {
   title: "Life is a Game",
@@ -14,18 +14,19 @@ export const metadata: Metadata = {
 
 const play = Play({ subsets: ["latin"], weight: ["400", "700"] });
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={`bg-black ${play.className}`}>
         <ReduxProvider>
           <>
             {children}
+
             <Toaster
+              /*@ts-ignore*/
+              icons={{
+                error: <PiWarningCircleFill />,
+              }}
               position="top-center"
               toastOptions={{
                 unstyled: true,
@@ -36,7 +37,7 @@ export default function RootLayout({
                   error: "text-cp-red border-cp-red",
                 },
               }}
-            />
+            ></Toaster>
           </>
         </ReduxProvider>
       </body>

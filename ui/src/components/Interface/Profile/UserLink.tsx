@@ -31,13 +31,11 @@ const UserLink = ({ provider, user }: { provider: Provider; user: IUser }) => {
           description: error.response.data.errors?.map(
             (e: string, index: number) => <p key={index}>{e}</p>,
           ),
-          icon: <PiWarningCircleFill />,
         });
       } else {
         toast.error("Login failed!", {
           description:
             "Server error occurred. Please try again later or contact customer support.",
-          icon: <PiWarningCircleFill />,
         });
       }
     } finally {

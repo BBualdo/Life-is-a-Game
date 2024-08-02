@@ -116,6 +116,7 @@ This is an application where users can set missions for themselves, track their 
 55. Cleaned up not used code and imports.
 56. Created Zod Union type to combine add and edit mission form schema - ```combinedMissionFormSchema```.
 57. Fixed bug when mission was selected and user was logged out, after logging to any account, that previously selected mission was still showing as selected.
+58. Added Error icon to Toaster globally and removed individual setups. Had to wrap it with ```ts-ignore``` though, because TypeScript finds it as error.
 
 ### 🧰 Built with
 

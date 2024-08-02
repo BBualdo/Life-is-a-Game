@@ -20,11 +20,7 @@ import { useRouter } from "next/navigation";
 import loginFormSchema from "@/src/schemas/loginFormSchema";
 import ILoginData from "@/src/models/ILoginData";
 import AuthService from "@/src/services/AuthService";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/src/redux/store";
-import { setIsLoggedOut, setUser } from "@/src/redux/slices/userSlice";
 import { toast } from "sonner";
-import { PiWarningCircleFill } from "react-icons/pi";
 import { useState } from "react";
 import { Checkbox } from "@/src/shadcn/ui/checkbox";
 import { Label } from "@/src/shadcn/ui/label";
@@ -57,13 +53,11 @@ const LoginForm = () => {
           description: error.response.data.errors.map(
             (e: string, index: number) => <p key={index}>{e}</p>,
           ),
-          icon: <PiWarningCircleFill />,
         });
       } else {
         toast.error("Login failed!", {
           description:
             "Server error occurred. Please try again later or contact customer support.",
-          icon: <PiWarningCircleFill />,
         });
       }
     }
@@ -155,7 +149,7 @@ const LoginForm = () => {
               Are you new here?
             </span>
           </div>
-          <Link href="/signup">
+          <Link href={"/signup"}>
             <button
               disabled={isLoading}
               type="button"

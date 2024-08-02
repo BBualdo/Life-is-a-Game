@@ -30,13 +30,11 @@ const AvatarPicker = ({ closeModal }: { closeModal: () => void }) => {
           description: error.res.data.errors?.map(
             (error: string, index: number) => <p key={index}>{error}</p>,
           ),
-          icon: <PiWarningCircleFill />,
         });
       } else {
         toast.error("Avatar update failed!", {
           description:
             "Server error occurred. Please try again later or contact customer support.",
-          icon: <PiWarningCircleFill />,
         });
       }
     }
