@@ -115,6 +115,7 @@ This is an application where users can set missions for themselves, track their 
 54. Moved each ```{provider}-callback``` code into one reusable ```useExternalAuthCallback``` hook with ```providerName``` parameter.
 55. Cleaned up not used code and imports.
 56. Created Zod Union type to combine add and edit mission form schema - ```combinedMissionFormSchema```.
+57. Fixed bug when mission was selected and user was logged out, after logging to any account, that previously selected mission was still showing as selected.
 
 ### 🧰 Built with
 

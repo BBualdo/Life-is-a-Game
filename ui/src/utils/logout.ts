@@ -6,6 +6,7 @@ import { clearMissions } from "@/src/redux/slices/missionsSlice";
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { clearSelectedMission } from "@/src/redux/slices/selectedMissionSlice";
 
 async function logout(
   dispatch: Dispatch<AnyAction>,
@@ -18,6 +19,7 @@ async function logout(
   dispatch(clearUserAchievements());
   dispatch(clearAchievements());
   dispatch(clearMissions());
+  dispatch(clearSelectedMission());
 }
 
 export default logout;
