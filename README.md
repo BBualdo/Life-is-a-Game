@@ -136,6 +136,7 @@ Life is a Game is an application where users can set missions for themselves, tr
 
 #### Azure Email Service for Password Recovery
 60. I have created ```IEmailService``` interface with ```SendEmailAsync``` method and use it in both ```RequestPasswordResetAsync``` and ```ResetPasswordAsync``` methods. First method will take email, find user by that email and send generated token via email. Second one will use those information to reset user's password to new one which he will provide when clicking the received email.
+61. Configured **Azure Communication Service** with generated subdomain and passed ConnectionString to user-secrets.
 
 ### 🧰 Built with
 
