@@ -11,8 +11,8 @@ public interface IAuthService
   Task<OperationResult> LoginAsync(LoginDto loginDto);
   Task<OperationResult> RegisterAsync(RegisterDto registerDto);
   Task LogoutAsync();
-  Task ForgotPasswordAsync();
-  Task ResetPasswordAsync();
+  Task<OperationResult> RequestPasswordResetAsync(string email);
+  Task<OperationResult> ResetPasswordAsync(NewPasswordDto passwordDto);
   Task<OperationResult> LoginOrLinkWithGithubAsync(string code, HttpClient client, string? userId = null);
   Task<OperationResult> LoginOrLinkWithGoogleAsync(string code, HttpClient client, string? userId = null);
   Task<OperationResult> LoginOrLinkWithFacebookAsync(string code, HttpClient client, string? userId = null);

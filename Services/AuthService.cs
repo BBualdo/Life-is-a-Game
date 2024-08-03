@@ -14,7 +14,8 @@ public class AuthService(
     IGithubService githubService,
     IFacebookService facebookService,
     IGoogleService googleService,
-    ILogsService logger) : IAuthService
+    ILogsService logger,
+    IEmailService emailService) : IAuthService
 {
     private readonly IFacebookService _facebookService = facebookService;
     private readonly IGithubService _githubService = githubService;
@@ -22,6 +23,7 @@ public class AuthService(
     private readonly ILogsService _logger = logger;
     private readonly SignInManager<User> _signInManager = signInManager;
     private readonly UserManager<User> _userManager = userManager;
+    private readonly IEmailService _emailService = emailService;
 
     public async Task<UserDto?> GetCurrentUserAsync(ClaimsPrincipal claims)
     {
@@ -122,14 +124,42 @@ public class AuthService(
         await _signInManager.SignOutAsync();
     }
 
-    public Task ForgotPasswordAsync()
+    public async Task<OperationResult> RequestPasswordResetAsync(string email)
     {
-        throw new NotImplementedException();
+        var result = new OperationResult
+        {
+            Success = true,
+            Message = "If email is correct, we sent you an email with link to set your new password. Check your inbox."
+        };
+        var user = await _userManager.FindByEmailAsync(email);
+        if (user is null) return result;
+
+        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+        var resetLink = $"http://localhost:3000/reset-password?email={Uri.EscapeDataString(email)}&token={Uri.EscapeDataString(token)}";
+
+        var emailContent = $"Click <a href=\"{resetLink}\">here</a> to reset your password.";
+        
+        await _emailService.SendEmailAsync(email, "Password Reset Request", emailContent);
+        return result;
     }
 
-    public Task ResetPasswordAsync()
+    public async Task<OperationResult> ResetPasswordAsync(NewPasswordDto passwordDto)
     {
-        throw new NotImplementedException();
+        var user = await _userManager.FindByEmailAsync(passwordDto.Email!);
+
+        var result = await _userManager.ResetPasswordAsync(user!, passwordDto.ResetToken!, passwordDto.NewPassword!);
+        if (!result.Succeeded) return new OperationResult
+        {
+            Success = false,
+            Message = "Resetting password failed!",
+            Errors = result.Errors.Select(e => e.Description)
+        };
+
+        return new OperationResult
+        {
+            Success = true,
+            Message = "Password has been changed. Now you can login with your new password."
+        };
     }
 
     public async Task<OperationResult> LoginOrLinkWithGithubAsync(string code, HttpClient client, string? userId = null)

@@ -134,6 +134,9 @@ Life is a Game is an application where users can set missions for themselves, tr
 58. Added Error icon to Toaster globally and removed individual setups. Had to wrap it with ```ts-ignore``` though, because TypeScript finds it as error.
 59. Handled all errors and replaced all pascalCase endpoints to kebab-case.
 
+#### Azure Email Service for Password Recovery
+60. I have created ```IEmailService``` interface with ```SendEmailAsync``` method and use it in both ```RequestPasswordResetAsync``` and ```ResetPasswordAsync``` methods. First method will take email, find user by that email and send generated token via email. Second one will use those information to reset user's password to new one which he will provide when clicking the received email.
+
 ### 🧰 Built with
 
 - Next.js
