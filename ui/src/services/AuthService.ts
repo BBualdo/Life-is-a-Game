@@ -124,6 +124,15 @@ class AuthService {
       },
     );
   }
+
+  static async forgotPassword(
+    email: string,
+  ): Promise<AxiosResponse<IOperationResult>> {
+    return await axios.get(baseUrl + "auth/forgot-password", {
+      params: { email },
+      withCredentials: true,
+    });
+  }
 }
 
 export default AuthService;

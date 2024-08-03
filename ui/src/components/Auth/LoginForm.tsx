@@ -100,13 +100,15 @@ const LoginForm = () => {
                   <FormLabel className="tracking-[6px] text-white">
                     PASSWORD
                   </FormLabel>
-                  <button
-                    tabIndex={-1}
-                    type="button"
-                    className="text-xs text-cp-cyan"
-                  >
-                    DON'T REMEMBER?
-                  </button>
+                  <Link href={"/forgot-password"}>
+                    <button
+                      tabIndex={-1}
+                      type="button"
+                      className="text-xs text-cp-cyan transition-all duration-200 hover:text-cp-yellow"
+                    >
+                      DON'T REMEMBER?
+                    </button>
+                  </Link>
                 </div>
                 <FormControl>
                   <Input className="min-w-[360px]" type="password" {...field} />
