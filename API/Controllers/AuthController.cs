@@ -122,5 +122,12 @@ namespace API.Controllers
             if (!result.Success) return BadRequest(new { message = result.Message, errors = result.Errors });
             return Ok(new { message = result.Message } );
         }
+
+        [HttpGet("forgot-password")]
+        public async Task<ActionResult> ForgotPassword(string email)
+        {
+            var result = await _authService.RequestPasswordResetAsync(email);
+            return !result.Success ? Problem(result.Message) : Ok(result.Message);
+        }
     }
 }

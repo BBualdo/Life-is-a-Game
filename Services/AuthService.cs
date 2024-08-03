@@ -139,8 +139,8 @@ public class AuthService(
 
         var emailContent = $"Click <a href=\"{resetLink}\">here</a> to reset your password.";
         
-        await _emailService.SendEmailAsync(email, "Password Reset Request", emailContent);
-        return result;
+        var emailResult = await _emailService.SendEmailAsync(email, "Password Reset Request", emailContent);
+        return !emailResult.Success ? emailResult : result;
     }
 
     public async Task<OperationResult> ResetPasswordAsync(NewPasswordDto passwordDto)

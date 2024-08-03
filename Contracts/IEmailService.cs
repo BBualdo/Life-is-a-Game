@@ -1,6 +1,8 @@
-﻿namespace Contracts;
+﻿using Contracts.DTO.User;
+
+namespace Contracts;
 
 public interface IEmailService
 {
-    Task SendEmailAsync(string email, string subject, string htmlMessage);
+    Task<OperationResult> SendEmailAsync(string email, string subject, string htmlMessage);
 }

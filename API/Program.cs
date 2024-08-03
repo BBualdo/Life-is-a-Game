@@ -23,7 +23,8 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
     options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ ";
   })
   .AddEntityFrameworkStores<LiagDbContext>()
-  .AddSignInManager<SignInManager<User>>();
+  .AddSignInManager<SignInManager<User>>()
+  .AddTokenProvider<DataProtectorTokenProvider<User>>(TokenOptions.DefaultProvider);
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -51,6 +52,7 @@ builder.Services.AddScoped<ISubtasksService, SubtasksService>();
 builder.Services.AddScoped<ILevelsService, LevelsService>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<ILogsService, LogsService>();
+builder.Services.AddScoped<IEmailService, AzureEmailService>();
 
 builder.Services.AddCors(options =>
   options.AddPolicy("default", policyBuilder => 
