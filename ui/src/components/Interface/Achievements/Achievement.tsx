@@ -39,7 +39,7 @@ const Achievement = ({
         </p>
       )}
 
-      <p className="xs:text-md text-cp-white font-bold lg:text-lg">
+      <p className="xs:text-md text-cp-white whitespace-nowrap font-bold lg:text-lg">
         {achievement.xpReward} XP
       </p>
     </div>

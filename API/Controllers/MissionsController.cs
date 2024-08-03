@@ -14,14 +14,14 @@ namespace API.Controllers
         private readonly IMissionsService _missionsService = missionsService;
         private readonly ISubtasksService _subtasksService = subtasksService;
 
-        [HttpGet("getMissions")]
+        [HttpGet("get-missions")]
         public async Task<ActionResult<IEnumerable<Mission>>> GetMissions(string userId)
         {
             var missions = await _missionsService.GetMissionsAsync(userId);
             return Ok(missions);
         }
 
-        [HttpGet("getMissionById")]
+        [HttpGet("get-mission")]
         public async Task<ActionResult<Mission>> GetMissionById(Guid missionId)
         {
             var mission = await _missionsService.GetMissionByIdAsync(missionId);

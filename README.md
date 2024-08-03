@@ -1,6 +1,12 @@
 ﻿# Life is a Game
 
-This is an application where users can set missions for themselves, track their progress and earn XP and levels based on the mission's difficulty level. The app also features a built-in achievement system.
+Life is a Game is an application where users can set missions for themselves, track their progress, and earn XP and levels based on the mission's difficulty level. The app also features a built-in achievement system.
+
+## In progress
+- [ ] Handling token expiration
+- [ ] Introducing Azure Functions
+- [ ] Handle password recovery
+- [ ] Configuring app on Azure
 
 ## Table of contents
 
@@ -8,11 +14,16 @@ This is an application where users can set missions for themselves, track their 
     - [Screenshots](#-screenshots)
     - [Features](#-features)
 - [My process](#my-process)
+    - [Backend implementation](#backend-implementation)
+      - [Authorization and Authentication](#authorization-and-authentication)
+      - [CRUD Operations](#crud-operations)
+      - [External Auth](#external-auth)
+      - [Logging and Unit Testing](#logging-and-unit-testing)
+      - [Code cleanup](#code-cleanup)
     - [Built with](#-built-with)
     - [What I have learned](#what-i-have-learned)
     - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -34,16 +45,20 @@ This is an application where users can set missions for themselves, track their 
 
 ### 🧐 Features
 
-- Slider-like tutorial showing main concepts of an app
-- Creating, tracking, updating and deleting missions
-- Verbose difficulty level system - user adjust slider getting hints in which cases that difficulty would be appropriate
-- Gaining XP and leveling up
-- Earning achievements
-- Editing profile information (Avatar, Bio, Current Goal, etc.)
-- Authentication and Authorization
-- External Providers Auth (Facebook, Google, Github) (soon)
+- Interactive tutorial to introduce the app's main concepts
+- CRUD operations for managing missions
+- Advanced difficulty level system with contextual hints
+- XP and level progression
+- Achievements to unlock
+- User profile customization (Username, Avatar, Bio, etc.)
+- Authentication and authorization
+- Integration with external providers for authentication (Facebook, Google, GitHub)
 
 ## My process
+
+### Frontend implementation
+
+#### To be filled in the future, as the original content was lost in December 2023. :(
 
 ### Backend implementation
 
@@ -145,17 +160,39 @@ This is an application where users can set missions for themselves, track their 
 - Difference between ```AddIdentity```, ```AddIdentityCore``` and ```AddDefaultIdentity```.
 - Reminded about using ```Map``` and ```Array.reduce()``` function to sum things up without having to create temporary variable.
 - Meaning of **Entity Framework Core** Navigation Properties and that EF is not so good at updating nested objects.
-- Tokens doesn't disappear from cookies just like in Swagger, they just expire and that has to be handled.
+- Tokens doesn't disappear from cookies just like in Swagger, they just expire and that has to be handled. (TODO)
 - Using ```Set``` to store unique values and manage them easily.
-- Using ```xUnit``` ```Theory``` with ```InlineData```.
-- Mocking services and repositories using ```FakeItEasy``` .NET library.
-- Displaying code Unit Test coverage using ```dotCover```.
+- Using **xUnit** ```Theory``` with ```InlineData```.
+- Mocking services and repositories using **FakeItEasy** .NET library.
+- Displaying code Unit Test coverage using **dotCover**.
 
 ### Useful resources
-Coming soon...
+
+I built this app working with documentations:
+
+- [Next.js](https://nextjs.org)
+- [Redux Toolkit](https://redux-toolkit.js.org)
+- [TailwindCSS](https://tailwindcss.com)
+- [Identity with Single Page Applications](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization?view=aspnetcore-8.0)
+- [Zod](https://zod.dev)
+- [Shadcn-UI](https://ui.shadcn.com)
+- [Axios](https://axios-http.com/docs/intro)
+- [FakeItEasy](https://fakeiteasy.github.io/docs/8.3.0/)
+- [Framer-Motion](https://www.framer.com/motion/)
+- [Redux-Persist](https://www.npmjs.com/package/redux-persist)
+
+And video tutorials:
+- [Redux - Complete Tutorial (with Redux Toolkit)](https://www.youtube.com/watch?v=5yEG6GhoJBs&t=1907s)
+- [Unit Testing in C# 2022: 4. Mocking EXPLAINED SIMPLY [FakeItEasy]](https://www.youtube.com/watch?v=GMYCNfDXQIk)
+- [ASP.NET Core Logging Crash Course](https://www.youtube.com/watch?v=XrCxy0SNRqM&t=1s)
+- [Next.js 14 Tutorial - 44 - Middleware](https://www.youtube.com/watch?v=xrvul-JrKFI&t=441s)
+
+**ChatGPT** also helped me when I was stuck (but I don't believe it can steal our jobs honestly 😆)
+
+#### 🎇 And of course the great **The C# Academy** platform and community, where I'm member since 04 April 2024 and which helped me learn a lot of things that made this application become Fullstack. 🎇
 
 ## Author
-Coming soon...
 
-## Acknowledgments
-Coming soon...
+- Website - [BBualdo](https://www.sebastianopozda.com)
+- LinkedIn - [Sebastian Opozda](https://www.linkedin.com/in/sebastian-opozda/)
+- Github - [BBualdo](https://github.com/BBualdo)
