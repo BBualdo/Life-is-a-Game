@@ -5,6 +5,7 @@ import IRegisterData from "@/src/models/IRegisterData";
 import IUser from "@/src/models/IUser";
 import generateRandomString from "@/src/utils/generateRandomString";
 import IOperationResult from "@/src/models/IOperationResult";
+import INewPasswordDto from "@/src/services/DTO/INewPasswordDto";
 
 class AuthService {
   static async login(loginData: ILoginData): Promise<AxiosResponse<any, any>> {
@@ -130,6 +131,14 @@ class AuthService {
   ): Promise<AxiosResponse<IOperationResult>> {
     return await axios.get(baseUrl + "auth/forgot-password", {
       params: { email },
+      withCredentials: true,
+    });
+  }
+
+  static async resetPassword(
+    newPasswordDto: INewPasswordDto,
+  ): Promise<AxiosResponse<IOperationResult>> {
+    return await axios.post(baseUrl + "auth/reset-password", newPasswordDto, {
       withCredentials: true,
     });
   }

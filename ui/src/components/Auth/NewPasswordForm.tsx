@@ -14,49 +14,58 @@ import {
 import { Input } from "@/src/shadcn/ui/input";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import signupFormSchema from "@/src/schemas/signUpFormSchema";
 import AuthService from "@/src/services/AuthService";
 import IRegisterData from "@/src/models/IRegisterData";
 import { toast } from "sonner";
 import { PiWarningCircleFill } from "react-icons/pi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import newPasswordSchema from "@/src/schemas/newPasswordSchema";
+import INewPasswordDto from "@/src/services/DTO/INewPasswordDto";
 
-const SignupForm = () => {
+const NewPasswordForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const email = searchParams.get("email");
+  const token = searchParams.get("token");
 
-  const signupForm = useForm<z.infer<typeof signupFormSchema>>({
-    resolver: zodResolver(signupFormSchema),
+  const newPasswordForm = useForm<z.infer<typeof newPasswordSchema>>({
+    resolver: zodResolver(newPasswordSchema),
     defaultValues: {
-      username: "",
-      email: "",
       password: "",
       confirmPassword: "",
     },
   });
 
-  async function onSubmit(values: z.infer<typeof signupFormSchema>) {
-    if (isLoading) return;
-    const registerData: IRegisterData = { ...values };
+  async function onSubmit(values: z.infer<typeof newPasswordSchema>) {
+    if (isLoading || !email || !token) return;
+    const newPasswordDto: INewPasswordDto = {
+      email,
+      resetToken: token,
+      newPassword: values.password,
+    };
+
     try {
       setIsLoading(true);
-      await AuthService.register(registerData);
-      toast("Register successful!", {
+      await AuthService.resetPassword(newPasswordDto);
+      toast("Password has been changed!", {
         description: "Now you can log in.",
       });
       router.push("/login");
       setIsLoading(false);
     } catch (error: any) {
+      console.log(error);
       setIsLoading(false);
       if (error.response) {
         toast.error(error.response.data.message, {
-          description: error.response.data.errors.map(
+          description: error.response.data.errors?.map(
             (e: string, index: number) => <p key={index}>{e}</p>,
           ),
         });
       } else {
-        toast.error("Register failed!", {
+        toast.error("Password changing failed!", {
           description:
             "Server error occurred. Please try again later or contact customer support.",
         });
@@ -64,51 +73,27 @@ const SignupForm = () => {
     }
   }
 
+  useEffect(() => {
+    if (!email || !token) {
+      router.replace("/login");
+      return;
+    }
+  }, [email, token, router]);
+
   return (
     <motion.div
       initial={{ x: "-100vw" }}
       animate={{ x: 0 }}
       transition={{ type: "spring", duration: 1 }}
-      className="flex flex-col items-center"
+      className="mt-4 flex flex-col items-center"
     >
-      <Form {...signupForm}>
+      <Form {...newPasswordForm}>
         <form
           className="flex flex-col items-center gap-4"
-          onSubmit={signupForm.handleSubmit(onSubmit)}
+          onSubmit={newPasswordForm.handleSubmit(onSubmit)}
         >
           <FormField
-            control={signupForm.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="tracking-[6px] text-white">
-                  USERNAME
-                </FormLabel>
-                <FormControl>
-                  <Input className="min-w-[360px]" type="text" {...field} />
-                </FormControl>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={signupForm.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="tracking-[6px] text-white">
-                  EMAIL
-                </FormLabel>
-                <FormControl>
-                  <Input className="min-w-[360px]" type="email" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={signupForm.control}
+            control={newPasswordForm.control}
             name="password"
             render={({ field }) => (
               <FormItem>
@@ -123,7 +108,7 @@ const SignupForm = () => {
             )}
           />
           <FormField
-            control={signupForm.control}
+            control={newPasswordForm.control}
             name="confirmPassword"
             render={({ field }) => (
               <FormItem>
@@ -142,20 +127,15 @@ const SignupForm = () => {
             type="submit"
             className="btn btn-cyan enabled:hover:btn-red enabled:hover:bg-cp-red/30"
           >
-            {isLoading ? "Hacking..." : "Sign up"}
+            {isLoading ? "Hacking..." : "Change Password"}
           </button>
-          <div className="relative mt-3 flex w-full items-center justify-center border">
-            <span className="absolute -top-2 text-xs uppercase text-cp-yellow backdrop-blur-sm">
-              Already have an account?
-            </span>
-          </div>
-          <Link href="/login">
+          <Link href={"/login"}>
             <button
               disabled={isLoading}
               type="button"
               className="btn btn-yellow enabled:hover:bg-black"
             >
-              {isLoading ? "Hacking..." : "Log in"}
+              {isLoading ? "Hacking..." : "Cancel"}
             </button>
           </Link>
         </form>
@@ -164,4 +144,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default NewPasswordForm;

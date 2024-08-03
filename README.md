@@ -5,7 +5,6 @@ Life is a Game is an application where users can set missions for themselves, tr
 ## In progress
 - [ ] Handling token expiration
 - [ ] Introducing Azure Functions
-- [ ] Handle password recovery
 - [ ] Configuring app on Azure
 
 ## Table of contents
@@ -138,7 +137,8 @@ Life is a Game is an application where users can set missions for themselves, tr
 60. I have created ```IEmailService``` interface with ```SendEmailAsync``` method and use it in both ```RequestPasswordResetAsync``` and ```ResetPasswordAsync``` methods. First method will take email, find user by that email and send generated token via email. Second one will use those information to reset user's password to new one which he will provide when clicking the received email.
 61. Configured **Azure Communication Service** with generated subdomain and passed ConnectionString to user-secrets.
 62. Created ```AzureEmailService``` and configured token provider to get password reset token. Everything is working.
-63. Implemented UI to let user enter email in case of password reset.
+63. Implemented UI to let user enter email in case of password reset and provided appropriate method in ```AuthService```.
+64. Did the same for password reset, React component checks if there is an email and reset token, and lets user enter his new password. It's then sent to API endpoint and the password is changed.
 
 ### 🧰 Built with
 
@@ -159,6 +159,7 @@ Life is a Game is an application where users can set missions for themselves, tr
 - SQL Server
 - xUnit
 - FakeItEasy
+- Azure
 
 
 ### What I have learned
@@ -166,11 +167,13 @@ Life is a Game is an application where users can set missions for themselves, tr
 - Difference between ```AddIdentity```, ```AddIdentityCore``` and ```AddDefaultIdentity```.
 - Reminded about using ```Map``` and ```Array.reduce()``` function to sum things up without having to create temporary variable.
 - Meaning of **Entity Framework Core** Navigation Properties and that EF is not so good at updating nested objects.
+- Setting up Next.js ```middleware``` to run additional logic between requests.
 - Tokens doesn't disappear from cookies just like in Swagger, they just expire and that has to be handled. (TODO)
 - Using ```Set``` to store unique values and manage them easily.
 - Using **xUnit** ```Theory``` with ```InlineData```.
 - Mocking services and repositories using **FakeItEasy** .NET library.
 - Displaying code Unit Test coverage using **dotCover**.
+- Configuring **Azure Communication Service** and using it to send email to user.
 
 ### Useful resources
 
@@ -192,6 +195,7 @@ And video tutorials:
 - [Unit Testing in C# 2022: 4. Mocking EXPLAINED SIMPLY [FakeItEasy]](https://www.youtube.com/watch?v=GMYCNfDXQIk)
 - [ASP.NET Core Logging Crash Course](https://www.youtube.com/watch?v=XrCxy0SNRqM&t=1s)
 - [Next.js 14 Tutorial - 44 - Middleware](https://www.youtube.com/watch?v=xrvul-JrKFI&t=441s)
+- [Send an email with Azure Communication Services](https://www.youtube.com/watch?v=t0in_d9Q2mU&t=588s)
 
 **ChatGPT** also helped me when I was stuck (but I don't believe it can steal our jobs honestly 😆)
 

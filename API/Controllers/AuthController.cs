@@ -1,7 +1,6 @@
 using Contracts;
 using Contracts.DTO.Auth;
 using Contracts.DTO.User;
-using Data.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,11 +8,10 @@ namespace API.Controllers
 {
     [Route("api/auth")]
     [ApiController]
-    public class AuthController(IAuthService authService, IHttpClientFactory httpClientFactory, IConfiguration configuration) : ControllerBase
+    public class AuthController(IAuthService authService, IHttpClientFactory httpClientFactory) : ControllerBase
     {
         private readonly IAuthService _authService = authService;
         private readonly IHttpClientFactory _httpClientFactory = httpClientFactory;
-        private readonly IConfiguration _configuration = configuration;
 
         [HttpGet("current-user")]
         [Authorize]
@@ -128,6 +126,15 @@ namespace API.Controllers
         {
             var result = await _authService.RequestPasswordResetAsync(email);
             return !result.Success ? Problem(result.Message) : Ok(result.Message);
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<ActionResult> ResetPassword(NewPasswordDto passwordDto)
+        {
+            var result = await _authService.ResetPasswordAsync(passwordDto);
+            return !result.Success
+                ? BadRequest(new { message = result.Message, errors = result.Errors })
+                : Ok(result.Message);
         }
     }
 }

@@ -100,7 +100,7 @@ const LoginForm = () => {
                   <FormLabel className="tracking-[6px] text-white">
                     PASSWORD
                   </FormLabel>
-                  <Link href={"/forgot-password"}>
+                  <Link tabIndex={-1} href={"/forgot-password"}>
                     <button
                       tabIndex={-1}
                       type="button"
