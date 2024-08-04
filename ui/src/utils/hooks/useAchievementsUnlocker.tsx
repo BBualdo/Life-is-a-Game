@@ -33,8 +33,6 @@ const useAchievementsUnlocker = () => {
     );
     if (userAchievement) return;
 
-    console.log("unlocking achievement: " + achievementKey);
-
     try {
       const res = await AchievementsService.unlockAchievement(
         achievement.id,
@@ -155,11 +153,15 @@ const useAchievementsUnlocker = () => {
 
   useEffect(() => {
     if (user) checkProfileAchievements(user);
+  }, []);
 
+  useEffect(() => {
     if (missions) checkMissionAchievements(missions);
+  }, []);
 
+  useEffect(() => {
     checkAllAchievements();
-  }, [user, user?.level, missions]);
+  }, []);
 
   return {
     tryUnlockAchievement,

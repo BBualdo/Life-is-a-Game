@@ -140,6 +140,9 @@ Life is a Game is an application where users can set missions for themselves, tr
 63. Implemented UI to let user enter email in case of password reset and provided appropriate method in ```AuthService```.
 64. Did the same for password reset, React component checks if there is an email and reset token, and lets user enter his new password. It's then sent to API endpoint and the password is changed.
 
+#### Further Development
+65. In ```useAchievementsUnlocker``` split useEffect to 3 UseEffects, one for each achievement category check. I need to think about dependencies in the array because up to now it caused those achievements unlock twice (probably because React doesn't catch up with Redux state updates).
+
 ### 🧰 Built with
 
 - Next.js
