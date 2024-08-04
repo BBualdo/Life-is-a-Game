@@ -2,7 +2,7 @@
 
 import { Form } from "@/src/shadcn/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import * as z from "zod";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
@@ -17,6 +17,8 @@ import UserService from "@/src/services/UserService";
 import { updateUserInfo } from "@/src/redux/slices/userSlice";
 import { PiWarningCircleFill } from "react-icons/pi";
 import Username from "@/src/components/Interface/Profile/FormComponents/Username";
+import IEditProfileDto from "@/src/services/DTO/IEditProfileDto";
+import { useMemo } from "react";
 
 const EditProfileForm = ({
   closeModal,
@@ -40,9 +42,35 @@ const EditProfileForm = ({
     },
   });
 
+  // monitor all fields for changes
+  const watchedValues = useWatch({ control: form.control });
+
+  const hasChanges = useMemo(() => {
+    return (
+      watchedValues.username !== user.username ||
+      watchedValues.firstName !== user.firstName ||
+      watchedValues.lastName !== user.lastName ||
+      watchedValues.currentGoal !== user.currentGoal ||
+      watchedValues.bio !== user.bio
+    );
+  }, [watchedValues, user]);
+
   async function onSubmit(values: z.infer<typeof editProfileInfoSchema>) {
+    if (!hasChanges) {
+      closeModal();
+      return;
+    }
+
+    const profileInfo: IEditProfileDto = {
+      username: values.username,
+      firstName: values.firstName ?? "",
+      lastName: values.lastName ?? "",
+      currentGoal: values.currentGoal ?? "",
+      bio: values.bio ?? "",
+    };
+
     try {
-      const res = await UserService.updateProfile(user.id, values);
+      const res = await UserService.updateProfile(user.id, profileInfo);
       dispatch(updateUserInfo(values));
       toast(res.data.message);
     } catch (error: any) {

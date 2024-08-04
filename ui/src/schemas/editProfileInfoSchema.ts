@@ -7,7 +7,6 @@ const editProfileInfoSchema = z.object({
     .max(50, { message: "Username is too long." }),
   firstName: z
     .string()
-    .min(3, { message: "First name must be at least 3 characters." })
     .max(24, { message: "First name can't be longer than 24 characters." })
     .optional(),
   lastName: z

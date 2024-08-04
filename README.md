@@ -142,6 +142,7 @@ Life is a Game is an application where users can set missions for themselves, tr
 
 #### Further Development
 65. In ```useAchievementsUnlocker``` split useEffect to 3 UseEffects, one for each achievement category check. I need to think about dependencies in the array because up to now it caused those achievements unlock twice (probably because React doesn't catch up with Redux state updates).
+66. In ```EditProfileForm``` I used ```useWatch``` from **React-Hook-Form** ```useMemo``` to track if user changed any values in his profile info. If not, there is no need to perform any requests.
 
 ### 🧰 Built with
 
@@ -177,6 +178,7 @@ Life is a Game is an application where users can set missions for themselves, tr
 - Mocking services and repositories using **FakeItEasy** .NET library.
 - Displaying code Unit Test coverage using **dotCover**.
 - Configuring **Azure Communication Service** and using it to send email to user.
+- Using React ```useMemo``` hook
 
 ### Useful resources
 
@@ -199,6 +201,7 @@ And video tutorials:
 - [ASP.NET Core Logging Crash Course](https://www.youtube.com/watch?v=XrCxy0SNRqM&t=1s)
 - [Next.js 14 Tutorial - 44 - Middleware](https://www.youtube.com/watch?v=xrvul-JrKFI&t=441s)
 - [Send an email with Azure Communication Services](https://www.youtube.com/watch?v=t0in_d9Q2mU&t=588s)
+- [Learn React Hooks: useMemo - Simply Explained!](https://www.youtube.com/watch?v=vpE9I_eqHdM)
 
 **ChatGPT** also helped me when I was stuck (but I don't believe it can steal our jobs honestly 😆)
 
