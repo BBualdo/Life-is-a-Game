@@ -143,6 +143,7 @@ Life is a Game is an application where users can set missions for themselves, tr
 #### Further Development
 65. In ```useAchievementsUnlocker``` split useEffect to 3 UseEffects, one for each achievement category check. I need to think about dependencies in the array because up to now it caused those achievements unlock twice (probably because React doesn't catch up with Redux state updates).
 66. In ```EditProfileForm``` I used ```useWatch``` from **React-Hook-Form** ```useMemo``` to track if user changed any values in his profile info. If not, there is no need to perform any requests.
+67. I have published API to ```Azure Web Service``` with configured SQL Database.
 
 ### 🧰 Built with
 
