@@ -1,9 +1,10 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { cookies } from "next/headers";
 
 export function middleware(req: NextRequest) {
-  let token = cookies().get("LIAGToken")?.value;
-  console.log(token);
+  const cookies = req.cookies;
+  console.log("Cookies: ", cookies);
+  let token = cookies.get("LIAGToken")?.value;
+  console.log("Token: ", token);
 
   if (
     token &&
