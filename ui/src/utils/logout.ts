@@ -14,7 +14,6 @@ async function logout(
 ) {
   dispatch(setIsLoggedOut(true));
   await AuthService.logout();
-  router.refresh();
   router.replace("/login");
   dispatch(clearUser());
   dispatch(clearUserAchievements());

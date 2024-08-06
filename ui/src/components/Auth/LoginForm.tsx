@@ -44,8 +44,7 @@ const LoginForm = () => {
     try {
       setIsLoading(true);
       await AuthService.login(loginData);
-      router.refresh();
-      router.push("/");
+      router.replace("/");
       setIsLoading(false);
     } catch (error: any) {
       setIsLoading(false);
