@@ -19,7 +19,6 @@ import signupFormSchema from "@/src/schemas/signUpFormSchema";
 import AuthService from "@/src/services/AuthService";
 import IRegisterData from "@/src/models/IRegisterData";
 import { toast } from "sonner";
-import { PiWarningCircleFill } from "react-icons/pi";
 import { useState } from "react";
 
 const SignupForm = () => {
@@ -149,7 +148,7 @@ const SignupForm = () => {
               Already have an account?
             </span>
           </div>
-          <Link href="/login">
+          <Link href={"/login"}>
             <button
               disabled={isLoading}
               type="button"
