@@ -2,11 +2,6 @@
 
 Life is a Game is an application where users can set missions for themselves, track their progress, and earn XP and levels based on the mission's difficulty level. The app also features a built-in achievement system.
 
-## In progress
-- [ ] Handling token expiration
-- [ ] Introducing Azure Functions
-- [ ] Configuring app on Azure
-
 ## Table of contents
 
 - [Overview](#overview)
@@ -21,6 +16,7 @@ Life is a Game is an application where users can set missions for themselves, tr
       - [Code cleanup](#code-cleanup)
     - [Built with](#-built-with)
     - [What I have learned](#what-i-have-learned)
+    - [Areas to improve](#areas-to-improve)
     - [Useful resources](#useful-resources)
 - [Author](#author)
 
@@ -143,7 +139,7 @@ Life is a Game is an application where users can set missions for themselves, tr
 #### Further Development
 65. In ```useAchievementsUnlocker``` split useEffect to 3 UseEffects, one for each achievement category check. I need to think about dependencies in the array because up to now it caused those achievements unlock twice (probably because React doesn't catch up with Redux state updates).
 66. In ```EditProfileForm``` I used ```useWatch``` from **React-Hook-Form** ```useMemo``` to track if user changed any values in his profile info. If not, there is no need to perform any requests.
-67. I have published API to ```Azure Web Service``` with configured SQL Database.
+67. Defined ```EnsureCreated``` EF method to be sure that Database is successfully created when application is started.
 
 ### 🧰 Built with
 
@@ -180,6 +176,11 @@ Life is a Game is an application where users can set missions for themselves, tr
 - Displaying code Unit Test coverage using **dotCover**.
 - Configuring **Azure Communication Service** and using it to send email to user.
 - Using React ```useMemo``` hook
+- Configuring ```Azure``` Web Services and SQL Database
+- Publishing API to ```Azure```
+
+### Areas to improve
+- I have to deepen knowledge about cookies handling, especially on the way Client => API => Next.js middleware, because when I successfully hosted API on Azure and Next.js app on Vercel, I couldn't get token in middleware. Locally it works, but in production it's just invisible, despite being present in set-cookie and cookies as well. This makes app not redirecting to Main Menu after successful authentication, because it's cookie based.
 
 ### Useful resources
 
