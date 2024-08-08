@@ -10,7 +10,7 @@ class UserService {
     xpAmount: number,
   ): Promise<AxiosResponse<IUserXpResponse>> {
     return await axios.post(
-      baseUrl + "user/add-xp",
+      baseUrl + "/user/add-xp",
       { userId, xpAmount },
       { withCredentials: true },
     );
@@ -21,7 +21,7 @@ class UserService {
     profileInfo: IEditProfileDto,
   ): Promise<AxiosResponse<IOperationResult>> {
     return await axios.put(
-      baseUrl + `user/${userId}/update-profile`,
+      baseUrl + `/user/${userId}/update-profile`,
       profileInfo,
       { withCredentials: true },
     );
@@ -32,7 +32,7 @@ class UserService {
     avatarPath: string,
   ): Promise<AxiosResponse<IOperationResult>> {
     return await axios.put(
-      baseUrl + `user/${userId}/update-avatar`,
+      baseUrl + `/user/${userId}/update-avatar`,
       {},
       { params: { avatarPath }, withCredentials: true },
     );

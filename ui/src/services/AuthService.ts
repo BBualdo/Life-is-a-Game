@@ -9,7 +9,7 @@ import INewPasswordDto from "@/src/services/DTO/INewPasswordDto";
 
 class AuthService {
   static async login(loginData: ILoginData): Promise<AxiosResponse<any, any>> {
-    return await axios.post(baseUrl + "auth/login", loginData, {
+    return await axios.post(baseUrl + "/auth/login", loginData, {
       withCredentials: true,
     });
   }
@@ -17,21 +17,21 @@ class AuthService {
   static async register(
     registerData: IRegisterData,
   ): Promise<AxiosResponse<any, any>> {
-    return await axios.post(baseUrl + "auth/register", registerData, {
+    return await axios.post(baseUrl + "/auth/register", registerData, {
       withCredentials: true,
     });
   }
 
   static async logout(): Promise<AxiosResponse<any, any>> {
     return await axios.post(
-      baseUrl + "auth/logout",
+      baseUrl + "/auth/logout",
       {},
       { withCredentials: true },
     );
   }
 
   static async getCurrentUser(): Promise<AxiosResponse<IUser>> {
-    return await axios.get(baseUrl + "auth/current-user", {
+    return await axios.get(baseUrl + "/auth/current-user", {
       withCredentials: true,
     });
   }
@@ -50,7 +50,7 @@ class AuthService {
   static async handleGithubCallback(
     code: string,
   ): Promise<AxiosResponse<IOperationResult>> {
-    return await axios.get(baseUrl + "auth/login-with-github", {
+    return await axios.get(baseUrl + "/auth/login-with-github", {
       params: { code },
       withCredentials: true,
     });
@@ -72,7 +72,7 @@ class AuthService {
   static async handleFacebookCallback(
     code: string,
   ): Promise<AxiosResponse<IOperationResult>> {
-    return await axios.get(baseUrl + "auth/login-with-facebook", {
+    return await axios.get(baseUrl + "/auth/login-with-facebook", {
       params: { code },
       withCredentials: true,
     });
@@ -94,7 +94,7 @@ class AuthService {
   static async handleGoogleCallback(
     code: string,
   ): Promise<AxiosResponse<IOperationResult>> {
-    return await axios.get(baseUrl + "auth/login-with-google", {
+    return await axios.get(baseUrl + "/auth/login-with-google", {
       params: { code },
       withCredentials: true,
     });
@@ -106,7 +106,7 @@ class AuthService {
     providerName: string,
   ): Promise<AxiosResponse<IOperationResult>> {
     return await axios.post(
-      baseUrl + "auth/link-account",
+      baseUrl + "/auth/link-account",
       {},
       { params: { code, userId, providerName }, withCredentials: true },
     );
@@ -117,7 +117,7 @@ class AuthService {
     userId: string,
   ): Promise<AxiosResponse<IOperationResult>> {
     return await axios.post(
-      baseUrl + `auth/unlink-account`,
+      baseUrl + `/auth/unlink-account`,
       {},
       {
         params: { providerName, userId },
@@ -129,7 +129,7 @@ class AuthService {
   static async forgotPassword(
     email: string,
   ): Promise<AxiosResponse<IOperationResult>> {
-    return await axios.get(baseUrl + "auth/forgot-password", {
+    return await axios.get(baseUrl + "/auth/forgot-password", {
       params: { email },
       withCredentials: true,
     });
@@ -138,7 +138,7 @@ class AuthService {
   static async resetPassword(
     newPasswordDto: INewPasswordDto,
   ): Promise<AxiosResponse<IOperationResult>> {
-    return await axios.post(baseUrl + "auth/reset-password", newPasswordDto, {
+    return await axios.post(baseUrl + "/auth/reset-password", newPasswordDto, {
       withCredentials: true,
     });
   }

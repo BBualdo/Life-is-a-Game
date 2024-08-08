@@ -6,7 +6,7 @@ import IAchievementUnlockDto from "@/src/services/DTO/IAchievementUnlockDto";
 
 class AchievementsService {
   static async getAchievements(): Promise<AxiosResponse<IAchievement[]>> {
-    return await axios.get(baseUrl + "achievements/get-achievements", {
+    return await axios.get(baseUrl + "/achievements/get-achievements", {
       withCredentials: true,
     });
   }
@@ -14,7 +14,7 @@ class AchievementsService {
   static async getUserAchievements(
     userId: string,
   ): Promise<AxiosResponse<IUserAchievement[]>> {
-    return await axios.get(baseUrl + `achievements/get-user-achievements`, {
+    return await axios.get(baseUrl + `/achievements/get-user-achievements`, {
       params: {
         userId,
       },
@@ -27,7 +27,7 @@ class AchievementsService {
     userId: string,
   ): Promise<AxiosResponse<IAchievementUnlockDto>> {
     return await axios.put(
-      baseUrl + `achievements/${achievementId}/unlock`,
+      baseUrl + `/achievements/${achievementId}/unlock`,
       {},
       { params: { userId }, withCredentials: true },
     );

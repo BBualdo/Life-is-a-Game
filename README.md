@@ -1,4 +1,4 @@
-﻿﻿﻿# Life is a Game
+# Life is a Game
 
 Life is a Game is an application where users can set missions for themselves, track their progress, and earn XP and levels based on the mission's difficulty level. The app also features a built-in achievement system.
 

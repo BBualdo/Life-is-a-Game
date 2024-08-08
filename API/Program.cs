@@ -13,7 +13,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<LiagDbContext>(options =>
-  options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+{
+  options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
+});
 
 builder.Services.AddAuthentication();
 
@@ -55,8 +57,8 @@ builder.Services.AddScoped<ILogsService, LogsService>();
 builder.Services.AddScoped<IEmailService, AzureEmailService>();
 
 builder.Services.AddCors(options =>
-  options.AddPolicy("default", policyBuilder => 
-    policyBuilder.AllowCredentials().AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000"))
+  options.AddPolicy("default", policyBuilder =>
+    policyBuilder.AllowCredentials().AllowAnyHeader().AllowAnyMethod())
   );
 
 var app = builder.Build();
