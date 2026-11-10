@@ -1,0 +1,7 @@
+ui
+tco-projekt
+.git
+.idea
+.env
+**/bin
+**/obj
