@@ -1,26 +1,42 @@
+x-managed: &managed
+  restart: unless-stopped
+  labels:
+    liag.managed: "true"
+
+x-dotnet-env: &dotnet-env
+  ASPNETCORE_HTTP_PORTS: "8080"
+  DataProtection__KeysPath: /keys
+  Auth__CookieName: LIAGToken
+  Auth__SameSite: Lax
+  Auth__SecurePolicy: SameAsRequest
+  Internal__Key: ${INTERNAL_KEY}
+
 services:
   gateway:
+    <<: *managed
     image: nginx:1.27-alpine
     ports:
-      - "8080:80"            
+      - "8080:80"
     volumes:
       - ./gateway/nginx.conf:/etc/nginx/conf.d/default.conf:ro
 
   ui:
+    <<: *managed
     build: ./ui
 
-  api:
+  core-api:
+    <<: *managed
     build:
       context: .
       dockerfile: API.Dockerfile
     environment:
-      ASPNETCORE_HTTP_PORTS: "8080"
-      ConnectionStrings__Db: "Host=db;Database=liag;Username=liag;Password=${DB_PASSWORD}"
+      <<: *dotnet-env
+      ConnectionStrings__Db: "Host=db-core;Database=core;Username=liag;Password=${DB_PASSWORD}"
       ConnectionStrings__AzureCommunicationService: "endpoint=https://localhost/;accesskey=ZHVtbXk="
-      Auth__SameSite: "Lax"
-      Auth__SecurePolicy: "SameAsRequest"
+    volumes:
+      - dp-keys:/keys
     depends_on:
-      db:
+      db-core:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-fs", "http://localhost:8080/healthz"]
@@ -28,19 +44,93 @@ services:
       timeout: 3s
       retries: 5
 
-  db:
+  missions-api:
+    <<: *managed
+    build: ./src/missions-api
+    environment:
+      <<: *dotnet-env
+      ConnectionStrings__Db: "Host=db-missions;Database=missions;Username=liag;Password=${DB_PASSWORD}"
+      Services__CoreUrl: http://core-api:8080
+    volumes:
+      - dp-keys:/keys
+    depends_on:
+      db-missions:
+        condition: service_healthy
+      core-api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "http://localhost:8080/healthz"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  achievements-api:
+    <<: *managed
+    build: ./src/achievements-api
+    environment:
+      <<: *dotnet-env
+      ConnectionStrings__Db: "Host=db-achievements;Database=achievements;Username=liag;Password=${DB_PASSWORD}"
+      Services__CoreUrl: http://core-api:8080
+    volumes:
+      - dp-keys:/keys
+    depends_on:
+      db-achievements:
+        condition: service_healthy
+      core-api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "http://localhost:8080/healthz"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  db-core:
+    <<: *managed
     image: postgres:16-alpine
     environment:
       POSTGRES_USER: liag
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: liag
+      POSTGRES_DB: core
     volumes:
-      - pg-data:/var/lib/postgresql/data
+      - pg-core:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U liag -d liag"]
+      test: ["CMD-SHELL", "pg_isready -U liag -d core"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  db-missions:
+    <<: *managed
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: liag
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: missions
+    volumes:
+      - pg-missions:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U liag -d missions"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  db-achievements:
+    <<: *managed
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: liag
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: achievements
+    volumes:
+      - pg-achievements:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U liag -d achievements"]
       interval: 5s
       timeout: 3s
       retries: 10
 
 volumes:
-  pg-data:
+  dp-keys:
+  pg-core:
+  pg-missions:
+  pg-achievements:

@@ -42,38 +42,24 @@ builder.Services.ConfigureApplicationCookie(options =>
   options.Cookie.Name = "LIAGToken";
   options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
   options.SlidingExpiration = true;
-  options.Events.OnRedirectToLogin = ctx =>
-  {
-    ctx.Response.StatusCode = 401;
-    return Task.CompletedTask;
-  };
-  options.Events.OnRedirectToAccessDenied = ctx =>
-  {
-    ctx.Response.StatusCode = 403;
-    return Task.CompletedTask;
-  };
+  options.Events.OnRedirectToLogin = ctx => { ctx.Response.StatusCode = 401; return Task.CompletedTask; };
+  options.Events.OnRedirectToAccessDenied = ctx => { ctx.Response.StatusCode = 403; return Task.CompletedTask; };
 });
 
 builder.Services.AddHttpClient();
 
-builder.Services.AddScoped<IAchievementsRepository, AchievementsRepository>();
-builder.Services.AddScoped<IMissionsRepository, MissionsRepository>();
-builder.Services.AddScoped<ISubtasksRepository, SubtasksRepository>();
 builder.Services.AddScoped<IErrorLogsRepository, ErrorLogsRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IGithubService, GithubService>();
 builder.Services.AddScoped<IFacebookService, FacebookService>();
 builder.Services.AddScoped<IGoogleService, GoogleService>();
-builder.Services.AddScoped<IAchievementsService, AchievementsService>();
-builder.Services.AddScoped<IMissionsService, MissionsService>();
-builder.Services.AddScoped<ISubtasksService, SubtasksService>();
 builder.Services.AddScoped<ILevelsService, LevelsService>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<ILogsService, LogsService>();
 builder.Services.AddScoped<IEmailService, AzureEmailService>();
 
 builder.Services.AddCors(options =>
-  options.AddPolicy("default", policyBuilder => 
+  options.AddPolicy("default", policyBuilder =>
     policyBuilder.AllowCredentials().AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000"))
   );
 
@@ -98,8 +84,6 @@ app.Use(async (ctx, next) =>
   ctx.Response.Headers["X-Instance"] = Environment.MachineName;
   await next();
 });
-
-// app.UseHttpsRedirection();
 
 app.UseCors("default");
 
