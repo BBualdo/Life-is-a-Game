@@ -9,17 +9,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		BACKLOG.md = BACKLOG.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{15D13E27-83B2-436D-B29E-DCF999DB897C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "src\data\Data.csproj", "{15D13E27-83B2-436D-B29E-DCF999DB897C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{FA6BD387-F7DC-4631-AED9-0A90E6C5C7D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "src\api\API.csproj", "{FA6BD387-F7DC-4631-AED9-0A90E6C5C7D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{864770EB-C474-4415-883B-21B90E2F1837}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "src\repository\Repository.csproj", "{864770EB-C474-4415-883B-21B90E2F1837}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{A77BABCC-5FB2-41C9-A68B-804490DE64BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "src\contracts\Contracts.csproj", "{A77BABCC-5FB2-41C9-A68B-804490DE64BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{BED55A56-8719-4581-8FE5-308F28C3B768}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "src\services\Services.csproj", "{BED55A56-8719-4581-8FE5-308F28C3B768}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{DC73D234-F232-46E7-92E6-D118C4492532}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "src\tests\Tests.csproj", "{DC73D234-F232-46E7-92E6-D118C4492532}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AchievementsApi", "src\achievements-api\AchievementsApi.csproj", "{B8E5F7C0-D8D4-4E6C-98A1-4D9E2F1A5B4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DockerManager", "src\docker-manager\DockerManager.csproj", "{C9D6E8B1-F9E2-4D3C-A5D8-1E7A3F6B4C2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionsApi", "src\missions-api\MissionsApi.csproj", "{D1A3F5B2-E8C4-4F5D-A6D9-2E8F3D1C5B4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,5 +60,17 @@ Global
 		{DC73D234-F232-46E7-92E6-D118C4492532}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC73D234-F232-46E7-92E6-D118C4492532}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC73D234-F232-46E7-92E6-D118C4492532}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8E5F7C0-D8D4-4E6C-98A1-4D9E2F1A5B4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8E5F7C0-D8D4-4E6C-98A1-4D9E2F1A5B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8E5F7C0-D8D4-4E6C-98A1-4D9E2F1A5B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8E5F7C0-D8D4-4E6C-98A1-4D9E2F1A5B4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9D6E8B1-F9E2-4D3C-A5D8-1E7A3F6B4C2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9D6E8B1-F9E2-4D3C-A5D8-1E7A3F6B4C2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9D6E8B1-F9E2-4D3C-A5D8-1E7A3F6B4C2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9D6E8B1-F9E2-4D3C-A5D8-1E7A3F6B4C2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1A3F5B2-E8C4-4F5D-A6D9-2E8F3D1C5B4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1A3F5B2-E8C4-4F5D-A6D9-2E8F3D1C5B4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1A3F5B2-E8C4-4F5D-A6D9-2E8F3D1C5B4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1A3F5B2-E8C4-4F5D-A6D9-2E8F3D1C5B4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

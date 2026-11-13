@@ -28,7 +28,7 @@ services:
     <<: *managed
     build:
       context: .
-      dockerfile: API.Dockerfile
+      dockerfile: src/api/Dockerfile
     environment:
       <<: *dotnet-env
       ConnectionStrings__Db: "Host=db-core;Database=core;Username=liag;Password=${DB_PASSWORD}"
