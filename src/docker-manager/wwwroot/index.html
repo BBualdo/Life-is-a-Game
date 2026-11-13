@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docker Manager</title>
+<style>
+  :root { --bg:#f6f7f9; --fg:#1b1f24; --card:#fff; --line:#d8dde3; --ok:#1a7f37; --bad:#c62828; --acc:#1f6feb; --muted:#6a737d; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#14171a; --fg:#e6e9ec; --card:#1d2125; --line:#333a41; --ok:#3fb950; --bad:#f85149; --acc:#58a6ff; --muted:#8b949e; } }
+  body { margin:0; padding:16px; background:var(--bg); color:var(--fg); font:14px system-ui, sans-serif; }
+  h1 { font-size:18px; margin:0 0 12px; } h2 { font-size:15px; margin:18px 0 6px; }
+  .bar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:12px; }
+  input, button { font:inherit; padding:6px 10px; border:1px solid var(--line); border-radius:6px; background:var(--card); color:var(--fg); }
+  button { cursor:pointer; } button:hover { border-color:var(--acc); }
+  table { width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line); }
+  th, td { padding:8px 10px; text-align:left; border-bottom:1px solid var(--line); vertical-align:middle; }
+  .running { color:var(--ok); font-weight:600; } .exited, .dead { color:var(--bad); font-weight:600; }
+  pre { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px; max-height:260px; overflow:auto; white-space:pre-wrap; margin:0; }
+  .muted { color:var(--muted); }
+  @media (max-width:700px) { th:nth-child(3), td:nth-child(3) { display:none; } }
+</style>
+</head>
+<body>
+<h1>Docker Manager <span class="muted" id="info"></span></h1>
+
+<div class="bar">
+  <input id="key" type="password" placeholder="X-Api-Key" size="28">
+  <button onclick="saveKey()">Zapisz klucz</button>
+  <span class="muted" id="status"></span>
+</div>
+
+<table>
+  <thead><tr><th>Kontener</th><th>Usługa</th><th>Obraz</th><th>Stan</th><th>CPU / RAM</th><th>Akcje</th></tr></thead>
+  <tbody id="rows"></tbody>
+</table>
+
+<div class="bar" style="margin-top:12px">
+  <label>Skaluj usługę:
+    <input id="svc" placeholder="missions-api" size="16"> do
+    <input id="rep" type="number" min="1" max="10" value="2" style="width:60px"> kopii
+  </label>
+  <button onclick="scale()">Skaluj</button>
+  <label>Limit RAM (MB) dla kontenera:
+    <input id="limName" placeholder="id kontenera" size="14">
+    <input id="limMb" type="number" min="16" max="4096" value="128" style="width:70px">
+  </label>
+  <button onclick="setLimit()">Ustaw limit</button>
+</div>
+
+<h2>Zdarzenia na żywo</h2>
+<pre id="events" style="max-height:140px"></pre>
+
+<h2>Logi: <span id="logname" class="muted">(kliknij „Logi" przy kontenerze)</span></h2>
+<pre id="logs"></pre>
+
+<script>
+const $ = id => document.getElementById(id);
+const key = () => localStorage.getItem('mgrKey') || '';
+$('key').value = key();
+function saveKey() { localStorage.setItem('mgrKey', $('key').value); refresh(); startEvents(); }
+
+async function call(path, method = 'GET') {
+  const r = await fetch('/api' + path, { method, headers: { 'X-Api-Key': key() } });
+  if (!r.ok) throw new Error(r.status + ' ' + (await r.text()));
+  const ct = r.headers.get('content-type') || '';
+  return ct.includes('json') ? r.json() : r.text();
+}
+async function act(id, action) {
+  try { await call(`/containers/${id}/${action}`, 'POST'); $('status').textContent = `${action} OK`; }
+  catch (e) { $('status').textContent = e.message; }
+  refresh();
+}
+async function showLogs(id, name) {
+  $('logname').textContent = name;
+  try { $('logs').textContent = await call(`/containers/${id}/logs?tail=200`); }
+  catch (e) { $('logs').textContent = e.message; }
+}
+async function scale() {
+  try { const r = await call(`/services/${$('svc').value}/scale?replicas=${$('rep').value}`, 'POST'); $('status').textContent = `skalowanie: ${r.previous} → ${r.requested}`; }
+  catch (e) { $('status').textContent = e.message; }
+  setTimeout(refresh, 800);
+}
+async function setLimit() {
+  try { await call(`/containers/${$('limName').value}/limits?memoryMb=${$('limMb').value}`, 'POST'); $('status').textContent = 'limit ustawiony'; }
+  catch (e) { $('status').textContent = e.message; }
+}
+async function refresh() {
+  try {
+    const [info, list] = await Promise.all([call('/info'), call('/containers')]);
+    $('info').textContent = `– Docker ${info.version} (API ${info.apiVersion}, ${info.os}/${info.arch})`;
+    $('status').textContent = 'odświeżono ' + new Date().toLocaleTimeString();
+    $('rows').innerHTML = list.map(c => `
+      <tr>
+        <td>${c.name}${c.isReplica ? ' <span class="muted">(replica)</span>' : ''}<br><span class="muted">${c.id}</span></td>
+        <td>${c.service ?? ''}</td>
+        <td>${c.image}</td>
+        <td class="${c.state}">${c.state}<br><span class="muted">${c.status}</span></td>
+        <td id="st-${c.id}" class="muted">–</td>
+        <td>
+          <button onclick="act('${c.id}','start')">Start</button>
+          <button onclick="act('${c.id}','stop')">Stop</button>
+          <button onclick="act('${c.id}','restart')">Restart</button>
+          <button onclick="showLogs('${c.id}','${c.name}')">Logs</button>
+        </td>
+      </tr>`).join('');
+    for (const c of list.filter(c => c.state === 'running')) {
+      call(`/containers/${c.id}/stats`).then(s => {
+        const el = $('st-' + c.id);
+        if (el) el.textContent = `${s.cpuPercent}% / ${s.memoryUsedMb} MB`;
+      }).catch(() => {});
+    }
+  } catch (e) { $('status').textContent = e.message; }
+}
+
+let eventsAbort;
+async function startEvents() {
+  if (eventsAbort) eventsAbort.abort();
+  eventsAbort = new AbortController();
+  try {
+    const r = await fetch('/api/events', { headers: { 'X-Api-Key': key() }, signal: eventsAbort.signal });
+    const reader = r.body.getReader(); const dec = new TextDecoder(); let buf = '';
+    while (true) {
+      const { value, done } = await reader.read(); if (done) break;
+      buf += dec.decode(value, { stream: true });
+      let i; while ((i = buf.indexOf('\n\n')) >= 0) {
+        const line = buf.slice(0, i).replace(/^data: /, ''); buf = buf.slice(i + 2);
+        try { const e = JSON.parse(line); $('events').textContent = `${new Date(e.time * 1000).toLocaleTimeString()}  ${e.name}: ${e.action}\n` + $('events').textContent; refresh(); } catch {}
+      }
+    }
+  } catch (e) {}
+}
+refresh(); setInterval(refresh, 5000); startEvents();
+</script>
+</body>
+</html>
